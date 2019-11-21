@@ -1,0 +1,88 @@
+body{
+	font-family: 'Poppins', sans-serif !important;
+}
+.login-box{
+	width: 60%;
+	margin:auto;
+	position: absolute;
+  top:0;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+  height: 500px;
+}
+.left-box{
+	background-image: url('images/bg.png');
+  background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+  height: 100%;
+}
+.row{
+	padding: 0px;
+	margin: 0px;
+}
+.login-box-inner{
+  height: 100%;
+}
+.right-box-inner{
+  padding: 14% 20px 21%;
+}
+.form-control-lg,.form-control-lg:focus{
+	border:none;
+	outline: none;
+	border-radius: 0px;
+	box-shadow: none;
+	background-color: #FAFAFA;
+  font-size: 13px !important;
+  width: 100% !important;
+}
+.input-icon{
+	background-color: #3798F7;
+	text-align: center;
+	position: relative;  	}
+.input-icon i{
+	color: white;
+	font-size: 16px;
+	position: absolute;
+  top:11px;
+  bottom: 0px;
+  left: 0;
+  right: 0;
+}
+.fa-envelope{
+	font-size: 14px !important;
+	top:11px !important;;
+}
+.btn-primary{
+	border-radius: 0px;
+	padding: 10px 50px;
+	font-size: 13px;
+}
+label,a{
+	font-size: 13px !important;
+}
+.custom-control-label::before{
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  
+}
+.custom-control-label{
+  cursor: pointer !important;
+}
+@media (min-width: 426px) and (max-width: 768px) {
+  		.login-box{
+			width:95%;
+  		}
+  	}
+@media (min-width: 320px) and (max-width: 480px) {
+  		.login-box{
+  			height: auto !important;
+  			position: unset !important;
+			height: 200px !important;
+			width:100%;
+  		}
+  		.col-sm-6.right-box{
+  			padding: 0px !important;
+  		}
+}
