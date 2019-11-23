@@ -63,6 +63,8 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
     //REPORT PROBLEM
     Route::get('report-problem', "reportController@index");
 	Route::post('report-problem', "reportController@store");
+	Route::get('report/solved', "reportController@solved");
+	Route::get('report/pending', "reportController@pending");
 
 	// REVIEWS
 	Route::get('reviews', "reviewController@index");
@@ -82,5 +84,3 @@ Route::group(["namespace"=>"user\auth"],function(){
 	Route::get('/login','LoginController@loginView');
 	Route::post('/logout', "LoginController@logout")->name("logout");
 });
-
-

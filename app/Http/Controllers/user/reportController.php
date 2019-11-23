@@ -20,10 +20,21 @@ use PDF;
 class reportController extends Controller
 {
     public function index(){
-        return view('user.pages.report-problem');
+        $reports = report::orderBy('created_at','DESC')->where(["user_id" =>Auth::id()])->get();
+        return view('user.pages.report-problem', compact('reports'));
     }
     public function store(Request $request){
         if(report::create(["problem" => $request->problem,"user_id" => Auth::id()]))
         return back()->with('message','<div class="alert alert-success">Report Added Successfully!</div>');
     }
+    public function solved(){
+        $reports = report::orderBy('created_at','DESC')->where(["user_id"=>Auth::id(), "status" => "solved"])->get();
+        return view('user.pages.report-problem',compact('reports'));
+    }
+    public function pending(){
+        $reports = report::orderBy('created_at','DESC')->where(["user_id"=>Auth::id(), "status" => "pending"])->get();
+        return view('user.pages.report-problem',compact('reports'));
+    }
+
+    
 }
