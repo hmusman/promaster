@@ -105,7 +105,7 @@ body {
                      <li class="with-submenu">
                         <a href="#contact" class="link-hover">Contact</a>
                      </li>
-                     <li class="with-submenu">
+                    <!--  <li class="with-submenu">
                         <a href="#" class="link-hover">
                             
                             <div id="google_translate_element"></div>
@@ -114,7 +114,7 @@ body {
                      </li>
                      <li class="with-submenu">
                         <a href="#" class="link-hover">Translator</a>
-                     </li>
+                     </li> -->
                   @auth
                      <li>
                         <a href="{{url('cart')}}" class="link-hover cart-count">Cart
