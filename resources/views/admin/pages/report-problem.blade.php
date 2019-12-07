@@ -45,7 +45,7 @@
                                 <td class="text-center">{{++$key}}</td>
                                 <td style="width:13%;">{{@$report->getUser->first_name}}
                                     {{@$report->getUser->last_name}}</td>
-                                <td>{{$report->problem}}</td>
+                                <td>{{@$report->problem}}</td>
                                 <td>@if($report->status == "pending")<label class="label label-warning"
                                         style="background-color:#FF9800">{{ucfirst($report->status)}}<label>@else <label
                                                 class="label label-primary">{{ucfirst($report->status)}}<label> @endif

@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Crypt;
 use Response;
 use App\Models\userProgress;
 use PDF;
+use App\Notifications\reportNotification;
+use App\Notifications\solvedReportNotification;
+use App\Models\User;
 
 class reportController extends Controller
 {
@@ -24,8 +27,12 @@ class reportController extends Controller
         return view('admin.pages.report-problem',compact('reports'));
     }
     public function changeReportStatus($id){
-        report::where("id",$id)->update(["status" => "solved"]);
-        return back()->with('message','<div class="alert alert-success">Problem Status Changed Successfully!</div>');
+        report::where("id",$id)->update(["status"=>"solved"]);
+        $userID = report::find($id);
+        if($userID)
+            $username = @$userID->getUser->first_name.' '.@$userID->getUser->last_name;
+            $userID->getUser->notify(new solvedReportNotification($username));
+            return back()->with('message','<div class="alert alert-success">Problem Status Changed Successfully!</div>');
     }
     // public function deleteProblem($id){
     //   report::where("id",$id)->delete();
@@ -37,6 +44,11 @@ class reportController extends Controller
     }
     public function pending(){
         $reports = report::orderBy('created_at','DESC')->where("status","pending")->get();
+        return view('admin.pages.report-problem',compact('reports'));
+    }
+
+    public function singleReport($id){
+        $reports = report::where("id", $id)->get();
         return view('admin.pages.report-problem',compact('reports'));
     }
     

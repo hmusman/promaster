@@ -12,10 +12,15 @@ use App\Models\report;
 use App\Models\tableOfContent;
 use File;
 use Auth;
+use App\Models\Admin;
 use Illuminate\Support\Facades\Crypt;
 use Response;
 use App\Models\userProgress;
 use PDF;
+use App\Notifications\reportNotification;
+use App\Notifications\adminReportNotification;
+use Carbon\Carbon;
+
 
 class reportController extends Controller
 {
@@ -24,7 +29,14 @@ class reportController extends Controller
         return view('user.pages.report-problem', compact('reports'));
     }
     public function store(Request $request){
-        if(report::create(["problem" => $request->problem,"user_id" => Auth::id()]))
+        $report = report::create(["problem" => $request->problem,"user_id" => Auth::id()]);
+        $reportID = $report->id;
+        $userID = Auth::user();
+        if($userID)
+            $username = @$userID->first_name.' '.@$userID->last_name;
+            Auth::user()->notify(new reportNotification($username));
+            $admin = Admin::where("id", ">", 0)->first();
+            $admin->notify(new adminReportNotification($username, $reportID));
         return back()->with('message','<div class="alert alert-success">Report Added Successfully!</div>');
     }
     public function solved(){
@@ -35,6 +47,4 @@ class reportController extends Controller
         $reports = report::orderBy('created_at','DESC')->where(["user_id"=>Auth::id(), "status" => "pending"])->get();
         return view('user.pages.report-problem',compact('reports'));
     }
-
-    
 }

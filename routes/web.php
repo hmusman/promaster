@@ -17,9 +17,11 @@ Route::group(["namespace"=>"admin","prefix"=>"admin","middleware"=> 'auth:admin'
 	Route::resource('courses', 'courseController');
     //REPORT
     Route::get('report-problem', "reportController@index");
+    Route::get('report-problem/{id}', "reportController@singleReport");
     Route::get('report/pending', "reportController@pending");
     Route::get('report/solved', "reportController@solved");
 	Route::get('problem-status-change/{id}', "reportController@changeReportStatus")->name('problem.status');
+	
 // 	Route::get('problem-delete/{id}', "reportController@deleteProblem")->name('problem.delete');
     //REVIEWS 	
 	Route::get('reviews', "reviewController@index");
