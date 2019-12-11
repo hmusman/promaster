@@ -27,7 +27,9 @@ var plugin_path = "{{url('public/assets/js')}}";
 			</script>
 			<script src="{{url('public/assets/js/custom.js')}}"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+			
 			<style>
+
 @media print {
     #google_translate_element {
         display: none;
@@ -74,6 +76,14 @@ $.ajaxSetup({
 });
 			</script>
 			@yield('script')
+			<script>
+			    $(document).ready(
+			            function() {
+			                setInterval(function() {
+			                    $('#notification').load(location.href + " #notification");
+			                }, 10000);
+			            });
+			</script>
 			</body>
 
 			</html>

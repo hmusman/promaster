@@ -20,6 +20,14 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
     @stack('scripts');
     @yield('script')
+    <script>
+    $(document).ready(
+            function() {
+                setInterval(function() {
+                    $('#notification').load(location.href + " #notification");
+                }, 10000);
+            });
+</script>
 </body>
  
 </html>

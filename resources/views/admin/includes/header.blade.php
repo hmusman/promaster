@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="{{url('public/assets/vendor/datatables/css/dataTables.bootstrap4.css')}}">
     <link rel="stylesheet" href="{{url('public/assets/vendor/bootstrap-select/css/bootstrap-select.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-notifications@1.0.3/dist/stylesheets/bootstrap-notifications.min.css">
     <title>ProMaster Admin</title>
     <style type="text/css">
         .gradiant {
@@ -41,6 +43,27 @@
         .font-size{
             font-size: 12px !important;
         }
+        .bell{
+            font-size: 17px;
+        }
+        .badge {
+           position:relative;
+           top:-9px;
+           right:10px;
+           font-size:.7em;
+           background:blue;
+           color:white;
+           width:18px;height:18px;
+           text-align: center;
+           border-radius:50%;
+           box-shadow:0 0 1px #333;
+        }
+        .scroll{
+            float:left;
+            width:400px;
+            overflow-y: auto;
+            height: 300px;
+        }
     </style>
 </head>
 
@@ -52,17 +75,41 @@
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="{{url('admin')}}">Admin Panel</a>
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown" id="notification">
+                        
+                         <a id="navbarDropdown" class="nav-link bell" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <i class="fa fa-bell"></i>
+                            @if(auth()->user()->unreadnotifications->count())
+                                <span class="badge badge-light">{{ auth()->user()->unreadnotifications->count() }}</span>
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right scroll" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route ('markRead') }}">Mark All as Read</a>
+                            @foreach(auth()->user()->unreadnotifications as $notification)
+                                <a style="background-color: lightgray;" class="dropdown-item" href="{{url('/')}}{{@$notification->data['url']}}">{{$notification->data['data']}}<br>
+                                <small style="color: blue;">{{$notification->created_at->diffForHumans()}}</small></a>
+                                
+                            @endforeach
+                            @foreach(auth()->user()->readnotifications as $notification)
+                                <a class="dropdown-item" href="{{url('/')}}{{@$notification->data['url']}}">{{$notification->data['data']}}<br>
+                                    <small style="color: blue;">{{$notification->created_at->diffForHumans()}}</small></a>
+                                
+                            @endforeach
+                            
+                        </div>
+                    </li>
                     <li class="nav-item dropdown mr-3">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->first_name }}<span class="caret"></span>
                         </a>
-
+                        
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
+                       
 
                             <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
                                 @csrf

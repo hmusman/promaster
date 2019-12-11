@@ -32,7 +32,7 @@ class adminReportNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -56,10 +56,11 @@ class adminReportNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            //
+            'data' => $this->username.' submit a report.',
+            'url' => '/admin/report-problem/'.$this->reportID,
         ];
     }
 }

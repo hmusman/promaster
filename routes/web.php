@@ -21,7 +21,10 @@ Route::group(["namespace"=>"admin","prefix"=>"admin","middleware"=> 'auth:admin'
     Route::get('report/pending', "reportController@pending");
     Route::get('report/solved', "reportController@solved");
 	Route::get('problem-status-change/{id}', "reportController@changeReportStatus")->name('problem.status');
-	
+	Route::get('markAsRead', function(){
+		auth()->user()->unreadNotifications->markAsRead();
+		return redirect()->back();
+	})->name('markRead');
 // 	Route::get('problem-delete/{id}', "reportController@deleteProblem")->name('problem.delete');
     //REVIEWS 	
 	Route::get('reviews', "reviewController@index");
@@ -64,9 +67,14 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
 	Route::post('reset-password', "settingController@resetPassword")->name('password.reset');
     //REPORT PROBLEM
     Route::get('report-problem', "reportController@index");
+    Route::get('report-problem/{id}', "reportController@singleReport");
 	Route::post('report-problem', "reportController@store");
 	Route::get('report/solved', "reportController@solved");
 	Route::get('report/pending', "reportController@pending");
+	Route::get('markAsRead', function(){
+		auth()->user()->unreadNotifications->markAsRead();
+		return redirect()->back();
+	})->name('usermarkRead');
 
 	// REVIEWS
 	Route::get('reviews', "reviewController@index");

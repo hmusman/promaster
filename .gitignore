@@ -12,3 +12,7 @@ npm-debug.log
 yarn-error.log
 *.example
 config/app.php
+config/app.php
+composer.json
+composer.lock
+config/app.php

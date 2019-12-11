@@ -19,6 +19,30 @@
     <link rel="stylesheet" type="text/css" href="{{url('public/assets/css/style.css')}}" />
 
     @yield('extra-css')
+    <style>
+        .bell{
+            font-size: 17px;
+            margin-top: 6px;
+        }
+         .badge {
+           position:relative;
+           top:-9px;
+           right:10px;
+           font-size:.7em;
+           background:blue;
+           color:white;
+           width:18px;height:18px;
+           text-align: center;
+           border-radius:50%;
+           box-shadow:0 0 1px #333;
+        }
+        .scroll{
+            float:left;
+            width:400px;
+            overflow-y: auto;
+            height: 300px;
+        }
+    </style>
 </head>p
 
 <body>
@@ -49,6 +73,28 @@
             </ul>
             <!-- top bar right -->
             <ul class="nav navbar-nav ml-auto">
+                <li class="nav-item dropdown" id="notification">
+                         <a id="navbarDropdown" class="nav-link bell" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <i class="fa fa-bell"></i>
+                            @if(auth()->user()->unreadnotifications->count())
+                                <span class="badge badge-light">{{ auth()->user()->unreadnotifications->count() }}</span>
+                            @endif
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right scroll" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('usermarkRead') }}">Mark All as Read</a>
+                            @foreach(auth()->user()->unreadnotifications as $notification)
+                                <a style="background-color: lightgray;" class="dropdown-item" href="{{url('/')}}{{@$notification->data['url']}}">{{$notification->data['data']}}<br>
+                                <small style="color: blue;">{{$notification->created_at->diffForHumans()}}</small></a>
+                                
+                            @endforeach
+                            @foreach(auth()->user()->readnotifications as $notification)
+                                <a class="dropdown-item" href="{{url('/')}}{{@$notification->data['url']}}">{{$notification->data['data']}}<br>
+                                    <small style="color: blue;">{{$notification->created_at->diffForHumans()}}</small></a>
+                                
+                            @endforeach
+                            
+                        </div>
+                    </li>
                 <li class="nav-item dropdown mr-30">
                     <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
                         aria-haspopup="true" aria-expanded="false">

@@ -11,14 +11,16 @@ class solvedReportNotification extends Notification
 {
     use Queueable;
     public $username;
+    public $reportID;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($username)
+    public function __construct($username, $reportID)
     {
         $this->username = $username;
+        $this->reportID = $reportID;
     }
 
     /**
@@ -29,7 +31,7 @@ class solvedReportNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'database'];
     }
 
     /**
@@ -53,10 +55,11 @@ class solvedReportNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            //
+            'data' => 'Dear '.$this->username.' your report has been solved.',
+            'url' => '/user/report-problem/'.$this->reportID,
         ];
     }
 }

@@ -19,7 +19,6 @@ use App\Models\userProgress;
 use PDF;
 use App\Notifications\reportNotification;
 use App\Notifications\adminReportNotification;
-use Carbon\Carbon;
 
 
 class reportController extends Controller
@@ -45,6 +44,17 @@ class reportController extends Controller
     }
     public function pending(){
         $reports = report::orderBy('created_at','DESC')->where(["user_id"=>Auth::id(), "status" => "pending"])->get();
+        return view('user.pages.report-problem',compact('reports'));
+    }
+
+     public function singleReport($id){
+        $reports = report::where("id", $id)->get();
+
+        if(isset(auth()->user()->unreadNotifications[0]->id)){
+            $nid = auth()->user()->unreadNotifications[0]->id;
+            auth()->user()->unreadNotifications->where('id', $nid)->markAsRead();
+        }
+
         return view('user.pages.report-problem',compact('reports'));
     }
 }

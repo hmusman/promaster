@@ -28,10 +28,12 @@ class reportController extends Controller
     }
     public function changeReportStatus($id){
         report::where("id",$id)->update(["status"=>"solved"]);
+        $reportID = report::select("id")->where("id",$id)->first();
         $userID = report::find($id);
+        $getUSer = User::where("id", $userID->user_id)->first();
         if($userID)
-            $username = @$userID->getUser->first_name.' '.@$userID->getUser->last_name;
-            $userID->getUser->notify(new solvedReportNotification($username));
+            $username = @$getUser->first_name.' '.@$getUser->last_name;
+            $getUSer->notify(new solvedReportNotification($username, $reportID->id));
             return back()->with('message','<div class="alert alert-success">Problem Status Changed Successfully!</div>');
     }
     // public function deleteProblem($id){
@@ -49,7 +51,12 @@ class reportController extends Controller
 
     public function singleReport($id){
         $reports = report::where("id", $id)->get();
+        
+        if(isset(auth()->user()->unreadNotifications[0]->id)){
+            $nid = auth()->user()->unreadNotifications[0]->id;
+            auth()->user()->unreadNotifications->where('id', $nid)->markAsRead();
+        }
+            
         return view('admin.pages.report-problem',compact('reports'));
     }
-    
 }
