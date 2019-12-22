@@ -38,6 +38,7 @@ class paymentController extends Controller {
     }
 
     public function orderPlaced(){
+        DB::table("cart")->where("user_id",Auth::id())->delete();
         return view("home.pages.order");
     }
 }
