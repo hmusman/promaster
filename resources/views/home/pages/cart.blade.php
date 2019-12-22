@@ -14,52 +14,65 @@
 	</section>
 	<section class="cart">
 		<div class="container col-sm">
-			<div class="row col-sm">
-				@if(session('alert'))
-					<div class="col-sm-9 col-sm">
-						{!! session('alert') !!}
-					</div>
-				@endif 
-		@if(count($courses) > 0)
-			@php $total = 0; @endphp
-				<div class="col-md-9 col-sm">
-					<h4 class="cart-header">{{count($courses)}} course (s) in Cart</h4>
-				@foreach($courses as $course)
-					@php $total = @$course->getCourse->price + $total; @endphp
-						<div class="row cart-box">
-							<div class="col-sm-2">
-								<img class="img-responsive" src="{{url('public/course-thumbnails')}}/{{@$course->getCourse->course_thumbnail}}">
-							</div>
-							<div class="col-sm-8">
-								<h4 class="cart-item-title">{{@$course->getCourse->course_title}}</h4>
-								 <p class="cart-item-description">{{@$course->getCourse->course_description}}</p>
-								 <div class="action-btns">
-								 	<form action="{{route('cart.delete')}}" method="post">
-								 		@csrf
-								 		<input type="hidden" name="id" value="{{Crypt::encrypt(@$course->id)}}">
-								 		<button type="submit" class="label label-danger"><i class="fa fa-trash"></i></button> 
-								 	</form>
+			<form action='https://sandbox.2checkout.com/checkout/purchase' method='post'>
+				<input type='hidden' name='sid' value='{{ env('2CHECKOUT_SELLER_ID') }}' >
+				<input type='hidden' name='mode' value='2CO' >
+				<div class="row col-sm">
+					@if(session('alert'))
+						<div class="col-sm-9 col-sm">
+							{!! session('alert') !!}
+						</div>
+					@endif 
+			@if(count($courses) > 0)
+				@php $total = 0;$products = array(); @endphp
+					<div class="col-md-9 col-sm">
+						<h4 class="cart-header">{{count($courses)}} course (s) in Cart</h4>
+					@foreach($courses as $key => $course)
+						@php $total = @$course->getCourse->price + $total; @endphp
+							<div class="row cart-box">
+								<div class="col-sm-2">
+									<img class="img-responsive" src="{{url('public/course-thumbnails')}}/{{@$course->getCourse->course_thumbnail}}">
+								</div>
+								<div class="col-sm-8">
+									<h4 class="cart-item-title">{{@$course->getCourse->course_title}}</h4>
+									 <p class="cart-item-description">{{@$course->getCourse->course_description}}</p>
+									 <div class="action-btns">
+									 	<form action="{{route('cart.delete')}}" method="post">
+									 		@csrf
+									 		<input type="hidden" name="id" value="{{Crypt::encrypt(@$course->id)}}">
+									 		<button type="submit" class="label label-danger"><i class="fa fa-trash"></i></button> 
+									 	</form>
+									</div>
+								</div>
+								<div class="col-sm-2 col-sm text-center">
+									<span class="item-price">${{@$course->getCourse->price}}</span>
 								</div>
 							</div>
-							<div class="col-sm-2 col-sm text-center">
-								<span class="item-price">${{@$course->getCourse->price}}</span>
-							</div>
-						</div>
-				@endforeach
-				</div>
-				<div class="col-md-3 checkout-box">
-					<div class="total-price-box">
-						<h3 class="total-price-title">${{number_format($total, 2)}}</h3>
-						<h3 class="total-price">Total</h3>
+							<input type='hidden' name='li_{{$key}}_type' value='product' >
+							<input type='hidden' name='li_{{$key}}_name' value='{{@$course->getCourse->course_title}}' >
+							<input type='hidden' name='li_{{$key}}_price' value='{{@$course->getCourse->price}}' >
+							<input type='hidden' name='li_{{$key}}_quantity' value='1' >
+							<input type='hidden' name='li_{{$key}}_tangible' value='N' >
+							@php  $products[$key] = @$course->id; @endphp
+					@endforeach
+					<input type='hidden' name='purchase_step' value='review-cart' >
+					<input type='hidden' name='total_quantity' value='{{count($courses) }}' >
+					<input type='hidden' name='products' value='{{ json_encode(@$products) }}' >
 					</div>
-					<button class="btn btn-danger checkout-btn">Checkout</button>
+					<div class="col-md-3 checkout-box">
+						<div class="total-price-box">
+							<h3 class="total-price-title">${{number_format($total, 2)}}</h3>
+							<h3 class="total-price">Total</h3>
+						</div>
+						<button class="btn btn-danger checkout-btn">Checkout</button>
+					</div>
+			@else
+				<div class="col-sm-9 col-sm" style="margin-bottom: 9%;">
+					<div class="alert alert-danger">Cart is empty!</div>
 				</div>
-		@else
-			<div class="col-sm-9 col-sm" style="margin-bottom: 9%;">
-				<div class="alert alert-danger">Cart is empty!</div>
-			</div>
-		@endif
-			</div>
+			@endif
+				</div>
+			</form>
 		</div>
 	</section>
 @endsection

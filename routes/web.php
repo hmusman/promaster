@@ -6,8 +6,9 @@ Route::group(["namespace"=>"home"],function(){
 	Route::get('/cart', "cartController@cart");
 	Route::post('/add-cart-item','cartController@addCartItem')->name('cart.add');
 	Route::post('/delete-cart-item','cartController@deleteCartItem')->name('cart.delete');
+	
 });
-
+Route::get('/order-placed', "PaymentController@orderPlaced");
 // ADMIN
 Route::group(["namespace"=>"admin","prefix"=>"admin","middleware"=> 'auth:admin'],function(){
 	// DASHBOARD
