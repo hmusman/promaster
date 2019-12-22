@@ -8,7 +8,7 @@ Route::group(["namespace"=>"home"],function(){
 	Route::post('/delete-cart-item','cartController@deleteCartItem')->name('cart.delete');
 	
 });
-Route::get('/order-placed', "PaymentController@orderPlaced");
+Route::get('/order-placed', "paymentController@orderPlaced");
 // ADMIN
 Route::group(["namespace"=>"admin","prefix"=>"admin","middleware"=> 'auth:admin'],function(){
 	// DASHBOARD

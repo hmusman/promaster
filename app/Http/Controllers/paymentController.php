@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 
-class PaymentController extends Controller {
+class paymentController extends Controller {
     public function pay(Request $request){
         // dd($request);
         $hashSecretWord = 'MDE5NmI5YWItODM5OC00NDYxLTg2MWMtOWNiMjkxYTc4OGQx'; //2Checkout Secret Word

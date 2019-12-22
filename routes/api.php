@@ -12,4 +12,4 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::post('/payment/pay','PaymentController@pay');
+Route::post('/payment/pay','paymentController@pay');
