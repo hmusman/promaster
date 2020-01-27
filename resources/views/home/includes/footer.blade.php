@@ -1,3 +1,105 @@
+    <!-- Footer Start -->
+        <footer id="rs-footer" class="rs-footer style3">
+            <div class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-12 col-sm-12 single-footer-column mb-md-30">
+                            <div class="about-widget pr-20">
+                                <div class="footer-logo">
+                                    <img src="{{url('public/assets/newtheme/images/logo-white.png')}}" alt="Footer Logo">
+                                </div>                              
+                                <div class="footer-info">
+                                    <p class="footer-desc">Lorem ipsum dolor sit amet, conse turini adipiscing elit, sed do eiusmod tempor in cididunt ut labore. </p>
+                                </div>                                
+                                <ul class="social-links">
+                                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-12 col-sm-12 single-footer-column">
+                            <h4 class="footer-title white-color">Work Hours</h4>
+                            <p>10.00 AM - 6.00 PM , Monday - Saturday</p>
+                            <p>Our Support and Sales team is available 24 * 7 to answer your queries</p>
+                        </div>
+
+                        <div class="col-lg-3 col-md-12 col-sm-12 single-footer-column mb-md-30">
+                            <div class="footer-menu">
+                                <h4 class="footer-title white-color">Navigate</h4>
+                                <div class="row">
+                                    <div class="col-lg-6 pr-0">
+                                        <ul>
+                                            <li><a href="about.html">About Us</a></li>
+                                            <li><a href="features.html">Features</a></li>
+                                            <li><a href="mobile-app.html">Mobile App</a></li>
+                                            <li><a href="software-demo.html">Software Demo</a></li>
+                                            <li><a href="software-download.html">Software Download</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <ul>
+                                            <li><a href="blog.html">Blog</a></li>
+                                            <li><a href="team.html">Team</a></li>
+                                            <li><a href="chatbot.html">ChatBot</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-3 single-footer-column">
+                            <div class="footer-menu">
+                                <h4 class="footer-title white-color">Privacy & Tos</h4>
+                                <ul>
+                                    <li><a href="privacy.html">Privacy</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                    <li><a href="login.html">Login</a></li>
+                                    <li><a href="register.html">Register</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chatbox-part style3">
+                        <div class="chatbox box-shadow white-bg">
+                            <div class="chatbox-top gradient-bg3">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-8">
+                                        <div class="chat-img">
+                                            <img src="images/team/chat.png" alt="">
+                                            <span class="active-icon"></span>
+                                        </div>
+                                        <div class="chat-identity pl-10">
+                                            <h4 class="chat-title white-color mb-0">ChatBot</h4>
+                                            <span class="active-status white-color">Active</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="close-icon">
+                                            <i class="flaticon-error"></i>
+                                        </div>
+                                    </div>
+                                </div>                            
+                            </div>
+                            <div class="chatbox-text text-center">
+                                <p>Hello Friend, I can help you with anything related to chatbots!</p>
+                                <p class="mb-0">Let me know if you're planning to create a chatbot for your business!﻿</p>
+                            </div>
+                            <div class="chatbox-btn">
+                                <a class="readon style3 radius" href="#">Let’s Start a Chat</a>
+                            </div>
+                        </div>
+                        <div class="chat-icon text-center">
+                            <i class="flaticon-chat"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End -->
+
+
 <footer class="bg-ftr">
    <div class="container">
       <div class="row">
@@ -167,18 +269,19 @@
    </div>
 </div>
 
-<script
+<!-- <script
    src="https://code.jquery.com/jquery-3.4.1.js"
    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-   crossorigin="anonymous"></script>
+   crossorigin="anonymous"></script> -->
+       <script src="{{url('public/assets/newtheme/js/jquery.min.js')}}"></script> 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="{{url('public/assets/lib/jquery-ui/jquery-ui.min.js')}}"></script>
 <script src="{{url('public/assets/lib/slick/slick.min.js')}}"></script>
 <script src="{{url('public/assets/lib/isotope/isotope.pkgd.min.js')}}"></script>
 <script src="{{url('public/assets/lib/visible/visible.js')}}"></script>
 <script src="{{url('public/assets/lib/imagesLoaded/imagesLoaded.min.js')}}"></script>
-<script src="{{url('public/assets/js/main.js')}}"></script>
-<script src="{{url('public/assets/js/owl.carousel.min.js')}}"></script>
+<script src="{{url('public/assets/js/main.js')}}"></script> 
+ <script src="{{url('public/assets/js/owl.carousel.min.js')}}"></script> 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js"></script>
@@ -186,12 +289,40 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
 
+
+
+      <script src="{{url('public/assets/newtheme/js/modernizr-2.8.3.min.js')}}"></script>
+        <!-- jquery latest version -->
+   
+        <!-- counter top js -->
+        <script src="{{url('public/assets/newtheme/js/jquery.counterup.min.js')}}"></script>
+        <script src="{{url('public/assets/newtheme/js/waypoints.min.js')}}"></script>
+        <!-- bootstrap js -->
+        <script src="{{url('public/assets/newtheme/js/bootstrap.min.js')}}"></script>
+        <!-- owl.carousel js -->
+        <script src="{{url('public/assets/newtheme/js/owl.carousel.min.js')}}"></script> 
+        <!-- slick.min js ----> 
+        <script src="{{url('public/assets/newtheme/js/slick.min.js')}}"></script>
+        <!-- magnific popup -->
+        <script src="{{url('public/assets/newtheme/js/jquery.magnific-popup.min.js')}}"></script>
+        <!-- wow js -->
+        <script src="{{url('public/assets/newtheme/js/wow.min.js')}}"></script>
+        <!-- rsmenu js -->
+        <script src="{{url('public/assets/newtheme/js/rsmenu-main.js')}}"></script>
+        <!-- plugins js -->
+        <script src="{{url('public/assets/newtheme/js/plugins.js')}}"></script>
+         <!-- main js -->
+        <script src="{{url('public/assets/newtheme/js/main.js')}}"></script>
 <!-- <script type="text/javascript">
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
 }
 </script>
 <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
+ <!-- modernizr js -->
+
+
+
 @stack('scripts')
 
 <!--  -->
@@ -365,6 +496,8 @@ console.log($('meta[name="csrf-token"]').attr('content'));
    Command: toastr["success"]("{{session('success')}}");
 @endif
 </script>
+
+
 @yield('script')
    </body>
 </html>

@@ -13,6 +13,40 @@
       <link rel="stylesheet" href="{{url('public/assets/css/owl.carousel.min.css')}}">
       <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <link rel="shortcut icon" type="image/x-icon" href="{{url('images/fav.png')}}">
+        <!-- bootstrap v4 css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/bootstrap.min.css')}}">
+        <!-- font-awesome css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/font-awesome.min.css')}}">
+        <!-- animate css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/animate.css')}}">
+        <!-- hover css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/hover-min.css')}}">
+        <!-- owl.carousel css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/owl.carousel.css')}}">
+        <!-- slick css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/slick.css')}}">
+        <!-- off canvas css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/off-canvas.css')}}">
+        <!-- flaticon css  -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/fonts/flaticon.css')}}">
+        <!-- rsmenu CSS -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/rsmenu-main.css')}}">
+        <!-- magnific popup css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/magnific-popup.css')}}">
+        <!-- rsmenu transitions CSS -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/rsmenu-transitions.css')}}">
+        <!-- style css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/style.css')}}">
+        <!-- switch color presets css -->
+        <link id="switch_style" href="#" rel="stylesheet" type="text/css')}}">
+        <!-- Spacing css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/spacing.css')}}">
+        <!-- responsive css -->
+        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/responsive.css')}}">
       @stack('style')
       <style>
 @media print {
@@ -35,6 +69,9 @@ body {
 </style>
    </head>
    <body>
+
+
+
       <header>
          <nav class="side-menu-container" id="mobile-menu">
             <ul class="mx-auto top-level clearfix">
@@ -117,6 +154,7 @@ body {
                      </li> -->
                   @auth
                      <li>
+                        
                         <a href="{{url('cart')}}" class="link-hover cart-count">Cart
                            @inject('cart','App\Http\Controllers\home\cartController')
                            @if($cart->cartCount() > 0) 

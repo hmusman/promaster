@@ -1727,8 +1727,8 @@ header{
 	position: fixed;
 	width: 100%;
 	z-index: 10000;
-	height: 100px;
-	background-image: linear-gradient(243deg, #0048ec 0%, #4dd8bc 100%);
+	height: 80px;
+    background: linear-gradient(90deg, #6669e6, #12b4c8);
 }
 section.jumbotron.jumbotron-fluid {
     padding: 30px;
@@ -2187,7 +2187,7 @@ font-weight: 600;
 }
 .bg-nav{
 	/*background: #1d93ff;*/
-	background-image: linear-gradient(243deg, #0048ec 0%, #4dd8bc 100%);
+	background: linear-gradient(90deg, #6669e6, #12b4c8) !important;
 }
 
 .bg-remove{
@@ -2239,7 +2239,7 @@ nav .top-level > li > a{
 
 nav > ul > li{
 	float: left;
-	line-height: 100px;
+	line-height: 80px;
 }
 
 nav > ul > li > *{
@@ -5121,6 +5121,8 @@ footer .tag:hover{
 	    background:#1d93ff;
     	background-size: 100% 100%;
     	height: 65px;
+
+
 	}
 
 	.bann-wrap h3 {
@@ -5152,7 +5154,7 @@ footer .tag:hover{
 	margin-left: 13px;
 }
 .logo {
-    top: 50%;
+    top: 63%;
 }
 	.mob{
 	margin-bottom: 100px;
@@ -6562,7 +6564,7 @@ p.card-holder-status {
 }
 
 .cart-forms{
-	float: right;
+	/*float: right;*/
 }
 .cart-message{
 	display: none;

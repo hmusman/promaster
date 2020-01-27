@@ -83,7 +83,7 @@
                                 <span class="badge badge-light">{{ auth()->user()->unreadnotifications->count() }}</span>
                             @endif
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right scroll" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right scroll" style="background: white;" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route ('markRead') }}">Mark All as Read</a>
                             @foreach(auth()->user()->unreadnotifications as $notification)
                                 <a style="background-color: lightgray;" class="dropdown-item" href="{{url('/')}}{{@$notification->data['url']}}">{{$notification->data['data']}}<br>
@@ -103,7 +103,7 @@
                             {{ Auth::user()->first_name }}<span class="caret"></span>
                         </a>
                         
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right" style="background: white;" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
@@ -118,25 +118,62 @@
                     </li>
                 </ul>
             </nav>
+
+            <!-- left sidebar -->
+ <nav class="navbar navbar-expand-lg  bg-dark">
+  <a class="navbar-brand" href="#">Menu</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link dashboard" href="{{url('admin')}}">
+            <i class="fa fa-fw fa-user-circle"></i>Dashboard 
+        </a>
+       </li>
+       <li class="nav-item ">
+        <a class="nav-link users" href="{{url('admin/users')}}">
+            <i class="fa fa-fw fa-users"></i>Users 
+        </a>
+       </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Courses
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">   
+           <a class="nav-link all-courses" href="{{ route('courses.index') }}">All Courses</a>
+             <div class="dropdown-divider"></div>
+           <a class="nav-link add-courses" href="{{ route('courses.create') }}">Add Course</a>
         </div>
+       </li>
+       <li class="nav-item ">
+        <a class="nav-link reviews" href="{{url('admin/reviews')}}">
+            <i class="fa fa-fw fa-star"></i>Reviews 
+        </a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link all-courses" href="{{ url('admin/report-problem') }}"><i class="fa fa-question"></i> Problems Report</a>
+      </li>
+    </ul>
+ 
+  </div>
+</nav>
         <!-- ============================================================== -->
-        <!-- end navbar -->
-        <!-- ============================================================== -->
-        <!-- left sidebar -->
-        <!-- ============================================================== -->
-        <div class="nav-left-sidebar sidebar-dark">
+        <!-- <div class="nav-left-sidebar ">
             <div class="menu-list">
-                <nav class="navbar navbar-expand-lg navbar-light">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav flex-column">
+                        <ul class="navbar-nav ">
                             <li class="nav-divider">
                                 Menu
                             </li>
-                            <li class="nav-item ">
+                            <li class="nav-item">
                                 <a class="nav-link dashboard" href="{{url('admin')}}">
                                     <i class="fa fa-fw fa-user-circle"></i>Dashboard 
                                 </a>
@@ -171,11 +208,16 @@
                     </div>
                 </nav>
             </div>
+        </div> -->
         </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        
         <!-- ============================================================== -->
         <!-- end left sidebar -->
         <!-- ============================================================== -->
-        <div class="dashboard-wrapper">
+        <div class="dashboard-wrapper" style="margin-left:0px; ">
             <div class="dashboard-ecommerce">
                 <div class="container-fluid dashboard-content ">
                     <!-- ============================================================== -->
