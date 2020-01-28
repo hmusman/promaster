@@ -48,7 +48,7 @@
             height: 300px;
         }
            a.nav-link1.active{
-                 background: linear-gradient(-150deg, #7555ac, #51c0ce) !important;
+                  background: linear-gradient(-150deg, #172a8a, #28549d) !important;
              border-radius: 5px !important;
         }
         /*a:hover{
@@ -76,7 +76,7 @@
          color: #cecece !important;
         }
          li.nav-item1:hover{
-       background: linear-gradient(-150deg, #6723e0, #50d2e3);
+        background: linear-gradient(-150deg, #172a8a, #28549d);
         border-radius: 5px;
         }
 
@@ -97,8 +97,11 @@ a.dropdown-item{
     font-size: 20px;
     text-transform: uppercase;
     font-weight: 700;
-    color: #000 !important;
+    color: #fff !important;
 }
+.navbar-nav .nav-link{
+            color: white !important;
+        }
     </style>
         
 </head>

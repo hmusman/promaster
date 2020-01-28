@@ -66,19 +66,16 @@
         }
 
         .nav-link.active{
-      background: linear-gradient(-150deg, #7555ac, #51c0ce);
+     background: linear-gradient(-150deg, #172a8a, #28549d);
     border-radius: 5px;
 
         }
         .bg-dark{
              background: linear-gradient(-150deg, #12b4c8, #6669e6) !important;
         }
-        a {
-                
-         color: #cecece !important;
-        }
+      
          li.nav-item:hover{
-             background: linear-gradient(-150deg, #7555ac, #51c0ce);
+             background: linear-gradient(-150deg, #172a8a, #28549d);
         border-radius: 5px;
         }
 
@@ -99,6 +96,9 @@
         }
         .nav-link{
             padding:12px;
+        }
+        .navbar-nav .nav-link{
+            color: white !important;
         }
         @media (min-width: 320px) and (max-width: 980px) {
                
@@ -170,7 +170,7 @@
 
             <!-- left sidebar -->
  <nav class="navbar navbar-expand-lg  bg-dark">
-  <a class="navbar-brand" href="#" style="color: #000!important">Menu</a>
+  <a class="navbar-brand" href="#" style="color: #fff!important">Menu</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <img src="{{url('public/assets/images/icons8-menu-24.png')}}">
   </button>

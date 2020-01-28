@@ -1851,7 +1851,7 @@ display: block;
   border-radius: 40px;
   font-weight: 600;
   font-size: 13px;
-  color: #fff;
+  color: #fff !important;
   padding: 7px 42px;
   text-align: center;
 }
@@ -21346,7 +21346,7 @@ footer {
 
 /*footer*/
 footer a {
-  color: #323232; }
+  color: #323232 !important; }
 
 /*lockscreen*/
 .lockscreen .user-info {
