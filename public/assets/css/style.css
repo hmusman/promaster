@@ -20622,7 +20622,6 @@ ul.list-unstyled li {
 .content-wrapper {
   padding: 30px;
   overflow: hidden;
-  margin-left: 215px;
   min-height: 100vh;
   -webkit-transition: all 0.9s ease;
   -moz-transition: all 0.9s ease;
@@ -20973,7 +20972,6 @@ a.button-toggle-nav {
   margin-left: 65px; }
 
 .content-wrapper {
-  margin-left: 230px;
   background: #f1f7fb;
   position: relative;
   -webkit-transition: all 0.5s ease;

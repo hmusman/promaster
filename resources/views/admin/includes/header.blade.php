@@ -30,7 +30,7 @@
             background: linear-gradient(to right, #00eda4 0%,#1d93ff 100%);
             filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00eda4', endColorstr='#1d93ff',GradientType=1 );
         }
-        .choose {
+       .choose {
             padding: 10px 15px;
             color: #fff;
             text-align: center;
@@ -64,6 +64,31 @@
             overflow-y: auto;
             height: 300px;
         }
+
+
+        .nav-link.active{
+            background: #100d0d;
+    border-radius: 5px;
+
+        }
+            a  {
+    color: #cecece !important;
+}
+        a:hover{
+            color:#6a7df1 !important;
+        }
+
+@media (min-width: 320px) and (max-width: 780px) {
+       .nav-link {
+        padding-left: 10px !important;
+        }
+         .bg-dark{
+             margin-top:10px;
+        }
+        .navbar-nav.mr-auto{
+            padding: 15px !important;
+        }
+ }
     </style>
 </head>
 
@@ -83,7 +108,7 @@
                                 <span class="badge badge-light">{{ auth()->user()->unreadnotifications->count() }}</span>
                             @endif
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right scroll" style="background: white;" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right scroll" style="background: white;position: absolute;" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route ('markRead') }}">Mark All as Read</a>
                             @foreach(auth()->user()->unreadnotifications as $notification)
                                 <a style="background-color: lightgray;" class="dropdown-item" href="{{url('/')}}{{@$notification->data['url']}}">{{$notification->data['data']}}<br>
@@ -103,7 +128,7 @@
                             {{ Auth::user()->first_name }}<span class="caret"></span>
                         </a>
                         
-                        <div class="dropdown-menu dropdown-menu-right" style="background: white;" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right" style="background: white;position: absolute;" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
@@ -123,7 +148,7 @@
  <nav class="navbar navbar-expand-lg  bg-dark">
   <a class="navbar-brand" href="#">Menu</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <img src="{{url('public/assets/images/icons8-menu-24.png')}}">
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">

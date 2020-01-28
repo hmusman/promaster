@@ -11,10 +11,10 @@
   <div class="nav-pills-row">
     <ul class="nav nav-pills nav-justified">
       <li class="nav-item">
-        <a class="nav-link @if(Request::is('user/reviews')) active-tab @endif" href="{{url('user/reviews')}}">To Be Reviewed</a>
+        <a class="nav-link nav-link2 @if(Request::is('user/reviews')) active-tab @endif" href="{{url('user/reviews')}}">To Be Reviewed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link @if(Request::is('user/review-history')) active-tab @endif" href="{{url('user/review-history')}}">History</a>
+        <a class="nav-link nav-link2 @if(Request::is('user/review-history')) active-tab @endif" href="{{url('user/review-history')}}">History</a>
       </li>
       </li>
     </ul>
@@ -149,17 +149,17 @@
     width: 100%;
     margin-bottom: 30px;
   }
-  .nav-link{
+  .nav-link2{
      border-radius: 0px !important;
     padding: 1rem 1rem;
     font-size: 14px;
     font-weight: 600;
     
   }
-  .nav-link{
+  .nav-link2{
     color: black !important;
   }
-  .active-tab,.nav-link:hover,.nav-link:active,.nav-link:focus{
+  .active-tab,.nav-link2:hover,.nav-link2:active,.nav-link2:focus{
     background: linear-gradient(to right, #00eda4 0%,#6a7df1 100%);
     color: white !important;
     border-radius: 0px !important;
