@@ -65,9 +65,8 @@
             height: 300px;
         }
 
-
         .nav-link.active{
-    background: #100d0d;
+      background: linear-gradient(-150deg, #7555ac, #51c0ce);
     border-radius: 5px;
 
         }
@@ -79,7 +78,7 @@
          color: #cecece !important;
         }
          li.nav-item:hover{
-        background: #100d0d;
+             background: linear-gradient(-150deg, #7555ac, #51c0ce);
         border-radius: 5px;
         }
 

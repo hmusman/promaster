@@ -48,7 +48,7 @@
             height: 300px;
         }
            a.nav-link1.active{
-             background: #000 !important;
+                 background: linear-gradient(-150deg, #7555ac, #51c0ce) !important;
              border-radius: 5px !important;
         }
         /*a:hover{
@@ -76,7 +76,7 @@
          color: #cecece !important;
         }
          li.nav-item1:hover{
-        background: #100d0d;
+       background: linear-gradient(-150deg, #6723e0, #50d2e3);
         border-radius: 5px;
         }
 
@@ -133,7 +133,7 @@ a.dropdown-item{
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item2 dropdown" id="notification">
                          <a id="navbarDropdown" class="nav-link bell" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <i style="color: gray;" class="fa fa-bell"></i>
+                            <i class="fa fa-bell"></i>
                             @if(auth()->user()->unreadnotifications->count())
                                 <span class="badge badge-light">{{ auth()->user()->unreadnotifications->count() }}</span>
                             @endif
