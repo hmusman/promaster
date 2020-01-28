@@ -10,6 +10,9 @@
     height: 80px;
     background-image: linear-gradient(243deg, #525f7b00 0%, #4dd8bc00 100%) ; 
 }
+.shop-content .title{
+    min-height: 54px;
+}
 </style>
   <!-- Preloader area start here -->
         <div id="loading" class="icon-preloader">
