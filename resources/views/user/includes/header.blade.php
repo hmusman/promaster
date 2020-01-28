@@ -65,6 +65,9 @@
     color: #cecece !important;
 }
 
+a.dropdown-item{
+    color: black !important;
+}
 @media (min-width: 320px) and (max-width: 780px) {
        .nav-link1 {
             padding-left: 10px !important; 

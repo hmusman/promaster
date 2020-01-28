@@ -77,7 +77,9 @@
         a:hover{
             color:#6a7df1 !important;
         }
-
+a.dropdown-item{
+    color: black !important;
+}
 @media (min-width: 320px) and (max-width: 780px) {
        .nav-link {
         padding-left: 10px !important;
