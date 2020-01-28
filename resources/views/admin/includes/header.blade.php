@@ -67,30 +67,49 @@
 
 
         .nav-link.active{
-            background: #100d0d;
+    background: #100d0d;
     border-radius: 5px;
 
         }
-            a  {
-    color: #cecece !important;
-}
-        a:hover{
-            color:#6a7df1 !important;
+        .bg-dark{
+             background: linear-gradient(-150deg, #12b4c8, #6669e6) !important;
         }
-a.dropdown-item{
-    color: black !important;
-}
-@media (min-width: 320px) and (max-width: 780px) {
-       .nav-link {
-        padding-left: 10px !important;
+        a {
+                
+         color: #cecece !important;
         }
-         .bg-dark{
-             margin-top:10px;
+         li.nav-item:hover{
+        background: #100d0d;
+        border-radius: 5px;
         }
-        .navbar-nav.mr-auto{
-            padding: 15px !important;
+
+        a.dropdown-item{
+            color: black !important;
         }
- }
+
+        li {
+        margin-right: 5px !important;
+        }
+        .dropdown-menu.show > a:hover {
+            color: black !important;
+ 
+        }
+
+       .dropdown-menu.show > a {
+           color: #3d405c !important;
+        }
+        .nav-link{
+            padding:12px;
+        }
+        @media (min-width: 320px) and (max-width: 780px) {
+               
+                 .bg-dark{
+                     margin-top:10px;
+                }
+                .navbar-nav.mr-auto{
+                    padding: 15px !important;
+                }
+         }
     </style>
 </head>
 
@@ -102,10 +121,10 @@ a.dropdown-item{
             <nav class="navbar navbar-expand-lg bg-white fixed-top">
                 <a class="navbar-brand" href="{{url('admin')}}">Admin Panel</a>
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown" id="notification">
+                    <li class="nav-item1 dropdown" id="notification">
                         
                          <a id="navbarDropdown" class="nav-link bell" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <i class="fa fa-bell"></i>
+                            <i style="color: gray;" class="fa fa-bell"></i>
                             @if(auth()->user()->unreadnotifications->count())
                                 <span class="badge badge-light">{{ auth()->user()->unreadnotifications->count() }}</span>
                             @endif
@@ -125,8 +144,8 @@ a.dropdown-item{
                             
                         </div>
                     </li>
-                    <li class="nav-item dropdown mr-3">
-                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <li class="nav-item1 dropdown mr-3">
+                             <a  style="color: gray !important; " id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->first_name }}<span class="caret"></span>
                         </a>
                         
@@ -148,7 +167,7 @@ a.dropdown-item{
 
             <!-- left sidebar -->
  <nav class="navbar navbar-expand-lg  bg-dark">
-  <a class="navbar-brand" href="#">Menu</a>
+  <a class="navbar-brand" href="#" style="color: #000!important">Menu</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <img src="{{url('public/assets/images/icons8-menu-24.png')}}">
   </button>

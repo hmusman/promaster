@@ -51,19 +51,34 @@
              background: #000 !important;
              border-radius: 5px !important;
         }
-        a:hover{
+        /*a:hover{
             color:#6a7df1 !important;
-        }
+        }*/
         li.nav-item1 > a > img{
         width: 15px !important;
     }
     li.nav-item1{
-        padding: 5px !important;
+        margin-left: 5px !important;
+        height: 100%;
     }
-
+.nav-link1{
+    padding-bottom: 13px;
+    padding-top: 13px;
+}
     a {
     color: #cecece !important;
 }
+.bg-dark{
+    background: linear-gradient(-150deg, #12b4c8, #6669e6) !important;
+        }
+          a {
+                
+         color: #cecece !important;
+        }
+         li.nav-item1:hover{
+        background: #100d0d;
+        border-radius: 5px;
+        }
 
 a.dropdown-item{
     color: black !important;
@@ -72,11 +87,20 @@ a.dropdown-item{
        .nav-link1 {
             padding-left: 10px !important; 
         }
-        
-         
  }
+ .navbar-brand {
+    display: inline-block;
+    margin-right: 1rem;
+    line-height: inherit;
+    white-space: nowrap;
+    padding: 14px 25px;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000 !important;
+}
     </style>
-        }
+        
 </head>
 
 <body>
@@ -107,9 +131,9 @@ a.dropdown-item{
             </ul>
             <!-- top bar right -->
             <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item dropdown" id="notification">
+                <li class="nav-item2 dropdown" id="notification">
                          <a id="navbarDropdown" class="nav-link bell" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <i class="fa fa-bell"></i>
+                            <i style="color: gray;" class="fa fa-bell"></i>
                             @if(auth()->user()->unreadnotifications->count())
                                 <span class="badge badge-light">{{ auth()->user()->unreadnotifications->count() }}</span>
                             @endif
@@ -129,7 +153,7 @@ a.dropdown-item{
                             
                         </div>
                     </li>
-                <li class="nav-item dropdown mr-30">
+                <li class="nav-item nav-item2 dropdown mr-30">
                     <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
                         aria-haspopup="true" aria-expanded="false">
                         <img src="@if(Auth::user()->profile_image == str_replace(" ",""," default.png"))
@@ -162,7 +186,7 @@ a.dropdown-item{
 
 
 
- <nav style="margin-top: 25px;"  class="navbar navbar-expand-lg  bg-dark">
+ <nav style="margin-top: 45px;"  class="navbar navbar-expand-lg  bg-dark">
               <a class="navbar-brand" href="#">Menu</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                

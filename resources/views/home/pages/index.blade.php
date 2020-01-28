@@ -149,13 +149,13 @@
                     @endforeach
                 </div>
 
-                <div class="bullet mt-50">
+                <!-- <div class="bullet mt-50">
                     <ul>
                         <li class="active"><a href="#">1</a></li>
                         <li><a href="#">2</a></li>
                         <li><a href="#"><i class="flaticon-right-arrow"></i></a></li>
                     </ul>
-                </div>
+                </div> -->
             </div>
         </div>
 @endsection
@@ -397,22 +397,22 @@ features to help suit your learning needs</p>
                                 <div class="col-md-2 padding-0 sm-mb-30 col-padding-sm">
                                     <div class="slider-nav">
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/1.jpg')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
                                         </div>
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/2.jpg')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
                                         </div>
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/3.jpg')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
                                         </div>
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/4.jpg')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
                                         </div>
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/3.jpg')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
                                         </div>
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/4.jpg')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
                                         </div>
                                     </div>
                                 </div>
