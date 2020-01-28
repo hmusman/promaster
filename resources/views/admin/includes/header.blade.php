@@ -100,13 +100,17 @@
         .nav-link{
             padding:12px;
         }
-        @media (min-width: 320px) and (max-width: 780px) {
+        @media (min-width: 320px) and (max-width: 980px) {
                
                  .bg-dark{
                      margin-top:10px;
                 }
                 .navbar-nav.mr-auto{
                     padding: 15px !important;
+                }
+                .bg-dark{
+                    margin-top:25px;
+
                 }
          }
     </style>
