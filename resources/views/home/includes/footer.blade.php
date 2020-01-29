@@ -9,13 +9,13 @@
                                     <img src="{{url('public/assets/newtheme/images/logo-white.png')}}" alt="Footer Logo">
                                 </div>                              
                                 <div class="footer-info">
-                                    <p class="footer-desc">Lorem ipsum dolor sit amet, conse turini adipiscing elit, sed do eiusmod tempor in cididunt ut labore. </p>
+                                    <p class="footer-desc">Providing innovative and high quality education for professionals and workforces allaround the globe. </p>
                                 </div>                                
-                                <ul class="social-links">
+                                <!-- <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                     <li><a href="#"><i class="fa fa-instagram"></i></a></li>
                                     <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                </ul>
+                                </ul> -->
                             </div>
                         </div>
 
@@ -31,19 +31,22 @@
                                 <div class="row">
                                     <div class="col-lg-6 pr-0">
                                         <ul>
-                                            <li><a href="about.html">About Us</a></li>
-                                            <li><a href="features.html">Features</a></li>
-                                            <li><a href="mobile-app.html">Mobile App</a></li>
-                                            <li><a href="software-demo.html">Software Demo</a></li>
-                                            <li><a href="software-download.html">Software Download</a></li>
+                                          <li><a href="">Home</a></li>
+                                            <li><a href="">About Us</a></li>
+                                            <li><a href="">Our Values</a></li>
+
+                                            <li><a href="">Contact</a></li>
+                                            <li><a href="{{url('cart')}}">Cart</a></li>
+                                            <li><a href="{{url('user/courses')}}">Dashboard</a></li>
+                                            
                                         </ul>
                                     </div>
                                     <div class="col-lg-6">
-                                        <ul>
+                                      <!--   <ul>
                                             <li><a href="blog.html">Blog</a></li>
                                             <li><a href="team.html">Team</a></li>
                                             <li><a href="chatbot.html">ChatBot</a></li>
-                                        </ul>
+                                        </ul> -->
                                     </div>
                                 </div>
                             </div>
@@ -54,9 +57,9 @@
                                 <h4 class="footer-title white-color">Privacy & Tos</h4>
                                 <ul>
                                     <li><a href="privacy.html">Privacy</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
+                                    <!-- <li><a href="contact.html">Contact</a></li> -->
+                                    <li><a href="{{url('login')}}">Login</a></li>
+                                    <li><a href="{{url('signup')}}">Signup</a></li>
                                 </ul>
                             </div>
                         </div>

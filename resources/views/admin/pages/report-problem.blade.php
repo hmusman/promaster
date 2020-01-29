@@ -9,6 +9,20 @@
     display: inline-block;
     padding: 6px 6px !important;
 }
+ .btn-success.active {
+    opacity: 0.9;
+    color: #fff;
+    background-color: #204295 !important;
+    border-color: #204094 !important;
+}
+.btn-success{
+   background-color: #4d80dd  !important ;
+    border-color: #5974e1 !important ;
+}
+.btn-success:hover{
+ background-color: #204295 !important;  
+ border-color: #204094 !important; 
+}
 </style>
 @section('content')
 <div class="row mb-2">

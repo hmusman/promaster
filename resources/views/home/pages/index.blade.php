@@ -65,9 +65,9 @@
                             courses, you will receive certification for the coursework which can be a valuable
                             addition to your resume.</p>
                         </div>
-                        <div class="">
+                        <!-- <div class="">
                             <a class="readon style3 radius" href="#">Learn More</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="row col-20 pt-100 md-pt-80">
@@ -134,7 +134,7 @@
                             </div>
                             <div class="shop-content">
                                 <h4 class="title"><a href="shop-single.html">{{$course->course_title}}</a></h4>
-                                <span class="price">${{number_format($course->price,2)}}</span>
+                                <!-- <span class="price">${{number_format($course->price,2)}}</span> -->
                                 <!-- <a class="readon radius" href="#">add to cart</a> -->
                                  @auth
                                         <form action="{{route('cart.add')}}" method="post" class="cart-forms add-to-cart-form">
@@ -289,100 +289,90 @@
 <!-- our worldwide performance -->
 @section('section-5')
 
-        <!-- Services Section Start-->
-        <div class="neuron-about sec-bg pt-90 pb-100 md-pt-70 md-pb-80">
-            <div class="container">
-                <div class="sec-title text-center mb-45">
-                    <h2 class="title extra-none title-color mb-0">We Provide Innovative Features <br> For You </h2><br>
-                    <p>Our platform ensures success in your development as we provide the following
-features to help suit your learning needs</p>
-                </div>
-                <div class="row col-20">
-                    <div class="col-lg-4 col-md-6 mb-40">
-                        <div class="single-about style4 icon-style box-shadow">
-                            <div class="about-icon">
-                                <i class="flaticon-abc"></i>
-                            </div>
-                            <div class="about-title">
-                                <h4 class="title mb-20">13 Study Languages</h4>
-                            </div>
-                        </div>                                    
+        <!-- Feature Section Start-->
+        <div class="neuron-feature gray-bg pt-100 pb-100 md-pt-80 md-pb-80">
+            <div class="container">                
+                <div class="row align-items-center">
+                    <div class="col-lg-6 order-last md-mb-30">
+                       <div class="about-video-img">
+                            <img src="{{url('public/assets/newtheme/images/feature/1.png')}}" alt="">
+                       </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 mb-40">
-                        <div class="single-about style4 icon-style box-shadow">
-                            <div class="about-icon">
-                                <i class="flaticon-brain"></i>
+                    <div class="col-lg-6">
+                        <div class="sec-title mb-40">
+                            <h2 class="title bg-left mb-20">We Are Provide Best Features For You</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at dictum risus, non suscipit arcu. Quisque aliquam posuere</p>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 mb-30">
+                                <div class="flip-icon-box box-shadow white-bg">
+                                    <div class="icon-part">
+                                        <i class="flaticon-seo-and-web"></i>
+                                    </div>
+                                    <div class="text-part">
+                                        <h4 class="flip-box-title">
+                                        13 Study Languages</h4>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="about-title">
-                                <h4 class="title mb-20">Flexible Scheduling</h4>
+                            <div class="col-lg-6 mb-30">
+                                <div class="flip-icon-box box-shadow white-bg">
+                                    <div class="icon-part">
+                                        <i class="flaticon-encrypt-1"></i>
+                                    </div>
+                                    <div class="text-part">
+                                        <h4 class="flip-box-title">Flexible Scheduling</h4>
+                                    </div>
+                                </div>
                             </div>
-                        </div>                                  
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-40">
-                        <div class="single-about style4 icon-style box-shadow">
-                            <div class="about-icon">
-                                <i class="flaticon-abc"></i>
+                            <div class="col-lg-6 mb-30">
+                                <div class="flip-icon-box box-shadow white-bg">
+                                    <div class="icon-part">
+                                        <i class="flaticon-robotics"></i>
+                                    </div>
+                                    <div class="text-part">
+                                        <h4 class="flip-box-title">Affordable Pricing</h4>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="about-title">
-                                <h4 class="title mb-20">Affordable Pricing</h4>
+                            <div class="col-lg-6 mb-30">
+                                <div class="flip-icon-box box-shadow white-bg">
+                                    <div class="icon-part">
+                                        <i class="flaticon-data-encryption"></i>
+                                    </div>
+                                    <div class="text-part">
+                                        <h4 class="flip-box-title">Industry-Recognized Credentials
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 md-mb-30">
+                                <div class="flip-icon-box box-shadow white-bg">
+                                    <div class="icon-part">
+                                        <i class="flaticon-encrypt-1"></i>
+                                    </div>
+                                    <div class="text-part">
+                                        <h4 class="flip-box-title">Lifetime Access To Coursework</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="flip-icon-box box-shadow white-bg">
+                                    <div class="icon-part">
+                                        <i class="flaticon-qr"></i>
+                                    </div>
+                                    <div class="text-part">
+                                        <h4 class="flip-box-title">Streamlined Learning Processes</h4>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 mb-40">
-                        <div class="single-about style4 icon-style box-shadow">
-                            <div class="about-icon">
-                                <i class="flaticon-business-and-finance"></i>
-                            </div>
-                            <div class="about-title">
-                                <h4 class="title mb-20">Industry-Recognized Credentials</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 md-mb-40">
-                        <div class="single-about style4 icon-style box-shadow">
-                            <div class="about-icon">
-                                <i class="flaticon-font"></i>
-                            </div>
-                            <div class="about-title">
-                                <h4 class="title mb-20">Lifetime Access To Coursework
-</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 md-mb-40">
-                        <div class="single-about style4 icon-style box-shadow">
-                            <div class="about-icon">
-                                <i class="flaticon-contract"></i>
-                            </div>
-                            <div class="about-title">
-                                <h4 class="title mb-20">Streamlined Learning Processes</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- <div class="col-lg-3 col-md-6 sm-mb-40">
-                        <div class="single-about style4 icon-style box-shadow">
-                            <div class="about-icon">
-                                <i class="flaticon-speech-bubble"></i>
-                            </div>
-                            <div class="about-title">
-                                <h4 class="title mb-20">Message Personalization</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="single-about style4 icon-style box-shadow">
-                            <div class="about-icon">
-                                <i class="flaticon-binary-code"></i>
-                            </div>
-                            <div class="about-title">
-                                <h4 class="title mb-20">Digit vs Numeric Words</h4>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
             </div><!-- .container end -->
         </div>
-        <!-- Services Section End-->
+        <!-- Feature Section End-->
 
         <!-- Testimonial Style Start -->
         <div class="neuron-testimonial white-bg pt-100 pb-100 md-pt-80 md-pb-80">
@@ -400,22 +390,22 @@ features to help suit your learning needs</p>
                                 <div class="col-md-2 padding-0 sm-mb-30 col-padding-sm">
                                     <div class="slider-nav">
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/1.jpg')}}" alt="image" draggable="false" />
                                         </div>
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/1.jpg')}}" alt="image" draggable="false" />
                                         </div>
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/1.jpg')}}" alt="image" draggable="false" />
                                         </div>
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/1.jpg')}}" alt="image" draggable="false" />
                                         </div>
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/1.jpg')}}" alt="image" draggable="false" />
                                         </div>
                                         <div class="item">
-                                            <img src="{{url('public/assets/newtheme/images/testimonial/layer-601.png')}}" alt="image" draggable="false" />
+                                            <img src="{{url('public/assets/newtheme/images/testimonial/1.jpg')}}" alt="image" draggable="false" />
                                         </div>
                                     </div>
                                 </div>
@@ -469,138 +459,11 @@ features to help suit your learning needs</p>
 @endsection
 <!-- join the fastest growing e-learning platform -->
 @section('section-6')
- <!-- Author Section Start -->
-        <div id="neuron-author" class="neuron-author gradient-bg3-section pt-90 pb-90 md-pt-70 md-pb-70">
-            <div class="container">
-                <div class="sec-title text-center mb-45">
-                    <h2 class="title extra-none white-color mb-0">Reach More Audiences <br>Wherever They Are </h2>
-                </div>
-                <div class="rs-carousel owl-carousel wow" data-loop="true" data-items="3" data-margin="40" data-autoplay="true" data-autoplay-timeout="9000" data-smart-speed="2000" data-dots="false" data-nav="false" data-nav-speed="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="1" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="3" data-md-device-nav="false" data-md-device-dots="false">
-                    <div class="single-author text-center">
-                        <div class="author-img">
-                            <a href="#"><img src="{{url('public/assets/newtheme/images/author/1.png')}}" alt=""></a>
-                        </div>
-                        <div class="author-details">
-                            <h4 class="author-title semi-bold mb-20 mt-25"><a href="#">On Any Platform</a></h4>
-                            <p class="author-desc margin-0">Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide wit additional clickthroughs</p>
-                        </div>
-                    </div>
-                    <div class="single-author text-center">
-                        <div class="author-img">
-                            <a href="#"><img src="{{url('public/assets/newtheme/images/author/2.png')}}" alt=""></a>
-                        </div>
-                        <div class="author-details">
-                            <h4 class="author-title semi-bold mb-20 mt-25"><a href="#">Across Devices</a></h4>
-                            <p class="author-desc margin-0">Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide wit additional clickthroughs</p>
-                        </div>
-                    </div>
-                    <div class="single-author text-center">
-                        <div class="author-img">
-                            <a href="#"><img src="{{url('public/assets/newtheme/images/author/3.png')}}" alt=""></a>
-                        </div>
-                        <div class="author-details">
-                            <h4 class="author-title semi-bold mb-20 mt-25"><a href="#">Around the World</a></h4>
-                            <p class="author-desc margin-0">Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide wit additional clickthroughs</p>
-                        </div>
-                    </div>
-                    <div class="single-author text-center">
-                        <div class="author-img">
-                            <a href="#"><img src="{{url('public/assets/newtheme/images/author/2.png')}}" alt=""></a>
-                        </div>
-                        <div class="author-details">
-                            <h4 class="author-title semi-bold mb-20 mt-25"><a href="#">Across Devices</a></h4>
-                            <p class="author-desc margin-0">Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide wit additional clickthroughs</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Author Section End --> 
 
-        <!-- Blog Section Start -->
-        <div id="neuron-blog" class="neuron-blog pt-90 pb-100 md-pt-70 md-pb-80">
-            <div class="container">
-                <div class="row mb-45 md-mb-20">
-                    <div class="col-lg-4 md-mb-15">
-                        <div class="sec-title">
-                            <h2 class="title2 title-color semi-bold margin-0">Our Latest News & Blog Post</h2>
-                        </div>                        
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="title-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis at dictum risus, non suscipit arcu. Quisque aliquam posuere tortor, sit amet convallis nunc scelerisque in.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore eius molestiae facere, natus reprehenderit eaque eum, autem ipsam. Magni, error. Tempora odit laborum iure inventore possimus laboriosam qui nam. Fugit!</div>
-                    </div>
-                </div>
-                <div class="rs-carousel owl-carousel wow" data-loop="true" data-items="3" data-margin="30" data-autoplay="true" data-autoplay-timeout="9000" data-smart-speed="2000" data-dots="false" data-nav="false" data-nav-speed="false" data-mobile-device="1" data-mobile-device-nav="false" data-mobile-device-dots="false" data-ipad-device="2" data-ipad-device-nav="false" data-ipad-device-dots="false" data-ipad-device2="1" data-ipad-device-nav2="false" data-ipad-device-dots2="false" data-md-device="3" data-md-device-nav="false" data-md-device-dots="false">
-                    <div class="single-blog style3 white-bg text-center">
-                        <div class="blog-img">
-                            <a href="#"><img src="{{url('public/assets/newtheme/images/blog/1.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="blog-details">
-                            <ul class="blog-meta">
-                                <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Nov 28, 2019</li>
-                                <li><i class="fa fa-user-o" aria-hidden="true"></i>Admin</li>
-                                <li><span>10</span>Comments</li>
-                            </ul>
-                            <div class="blog-desc">
-                                <h4 class="blog-title"><a href="#">Man in Red Plaid Shirt Talking on Phone Terrace</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-blog style3 white-bg text-center">
-                        <div class="blog-img">
-                            <a href="#"><img src="{{url('public/assets/newtheme/images/blog/2.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="blog-details">
-                            <ul class="blog-meta">
-                                <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Nov 28, 2019</li>
-                                <li><i class="fa fa-user-o" aria-hidden="true"></i>Admin</li>
-                                <li><span>10</span>Comments</li>
-                            </ul>
-                            <div class="blog-desc">
-                                <h4 class="blog-title"><a href="#">Man in Red Plaid Shirt Talking on Phone Terrace</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-blog style3 white-bg text-center">
-                        <div class="blog-img">
-                            <a href="#"><img src="{{url('public/assets/newtheme/images/blog/3.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="blog-details">
-                            <ul class="blog-meta">
-                                <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Nov 28, 2019</li>
-                                <li><i class="fa fa-user-o" aria-hidden="true"></i>Admin</li>
-                                <li><span>10</span>Comments</li>
-                            </ul>
-                            <div class="blog-desc">
-                                <h4 class="blog-title"><a href="#">Man in Red Plaid Shirt Talking on Phone Terrace</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-blog style3 white-bg text-center">
-                        <div class="blog-img">
-                            <a href="#"><img src="{{url('public/assets/newtheme/images/blog/2.jpg')}}" alt=""></a>
-                        </div>
-                        <div class="blog-details">
-                            <ul class="blog-meta">
-                                <li><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Nov 28, 2019</li>
-                                <li><i class="fa fa-user-o" aria-hidden="true"></i>Admin</li>
-                                <li><span>10</span>Comments</li>
-                            </ul>
-                            <div class="blog-desc">
-                                <h4 class="blog-title"><a href="#">Man in Red Plaid Shirt Talking on Phone Terrace</a></h4>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Blog Section End -->       
 
 @endsection
 @section('section-10')
-	<section class="socail">
-       
-	</section>
+	
 @endsection
 
 

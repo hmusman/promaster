@@ -1,9 +1,9 @@
 @extends('user.includes.layout')
 @section('content-heading')
-<h4 class="mb-0">My Courses</h4>
+<!-- <h4 class="mb-0">My Courses</h4> -->
 @stop
 @section('dashboard-welcome')
-  <p class="new-we">Welcome to your Promasters dashboard, enjoy the experience and complete your training in the limit period of 15 days</p>
+<!--   <p class="new-we">Welcome to your Promasters dashboard, enjoy the experience and complete your training in the limit period of 15 days</p> -->
 @endsection
 @section('breadcrumb')
    <li class="breadcrumb-item"><a href="{{url('user/courses')}}" class="default-color">Home</a></li>

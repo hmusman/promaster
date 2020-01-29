@@ -16,6 +16,9 @@
     outline: none;
 }
 
+
+
+
 .formgroup input {
     border-top-left-radius: 30px;
     padding: 20px;
@@ -59,7 +62,7 @@
     background: #00eda4;
     background: -moz-linear-gradient(left, #00eda4 0%, #1d93ff 100%);
     background: -webkit-linear-gradient(left, #00eda4 0%, #1d93ff 100%);
-    background: linear-gradient(to right, #00eda4 0%, #1d93ff 100%);
+    background: linear-gradient(-150deg, #12b4c8, #6669e6);
     cursor: pointer;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00eda4', endColorstr='#1d93ff', GradientType=1);
 }
@@ -72,8 +75,8 @@
 </div>
 @endif
 <section class="contact-vs drag-this-up" id="contact">
-    <div class="container">
-        <div class="row pushtop-60">
+    
+        <div class="col-md-12 pushtop-60" style="padding-left: 0px;">
             <div class="center-form">
                 <form id="report-form" action="{{url('user/report-problem')}}" method="post">
                     <div class="formgroup">
@@ -90,7 +93,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    
 </section>
 <section>
     <div class="row mb-2">
@@ -192,8 +195,16 @@
 .active_btn {
     opacity: 0.9;
     color: #fff;
-    background-color: #007f00;
-    border-color: #21ae41;
+    background-color: #204295 !important;
+    border-color: #204094 !important;
+}
+.btn-success{
+   background-color: #4d80dd ;
+    border-color: #5974e1 ;
+}
+.btn-success:hover{
+ background-color: #204295 !important;  
+ border-color: #204094 !important; 
 }
 </style>
 

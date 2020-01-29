@@ -170,12 +170,12 @@
 
             <!-- left sidebar -->
  <nav class="navbar navbar-expand-lg  bg-dark">
-  <a class="navbar-brand" href="#" style="color: #fff!important">Menu</a>
+  <a class="" href="#"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <img src="{{url('public/assets/images/icons8-menu-24.png')}}">
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse"  style="padding: 10px;" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link dashboard" href="{{url('admin')}}">

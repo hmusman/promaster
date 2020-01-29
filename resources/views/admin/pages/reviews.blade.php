@@ -152,5 +152,7 @@
   table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td{
       vertical-align:middle;
   }
+
+ 
 </style>
 @endsection

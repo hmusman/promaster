@@ -173,6 +173,12 @@ a.dropdown-item{
                                 </div>
                             </div>
                         </div>
+                         <div class="dropdown-divider"></div>
+                    
+                    <a href="{{url('user/setting')}}" class="dropdown-item">
+                        <img style="width: 25px;margin-left: -3px;" src="{{url('public/assets/user-images/settingicon.png')}}">
+                        <span class="right-nav-text">Settings </span></a>
+                 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
@@ -190,7 +196,7 @@ a.dropdown-item{
 
 
  <nav style="margin-top: 45px;"  class="navbar navbar-expand-lg  bg-dark">
-              <a class="navbar-brand" href="#">Menu</a>
+              <a class="" href="#"></a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                
                 <img src="{{url('public/assets/images/icons8-menu-24.png')}}">
@@ -210,23 +216,23 @@ a.dropdown-item{
                         <span class="right-nav-text">Certificates</span>
                     </a>
                    </li>
-                   <li class="nav-item nav-item1">
+                 <!--   <li class="nav-item nav-item1">
                     <a href="{{url('user/ebooks')}}" class="nav-link1 nav-link ebooks">
                         <img src="{{url('public/assets/user-images/menu3.png')}}">
                         <span class="right-nav-text">Ebooks</span>
                     </a>
-                   </li>
+                   </li> -->
                    <li class="nav-item nav-item1">
                     <a href="{{url('user/reviews')}}" class="nav-link1 nav-link reviews">
                         <i class="fa fa-star-o" style="font-size: 20px;color: white; margin-right: 3px;"></i>
                         <span class="right-nav-text" style="position: relative;">Reviews</span>
                     </a>
                    </li>
-                   <li class="nav-item nav-item1">
+                   <!-- <li class="nav-item nav-item1">
                     <a href="{{url('user/setting')}}" class="nav-link1 nav-link setting">
                         <img src="{{url('public/assets/user-images/menu4.png')}}">
                         <span class="right-nav-text">Settings </span></a>
-                   </li>
+                   </li> -->
                    <li class="nav-item nav-item1">
                       <a href="{{url('user/report-problem')}}" class="nav-link1 nav-link report">
                         <img src="{{url('public/assets/user-images/menu6.png')}}">

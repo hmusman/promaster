@@ -1654,7 +1654,7 @@ header{
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	left: 40px;
+	left: 90px;
 }
 
 .slick-list{
@@ -2247,7 +2247,11 @@ nav > ul > li > *{
 }
 
 nav > ul > li:not(:last-child){
-	margin-right: 50px;	
+	margin-right: 25px;	
+}
+
+nav > ul > li > a {
+	text-transform: uppercase;
 }
 
 nav .collapse{
@@ -5120,7 +5124,7 @@ footer .tag:hover{
 		position: static;
 	    background:#1d93ff;
     	background-size: 100% 100%;
-    	height: 65px;
+    	height: 63px !important;
 
 
 	}

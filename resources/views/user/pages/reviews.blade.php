@@ -160,7 +160,7 @@
     color: black !important;
   }
   .active-tab,.nav-link2:hover,.nav-link2:active,.nav-link2:focus{
-    background: linear-gradient(to right, #00eda4 0%,#6a7df1 100%);
+    background:linear-gradient(-150deg, #12b4c8, #6669e6);
     color: white !important;
     border-radius: 0px !important;
   }
@@ -175,6 +175,13 @@
   .wrap-u .btn-k{
     border:none;
     cursor: pointer;
+  }
+  .rating{
+  height: 155px;
+  }
+ .jq-ry-container{
+  display: flex !important;
+
   }
 </style>
 @endsection

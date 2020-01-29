@@ -1,6 +1,6 @@
 @extends('user.includes.layout')
 @section('content-heading')
-   <h4 class="mb-0">Setting</h4>
+   <h4 class="mb-0">Settings</h4>
 @stop
 @section('breadcrumb')
    <li class="breadcrumb-item"><a href="{{url('user/courses')}}" class="default-color">Home</a></li>

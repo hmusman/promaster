@@ -125,7 +125,7 @@ body {
                </div>
                <div class="logo pull-left">
                   <a href="{{url('/')}}">
-                     <h1><img src="{{url('public/assets/user-images/logo.png')}}" alt="logo"></h1>
+                     <img style="width: 80%;" src="{{url('public/assets/user-images/logo-white.png')}}" alt="logo">
                   </a>
                </div>
                <nav id="desktop-menu">

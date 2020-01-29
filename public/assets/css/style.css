@@ -1927,11 +1927,8 @@ left: 33%;
 bottom: 24px;
 }
 .gradiant{
-
-  background: #00eda4; /* Old browsers */
-background: -moz-linear-gradient(left, #00eda4 0%, #1d93ff 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(left, #00eda4 0%,#1d93ff 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to right, #00eda4 0%,#1d93ff 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+background: #00eda4; /* Old browsers */
+background: linear-gradient(-150deg, #12b4c8, #6669e6) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00eda4', endColorstr='#1d93ff',GradientType=1 ); /* IE6-9 */
 }
 .form-control {
