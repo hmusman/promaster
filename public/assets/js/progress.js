@@ -10,7 +10,7 @@ function progressBar(canvas,span,percentage){
          }
      }, false);
      var rainbowColors = ['#9400D3', '#4B0082', '#0000FF', '#00FF00', '#FFFF00'];
-     var colors = ['#00eda4', '#41a9d3', '#6286eb'];
+     var colors = ['#12b4c8','#6669e6', '#6669e6'];
      var circleProgressBar = new CircleProgressBar(canvas, {colors: colors});
      circleProgressBar.setValue(percentage);  
 }      

@@ -22,7 +22,7 @@
                               <h3>{{$course->course_title}}</h3>
                               <p>{{$course->course_description}}</p>
                         @if(@$course->getPercentage($course->id) == 1)
-                              <a href="{{url('user/download-certificate')}}" onclick="event.preventDefault();document.getElementById('download-certificate-{{$key}}').submit();" target="_blank" class="btn-k gradiant"><i class="fa fa-download mr-2" aria-hidden="true"></i>Download Certificates</a>
+                              <a style="color: #fff !important;" href="{{url('user/download-certificate')}}" onclick="event.preventDefault();document.getElementById('download-certificate-{{$key}}').submit();" target="_blank" class="btn-k gradiant"><i class="fa fa-download mr-2" aria-hidden="true"></i>Download Certificates</a>
                               <form id="download-certificate-{{$key}}" target="_blank" action="{{url('user/download-certificate')}}" method="post">
                                 @csrf
                                   <input type="hidden" name="id" value="{{Crypt::encrypt($course->id)}}">
