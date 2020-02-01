@@ -159,8 +159,8 @@
   .nav-link{
     color: black !important;
   }
-  .active-tab,.nav-link:hover,.nav-link:active,.nav-link:focus{
-    background: linear-gradient(to right, #00eda4 0%,#6a7df1 100%);
+  .active-tab,.nav-link:hover,.nav-link:active{
+    background: linear-gradient(-150deg, #12b4c8, #6669e6) !important;
     color: white !important;
     border-radius: 0px !important;
   }
@@ -181,6 +181,14 @@
   }
   .jq-ry-normal-group.jq-ry-group{
       display:none !important;
+  }
+  .nav-item1 a:hover,.nav-item1.active,.nav-item1:active{
+    background: linear-gradient(-150deg, #172a8a, #28549d) !important;
+    border-radius: 5px !important;
+  }
+ 
+  #navbarSupportedContent{
+    margin-top: 19px !important;
   }
 </style>
 @endsection
