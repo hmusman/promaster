@@ -11,10 +11,10 @@
   <div class="nav-pills-row">
     <ul class="nav nav-pills nav-justified">
       <li class="nav-item">
-        <a class="nav-link nav-link2 @if(Request::is('user/reviews')) active-tab @endif" href="{{url('user/reviews')}}">To Be Reviewed</a>
+        <a class="nav-link @if(Request::is('user/reviews')) active-tab @endif" href="{{url('user/reviews')}}">To Be Reviewed</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link nav-link2 @if(Request::is('user/review-history')) active-tab @endif" href="{{url('user/review-history')}}">History</a>
+        <a class="nav-link @if(Request::is('user/review-history')) active-tab @endif" href="{{url('user/review-history')}}">History</a>
       </li>
       </li>
     </ul>
@@ -28,11 +28,11 @@
                     <div class="card-body">
                        <div class="row">
                           <div class="col-xl-1">
-                             <img class="brdo" src="{{url('public/course-thumbnails')}}/{{$review->course->course_thumbnail}}">
+                             <img class="brdo" src="{{url('public/course-thumbnails')}}/{{$review->reviewrateable->course_thumbnail}}">
                           </div>
                           <div class="col-xl-11">
                              <div class="wrap-u">
-                                <h3>{{$review->course->course_title}}</h3>
+                                <h3>{{$review->reviewrateable->course_title}}</h3>
                                 <label>Rating : </label>
                                 <div class="rating" id="rating-{{$key}}"></div>
                                 <p style="color: black;background-color: #E8E8ED;padding: 10px;">{{$review->title}}</p>
@@ -46,7 +46,7 @@
            @push('script')
                 <script type="text/javascript">
                       $("#rating-{{$key}}").rateYo({
-                        rating: "{{$review->course->averageRating()}}",
+                        rating: "{{$review->rating}}",
                         readOnly: true,
                         starWidth: "18px"
                       });
@@ -149,18 +149,18 @@
     width: 100%;
     margin-bottom: 30px;
   }
-  .nav-link2{
+  .nav-link{
      border-radius: 0px !important;
     padding: 1rem 1rem;
     font-size: 14px;
     font-weight: 600;
     
   }
-  .nav-link2{
+  .nav-link{
     color: black !important;
   }
-  .active-tab,.nav-link2:hover,.nav-link2:active,.nav-link2:focus{
-    background:linear-gradient(-150deg, #12b4c8, #6669e6);
+  .active-tab,.nav-link:hover,.nav-link:active,.nav-link:focus{
+    background: linear-gradient(to right, #00eda4 0%,#6a7df1 100%);
     color: white !important;
     border-radius: 0px !important;
   }
@@ -176,12 +176,11 @@
     border:none;
     cursor: pointer;
   }
-  .rating{
-  height: 155px;
+  .jq-ry-rated-group.jq-ry-group{
+      width:100% !important;  
   }
- .jq-ry-container{
-  display: flex !important;
-
+  .jq-ry-normal-group.jq-ry-group{
+      display:none !important;
   }
 </style>
 @endsection
