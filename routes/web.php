@@ -3,6 +3,16 @@
 // Home Page
 Route::group(["namespace"=>"home"],function(){
 	Route::get('/', "indexController@index")->name('home');
+	//contact
+	Route::get('/contact', "indexController@contactUs")->name('contactUs');
+	//assistance
+	Route::get('/assistance', "indexController@assistance")->name('assistance');
+	//course
+	Route::get('/course/{id}', "courseController@index")->name('course');
+	//ebooks
+	Route::get('/ebooks', "ebookController@ebooks")->name('ebooks');
+	Route::get('/trending-ebooks', "ebookController@trendingEbooks")->name('trendingEbooks');
+	//cart
 	Route::get('/cart', "cartController@cart");
 	Route::post('/add-cart-item','cartController@addCartItem')->name('cart.add');
 	Route::post('/delete-cart-item','cartController@deleteCartItem')->name('cart.delete');

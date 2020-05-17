@@ -1,189 +1,150 @@
-<!DOCTYPE html>
-<html lang="zxx">
-   <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-      
-      <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <meta name="csrf-token" content="{{ csrf_token() }}" />
-      <title>ProMaster</title>
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-      <link rel="stylesheet" href="{{url('public/assets/lib/slick/slick.css')}}">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700%7CWork+Sans:400,500,600,700">
-      <link rel="stylesheet" href="{{url('public/assets/lib/font-awesome/css/font-awesome.min.css')}}">
-      <link rel="stylesheet" href="{{url('public/assets/css/main.css')}}">
-      <link rel="stylesheet" href="{{url('public/assets/css/owl.carousel.min.css')}}">
-      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+<!doctype html>
+<html lang="en">
 
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="img/icon-pro.png" type="image/x-icon">
+    <title>Promaster</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{url('public/assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/vendors/bootstrap-selector/css/bootstrap-select.min.css')}}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--icon font css-->
+    <link rel="stylesheet" href="{{url('public/assets/vendors/themify-icon/themify-icons.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/vendors/font-awesome/css/all.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/vendors/elagent/style.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/vendors/flaticon/flaticon.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/vendors/animation/animate.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/vendors/owl-carousel/assets/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/vendors/nice-select/nice-select.css')}}">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <link rel="shortcut icon" type="image/x-icon" href="{{url('images/fav.png')}}">
-        <!-- bootstrap v4 css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/bootstrap.min.css')}}">
-        <!-- font-awesome css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/font-awesome.min.css')}}">
-        <!-- animate css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/animate.css')}}">
-        <!-- hover css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/hover-min.css')}}">
-        <!-- owl.carousel css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/owl.carousel.css')}}">
-        <!-- slick css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/slick.css')}}">
-        <!-- off canvas css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/off-canvas.css')}}">
-        <!-- flaticon css  -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/fonts/flaticon.css')}}">
-        <!-- rsmenu CSS -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/rsmenu-main.css')}}">
-        <!-- magnific popup css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/magnific-popup.css')}}">
-        <!-- rsmenu transitions CSS -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/rsmenu-transitions.css')}}">
-        <!-- style css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/style.css')}}">
-        <!-- switch color presets css -->
-        <link id="switch_style" href="#" rel="stylesheet" type="text/css')}}">
-        <!-- Spacing css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/spacing.css')}}">
-        <!-- responsive css -->
-        <link rel="stylesheet" type="text/css" href="{{url('public/assets/newtheme/css/responsive.css')}}">
-      @stack('style')
-      <style>
-@media print {
-  #google_translate_element {display: none;}
-}
-body > .skiptranslate {
-    display: none;
-}
-body {
-    top: 0px !important; 
-}
-.goog-te-banner-frame.skiptranslate {
-    display: none !important;
-}
-#google_translate_element{
-    position: absolute;
-    top: 33px;
-    right: 247;
-}
-</style>
-   </head>
-   <body>
+    <link rel="stylesheet" href="{{url('public/assets/vendors/magnify-pop/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/vendors/elagent/style.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/vendors/scroll/jquery.mCustomScrollbar.min.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/css/front-end-style.css')}}">
+    <link rel="stylesheet" href="{{url('public/assets/css/responsive.css')}}">
+    <script src="{{url('public/assets/js/jquery-3.2.1.min.js')}}"></script>
+    @stack('style')
 
+</head>
 
-
-      <header>
-         <nav class="side-menu-container" id="mobile-menu">
-            <ul class="mx-auto top-level clearfix">
-               <li class="with-submenu">
-                  <a href="#">Home<span class="arrow"></span></a>
-               </li>
-               <li class="with-submenu">
-                  <a href="#">About Us<span class="arrow"></span></a>
-               </li>
-               <li class="with-submenu">
-                  <a href="#">Our Values<span class="arrow"></span></a>
-               </li>
-               <li class="with-submenu">
-                  <a href="#">Contact</a>
-               </li>
-               @auth
-                  <li>
-                     <a href="{{url('cart')}}" class="link-hover cart-count">Cart
-                        @inject('cart','App\Http\Controllers\home\cartController')
-                        @if($cart->cartCount() > 0) 
-                           <span class="badge badge-light">{{$cart->cartCount()}}</span>
-                        @endif
-                     </a>
-                  </li>
-                  <li class="with-submenu" style='margin-right: 50px;'>
-                     <a href="{{url('user/courses')}}" class="link-hover">Dashbaord</a>
-                  </li>
-                  <li class="with-submenu" style='margin-right: 50px;'>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form-home').submit();" class="link-hover"><i class="fa fa-sign-out" style="padding-right: 5px;"></i><span>Logout</span></a>
-                        <form id="logout-form-home" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                     </li>
-               @endauth
-               @guest
-                  <li class="with-submenu">
-                     <a href="{{url('login')}}" >Login</a>
-                  </li>
-                  <li class="with-submenu">
-                     <a href="{{url('signup')}}">Sign Up</a>
-                  </li>
-               @endguest
-            </ul>
-         </nav>
-         <div class="pos-r" >
-            <div id="topbar" class="clearfix bgs">
-               <div class="top-util pull-right">
-                  <div class="side-menu">
-                     <a href="#" class="side-menu-button"><span></span><span></span><span></span></a>
-                  </div>
-               </div>
-               <div class="logo pull-left">
-                  <a href="{{url('/')}}">
-                     <img style="width: 80%;" src="{{url('public/assets/user-images/logo-white.png')}}" alt="logo">
-                  </a>
-               </div>
-               <nav id="desktop-menu">
-                  <ul class="mx-auto top-level clearfix">
-                     <li class="with-submenu">
-                        <a href="{{url('/')}}" class="link-hover">Home</a>
-                     </li>
-                     <li class="with-submenu">
-                        <a href="#about" class="link-hover">About Us</a>
-                     </li>
-                     <li class="with-submenu">
-                        <a href="#value" class="link-hover">Our Values</a>
-                     </li>
-                     <li class="with-submenu">
-                        <a href="#contact" class="link-hover">Contact</a>
-                     </li>
-                    <!--  <li class="with-submenu">
-                        <a href="#" class="link-hover">
-                            
-                            <div id="google_translate_element"></div>
-                            
-                        </a>
-                     </li>
-                     <li class="with-submenu">
-                        <a href="#" class="link-hover">Translator</a>
-                     </li> -->
-                  @auth
-                     <li>
-                        
-                        <a href="{{url('cart')}}" class="link-hover cart-count">Cart
-                           @inject('cart','App\Http\Controllers\home\cartController')
-                           @if($cart->cartCount() > 0) 
-                              <span class="badge badge-light">{{$cart->cartCount()}}</span>
-                           @endif
-                        </a>
-                     </li>
-                     <li class="with-submenu">
-                        <a href="{{url('user/courses')}}" class="link-hover">Dashbaord</a>
-                     </li>
-                     <li class="with-submenu" style='margin-right: 50px;'>
-                        <a href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="link-hover"><i class="fa fa-sign-out" style="padding-right: 5px;"></i><span>Logout</span></a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                     </li>
-                     
-                  @endauth
-                  @guest
-                     <li class="with-submenu sign_in_wrapper">
-                        <a href="{{url('login')}}" class="link-hover sign_in_btn">Login</a>
-                     </li>
-                     <li class="with-submenu">
-                        <a href="{{url('signup')}}" class="demo">Sign Up</a>
-                     </li>
-                  @endguest
-                  </ul>
-               </nav>
+<body>
+    <div id="preloader">
+        <div id="ctn-preloader" class="ctn-preloader">
+            <div class="animation-preloader">
+                <div class="spinner"></div>
+                <div class="txt-loading">
+                    <span data-text-preloader="P" class="letters-loading">
+                        P
+                    </span>
+                    <span data-text-preloader="R" class="letters-loading">
+                        R
+                    </span>
+                    <span data-text-preloader="O" class="letters-loading">
+                        O
+                    </span>
+                    <span data-text-preloader="M" class="letters-loading">
+                        M
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                    <span data-text-preloader="S" class="letters-loading">
+                        S
+                    </span>
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="E" class="letters-loading">
+                        E
+                    </span>
+                    <span data-text-preloader="R" class="letters-loading">
+                        R
+                    </span>
+                    <span data-text-preloader="S" class="letters-loading">
+                        S
+                    </span>
+                </div>
+                <p class="text-center">Loading</p>
             </div>
-         </div>
-         @yield('home-banner')
-      </header>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="body_wrapper">
+        <header class="header_area">
+
+            <nav class="navbar navbar-expand-lg menu_one">
+                <div class="container custom_container p0">
+                    <a class="navbar-brand" href="{{url('/')}}"><img src="{{url('public/assets/img/logo-pro.png')}}" alt="logo"></a>
+                    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="menu_toggle">
+                            <span class="hamburger">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                            <span class="hamburger-cross">
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                        <ul class="navbar-nav ml-auto menu">
+                            <li class="nav-item active  mega_menu mega_menu_two ">
+                                <a class="nav-link " href="index.html">
+                                    Home
+                                </a>
+                                <div class="mega_menu_inner">
+
+                                </div>
+                            </li>
+
+                            <li class="nav-item  mega_menu">
+                                <a class="nav-link " href="#how" aria-expanded="false">
+                                    How It Works
+                                </a>
+
+                            </li>
+                            <li class=" nav-item"><a class="nav-link scroll" href="#courses">Courses</a>
+
+                            </li>
+                            <li class=" nav-item"><a class="nav-link scroll" href="{{ route('ebooks') }}">eBooks</a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="#pricing">
+                                    Pricing
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                        <a class="btn_get btn_hover" href="{{url('signup')}}">Get Started</a>
+                        <a class="btn_sign btn_hover" href="{{url('login')}}">Sign In</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
