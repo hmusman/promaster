@@ -1,56 +1,203 @@
 @extends('user.includes.layout')
-@section('content-heading')
-   <h4 class="mb-0">My Certificates</h4>
-@stop
-@section('breadcrumb')
-   <li class="breadcrumb-item"><a href="{{url('user/courses')}}" class="default-color">Home</a></li>
-  <li class="breadcrumb-item">My Certificates</li>
-@endsection
+
 @section('content')
-   @if(count($courses) > 0)
-      @foreach($courses as $key=>$course)
-         <div class="row">
-            <div class="col-xl-12 mb-30">
-               <div class="card h-100">
-                  <div class="card-body">
-                     <div class="row">
-                        <div class="col-xl-2">
-                           <img class="brdo" src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}">
+
+<style type="text/css">
+  .seo_service_item {
+    padding: 20px!important;
+    height: 344px;
+   }
+   .media.v-middle .media-body{
+    text-align: center;
+   }
+   .seo_sec_title{
+    text-align: left;
+   }
+   .seo_service_area{
+    margin-bottom: 60px!important;
+   }
+    .seo_service_item div.img:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1); 
+}
+   .seo_service_item div.img{
+    transition: transform .2s;
+    margin:20px;
+    text-align: center;
+   }
+   .seo_service_item div.con{
+   text-align: center;
+   margin:20px 0;
+   }
+     .w3-animate-opacity {
+    animation: opac 1.5s!important;
+}
+.w3-animate-bottom {
+    animation: animatebottom 1.4s!important;
+}
+.btn {
+  font-size: 12px!important;
+}
+.icon i{
+  font-size: 20px!important;
+  vertical-align: sub;
+  padding: 0px 1px 0px;
+  font-size: 25px!important;
+} 
+
+.fa-envelope:before {
+    font-size: 26px!important;
+}
+.tool {
+  position: relative;
+
+}
+
+.tool .tooltiptext {
+  visibility: hidden;
+  width: 130px;
+  background-color: black;
+  color: #fff;
+  font-size: 12px;
+  margin-top: 6px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 3px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tool:hover .tooltiptext {
+  visibility: visible;
+}
+.text-caption.text-blue a:hover{
+  text-decoration: none!important;
+}
+
+</style>
+
+
+    <!-- content push wrapper -->
+    <div class="st-pusher" id="conte">
+
+      <!-- sidebar effects INSIDE of st-pusher: -->
+      <!-- st-effect-3, st-effect-6, st-effect-7, st-effect-8, st-effect-14 -->
+
+      <!-- this is the wrapper for the content -->
+      <div class="st-content">
+
+        <!-- extra div for emulating position:fixed of the menu -->
+        <div class="st-content-inner padding-none">
+
+          <div class="container-fluid">
+
+            
+              <div class="media v-middle">
+                <div class="media-body">
+                   <div class="seo_sec_title wow fadeInUp" data-wow-delay="0.3s">
+                    <h2>My Certificates</h2>
+                </div>
+                </div>
+               
+              </div>
+       
+            <section class="seo_service_area" style="margin-bottom: 200px;">
+           
+                
+                <div class="row seo_service_info">
+                    @if(count($courses) > 0)
+                    @foreach($courses as $key=>$course)
+                    <div class="column w3-animate-opacity">
+                        <div class="seo_service_item">
+                          <div class="img">
+                            <img style="height: 119px;" src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="Course Tubmnail">
+                          </div>
+                           <div class="panel-heading">
+                            <div class="media media-clearfix-xs-min v-middle">
+                              <div class="media-body text-caption text-blue">
+                                <a href="#">{{$course->course_title}}</a>
+                              </div>
                         </div>
-                        <div class="col-xl-8">
-                           <div class="wrap-u">
-                              <h3>{{$course->course_title}}</h3>
-                              <p>{{$course->course_description}}</p>
-                        @if(@$course->getPercentage($course->id) == 1)
-                              <a style="color: #fff !important;" href="{{url('user/download-certificate')}}" onclick="event.preventDefault();document.getElementById('download-certificate-{{$key}}').submit();" target="_blank" class="btn-k gradiant"><i class="fa fa-download mr-2" aria-hidden="true"></i>Download Certificates</a>
-                              <form id="download-certificate-{{$key}}" target="_blank" action="{{url('user/download-certificate')}}" method="post">
+                       </div>
+                       @if(@$course->getPercentage($course->id) == 1)
+                       <div class="con">
+                               <a class="icon w3-animate-bottom tool"data-z="0" data-hover-z="1" data-animated href="{{url('user/download-certificate')}}" onclick="event.preventDefault();document.getElementById('download-certificate-{{$key}}').submit();"><i class="fa fa-download" ></i></i>
+                                 <span class="tooltiptext">Download</span>
+                               </a>
+                               
+
+                               <a class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
+                                 <span class="tooltiptext">Share on Facebook</span>
+                               </a>
+
+                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-twitter-square"  aria-hidden="true"></i>
+                                  <span class="tooltiptext">Share on Twitter</span>
+                                </a>
+
+                                 <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
+                                  <span class="tooltiptext">Share on Instagram</span>
+                                 </a>
+
+                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                  <span class="tooltiptext">Share on LinkedIn</span>
+                                </a>   
+                                
+                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><img src="{{url('public/userDashboard/images/mail.png')}}" width="21.5px">
+                                  <span class="tooltiptext">Share via Email</span>
+                                </a>
+
+                                <form id="download-certificate-{{$key}}" target="_blank" action="{{url('user/download-certificate')}}" method="post">
                                 @csrf
                                   <input type="hidden" name="id" value="{{Crypt::encrypt($course->id)}}">
                               </form>
-                        @endif
-                           </div>
-                        </div>
-                        <div class="col-xl-2 ">
-                           <div class="canvas-holder" >
-                              <canvas id="canvas-{{$key}}" width="300" height="300"></canvas>
-                              <div id="canvas-data-{{$key}}" class="matter"></div>
-                              <span class="completed">Completed</span>
-                           </div>
-                           <div class="clearfix"></div>
+                            </div>
+                            @else
+                            <div class="con">
+                              <span style="font-size: 10px;background: #7cddf2;">Please Complete this course to download and share certificate.</span><br>
+                              <a style="margin-top: -1px;" class="btn btn-white w3-animate-bottom btn-flat paper-shadow relative" data-z="0" data-hover-z="1" data-animated="" href="{{url('user/course-details')}}/{{$course->id}}">Continue</a>
+                            </div>  
+                            @endif
+                       </div>
+                    </div>
+                    @endforeach
+                     @else
+                     <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                           <div class="alert alert-warning"><i class="fa fa-exclamation-triangle  mr-2"></i>No Certificate Found!</div>
                         </div>
                      </div>
-                  </div>
-               </div>
+                     @endif
+                    
+
+                </div>
+                 
             </div>
-         </div>
-   @endforeach
-   @else
-   <div class="row">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-         <div class="alert alert-warning"><i class="fa fa-exclamation-triangle  mr-2"></i>No Certificate Found!</div>
+        </section>
+          
+
+            
+
+           
+          </div>
+      
+
+            
+          </div>
+
+        </div>
+        <!-- /st-content-inner -->
+
       </div>
-   </div>
-   @endif
+      <!-- /st-content -->
+
+    </div>
+    <!-- /st-pusher -->
 @endsection
 
 @section('script')

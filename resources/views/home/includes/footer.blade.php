@@ -106,7 +106,7 @@
 
  <script type="text/javascript">
 setInterval(function(){ 
-	 $("option").not('.goog-te-combo option[value="es"],.goog-te-combo option[value="en"]').hide();
+   $("option").not('.goog-te-combo option[value="es"],.goog-te-combo option[value="en"]').hide();
  }, 1000);
 $.ajaxSetup({
     headers: {
@@ -169,22 +169,21 @@ console.log($('meta[name="csrf-token"]').attr('content'));
                  data: $(form).serialize(),
                  success: function (data) {
                      console.log(data);
-                    // if($.trim(data) == 'true'){
-                    //     $('.form-submit-btn').attr('disabled',false);
-                    //     $('.form-submit-btn').text('LOGIN');
-                    //     window.location="{{url('/')}}";
-                    // }else{
-                    //     Command: toastr["error"]("invalid email or password");
-                    //     $('.form-submit-btn').attr('disabled',false);
-                    //     $('.form-submit-btn').text('LOGIN');
-                    // }
+                    if($.trim(data) == 'true'){
+                        $('.form-submit-btn').attr('disabled',false);
+                        $('.form-submit-btn').text('LOGIN');
+                        window.location="{{url('user/courses')}}";
+                    }else{
+                        Command: toastr["error"]("invalid email or password");
+                        $('.form-submit-btn').attr('disabled',false);
+                        $('.form-submit-btn').text('LOGIN');
+                    }
+                 },
+                 error: function(xhr, status, error){
+                     Command: toastr["error"]("Something went wrong");
+                     $('.form-submit-btn').attr('disabled',false);
+                     $('.form-submit-btn').text('LOGIN');
                  }
-                //  ,
-                //  error: function(xhr, status, error){
-                //      Command: toastr["error"]("Something went wrong");
-                //      $('.form-submit-btn').attr('disabled',false);
-                //      $('.form-submit-btn').text('LOGIN');
-                //  }
              });
          }
       });

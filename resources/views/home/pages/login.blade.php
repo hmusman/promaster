@@ -9,6 +9,7 @@
                     <h2 class="f_p f_700 f_size_40 t_color3 mb_20">Sign In</h2>
                     <p class="f_p f_400 f_size_15">Welcome! Please confirm that your are visiting </p>
                     <form class="login-form mt_60" id="login-form">
+                        @csrf
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">Email</label>
                             <input type="text" placeholder="Email" name="email">

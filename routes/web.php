@@ -24,6 +24,13 @@ Route::group(["namespace"=>"admin","prefix"=>"admin","middleware"=> 'auth:admin'
 	// DASHBOARD
 	Route::get('/', "indexController@index");
 	Route::get('view-user-log/{id}','indexController@logs');
+	//DEALS
+    Route::get('deals', "dealsController@index")->name('admin/deals');
+    Route::get('add-deals', "dealsController@addDeals");
+    Route::post('storeDeal', "dealsController@storeDeal");
+    Route::get('dealEdit/{id}', "dealsController@dealEdit");
+    Route::post('dealUpdate/{id}', "dealsController@dealUpdate");
+    Route::post('dealDelete/{id}', "dealsController@dealDelete");
 	// COURSE
 	Route::resource('courses', 'courseController');
     //REPORT
@@ -66,6 +73,9 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
 	Route::get('course-details/{id}', "courseController@courseDetails");
 	Route::post('mark-complete', "courseController@markComplete");
 	Route::post('log-course-complete', "courseController@logCourseComplete");
+	// DEALS and GUIDE
+	Route::get('deals', "dealsController@index");
+	Route::get('pro-deals', "dealsController@proDeals");
 	// EBOOKS
 	Route::get('ebooks', "courseController@ebooks");
 	Route::post('download', "courseController@download");

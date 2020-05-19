@@ -1,318 +1,356 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="st-layout ls-top-navbar-large ls-bottom-footer show-sidebar sidebar-l1 sidebar-r3" lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="keywords" content="" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title> ProMaster</title>
-   
-    <!-- Favicon -->
-    <!-- <link rel="shortcut icon" href="{{url('public/assets/user-images/favicon.ico')}}" /> -->
-    <!-- Font -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Poppins:200,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900">
-    <!-- css -->
-    <link rel="stylesheet" type="text/css" href="{{url('public/assets/css/style.css')}}" />
-     <link rel="stylesheet" href="{{url('public/assets/vendor/bootstrap/css/bootstrap.min.css')}}">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="{{url('public/userDashboard/images/icon-pro.png')}}" type="image/x-icon">
+  <title>ProMaster | My Courses</title>
 
-    @yield('extra-css')
-    <style>
-    body{
-        font-family: 'Poppins', sans-serif;
-    }
-        .bell{
-            font-size: 17px;
-            margin-top: 6px;
-        }
-         .badge {
-           position:relative;
-           top:-9px;
-           right:10px;
-           font-size:.7em;
-           background:blue;
-           color:white;
-           width:18px;height:18px;
-           text-align: center;
-           border-radius:50%;
-           box-shadow:0 0 1px #333;
-        }
-        .scroll{
-            float:left;
-            width:400px;
-            overflow-y: auto;
-            height: 300px;
-        }
-           a.nav-link1.active{
-                  background: linear-gradient(-150deg, #172a8a, #28549d) !important;
-             border-radius: 5px !important;
-        }
-        /*a:hover{
-            color:#6a7df1 !important;
-        }*/
-        li.nav-item1 > a > img{
-        width: 15px !important;
-    }
-    li.nav-item1{
-        margin-left: 5px !important;
-        height: 100%;
-    }
-.nav-link1{
-    padding-bottom: 13px;
-    padding-top: 13px;
-}
-    a {
-    color: #cecece !important;
-}
-.bg-dark{
-    background: linear-gradient(-150deg, #12b4c8, #6669e6) !important;
-        }
-          a {
-                
-         color: #cecece !important;
-        }
-         li.nav-item1:hover{
-        background: linear-gradient(-150deg, #172a8a, #28549d);
-        border-radius: 5px;
-        }
+  <!-- Vendor CSS BUNDLE
+    Includes styling for all of the 3rd party libraries used with this module, such as Bootstrap, Font Awesome and others.
+    TIP: Using bundles will improve performance by reducing the number of network requests the client needs to make when loading the page. -->
+  <link href="{{url('public/userDashboard/css/vendor/all.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="{{url('public/userDashboard/css/vendor/themify-icon/themify-icons.css')}}">
 
-a.dropdown-item{
-    color: black !important;
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    
+    <!--icon font css-->
+    
+    <link rel="stylesheet" href="{{url('public/userDashboard/css/style.css')}}">
+    <link rel="stylesheet" href="{{url('public/userDashboard/css/responsive.css')}}">
+
+  <!-- Vendor CSS Standalone Libraries
+
+        NOTE: Some of these may have been customized (for example, Bootstrap).
+        See: src/less/themes/{theme_name}/vendor/ directory -->
+  <!-- <link href="css/vendor/bootstrap.css" rel="stylesheet"> -->
+  <link href="{{url('public/userDashboard/css/vendor/font-awesome.css')}}" rel="stylesheet">
+  <!-- <link href="css/vendor/picto.css" rel="stylesheet"> -->
+  <!-- <link href="css/vendor/material-design-iconic-font.css" rel="stylesheet"> -->
+  <!-- <link href="css/vendor/datepicker3.css" rel="stylesheet"> -->
+  <!-- <link href="css/vendor/jquery.minicolors.css" rel="stylesheet"> -->
+  <!-- <link href="css/vendor/railscasts.css" rel="stylesheet"> -->
+  <!-- <link href="css/vendor/owl.carousel.css" rel="stylesheet"> -->
+  <!-- <link href="css/vendor/slick.css" rel="stylesheet"> -->
+  <!-- <link href="css/vendor/daterangepicker-bs3.css" rel="stylesheet"> -->
+  <!-- <link href="css/vendor/jquery.bootstrap-touchspin.css" rel="stylesheet"> -->
+  <!-- <link href="css/vendor/select2.css" rel="stylesheet"> -->
+  <!-- <link href="css/vendor/jquery.countdown.css" rel="stylesheet"> -->
+
+  <!-- APP CSS BUNDLE [css/app/app.css]
+INCLUDES:
+    - The APP CSS CORE styling required by the "html" module, also available with main.css - see below;
+    - The APP CSS STANDALONE modules required by the "html" module;
+NOTE:
+    - This bundle may NOT include ALL of the available APP CSS STANDALONE modules;
+      It was optimised to load only what is actually used by the "html" module;
+      Other APP CSS STANDALONE modules may be available in addition to what's included with this bundle.
+      See src/less/themes/html/app.less
+TIP:
+    - Using bundles will improve performance by greatly reducing the number of network requests the client needs to make when loading the page. -->
+  <link href="{{url('public/userDashboard/css/app/app.css')}}" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{url('public/userDashboard/css/app/pg.css')}}">
+  <!-- <link href="{{url('public/userDashboard/css/app/review.css')}}" rel="stylesheet"> -->
+  <!-- App CSS CORE
+This variant is to be used when loading the separate styling modules -->
+  <!-- <link href="css/app/main.css" rel="stylesheet"> -->
+
+  <!-- App CSS Standalone Modules
+    As a convenience, we provide the entire UI framework broke down in separate modules
+    Some of the standalone modules may have not been used with the current theme/module
+    but ALL modules are 100% compatible -->
+
+  <!-- <link href="css/app/essentials.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/material.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/layout.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/sidebar.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/sidebar-skins.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/navbar.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/messages.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/media.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/charts.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/maps.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/colors-alerts.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/colors-background.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/colors-buttons.css" rel="stylesheet" /> -->
+  <!-- <link href="css/app/colors-text.css" rel="stylesheet" /> -->
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!-- If you don't need support for Internet Explorer <= 8 you can safely remove these -->
+  <!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<style type="text/css">
+  @if(Request::is('user/courses'))
+  .seo_service_item {
+    padding: 12px!important;
+
+   }
+   @endif
+   .seo_service_area{
+    margin-bottom: 60px!important;
+   }
+   .seo_service_item div.img:hover{
+    -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1); 
 }
-@media (min-width: 320px) and (max-width: 780px) {
-       .nav-link1 {
-            padding-left: 10px !important; 
-        }
- }
- .navbar-brand {
-    display: inline-block;
-    margin-right: 1rem;
-    line-height: inherit;
-    white-space: nowrap;
-    padding: 14px 25px;
-    font-size: 20px;
-    text-transform: uppercase;
-    font-weight: 700;
-    color: #fff !important;
+   .seo_service_item div.img{
+    transition: transform .2s;
+    margin:20px;
+    text-align: center;
+   }
+   .seo_service_item div.con{
+   text-align: center;
+   margin:20px;
+   }
+   .w3-animate-opacity {
+    animation: opac 1.5s!important;
 }
-.navbar-nav .nav-link{
-            color: white !important;
-        }
-    </style>
-        
+.w3-animate-bottom {
+    animation: animatebottom 1.4s!important;
+}
+.media-right i.fa{
+  font-size: 25px;
+    color: #36bc3f;
+    line-height: 57px;
+    margin-right: 4px;
+}
+ .panel-heading {
+    margin-top: 20px;
+    background: white;
+  }
+  .panel{
+    margin:20px 0 60px!important;
+  }
+   span.pending{
+    background-color: orange!important;
+    color: white;
+    border-radius: 6px;
+    padding: 4px;
+  }
+  span.solved{
+    background-color: #6754e2!important;
+    color: white;
+    border-radius: 6px;
+    padding: 4px;
+  }
+   span.awaiting{
+    background-color: #65a6bc!important;
+    color: white;
+    border-radius: 6px;
+    padding: 4px;
+  }
+  .margin-25{
+    margin-left: 21px;
+    margin-top: 21px;
+  }
+  .form-control-material .form-control {
+    padding: 11px 0 13px;
+  }
+  .btn-flat {
+    margin-top: 12px;}
+    .seo_sec_title h2 {
+      margin-left: 20px;
+    }
+    span.awaiting-mobile{
+      display: none;
+    }
+    @media only screen and (max-width: 500px) {
+      span.awaiting-mobile{
+      display: block;
+      background-color: #65a6bc!important;
+    color: white;
+    border-radius: 6px;
+    padding: 4px;
+    }
+     span.awaiting{
+    display: none;
+     }
+     .margin-25{
+      margin-left: 0!important;
+     }
+     .table > tbody > tr > td{
+      padding: 6px!important;
+     }
+    }
+</style>
+
 </head>
 
-<body>
-    <div class="wrapper">
-        <!--=================================
-            preloader -->
-       <!--  <div id="pre-loader">
-            <img src="{{url('public/assets/user-images/loader-01.svg')}}" alt="">
-        </div> -->
-        <!--=================================
-            preloader -->
-        <!--=================================
-            header start-->
-        <nav  class="admin-header navbar navbar-default col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-            <!-- logo -->
-            <div class="text-left navbar-brand-wrapper">
-                <a class="navbar-brand brand-logo" href=""><img
-                        src="{{url('public/assets/user-images/color-logo.png')}}" alt=""></a>
-                <a class="navbar-brand brand-logo-mini" href=""><img
-                        src="{{url('public/assets/user-images/logo-res.png')}}" alt=""></a>
-            </div>
-            <!-- Top bar left -->
-            <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item">
-                    <!-- <a id="button-toggle" class="button-toggle-nav inline-block ml-20 pull-left"
-                        href="javascript:void(0);"><i class="zmdi zmdi-menu ti-align-right"></i></a> -->
-                </li>
-            </ul>
-            <!-- top bar right -->
-            <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item2 dropdown" id="notification">
-                         <a id="navbarDropdown" class="nav-link bell" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <i class="fa fa-bell"></i>
-                            @if(auth()->user()->unreadnotifications->count())
-                                <span class="badge badge-light">{{ auth()->user()->unreadnotifications->count() }}</span>
-                            @endif
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right scroll" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('usermarkRead') }}">Mark All as Read</a>
-                            @foreach(auth()->user()->unreadnotifications as $notification)
-                                <a style="background-color: lightgray;" class="dropdown-item" href="{{url('/')}}{{@$notification->data['url']}}">{{$notification->data['data']}}<br>
-                                <small style="color: blue;">{{$notification->created_at->diffForHumans()}}</small></a>
-                                
-                            @endforeach
-                            @foreach(auth()->user()->readnotifications as $notification)
-                                <a class="dropdown-item" href="{{url('/')}}{{@$notification->data['url']}}">{{$notification->data['data']}}<br>
-                                    <small style="color: blue;">{{$notification->created_at->diffForHumans()}}</small></a>
-                                
-                            @endforeach
-                            
-                        </div>
-                    </li>
-                <li class="nav-item nav-item2 dropdown mr-30">
-                    <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
-                        aria-haspopup="true" aria-expanded="false">
-                        <img src="@if(Auth::user()->profile_image == str_replace(" ",""," default.png"))
-                            {{url('public/default.png')}} @else
-                            {{url('public/profile-images')}}/{{Auth::user()->profile_image}} @endif " alt=" avatar">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <div class="dropdown-header">
-                            <div class="media">
-                                <div class="media-body">
-                                    <h5 class="mt-0 mb-0">{{ Auth::user()->first_name}} {{ Auth::user()->last_name }}
-                                    </h5>
-                                    <span>{{ Auth::user()->email }}</span>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="dropdown-divider"></div>
-                    
-                    <a href="{{url('user/setting')}}" class="dropdown-item">
-                        <img style="width: 25px;margin-left: -3px;" src="{{url('public/assets/user-images/settingicon.png')}}">
-                        <span class="right-nav-text">Settings </span></a>
+<body style="overflow-y: hidden;">
+
+  <!-- Wrapper required for sidebar transitions -->
+  <div class="st-container">
+
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-size-large navbar-default navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="navbar-brand   navbar-brand-logo navbar-nav-padding-left">
+            <a href="#" title=""><img src="{{url('public/userDashboard/images/logo-pro.png')}}"></a>
+          </div>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="nav navbar-nav mobile">
+            <li class="dropdown @if(Request::is('user/courses')) active @endif">
+              <a href="{{url('user/courses')}}" ><i class="fa fa-graduation-cap" aria-hidden="true"></i> My Courses </a>
+              
+            </li>
+             <li class="dropdown @if(Request::is('user/certificates')) active @endif">
+              <a href="{{url('user/certificates')}}" ><i class="fa fa-certificate" aria-hidden="true"></i> My Certificates </a>
+              
+            </li>
+            <li class="dropdown @if(Request::is('user/ebooks')) active @endif">
+              <a href="{{url('user/ebooks')}}" > <i class="fa fa-book" aria-hidden="true"></i> My eBooks </a>
+              
+            </li>
+            <li class="dropdown @if(Request::is('user/deals') || Request::is('user/pro-deals')) active @endif">
+              <a href="{{url('user/deals')}}" ><i class="fa fa-users" aria-hidden="true"></i> Member Deals </a>
+              
+            </li>
+             <li class="dropdown @if(Request::is('user/reviews') || Request::is('user/review-history')) active @endif">
+              <a href="{{url('user/reviews')}}" ><i class="fa fa-star" aria-hidden="true"></i> Course Reviews </a>
+              
+            </li>
+             <li class="dropdown @if(Request::is('user/report-problem')) active @endif">
+              <a href="{{url('user/report-problem')}}" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Send A Ticket</a>
+              
+            </li>
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-nav-bordered navbar-right">
+            <!-- notifications -->
+            <li class="dropdown notifications updates">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="notification">
+                <i class="fa fa-bell-o"></i>
+                @if(auth()->user()->unreadnotifications->count())
+                <span class="badge badge-primary">{{ auth()->user()->unreadnotifications->count() }}</span>@endif
+              </a>
+              <ul class="dropdown-menu" role="notification">
+                <li class="dropdown-header">Notifications <h6><a class="dropdown-item" style="font-size: 8px;float: right;margin-top: -23px;" href="{{ route('usermarkRead') }}">Mark All as Read</a></h6></li>
+                @foreach(auth()->user()->unreadnotifications as $notification)
+                <a  href="{{url('/')}}{{@$notification->data['url']}}" title=""><li class="media">
+                  
+                  <div class="pull-right">
+                    <span class="label label-success">New</span>
+                  </div>
+                  <div class="media-body">
+                    {{$notification->data['data']}}
+                    <br/>
+                    <span class="text-caption text-muted" style="font-size: 14px;">{{$notification->created_at->diffForHumans()}}</span>
+                  </div>
+
+                </li></a>
+                @endforeach
+                @foreach(auth()->user()->readnotifications as $notification)
+                <a  href="{{url('/')}}{{@$notification->data['url']}}" title=""><li class="media">
+                  
+                  <div class="media-body">
+                    {{$notification->data['data']}}
+                    <br/>
+                    <span class="text-caption text-muted" style="font-size: 14px;">{{$notification->created_at->diffForHumans()}}</span>
+                  </div>
+
+                </li></a>
+                @endforeach
+                <!-- <li class="media">
+                  <div class="pull-right">
+                    <span class="label label-success">New</span>
+                  </div>
                  
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i
-                                class="text-danger ti-unlock"></i>Logout</a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
+                  <div class="media-body">
+                   Dear your report has been solved..
+                    <br/>
+                    <span class="text-caption text-muted">3 hrs ago</span>
+                  </div>
                 </li>
-            </ul>
-        </nav>
-        <!--=================================
-            header End-->
+                <li class="media">
+                  <div class="media-body">
+                    Dear your report has been solved.
+                    <p>
+                      <span class="text-caption text-muted">1 day ago</span>
+                    </p>
+                    
+                  </div>
+                </li> -->
+              </ul>
+            </li>
+            <!-- // END notifications -->
+            <!-- User -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle user" data-toggle="dropdown">
+                <img src="@if(Auth::user()->profile_image == str_replace(" ",""," default.png"))
+                            {{url('public/default.png')}} @else
+                            {{url('public/profile-images')}}/{{Auth::user()->profile_image}} @endif " alt="Bill" class="img-circle" width="40" /> {{Auth::user()->first_name}} <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a><span class="name">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</span> <br>
+                  {{Auth::user()->email}}
+                </a></li>
+                <li><a href="{{url('user/setting')}}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
 
+                <li><a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-lock" aria-hidden="true"></i> Logout</a></li>
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
 
+      </div>
+    </div>
+    <div class="sec-menu desktop" >
+      <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="nav navbar-nav">
+            <li class="dropdown @if(Request::is('user/courses')) active @endif">
+              <a href="{{url('user/courses')}}" ><i class="fa fa-graduation-cap" aria-hidden="true"></i> My Courses </a>
+              
+            </li>
+             <li class="dropdown @if(Request::is('user/certificates')) active @endif">
+              <a href="{{url('user/certificates')}}" ><i class="fa fa-certificate" aria-hidden="true"></i> My Certificates </a>
+              
+            </li>
+            <li class="dropdown @if(Request::is('user/ebooks')) active @endif">
+              <a href="{{url('user/ebooks')}}" > <i class="fa fa-book" aria-hidden="true"></i> My eBooks </a>
+              
+            </li>
+            <li class="dropdown @if(Request::is('user/deals') || Request::is('user/pro-deals')) active @endif">
+              <a href="{{url('user/deals')}}" ><i class="fa fa-users" aria-hidden="true"></i> Member Deals </a>
+              
+            </li>
+             <li class="dropdown @if(Request::is('user/reviews') || Request::is('user/review-history')) active @endif">
+              <a href="{{url('user/reviews')}}" ><i class="fa fa-star" aria-hidden="true"></i> Course Reviews </a>
+              
+            </li>
+             <li class="dropdown @if(Request::is('user/report-problem')) active @endif">
+              <a href="{{url('user/report-problem')}}" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Send A Ticket</a>
+              
+            </li>
+            
+          </ul>
+          
+        </div>
+      
+    </div>
 
- <nav style="margin-top: 45px;"  class="navbar navbar-expand-lg  bg-dark">
-              <a class="" href="#"></a>
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-               
-                <img src="{{url('public/assets/images/icons8-menu-24.png')}}">
-              </button>
-
-              <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-top: 5px;">
-                <ul class="navbar-nav mr-auto">
-                  <li class="nav-item nav-item1">
-                    <a href="{{url('user/courses')}}" class="nav-link1 nav-link courses">
-                        <img src="{{url('public/assets/user-images/menu1.png')}}">
-                        <span class="right-nav-text">Courses</span>
-                    </a>
-                   </li>
-                   <li class="nav-item nav-item1 ">
-                    <a href="{{url('user/certificates')}}" class="nav-link1 nav-link certificates">
-                        <img src="{{url('public/assets/user-images/menu2.png')}}">
-                        <span class="right-nav-text">Certificates</span>
-                    </a>
-                   </li>
-                 <!--   <li class="nav-item nav-item1">
-                    <a href="{{url('user/ebooks')}}" class="nav-link1 nav-link ebooks">
-                        <img src="{{url('public/assets/user-images/menu3.png')}}">
-                        <span class="right-nav-text">Ebooks</span>
-                    </a>
-                   </li> -->
-                   <li class="nav-item nav-item1">
-                    <a href="{{url('user/reviews')}}" class="nav-link1 nav-link reviews">
-                        <i class="fa fa-star-o" style="font-size: 20px;color: white; margin-right: 3px;"></i>
-                        <span class="right-nav-text" style="position: relative;">Reviews</span>
-                    </a>
-                   </li>
-                   <!-- <li class="nav-item nav-item1">
-                    <a href="{{url('user/setting')}}" class="nav-link1 nav-link setting">
-                        <img src="{{url('public/assets/user-images/menu4.png')}}">
-                        <span class="right-nav-text">Settings </span></a>
-                   </li> -->
-                   <li class="nav-item nav-item1">
-                      <a href="{{url('user/report-problem')}}" class="nav-link1 nav-link report">
-                        <img src="{{url('public/assets/user-images/menu6.png')}}">
-                        <span class="right-nav-text">Report an issue </span>
-                     </a>
-                   </li>
-                 <!--   <li class="nav-item ">
-                    <a href="{{url('user/report-problem')}}" class="report">
-                        <img src="{{url('public/assets/user-images/menu6.png')}}">
-                        <span class="right-nav-text">Report an issue </span>
-                    </a>
-                   </li> -->
-                 <!--   <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Courses
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">   
-                       <a class="nav-link all-courses" href="{{ route('courses.index') }}">All Courses</a>
-                         <div class="dropdown-divider"></div>
-                       <a class="nav-link add-courses" href="{{ route('courses.create') }}">Add Course</a>
-                    </div>
-                   </li> -->
-                <!--    <li class="nav-item ">
-                    <a class="nav-link reviews" href="{{url('admin/reviews')}}">
-                        <i class="fa fa-fw fa-star"></i>Reviews 
-                    </a>
-                    </li> -->
-                 <!--    <li class="nav-item">
-                    <a class="nav-link all-courses" href="{{ url('admin/report-problem') }}"><i class="fa fa-question"></i> Problems Report</a>
-                  </li> -->
-                </ul>
-             
-              </div>
-            </nav>
-        <!--=================================-->
-        <div class="container-fluid">
-       
-
-
-            <div class="row">
-                
-                <div class="content-wrapper">
-                    <div class="page-title">
-                        <div class="row">
-                            <div class="col-sm-9">
-                                @yield('content-heading')
-                                @yield('dashboard-welcome')
-                            </div>
-                            <div class="col-sm-3">
-                                <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right">
-                                    @yield('breadcrumb')
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-
-                    @if(session('message') == "verify" && !session('resent') && !session('verified'))
-                    <div class="card-body p-0 m-0">
-                        <div class="alert alert-danger" role="alert">
-                            <h6 class="alert-heading">Alert! Verify Your Email Address</h6>
-                            <p>A fresh verification link has been sent to your email address.If you did not receive the
-                                email. <a href="{{route('resend')}}"
-                                    style="color: #1c95fd;text-decoration: underline;">click here</a> to request
-                                another.</p>
-                        </div>
-                    </div>
-                    @endif
-                    @if(session('resent'))
-                    <div class="card-body p-0 m-0">
-                        <div class="alert alert-success" role="alert">
-                            <h6 class="alert-heading">New verification link has been sent Successfully!</h6>
-                            <p>Please Verify Your Email Address.If you did not receive the email. <a
-                                    href="{{route('resend')}}" style="color: #1c95fd;text-decoration: underline;">click
-                                    here</a> to request another.</p>
-                        </div>
-                    </div>
-                    @endif
-                    @if(session('verified'))
-                    <div class="alert alert-success">Email has been verified Successfully!</div>
-                    @endif
-                    @if(session('status'))
-                    <div class="alert alert-success">{{session('status')}}</div>
-                    @endif

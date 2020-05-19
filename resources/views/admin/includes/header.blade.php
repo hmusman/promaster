@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="{{url('public/assets/vendor/datatables/css/dataTables.bootstrap4.css')}}">
     <link rel="stylesheet" href="{{url('public/assets/vendor/bootstrap-select/css/bootstrap-select.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+    <link rel="stylesheet" type="text/css" href="{{url('public/assets/mselect/chosen.min.css')}}">
+    
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/bootstrap-notifications@1.0.3/dist/stylesheets/bootstrap-notifications.min.css">
     <title>ProMaster Admin</title>
@@ -195,6 +197,16 @@
            <a class="nav-link all-courses" href="{{ route('courses.index') }}">All Courses</a>
              <div class="dropdown-divider"></div>
            <a class="nav-link add-courses" href="{{ route('courses.create') }}">Add Course</a>
+        </div>
+       </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Deals
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">   
+           <a class="nav-link all-courses" href="{{url('admin/deals')}}">All Deals</a>
+             <div class="dropdown-divider"></div>
+           <a class="nav-link add-courses" href="{{url('admin/add-deals')}}">Add Deal</a>
         </div>
        </li>
        <li class="nav-item ">
