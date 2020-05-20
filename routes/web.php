@@ -21,9 +21,13 @@ Route::group(["namespace"=>"home"],function(){
 Route::get('/order-placed', "paymentController@orderPlaced");
 // ADMIN
 Route::group(["namespace"=>"admin","prefix"=>"admin","middleware"=> 'auth:admin'],function(){
+
 	// DASHBOARD
 	Route::get('/', "indexController@index");
 	Route::get('view-user-log/{id}','indexController@logs');
+	//MAKE FEATURE DEAL
+	Route::post('make-feature','dealsController@makeFeature');
+	
 	//DEALS
     Route::get('deals', "dealsController@index")->name('admin/deals');
     Route::get('add-deals', "dealsController@addDeals");
@@ -73,6 +77,8 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
 	Route::get('course-details/{id}', "courseController@courseDetails");
 	Route::post('mark-complete', "courseController@markComplete");
 	Route::post('log-course-complete', "courseController@logCourseComplete");
+	//CHECKOUT
+	Route::get('checkout', "checkoutController@index");
 	// DEALS and GUIDE
 	Route::get('deals', "dealsController@index");
 	Route::get('pro-deals', "dealsController@proDeals");
@@ -102,6 +108,7 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
 	Route::get('review-history', "reviewController@reviewHistory");
 	Route::post('create-review', "reviewController@createReview");
 });
+// Auth::routes(['verify' => true]);
 Route::group(["namespace"=>"user\auth"],function(){
 	Route::get('/reset-verification-link', "VerificationController@resend")->name('resend');
 	Route::get('/verify-verification-link', "VerificationController@verify")->name('verification');

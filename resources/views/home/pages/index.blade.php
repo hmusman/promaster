@@ -161,8 +161,8 @@
             <div class="col-md-12 text-center seo_banner_content">
                 <h2 class="wow fadeInUp" data-wow-delay="0.3s">E-Learning Courses To Get <br> In-Demand Skills</h2>
                 <p class="wow fadeInUp" data-wow-delay="0.5s">We provide a wide selection of e-learning courses to gain certifications<br> which are useful in today’s job market.</p>
-                <a href="#" class="seo_btn seo_btn_one btn_hover">Get Started</a>
-                <a href="#" class="seo_btn seo_btn_two btn_hover">Sign In</a>
+                <a href="{{url('signup')}}" class="seo_btn seo_btn_one btn_hover">Get Started</a>
+                <a href="{{url('login')}}" class="seo_btn seo_btn_two btn_hover">Sign In</a>
             </div>
         </div>
     </div>
@@ -214,7 +214,7 @@
 
 @section('section-3')
 <section id="how" class="seo_features_one seo_fact_area sec_pad">
-
+    
     <div class="home_bubble">
         <div class="bubble b_one"></div>
         <div class="bubble b_three"></div>
@@ -453,9 +453,10 @@
             <h2 class="f_p f_size_30 l_height50 f_600 t_color2">Reasonable Pricing</h2>
             <p class="f_400 f_size_16 l_height30 mb-0">We offer bundle pricing for our courses to encourage you to take as many courses as you need.<br> The more courses you purchase, the more you will save.</p>
         </div>
-
+        
         <div class="tab-content price_content price_content_two">
             <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home-tab">
+                @if($featureDeal != NULL)
                 <div class="row premium price_item">
                     <div class="col-lg-5 col-sm-6">
                         <div class="price_item1">
@@ -467,13 +468,13 @@
                     <div class="col-lg-4 col-sm-6">
                         <div class="price_item2" style="text-align: left!important;">
 
-                            <h5 class="f_p f_size_25 f_600 t_color2 ">DELUXE PACKAGE</h5>
+                            <h5 class="f_p f_size_25 f_600 t_color2 ">{{$featureDeal->deal_name}}</h5>
 
                             <ul class="list-unstyled p_list">
-                                <li><i class="ti-check"></i>10 Professional Courses</li>
-                                <li><i class="ti-check"></i>10 Accredited Certificates</li>
-                                <li><i class="ti-check"></i>10 Professional eBooks</li>
-                                <li><i class="ti-check"></i>Lifetime Access</li>
+                                <li><i class="ti-check"></i>{{@$featureDeal->about1}}</li>
+                                <li><i class="ti-check"></i>{{@$featureDeal->about2}}</li>
+                                <li><i class="ti-check"></i>{{@$featureDeal->about3}}</li>
+                                <li><i class="ti-check"></i>{{@$featureDeal->about4}}</li>
                             </ul>
                         </div>
 
@@ -482,32 +483,40 @@
                     <div class="col-lg-3 col-sm-6">
                         <div class="price_item3">
 
-                            <div class="price f_700 f_size_40 t_color2"><span class="before">$249.99</span><span class="usd">USD</span> 49.99 </div>
+                            <div class="price f_700 f_size_40 t_color2" style="font-size: 39px;"><span class="before">${{number_format($featureDeal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($featureDeal->deal_price,2)}} </div>
 
                             <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover mt_30">Start Today</a>
                         </div>
                     </div>
                 </div>
-
-
-
-
+                @endif
                 <div class="row basic">
+                @foreach($deals as $deal)
                     <div class="col-lg-3 col-sm-6">
                         <div class="price_item">
+                            @if($deal->deal_name == 'Single Course')
                             <img src="{{url('public/assets/img/price/new1.png')}}" alt="">
-                            <h5 class="f_p f_size_20 f_600 t_color2 mt_30">Single Course</h5>
+                            @elseif($deal->deal_name == '2 Courses Bundle')
+                            <img src="{{url('public/assets/img/price/new2.png')}}" alt="">
+                            @elseif($deal->deal_name == '4 Courses Bundle')
+                            <img src="{{url('public/assets/img/price/new4.png')}}" alt="">
+                            @elseif($deal->deal_name == '6 Courses Bundle')
+                            <img src="{{url('public/assets/img/price/new6.png')}}" alt="">
+                            @endif
+                            <h5 class="f_p f_size_20 f_600 t_color2 mt_30">{{$deal->deal_name}}</h5>
                             <p>Good to get started<br><br></p>
-                            <div class="price f_700 f_size_30 t_color2"><span class="before">$29.99</span><span class="usd">USD</span> 9.99 </div>
+                            <div class="price f_700 f_size_30 t_color2" style="font-size: 21px;"><span class="before">${{number_format($deal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($deal->deal_price,2)}} </div>
                             <ul class="list-unstyled p_list">
-                                <li><i class="ti-check"></i>1 Professional Course</li>
-                                <li><i class="ti-check"></i>1 Accredited Certificate</li>
-                                <li><i class="ti-check"></i>Lifetime Access</li>
+                                <li><i class="ti-check"></i>{{$deal->about1}}</li>
+                                <li><i class="ti-check"></i>{{$deal->about2}}</li>
+                                <li><i class="ti-check"></i>{{$deal->about3}}</li>
+                                <li><i class="ti-check"></i>{{$deal->about4}}</li>
                             </ul>
                             <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover">Start Today</a>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
+                @endforeach
+                    <!-- <div class="col-lg-3 col-sm-6">
                         <div class="price_item">
                             <img src="{{url('public/assets/img/price/new2.png')}}" alt="">
                             <h5 class="f_p f_size_20 f_600 t_color2 mt_30">2 Courses Bundle</h5>
@@ -548,11 +557,12 @@
                             </ul>
                             <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover">Start Today</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
         </div>
+        
     </div>
 </section>
 @endsection
@@ -634,7 +644,7 @@
     <div class="container">
         <div class="seo_call_action_text">
             <h2>Ready to get started?<br> lt's fast, affordable and very easy!</h2>
-            <a href="sign-up.html" class="about_btn">Get Started</a>
+            <a href="{{url('signup')}}" class="about_btn">Get Started</a>
         </div>
     </div>
 </section>
@@ -677,7 +687,7 @@
                     </div>
                     <a href="checkout.html" class="btn_three">Create Account</a>
                     <div class="alter-login text-center mt_30">
-                        Already a Member?<a class="login-link" href="login.html">Sign In</a>
+                        Already a Member?<a class="login-link" href="{{url('login')}}">Sign In</a>
                     </div>
 
                 </form>

@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{url('public/assets/vendors/owl-carousel/assets/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{url('public/assets/vendors/nice-select/nice-select.css')}}">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.17/js/bootstrap-select.min.js">
     <link rel="stylesheet" href="{{url('public/assets/vendors/magnify-pop/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{url('public/assets/vendors/elagent/style.css')}}">
     <link rel="stylesheet" href="{{url('public/assets/vendors/scroll/jquery.mCustomScrollbar.min.css')}}">
@@ -113,37 +113,87 @@
 
                         <ul class="navbar-nav ml-auto menu">
                             <li class="nav-item active  mega_menu mega_menu_two ">
-                                <a class="nav-link " href="index.html">
+                                <a class="nav-link " href="{{url('/')}}">
                                     Home
                                 </a>
                                 <div class="mega_menu_inner">
 
                                 </div>
                             </li>
-
+                            @if(Request::is('ebooks') || Request::is('cart') || Request::is('trending-ebooks'))
                             <li class="nav-item  mega_menu">
-                                <a class="nav-link " href="#how" aria-expanded="false">
+                                <a class="nav-link" href="{{url('/'). '#how'}}" aria-expanded="false">
                                     How It Works
                                 </a>
 
                             </li>
+                            @else
+                            <li class="nav-item  mega_menu">
+                                <a class="nav-link" href="#how" aria-expanded="false">
+                                    How It Works
+                                </a>
+
+                            </li>
+                            @endif
+                            @if(Request::is('ebooks') || Request::is('cart') || Request::is('trending-ebooks'))
+                            <li class=" nav-item"><a class="nav-link scroll" href="{{url('/') . '#courses'}}">Courses</a>
+
+                            </li>
+                            @else
                             <li class=" nav-item"><a class="nav-link scroll" href="#courses">Courses</a>
 
                             </li>
-                            <li class=" nav-item"><a class="nav-link scroll" href="{{ route('ebooks') }}">eBooks</a>
+                            @endif
+                            @if(Request::is('ebooks') || Request::is('cart') || Request::is('trending-ebooks'))
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{url('/') . '#pricing'}}">
+                                    Pricing
+                                </a>
 
                             </li>
+                            @else
                             <li class="nav-item">
                                 <a class="nav-link " href="#pricing">
                                     Pricing
                                 </a>
 
                             </li>
+                            @endif
+                            <li class=" nav-item"><a class="nav-link scroll" href="{{ route('ebooks') }}">eBooks</a>
+
+                            </li>
+                            @auth
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{url('cart')}}">
+                                    Cart 
+                                    @inject('cart','App\Http\Controllers\home\cartController')
+                                    @if($cart->cartCount() > 0)
+                                    <span class="count" style="background-color: #916ef8;padding: 0px 6px 0px 6px;border-radius: 50px; color: white;">{{$cart->cartCount()}}</span>
+                                    @endif
+                                </a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " href="{{url('user/courses')}}">
+                                    DashBoard
+                                </a>
+
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form-home').submit();">
+                                    Logout
+                                </a>
+                                <form id="logout-form-home" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </li>
+                            @endauth
 
                         </ul>
-
+                        @guest
                         <a class="btn_get btn_hover" href="{{url('signup')}}">Get Started</a>
                         <a class="btn_sign btn_hover" href="{{url('login')}}">Sign In</a>
+                        @endguest
                     </div>
                 </div>
             </nav>

@@ -78,4 +78,12 @@ class dealsController extends Controller
 
     	return redirect()->route('admin/deals')->with('message','Deals deleted successfully.');
     }
+
+    public function makeFeature(Request $request){
+
+        deals::where('is_featured', 1)->update(['is_featured'=>0]);
+
+        deals::where('id', $request->id)->update(['is_featured'=>1]);
+        return "true";
+    }
 }

@@ -259,18 +259,31 @@
         </div>
         <div class="app_screen_info">
             <div class="row ebook">
+                @foreach($courses as $course)
                 <div class="col-2-5">
                     <img src="{{url('public/assets/img/seo/ilus2.png')}}" width="200px">
                     <div class="book-about">
-                        <h5>Organizational Leadership</h5>
+                        <h5>{{$course->course_title}}</h5>
                         <p>Professional eBook</p>
                         <img src="https://getphotostick.io/wp-content/uploads/five-stars-1.jpg"><br>
-                        <span class="book-price">USD 4.99</span>
+                        <span class="book-price">USD {{number_format($course->price,2)}}</span>
                     </div>
-                    <a class="cart-link" href="#">Add To Cart</a>
+                    @auth
+                    <form action="{{route('cart.add')}}" method="post" class="cart-forms add-to-cart-form">
+                        @csrf
+                        <input type="hidden" name="id" value="{{Crypt::encrypt($course->id)}}">
+                        <a class="cart-link add-to-cart-btn" href="#"><img src="https://thumbs.gfycat.com/BogusEmptyBrontosaurus-max-1mb.gif" height="19" width="19"><i class="ti-shopping-cart"></i>Add To Cart</a>
+                        <!-- <button type="submit" class="cart-link  "><img src="https://thumbs.gfycat.com/BogusEmptyBrontosaurus-max-1mb.gif" height="19" width="19"><i class="ti-shopping-cart"></i> Add to Cart</button> -->
+                    </form>
+                    <!-- <a class="cart-link" href="#">Add To Cart</a> -->
+                    @endauth
+                    @guest
+                    <a class="cart-link" href="{{url('login')}}">Add To Cart</a>
+                    @endguest
 
                 </div>
-                <div class="col-2-5">
+                @endforeach
+                <!-- <div class="col-2-5">
                     <img src="{{url('public/assets/img/seo/ilus1.png')}}" width="200px">
                     <div class="book-about">
                         <h5>Effective Communication</h5>
@@ -369,7 +382,7 @@
                     </div>
                     <a class="cart-link" href="#">Add To Cart</a>
 
-                </div>
+                </div> -->
 
             </div>
         </div>
@@ -1121,4 +1134,32 @@
         });
     });
 </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.add-to-cart-btn img').hide();
+            $(document).delegate('.add-to-cart-btn','click',function(){
+                $(this).attr('disabled',true);
+                $(this).children("img").show();
+                var obj = $(this).parent().next();
+                var form = $(this).parent();
+                var url = form.attr("action");
+                var type = form.attr("method");
+                $.ajax({
+                    url : url,
+                    type : type,
+                    data: form.serialize(),
+                    success:function(data){
+                        $(".add-to-cart-btn").attr('disabled',false);
+                        $('.add-to-cart-btn img').hide();
+                        $('.count').load(location.href + " .count");
+                        Command: toastr["success"]('<span>Course Added Successfully! <a href="{{url("cart")}}" class="btn btn-success view-cart">view cart</a></span> ');
+                    },error: function(xhr, status, error){
+                        Command: toastr["error"]('Something went wrong.');
+                         $(".add-to-cart-btn").attr('disabled',false);
+                        $('.add-to-cart-btn img').hide();
+                     }
+                })
+            })
+        })
+    </script> 
 @endsection

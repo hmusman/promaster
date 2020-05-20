@@ -83,7 +83,7 @@
     }
 
     .video_info {
-        background: url(img/seo/ilus9.jpg);
+        background: url({{url('public/assets/img/seo/ilus9.jpg')}});
         background-size: cover;
         background-repeat: no-repeat;
     }
@@ -140,10 +140,18 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            <p class="price"><span class="save" style="  color: #999999;">$29.99</span><br>
-                                <span class="price f_700 f_size_40 t_color2">$9.99 </span>
-
-                                <a href="#" class="price_btn btn_hover"><i class="ti-shopping-cart"></i> Add To Cart</a>
+                            <p class="price"><span class="save" style="  color: #999999;">${{number_format($course->price, 2)}}</span><br>
+                                <span class="price f_700 f_size_40 t_color2">${{number_format($course->price, 2)}}</span>
+                                @auth
+                                <form action="{{route('cart.add')}}" method="post" class="cart-forms add-to-cart-form">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{Crypt::encrypt($course->id)}}">
+                                    <button type="submit" class=" price_btn btn_hover  add-to-cart-btn" style="margin-top: -20%; "><img src="https://thumbs.gfycat.com/BogusEmptyBrontosaurus-max-1mb.gif" height="19" width="19"><i class="ti-shopping-cart"></i> Add to Cart</button>
+                                </form>
+                                @endauth
+                                @guest
+                                    <a href="{{url('login')}}" class="price_btn btn_hover"><i class="ti-shopping-cart"></i> Add To Cart</a>
+                                @endguest
                             </p>
 
 
@@ -890,4 +898,34 @@
         </div>
     </div>
 </div>
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.add-to-cart-btn img').hide();
+            $(document).delegate('.add-to-cart-btn','click',function(){
+                $(this).attr('disabled',true);
+                $(this).children("img").show();
+                var obj = $(this).parent().next();
+                var form = $(this).parent();
+                var url = form.attr("action");
+                var type = form.attr("method");
+                $.ajax({
+                    url : url,
+                    type : type,
+                    data: form.serialize(),
+                    success:function(data){
+                        $(".add-to-cart-btn").attr('disabled',false);
+                        $('.add-to-cart-btn img').hide();
+                        $('.count').load(location.href + " .count");
+                        Command: toastr["success"]('<span>Course Added Successfully! <a href="{{url("cart")}}" class="btn btn-success view-cart">view cart</a></span> ');
+                    },error: function(xhr, status, error){
+                        Command: toastr["error"]('Something went wrong.');
+                         $(".add-to-cart-btn").attr('disabled',false);
+                        $('.add-to-cart-btn img').hide();
+                     }
+                })
+            })
+        })
+    </script>   
 @endsection

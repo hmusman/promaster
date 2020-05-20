@@ -203,7 +203,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
             <span class="icon-bar"></span>
           </button>
           <div class="navbar-brand   navbar-brand-logo navbar-nav-padding-left">
-            <a href="#" title=""><img src="{{url('public/userDashboard/images/logo-pro.png')}}"></a>
+            <a href="{{url('/')}}" title=""><img src="{{url('public/userDashboard/images/logo-pro.png')}}"></a>
           </div>
         </div>
 

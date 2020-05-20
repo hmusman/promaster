@@ -81,6 +81,7 @@
 
  <script src="{{url('public/assets/js/propper.js')}}"></script>
  <script src="{{url('public/assets/js/bootstrap.min.js')}}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/js/mdb.min.js" type="text/javascript" charset="utf-8" async defer></script>
  <script src="{{url('public/assets/vendors/bootstrap-selector/js/bootstrap-select.min.js')}}"></script>
  <script src="{{url('public/assets/vendors/wow/wow.min.js')}}"></script>
  <script src="{{url('public/assets/vendors/sckroller/jquery.parallax-scroll.js')}}"></script>

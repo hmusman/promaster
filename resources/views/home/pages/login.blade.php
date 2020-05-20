@@ -31,14 +31,14 @@
                         </div>
                         <button type="submit" class="btn_three form-submit-btn">Sign In</button>
                         <div class="alter-login text-center mt_30">
-                            New user? <a class="login-link" href="sign-up.html">Signup</a>
+                            New user? <a class="login-link" href="{{url('signup')}}">Signup</a>
                         </div>
                     </form>
                 </div>
             </div>
             <div class="col-lg-4 d-flex align-items-center">
                 <div class="login_img">
-                    <img src="img/seo/login.png" alt="">
+                    <img src="{{url('public/assets/img/seo/login.png')}}" alt="login.png...">
                 </div>
             </div>
         </div>

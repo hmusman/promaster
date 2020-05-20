@@ -12,16 +12,26 @@
 	.tt li:before {
   		content: '✓';
 	}
+	.make_feature:hover{
+		background-color: blue;
+		color: white;
+	}
 </style>
 <?php 
  $con = mysqli_connect('localhost','root','','laravel-badges'); ?>
 	<div class="row">
-    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">{!! session('message') !!}</div>
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 success_message error-message">{!! session('message') !!}</div>
 		@if(count($deals) > 0)
 			@foreach($deals as $key=>$deal)
 		        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-		            <div class="card">
+		            <div class="card" id="myDealCard">
 		                <div class="card-body">
+		                	@if($deal->is_featured == 1)
+		                	<span style="float: right;background: #646be5;color: white;padding: 5px 15px 5px 15px;border-radius: 50px;">Feature Deal</span>
+		                	@else
+		                	<input type="hidden" name="del_id" id="dealID" value="{{$deal->id}}">
+		                	<button class="make_feature" style="float: right;background: white;border: 1px solid lightgrey;border-radius: 50px;padding: 5px 5px 5px 5px;background: white;"><a href="#" title="">Make it Feature</a></button>
+		                	@endif
 		                            <h3>Deal Title: {{$deal->deal_name}}</h3>
 		                            <p><strong>Orignal Price:</strong> {{$deal->bundle_price}}</p>
 		                            <p><strong>Offer Price:</strong> {{$deal->deal_price}}</p>
@@ -53,16 +63,20 @@
 									    $course = $deal->course_id;
 								    	$cs = json_decode($course); 
 									 ?>
-		                            <p><strong>Courses: </strong>@foreach($cs as $c)
-		                            <span style="background-color: #5969ff;color: white;padding: 2px 10px 2px 10px;border-radius: 50px;">
-										@php 
-										getCourse($c);
-										@endphp
-		                            </span> &nbsp;
-		                            @endforeach</p>
+		                            <p><strong>Courses: </strong><div class="row">@foreach($cs as $c)
+		                            	
+		                            		<div class="col-sm-3" style="margin: 0px 0px 6px 0px;">
+					                            <span style="background-color: #5969ff;color: white;padding: 2px 10px 2px 10px;border-radius: 50px;">
+													@php 
+													getCourse($c);
+													@endphp
+					                            </span> &nbsp;
+		                            		</div>
+		                            	
+		                            @endforeach</div></p>
 		                    <div class="action-btns text-right">
 	                        	<form action="{{url('admin/dealDelete')}}/{{$deal->id}}" method="POST" id="form">
-	                        		<input type="hidden" name="del_id" value="{{$deal->id}}">
+	                        		<input type="hidden" name="del_id" id="" value="{{$deal->id}}">
 	                        		@csrf
 	                        		<a href="{{url('admin/dealEdit')}}/{{$deal->id}}" class="btn btn-primary mr-1"><i class="fa fa-edit mr-2"></i>Edit</a>
 								    <input type="hidden" name="_method" value="POST" />
@@ -120,6 +134,23 @@
     })
     $(".close-delete-model").click(function(){
     	$(".sure-delete-btn").removeAttr("from-id");
+    })
+    $(".make_feature").click(function(){
+    var id = document.getElementById("dealID").value;
+    	$.ajax({
+    		url: "{{url('admin/make-feature')}}",
+    		type: "POST",
+    		data: {"_token": "{{ csrf_token() }}", "id": id},
+    		success:function(data){
+               if($.trim(data)){
+               	$(".success_message").html('<div class="alert alert-success">Deal Marked Feature successfully</div>');
+  				window.location.reload();
+               	 }
+               else{
+               	$(".error-message").html('<div class="alert alert-danger">Something went wrong</div>');
+               }
+            }
+    	})
     }) 
 </script>
 @endsection

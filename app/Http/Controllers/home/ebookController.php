@@ -13,15 +13,16 @@ use App\Models\course;
 class ebookController extends Controller
 {
     public function ebooks(){
-    	$courses = course::all();
+    	$courses = course::all()->take(10);
     	$totalCourses = course::count();
  
-    	
     	return view('home.pages.ebooks',compact('courses','totalCourses'));
     }
     public function trendingEbooks(){
-    	    	
-    	return view('home.pages.trending-ebooks');
+    	$courses = course::all();
+    	$totalCourses = course::count();
+
+    	return view('home.pages.trending-ebooks', compact('courses'));
     }
     
 }

@@ -17,7 +17,7 @@ use App\Models\User;
 use App\Http\Controllers\user\traits\activityLog;
 class LoginController extends Controller
 {
-    use VerifiesEmails;
+    // use VerifiesEmails;
     use activityLog;
     public function __construct()
     {
@@ -46,7 +46,7 @@ class LoginController extends Controller
     	if($result){
     		$credentials = $request->only('email', 'password');
 	        if (Auth::attempt($credentials)) {
-                $this->resend($request);
+                // $this->resend($request);
                 User::where("id",Auth::id())->update(["login_at"=>Carbon::now()]);
 	            return "true";
 	        }
