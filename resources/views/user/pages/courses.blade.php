@@ -55,10 +55,27 @@
                               </div>
                               
                               <div class="media-right">
-                              <div class="canvas-holder" >
-                                 <canvas id="canvas-{{$key}}" width="300" height="300" style="width: 71px; height:71px;    margin-left: -10px;"></canvas>
-                                 <div id="canvas-data-{{$key}}" class="matter" style="margin-left: 14px;margin-top: -50px; font-size: 14px;"></div>
-                              </div>
+                              @php
+                              $prgrs_bar_prcnt     = round(@$course->getPercentage($course->id) * 100);  
+                            
+                              $prgrs_bar_cls_blue = 'p'.$prgrs_bar_prcnt .' blue';
+                              $prgrs_bar_cls_green = 'p'.$prgrs_bar_prcnt .' green';
+                              $prgrs_bar_cls       = ($prgrs_bar_prcnt)=='100' ? ($prgrs_bar_cls_green) : ($prgrs_bar_cls_blue);
+                              
+                              @endphp
+                              <div class="c100 {{ $prgrs_bar_cls }}">
+                                    
+                                    @if($prgrs_bar_prcnt == 100)
+                                    <span><i class="fa fa-check"></i></span>
+                                    @else
+                                    <span> {{ $prgrs_bar_prcnt."%" }}</span>
+                                    @endif
+
+                                    <div class="slice">
+                                      <div class="bar"></div>
+                                      <div class="fill"></div>
+                                    </div>
+                                </div>
                               </div>
 
                               <div class="con">
@@ -106,7 +123,7 @@
 @endsection
 
 @section('script')
-<script type="text/javascript">
+<!-- <script type="text/javascript">
    $(".side-menu-fixed .side-menu li a").removeClass("active");
    $(".courses").addClass('active');
    //
@@ -116,5 +133,5 @@
       percentage = "{{@$course->getPercentage($course->id)}}";
       progressBar(canvas,span,percentage);
    @endforeach
-</script>
+</script> -->
 @endsection

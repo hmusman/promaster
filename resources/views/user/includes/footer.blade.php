@@ -43,11 +43,9 @@ PROFESSIONAL STUDIES</strong> &copy; Copyright <span id="copyright">
     To learn more about the development process, please refer to the documentation.
     Do not use it simultaneously with the separate bundles above. -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="{{url('public/assets/js/plugins-jquery.js')}}"></script>
+  <!-- <script src="{{url('public/assets/js/plugins-jquery.js')}}"></script> -->
   <script src="{{url('public/userDashboard/js/vendor/all.js')}}"></script>
-  <script src="{{url('public/assets/js/circle-progress-bar.min.js')}}"></script>
-  <script src="{{url('public/assets/js/progress.js')}}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script> -->
     <!-- <script src="{{url('public/userDashboard/js/app/app.js')}}"></script> -->
   <!-- Vendor Scripts Standalone Libraries -->
   <!-- <script src="js/vendor/core/all.js"></script> -->
