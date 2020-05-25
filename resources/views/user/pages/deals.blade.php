@@ -126,7 +126,7 @@
                
                 <div class="tab-content price_content price_content_two">
                     <div class="" id="home1" role="tabpanel" aria-labelledby="home-tab">
-
+                        @if($featureDeal != NULL)
                         <section class="seo_fact_area sec_pad">
                           <div class="home_bubble">
                               <div class="bubble b_one"></div>
@@ -146,13 +146,13 @@
                              <div class="col-lg-4 col-sm-6">
                                     <div class="price_item2" style="text-align: left!important;">
                                 
-                                        <h5 class="f_p f_size_25 f_600 t_color2 ">DELUXE PACKAGE</h5>
+                                        <h5 class="f_p f_size_25 f_600 t_color2 ">{{$featureDeal->deal_name}}</h5>
                                        
                                         <ul class="list-unstyled p_list" >
-                                            <li><i class="ti-check"></i>10 Professional Courses</li>
-                                            <li><i class="ti-check"></i>10 Accredited Certificates</li>
-                                            <li><i class="ti-check"></i>10 Professional eBooks</li>
-                                            <li><i class="ti-check"></i>Lifetime Access</li>
+                                            <li><i class="ti-check"></i>{{@$featureDeal->about1}}</li>
+                                            <li><i class="ti-check"></i>{{@$featureDeal->about2}}</li>
+                                            <li><i class="ti-check"></i>{{@$featureDeal->about3}}</li>
+                                            <li><i class="ti-check"></i>{{@$featureDeal->about4}}</li>
                                         </ul>
                                     </div>
                                 
@@ -161,15 +161,25 @@
                                 <div class="col-lg-3 col-sm-6">
                                 <div class="price_item3">
 
-                                <div class="price f_700 f_size_40 t_color2"><span class="before">$249.99</span><span class="usd">USD</span> 34.99 </div>
+                                <div class="price f_700 f_size_40 t_color2"><span class="before">${{number_format($featureDeal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($featureDeal->deal_price,2)}} </div>
                                    
                                    
-                                    <a href="#" class="price_btn btn_hover mt_30">Buy Now</a>
+                                    @auth
+                                    <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8">
+                                        @csrf
+                                    <input type="hidden" id="deal_id" name="dealId" value="{{$featureDeal->id}}">
+                                    <button type="submit" style="background-color: white; border: none;"><a class="price_btn btn_hover mt_30 dealId">Buy Now</a></button>
+                                    </form>
+
+                                    @endauth
+                                    @guest
+                                    <a href="{{url('login')}}" class="price_btn btn_hover mt_30">Buy Now</a>
+                                    @endguest
                                 </div>
                             </div>
                         </div>
                       </section>
-
+                      @endif
 
 
                      <section class="seo_fact_area sec_pad">
@@ -182,21 +192,49 @@
                         </div>
                         
                         <div class="row basic">
+                          @foreach($deals as $deal)
                             <div class="col-lg-3 col-sm-6">
                                 <div class="price_item">
-                                    <img src="{{url('public/userDashboard/images/price/new1.png')}}" alt="">
-                                    <h5 class="f_p f_size_20 f_600 t_color2 mt_30">Single Course</h5>
-                                    <p>Good to get started<br><br></p>
-                                    <div class="price f_700 f_size_30 t_color2"><span class="before">$29.99</span><span class="usd">USD</span> 8.99 </div>
+                                   @if($deal->deal_name == 'Single Course')
+                                    <img src="{{url('public/assets/img/price/new1.png')}}" alt="">
+                                    @elseif($deal->deal_name == '2 Courses Bundle')
+                                    <img src="{{url('public/assets/img/price/new2.png')}}" alt="">
+                                    @elseif($deal->deal_name == '4 Courses Bundle')
+                                    <img src="{{url('public/assets/img/price/new4.png')}}" alt="">
+                                    @elseif($deal->deal_name == '6 Courses Bundle')
+                                    <img src="{{url('public/assets/img/price/new6.png')}}" alt="">
+                                    @endif
+                                    <h5 class="f_p f_size_20 f_600 t_color2 mt_30">{{$deal->deal_name}}</h5>
+                                    @if($deal->deal_name == 'Single Course')
+                                    <p>Good to get started<br><br><br><br></p>
+                                    @elseif($deal->deal_name == '2 Courses Bundle')
+                                    <p>Great way to save<br><br><br></p>
+                                    @elseif($deal->deal_name == '4 Courses Bundle')
+                                    <p>Excellent offer for savings<br><br></p>
+                                    @elseif($deal->deal_name == '6 Courses Bundle')
+                                    <p>Remarkable savings for students<br><br></p>
+                                    @endif
+                                    <div class="price f_700 f_size_30 t_color2" style="font-size: 25px;"><span class="before">${{number_format($deal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($deal->deal_price,2)}} </div>
                                     <ul class="list-unstyled p_list">
-                                       <li><i class="ti-check"></i>1 Professional <br>Course</li>
-                                        <li><i class="ti-check"></i>1 Accredited Certificate</li>
-                                        <li><i class="ti-check"></i>Lifetime Access</li>
+                                       <li><i class="ti-check"></i>{{$deal->about1}}</li>
+                                        <li><i class="ti-check"></i>{{$deal->about2}}</li>
+                                        <li><i class="ti-check"></i>{{$deal->about3}}</li>
+                                        <li><i class="ti-check"></i>{{$deal->about4}}</li>
                                     </ul>
-                                    <a href="#" class="price_btn btn_hover">Buy Now</a>
+                                     @auth
+                                      <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8">
+                                          @csrf
+                                      <input type="hidden" id="deal_id" name="dealId" value="{{$deal->id}}">
+                                      <button type="submit" style="background-color: white; border: none;"><a class="price_btn btn_hover mt_30 dealId">Buy Now</a></button>
+                                      </form>
+                                      @endauth
+                                      @guest
+                                      <a href="{{url('login')}}" class="price_btn btn_hover mt_30">Buy Now</a>
+                                      @endguest
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-sm-6">
+                            @endforeach
+                            <!-- <div class="col-lg-3 col-sm-6">
                                 <div class="price_item">
                                     <img src="{{url('public/userDashboard/images/price/new2.png')}}" alt="">
                                     <h5 class="f_p f_size_20 f_600 t_color2 mt_30">2 Courses Bundle</h5>
@@ -237,7 +275,7 @@
                                     </ul>
                                     <a href="#" class="price_btn btn_hover">Buy Now</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                       </section>
                     </div>
@@ -256,6 +294,7 @@
                
                 <div class="tab-content price_content price_content_two">
                     <div class="" id="home1" role="tabpanel" aria-labelledby="home-tab">
+                      @if($featureDeal != NULL)
                       <section class="seo_fact_area sec_pad">
                         <div class="home_bubble">
                             <div class="bubble b_one"></div>
@@ -276,16 +315,26 @@
                                     <div class="price_item2" style="text-align: left!important;">
                                 
                                         <h5  style="text-align: center;"
-                                        class="f_p f_size_25 f_600 t_color2 ">DELUXE PACKAGE</h5>
-                                        <h5 style="text-align: center;" class="f_p f_size_20 t_color2">10 eBooks Bundle</h5>
+                                        class="f_p f_size_25 f_600 t_color2 ">{{$featureDeal->deal_name}}</h5>
+                                        <h5 style="text-align: center;" class="f_p f_size_20 t_color2">{{$featureDeal->about1}}</h5>
                                        
                                        
                                     </div>
                                     <div class="price_item3">
                                 
-                                    <div class="price f_700 f_size_40 t_color2"><span class="usd">USD</span> 19.99 </div>
+                                    <div class="price f_700 f_size_40 t_color2"><span class="usd">USD</span> {{number_format($featureDeal->deal_price,2)}} </div>
                                    
-                                    <a href="#" class="price_btn btn_hover mt_30">Buy Now</a>
+                                    @auth
+                                    <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8">
+                                        @csrf
+                                    <input type="hidden" id="deal_id" name="dealId" value="{{$featureDeal->id}}">
+                                    <button type="submit" style="background-color: white; border: none;"><a class="price_btn btn_hover mt_30 dealId">Buy Now</a></button>
+                                    </form>
+
+                                    @endauth
+                                    @guest
+                                    <a href="{{url('login')}}" class="price_btn btn_hover mt_30">Buy Now</a>
+                                    @endguest
                                 </div>
                                 
                             </div>
@@ -293,7 +342,7 @@
                              
                         </div>
                       </section>
-
+                      @endif
 
                       <section class="seo_fact_area sec_pad">
                         <div class="home_bubble">
@@ -304,17 +353,44 @@
                             <div class="triangle b_eight" data-parallax='{"x": 120, "y": -10}'><img src="{{url('public/userDashboard/images/triangle_one.png')}}" alt=""></div>
                         </div>
                         <div class="row">
+                          @foreach($deals as $deal)
                             <div class="col-lg-3 col-sm-6">
                                 <div class="price_item">
-                                    <img src="{{url('public/userDashboard/images/price/ebook1.png')}}" alt="">
-                                    <h5 class="f_p f_size_20 f_600 t_color2 mt_30">Single eBook</h5>
-                                    <p>Good to get started<br><br></p>
-                                    <div class="price f_700 f_size_40 t_color2"><span class="usd">USD</span> 3.99 </div>
+                                  @if($deal->deal_name == 'Single eBook')
+                                  <img src="{{url('public/userDashboard/images/price/ebook1.png')}}" alt="">
+                                  @elseif($deal->deal_name == '2 eBooks Bundle')
+                                  <img src="{{url('public/userDashboard/images/price/ebook2.png')}}" alt="">
+                                  @elseif($deal->deal_name == '4 eBooks Bundle')
+                                  <img src="{{url('public/userDashboard/images/price/ebook4.png')}}" alt="">
+                                  @elseif($deal->deal_name == '6 eBooks Bundle')
+                                  <img src="{{url('public/userDashboard/images/price/ebook6.png')}}" alt="">
+                                  @endif
+                                    <h5 class="f_p f_size_20 f_600 t_color2 mt_30">{{$deal->deal_name}}</h5>
+                                    @if($deal->deal_name == 'Single eBook')
+                                    <p>Good to get started<br><br><br></p>
+                                    @elseif($deal->deal_name == '2 eBooks Bundle')
+                                    <p>Great way to save<br><br><br></p>
+                                    @elseif($deal->deal_name == '4 eBooks Bundle')
+                                    <p>Excellent offer for savings<br><br></p>
+                                    @elseif($deal->deal_name == '6 eBooks Bundle')
+                                    <p>Remarkable savings for students<br><br></p>
+                                    @endif
+                                    <div class="price f_700 f_size_40 t_color2"><span class="usd">USD</span> {{number_format($deal->deal_price,2)}} </div>
                                    
-                                    <a href="#" class="price_btn btn_hover mt_30">Buy Now</a>
+                                    @auth
+                                    <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8">
+                                        @csrf
+                                    <input type="hidden" id="deal_id" name="dealId" value="{{$deal->id}}">
+                                    <button type="submit" style="background-color: white; border: none;"><a class="price_btn btn_hover mt_30 dealId">Buy Now</a></button>
+                                    </form>
+                                    @endauth
+                                    @guest
+                                    <a href="{{url('login')}}" class="price_btn btn_hover mt_30">Buy Now </a>
+                                    @endguest
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-sm-6">
+                            @endforeach
+                            <!-- <div class="col-lg-3 col-sm-6">
                                 <div class="price_item">
                                     <img src="{{url('public/userDashboard/images/price/ebook2.png')}}" alt="">
                                     <h5 class="f_p f_size_20 f_600 t_color2 mt_30">2 eBooks Bundle</h5>
@@ -343,7 +419,7 @@
                                    
                                     <a href="#" class="price_btn btn_hover mt_30">Buy Now</a>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                       </section>
                     </div>

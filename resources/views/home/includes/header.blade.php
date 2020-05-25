@@ -28,6 +28,13 @@
     <link rel="stylesheet" href="{{url('public/assets/css/responsive.css')}}">
     <script src="{{url('public/assets/js/jquery-3.2.1.min.js')}}"></script>
     @stack('style')
+    <style>
+        .ref_cart{
+            color: #56607f;
+            font-weight: 600;
+            margin-top: -1%;
+        }
+    </style>
 
 </head>
 
@@ -163,7 +170,7 @@
 
                             </li>
                             @auth
-                            <li class="nav-item">
+                            <li class="nav-item carttt">
                                 <a class="nav-link " href="{{url('cart')}}">
                                     Cart 
                                     @inject('cart','App\Http\Controllers\home\cartController')

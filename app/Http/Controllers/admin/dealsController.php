@@ -80,10 +80,20 @@ class dealsController extends Controller
     }
 
     public function makeFeature(Request $request){
+        $Requestdeal = deals::where('id', $request->id)->first();
+        // dd($request->id);
+        if($Requestdeal->deal_type == 'Course'){
+            deals::where('is_featured', 1)->where('deal_type', 'Course')->update(['is_featured'=>0]);
 
-        deals::where('is_featured', 1)->update(['is_featured'=>0]);
+            deals::where('id', $request->id)->update(['is_featured'=>1]); 
+        }
 
-        deals::where('id', $request->id)->update(['is_featured'=>1]);
+        if($Requestdeal->deal_type == 'ProEbook'){
+
+            deals::where('is_featured', 1)->where('deal_type', 'ProEbook')->update(['is_featured'=>0]);
+
+            deals::where('id', $request->id)->update(['is_featured'=>1]);
+        }
         return "true";
     }
 }

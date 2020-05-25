@@ -14,6 +14,9 @@ use Auth;
 use Illuminate\Support\Facades\Crypt;
 use Response;
 use App\Models\userProgress;
+use App\Models\usercourse;
+use App\Models\userdeals;
+use App\Models\deals;
 use PDF;
 use App\Http\Controllers\user\traits\activityLog;
 
@@ -28,7 +31,41 @@ class courseController extends Controller
     
     public function courses(){
     	$courses = course::all();
-    	return view('user.pages.courses',compact('courses'));
+        $pcourse = usercourse::where('user_id', Auth::id())->get();
+        $pdeals = userdeals::where('user_id', Auth::id())->get();
+        $CIDS = array();
+        $DIDS = array();
+        $DCIDS = array();
+        $pcourses = NULL;
+        $dcourses = NULL;
+        if($pcourse->count() > 0){
+            foreach($pcourse as $pc){
+
+                $Cids = json_decode($pc->course_id);
+                $CIDS = $Cids;
+            }
+
+            $pcourses = course::whereIn('id', $CIDS)->get();
+        }
+        if($pdeals->count() > 0){
+            foreach($pdeals as $pd){
+
+                $Cids = json_decode($pd->deal_id);
+                $DIDS = $Cids;
+            }
+
+            $pdealss = deals::whereIn('id', $DIDS)->get();
+            foreach ($pdealss as $deals) {
+                $dcids = json_decode($deals->course_id);
+
+                $DCIDS = $dcids;
+            }
+            $dcourses = course::whereIn('id', $DCIDS)->get();
+        }
+        // dd($pcourses, $dcourses);
+        // dd($DCIDS, $CIDS, $DIDS);
+
+    	return view('user.pages.courses',compact('courses', 'pcourses', 'dcourses'));
     }
     public function courseDetails($id){
     	$course = course::where("id",$id)->first();

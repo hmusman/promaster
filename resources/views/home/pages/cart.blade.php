@@ -82,7 +82,7 @@ th{
 				        </span>
 				    </td>
 					<td><a href="#"><img style="height: 150px;margin-top: 10px;" src="{{url('public/course-thumbnails')}}/{{@$course->getCourse->course_thumbnail}}" alt="Product Image"></a><h6>{{@$course->getCourse->course_title}}</h6></td>
-					<td>${{@$course->getCourse->price}}</td>
+					<td>${{number_format(@$course->getCourse->price,2)}}</td>
 				</tr>
 				@endforeach
 			</tbody>

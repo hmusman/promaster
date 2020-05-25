@@ -917,7 +917,8 @@
                     success:function(data){
                         $(".add-to-cart-btn").attr('disabled',false);
                         $('.add-to-cart-btn img').hide();
-                        $('.count').load(location.href + " .count");
+                        $('.carttt').load(location.href + " .carttt");
+                        $('.carttt').addClass('ref_cart');
                         Command: toastr["success"]('<span>Course Added Successfully! <a href="{{url("cart")}}" class="btn btn-success view-cart">view cart</a></span> ');
                     },error: function(xhr, status, error){
                         Command: toastr["error"]('Something went wrong.');

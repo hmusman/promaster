@@ -22,16 +22,17 @@
 	<div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 success_message error-message">{!! session('message') !!}</div>
 		@if(count($deals) > 0)
-			@foreach($deals as $key=>$deal)
+			@foreach($deals as $deal)
 		        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
 		            <div class="card" id="myDealCard">
 		                <div class="card-body">
 		                	@if($deal->is_featured == 1)
 		                	<span style="float: right;background: #646be5;color: white;padding: 5px 15px 5px 15px;border-radius: 50px;">Feature Deal</span>
 		                	@else
-		                	<input type="hidden" name="del_id" id="dealID" value="{{$deal->id}}">
-		                	<button class="make_feature" style="float: right;background: white;border: 1px solid lightgrey;border-radius: 50px;padding: 5px 5px 5px 5px;background: white;"><a href="#" title="">Make it Feature</a></button>
+		                	
+		                	<button class="make_feature" style="float: right;background: white;border: 1px solid lightgrey;border-radius: 50px;padding: 5px 5px 5px 5px;background: white;" data-dealID="{{$deal->id}}"><a href="#" title="">Make it Feature</a></button>
 		                	@endif
+		                	<!-- <input type="hidden" name="del_id" id="dealID" value=""> -->
 		                            <h3>Deal Title: {{$deal->deal_name}}</h3>
 		                            <p><strong>Orignal Price:</strong> {{$deal->bundle_price}}</p>
 		                            <p><strong>Offer Price:</strong> {{$deal->deal_price}}</p>
@@ -136,7 +137,7 @@
     	$(".sure-delete-btn").removeAttr("from-id");
     })
     $(".make_feature").click(function(){
-    var id = document.getElementById("dealID").value;
+    var id = $(this).attr('data-dealID');
     	$.ajax({
     		url: "{{url('admin/make-feature')}}",
     		type: "POST",

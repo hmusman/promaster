@@ -467,7 +467,6 @@
 
                     <div class="col-lg-4 col-sm-6">
                         <div class="price_item2" style="text-align: left!important;">
-
                             <h5 class="f_p f_size_25 f_600 t_color2 ">{{$featureDeal->deal_name}}</h5>
 
                             <ul class="list-unstyled p_list">
@@ -484,8 +483,17 @@
                         <div class="price_item3">
 
                             <div class="price f_700 f_size_40 t_color2" style="font-size: 39px;"><span class="before">${{number_format($featureDeal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($featureDeal->deal_price,2)}} </div>
+                            @auth
+                            <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8">
+                                @csrf
+                            <input type="hidden" id="deal_id" name="dealId" value="{{$featureDeal->id}}">
+                            <button type="submit" style="background-color: white; border: none;"><a class="price_btn btn_hover mt_30 dealId">Start Today</a></button>
+                            </form>
 
-                            <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover mt_30">Start Today</a>
+                            @endauth
+                            @guest
+                            <a href="{{url('login')}}" class="price_btn btn_hover mt_30">Start Today</a>
+                            @endguest
                         </div>
                     </div>
                 </div>
@@ -512,7 +520,16 @@
                                 <li><i class="ti-check"></i>{{$deal->about3}}</li>
                                 <li><i class="ti-check"></i>{{$deal->about4}}</li>
                             </ul>
-                            <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover">Start Today</a>
+                           @auth
+                            <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8">
+                                @csrf
+                            <input type="hidden" id="deal_id" name="dealId" value="{{$deal->id}}">
+                            <button type="submit" style="background-color: white; border: none;"><a class="price_btn btn_hover mt_30 dealId">Start Today</a></button>
+                            </form>
+                            @endauth
+                            @guest
+                            <a href="{{url('login')}}" class="price_btn btn_hover mt_30">Start Today </a>
+                            @endguest
                         </div>
                     </div>
                 @endforeach
@@ -1383,5 +1400,7 @@
             $(this).addClass("active");
         });
     });
+
+   
 </script>
 @endsection

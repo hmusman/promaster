@@ -17,7 +17,7 @@
     <!--============= Shopping Cart ===============-->
     <section class="checkout_area bg_color sec_pad">
         <div class="container">
-            <form action="#" method="post">
+            <form action="{{url('user/payment')}}" method="get">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="checkout_content">
@@ -117,31 +117,57 @@
                             <div id="order_review" class="woocommerce-checkout-review-order">
                                 <table class="shop_table woocommerce-checkout-review-order-table">
                                     <tbody>
-                                            @if(count($courses) > 0)
-                                            @php $total = 0;$products = array(); @endphp
-                                            @foreach($courses as $key => $course)
-                                                    @php $total = @$course->getCourse->price + $total; @endphp
-                                            @endforeach
-                                            @foreach($courses as $key => $course)
+                                        @if(count($courses) > 0 || $deals)
+                                        @php $total = 0;$products = array(); $coursesID = array(); @endphp
+                                        @foreach($courses as $key => $course)
+                                                @php $total = @$course->getCourse->price + $total;
+                                                    $coursesID[] = $course->id;
+                                                @endphp
+                                            <input type="hidden" name="ids" value="{{$course->course_id}}">
+                                        @endforeach
+                                        
+                                        <!-- <input type="hidden" name="cids" value="@php var_export($coursesID); @endphp" id="CIDS"> -->
+                                        @foreach($courses as $key => $course)
                                         <tr class="order_item">
                                             <td>{{@$course->getCourse->course_title}} </td>
                                             <td class="price"><span class="save" style="  color: #999999;">${{number_format(@$course->getCourse->price,2)}}</span> ${{number_format(@$course->getCourse->price,2)}}</td>
                                         </tr>
-                                            @endforeach
-                                            @endif
-                                        
+                                        @endforeach
+                                        @endif
+                                        @if($deals)
+                                        <input type="hidden" name="dealIDs" value="{{$deals->id}}">
+                                        <input type="hidden" name="ids" value="">
+                                        <tr class="order_item">
+                                            <td>{{$deals->deal_name}} Deal</td>
+                                            <td class="price"><span class="save" style="  color: #999999;">${{number_format($deals->bundle_price,2)}}</span> ${{number_format($deals->deal_price,2)}}</td>
+                                        </tr>
+                                        @endif
+                                        <input type="hidden" name="dealIDs" value="">
                                         
                                         <tr class="subtotal">
                                             <td class="price">Original Price</td>
-                                            <td class="price">${{number_format($total, 2)}}</td>
+                                            <td class="price">
+                                            @if($deals)
+                                                ${{number_format($total + $deals->deal_price, 2)}}
+                                            @else
+                                                ${{number_format($total, 2)}}
+                                            @endif</td>
                                         </tr>
-                                        <tr class="subtotal">
+                                        <!-- <tr class="subtotal">
                                             <td class="price">Covid-19 Discount</td>
                                             <td class="price">-$200</td>
-                                        </tr>
+                                        </tr> -->
                                         <tr class="subtotal order">
                                             <td class="price">Total</td>
-                                            <td class="total">${{number_format($total, 2)}}</td>
+                                            <td class="total">
+                                            @if($deals)
+                                                ${{number_format(($total + $deals->deal_price), 2)}}
+                                                <input type="hidden" name="total" value="${{number_format(($total + $deals->deal_price), 2)}}">
+                                            @else
+                                                ${{number_format($total, 2)}}
+                                                <input type="hidden" name="total" value="${{number_format($total, 2)}}">
+                                            @endif
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -149,8 +175,9 @@
                                     <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
                                     <input type="checkbox" value="None" id="squarednine" name="check">
                                     <label class="l_text" for="squarednine">I have read and agree to the website <a href="" data-toggle="modal" data-target=".terms">terms and conditions </a><span>*</span></label>
-                                </div>
-                                <button type="submit" class="button">Place Order</button>
+                                </div><br><br>
+                                <button type="submit" class="button" id="OrderButton">Place Order</button>
+                                <!-- <a href="{{ route('payment') }}" class="button" title="Place Order" style="padding: 16px 162px 18px 162px;">Place Order</a> -->
                             </div>
                         </div>
                     </div>

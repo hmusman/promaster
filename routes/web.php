@@ -72,6 +72,10 @@ Route::group(["namespace"=>"admin\Auth"],function(){
 
 // USER
 Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],function(){
+	//PAYPALL
+	Route::get('payment', 'PayPalController@payment')->name('payment');
+	Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
+	Route::get('payment/success', 'PayPalController@success')->name('payment.success');
 	// COURSES
 	Route::get('courses', "courseController@courses");
 	Route::get('course-details/{id}', "courseController@courseDetails");

@@ -87,13 +87,81 @@
                     </div>
                     
                     @endforeach
-                     @else
-                     <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                           <div class="alert alert-warning"><i class="fa fa-exclamation-triangle  mr-2"></i>No Course Found!</div>
+                  @endif
+                  
+                  <div class="container" style="margin-left: 15px;">
+                    
+                  <h2 style="font-size: 40px;font-weight: 600;line-height: 48px;color: #263b5e;margin-bottom: 15px;">Purchased Courses</h2>
+                  </div>
+                  @if(count($pcourses) > 0)
+                     @foreach($pcourses as $key=>$course)
+                  <div class="column w3-animate-opacity">
+                        <div class="seo_service_item">
+                          <div class="img">
+                            <img src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="{{$course->course_title}}" style="height: 122px;">
+                          </div>
+                           <div class="panel-heading">
+                            <div class="media  v-middle">
+                              <div class="media-body text-caption text-blue">
+                                <a class="course-title" href="#" style="font-size: 15px;font-weight: 500;">{{$course->course_title}}</a>
+                              </div>
+                              
+                              <div class="media-right">
+                              <div class="canvas-holder" >
+                                 <canvas id="pcanvas-{{$key}}" width="300" height="300" style="width: 71px; height:71px;    margin-left: -10px;"></canvas>
+                                 <div id="pcanvas-data-{{$key}}" class="matter" style="margin-left: 14px;margin-top: -50px; font-size: 14px;"></div>
+                              </div>
+                              </div>
+
+                              <div class="con">
+                              <a class="btn btn-white w3-animate-bottom btn-flat paper-shadow relative" data-z="0" data-hover-z="1" data-animated href="{{url('user/course-details')}}/{{$course->id}}">Continue</a>
+                            </div>
                         </div>
-                     </div>
-                     @endif
+                       </div>
+                       </div>
+                    </div>
+                    
+                    @endforeach
+                  @endif
+                  @if(count($dcourses) > 0)
+                     @foreach($dcourses as $key=>$course)
+                  <div class="column w3-animate-opacity">
+                        <div class="seo_service_item">
+                          <div class="img">
+                            <img src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="{{$course->course_title}}" style="height: 122px;">
+                          </div>
+                           <div class="panel-heading">
+                            <div class="media  v-middle">
+                              <div class="media-body text-caption text-blue">
+                                <a class="course-title" href="#" style="font-size: 15px;font-weight: 500;">{{$course->course_title}}</a>
+                              </div>
+                              
+                              <div class="media-right">
+                              <div class="canvas-holder" >
+                                 <canvas id="dcanvas-{{$key}}" width="300" height="300" style="width: 71px; height:71px; margin-left: -10px;"></canvas>
+                                 <div id="dcanvas-data-{{$key}}" class="matter" style="margin-left: 14px;margin-top: -50px; font-size: 14px;"></div>
+                              </div>
+                              </div>
+
+                              <div class="con">
+                              <a class="btn btn-white w3-animate-bottom btn-flat paper-shadow relative" data-z="0" data-hover-z="1" data-animated href="{{url('user/course-details')}}/{{$course->id}}">Continue</a>
+                            </div>
+                        </div>
+                       </div>
+                       </div>
+                    </div>
+                    
+                    @endforeach
+                  @endif
+
+                 @if(count($courses) < 0 && count($pcourses) < 0 && count($dcourses) < 0)
+                 <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                       <div class="alert alert-warning"><i class="fa fa-exclamation-triangle  mr-2"></i>No Course Found!</div>
+                    </div>
+                 </div>
+                 @endif
+
                     
 
                 </div>
@@ -133,5 +201,24 @@
       percentage = "{{@$course->getPercentage($course->id)}}";
       progressBar(canvas,span,percentage);
    @endforeach
+<<<<<<< Updated upstream
 </script> -->
+=======
+
+   @foreach($pcourses as $key=>$course) 
+      var canvas = document.getElementById('pcanvas-{{$key}}');
+      var span = document.getElementById('pcanvas-data-{{$key}}');
+      percentage = "{{@$course->getPercentage($course->id)}}";
+      progressBar(canvas,span,percentage);
+   @endforeach
+
+   @foreach($dcourses as $key=>$course) 
+      var canvas = document.getElementById('dcanvas-{{$key}}');
+      var span = document.getElementById('dcanvas-data-{{$key}}');
+      percentage = "{{@$course->getPercentage($course->id)}}";
+      progressBar(canvas,span,percentage);
+   @endforeach
+</script>
+
+>>>>>>> Stashed changes
 @endsection
