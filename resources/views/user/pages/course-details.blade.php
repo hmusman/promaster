@@ -38,7 +38,7 @@
                   <div class="panel-heading">
                     <div class="media  v-middle">
                       <div class="media-body text-caption text-blue">
-                        <h2>
+                        <h2 style="font-size: 33px;">
                           <img src="{{url('public/courses-icons')}}/{{@$course->course_icon}}" alt="Course Icon">
                           {{$course->course_title}}</h2>
                       </div>
