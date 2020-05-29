@@ -42,7 +42,7 @@ class courseController extends Controller
             foreach($pcourse as $pc){
 
                 $Cids = json_decode($pc->course_id);
-                $CIDS = $Cids;
+                $CIDS = array_merge($CIDS, $Cids);
             }
 
             $pcourses = course::whereIn('id', $CIDS)->get();
@@ -51,18 +51,18 @@ class courseController extends Controller
             foreach($pdeals as $pd){
 
                 $Cids = json_decode($pd->deal_id);
-                $DIDS = $Cids;
+                $DIDS = array_merge($DIDS,$Cids);
             }
 
             $pdealss = deals::whereIn('id', $DIDS)->get();
             foreach ($pdealss as $deals) {
                 $dcids = json_decode($deals->course_id);
 
-                $DCIDS = $dcids;
+                $DCIDS = array_merge($DCIDS,$dcids);
             }
             $dcourses = course::whereIn('id', $DCIDS)->get();
         }
-        // dd($pcourses, $dcourses);
+        // dd($dcourses);
         // dd($DCIDS, $CIDS, $DIDS);
 
     	return view('user.pages.courses',compact('courses', 'pcourses', 'dcourses'));

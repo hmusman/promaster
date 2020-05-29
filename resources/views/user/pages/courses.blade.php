@@ -88,12 +88,14 @@
                     
                     @endforeach
                   @endif
-                  
-                  <div class="container" style="margin-left: 15px;">
-                    
-                  <h2 style="font-size: 40px;font-weight: 600;line-height: 48px;color: #263b5e;margin-bottom: 15px;">Purchased Courses</h2>
-                  </div>
-                  @if(count($pcourses) > 0)
+
+                  @if($pcourses != NULL || $dcourses != NULL)
+                    <div class="container" style="margin-left: 15px;">
+                      
+                      <h2 style="font-size: 40px;font-weight: 600;line-height: 48px;color: #263b5e;margin-bottom: 15px;">Purchased Courses</h2>
+                    </div>
+                  @endif
+                  @if($pcourses)
                      @foreach($pcourses as $key=>$course)
                   <div class="column w3-animate-opacity">
                         <div class="seo_service_item">
@@ -107,10 +109,27 @@
                               </div>
                               
                               <div class="media-right">
-                              <div class="canvas-holder" >
-                                 <canvas id="pcanvas-{{$key}}" width="300" height="300" style="width: 71px; height:71px;    margin-left: -10px;"></canvas>
-                                 <div id="pcanvas-data-{{$key}}" class="matter" style="margin-left: 14px;margin-top: -50px; font-size: 14px;"></div>
-                              </div>
+                              @php
+                              $prgrs_bar_prcnt     = round(@$course->getPercentage($course->id) * 100);  
+                            
+                              $prgrs_bar_cls_blue = 'p'.$prgrs_bar_prcnt .' blue';
+                              $prgrs_bar_cls_green = 'p'.$prgrs_bar_prcnt .' green';
+                              $prgrs_bar_cls       = ($prgrs_bar_prcnt)=='100' ? ($prgrs_bar_cls_green) : ($prgrs_bar_cls_blue);
+                              
+                              @endphp
+                              <div class="c100 {{ $prgrs_bar_cls }}">
+                                    
+                                    @if($prgrs_bar_prcnt == 100)
+                                    <span><i class="fa fa-check"></i></span>
+                                    @else
+                                    <span> {{ $prgrs_bar_prcnt."%" }}</span>
+                                    @endif
+
+                                    <div class="slice">
+                                      <div class="bar"></div>
+                                      <div class="fill"></div>
+                                    </div>
+                                </div>
                               </div>
 
                               <div class="con">
@@ -123,7 +142,7 @@
                     
                     @endforeach
                   @endif
-                  @if(count($dcourses) > 0)
+                  @if($dcourses)
                      @foreach($dcourses as $key=>$course)
                   <div class="column w3-animate-opacity">
                         <div class="seo_service_item">
@@ -137,10 +156,27 @@
                               </div>
                               
                               <div class="media-right">
-                              <div class="canvas-holder" >
-                                 <canvas id="dcanvas-{{$key}}" width="300" height="300" style="width: 71px; height:71px; margin-left: -10px;"></canvas>
-                                 <div id="dcanvas-data-{{$key}}" class="matter" style="margin-left: 14px;margin-top: -50px; font-size: 14px;"></div>
-                              </div>
+                              @php
+                              $prgrs_bar_prcnt     = round(@$course->getPercentage($course->id) * 100);  
+                            
+                              $prgrs_bar_cls_blue = 'p'.$prgrs_bar_prcnt .' blue';
+                              $prgrs_bar_cls_green = 'p'.$prgrs_bar_prcnt .' green';
+                              $prgrs_bar_cls       = ($prgrs_bar_prcnt)=='100' ? ($prgrs_bar_cls_green) : ($prgrs_bar_cls_blue);
+                              
+                              @endphp
+                              <div class="c100 {{ $prgrs_bar_cls }}">
+                                    
+                                    @if($prgrs_bar_prcnt == 100)
+                                    <span><i class="fa fa-check"></i></span>
+                                    @else
+                                    <span> {{ $prgrs_bar_prcnt."%" }}</span>
+                                    @endif
+
+                                    <div class="slice">
+                                      <div class="bar"></div>
+                                      <div class="fill"></div>
+                                    </div>
+                                </div>
                               </div>
 
                               <div class="con">
@@ -190,35 +226,3 @@
 
 @endsection
 
-@section('script')
-<!-- <script type="text/javascript">
-   $(".side-menu-fixed .side-menu li a").removeClass("active");
-   $(".courses").addClass('active');
-   //
-    @foreach($courses as $key=>$course) 
-      var canvas = document.getElementById('canvas-{{$key}}');
-      var span = document.getElementById('canvas-data-{{$key}}');
-      percentage = "{{@$course->getPercentage($course->id)}}";
-      progressBar(canvas,span,percentage);
-   @endforeach
-<<<<<<< Updated upstream
-</script> -->
-=======
-
-   @foreach($pcourses as $key=>$course) 
-      var canvas = document.getElementById('pcanvas-{{$key}}');
-      var span = document.getElementById('pcanvas-data-{{$key}}');
-      percentage = "{{@$course->getPercentage($course->id)}}";
-      progressBar(canvas,span,percentage);
-   @endforeach
-
-   @foreach($dcourses as $key=>$course) 
-      var canvas = document.getElementById('dcanvas-{{$key}}');
-      var span = document.getElementById('dcanvas-data-{{$key}}');
-      percentage = "{{@$course->getPercentage($course->id)}}";
-      progressBar(canvas,span,percentage);
-   @endforeach
-</script>
-
->>>>>>> Stashed changes
-@endsection

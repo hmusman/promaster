@@ -23,6 +23,9 @@
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">Email</label>
                             <input type="email" id="email" placeholder="promaster@gmail.com" name="email">
+                            @error('email')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">First Name</label>

@@ -1,13 +1,22 @@
 @extends('home.includes.layout')
 
 @section('section-1')
+<style>
+    .display{
+        display: none;
+    }
+</style>
 <section class="login_area">
     <div class="container">
         <div class="row">
+            
             <div class="col-lg-7">
                 <div class="login_info">
                     <h2 class="f_p f_700 f_size_40 t_color3 mb_20">Sign In</h2>
                     <p class="f_p f_400 f_size_15">Welcome! Please confirm that your are visiting </p>
+                    <div class="error-message display" style="background-color: #e79376;padding: 16px 0px 16px 38px;">
+                        <h5><i class="fas fa-warning"></i>&nbsp;invalid email or password.</h5>
+                    </div>
                     <form class="login-form mt_60" id="login-form">
                         @csrf
                         <div class="form-group text_box">

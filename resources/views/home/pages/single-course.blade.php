@@ -112,13 +112,21 @@
                         <h3 class="f_p f_size_22 f_500 t_color3 mb_20">In this course you will learn to:</h3>
 
                         <ul class="list-unstyled mb-0">
-                            <li><i class="ti-arrow-right"></i> Naturally inspire a creative thought-process</li>
-                            <li><i class="ti-arrow-right"></i>Ideate creative strategies and improvisation</li>
+                            @php $i = 1; @endphp
+                            @foreach($course->getTableOfContent as $key => $content)
+                            <li><i class="ti-arrow-right"></i> {{@$content->lesson_title}}</li>
+                            <!-- <h1>{{$i}}</h1> -->
+                            @php $i++ @endphp
+                            @if($i >=8)
+                                @break
+                            @endif
+                            @endforeach
+                           <!--  <li><i class="ti-arrow-right"></i>Ideate creative strategies and improvisation</li>
                             <li><i class="ti-arrow-right"></i> Get rid of laziness and procrastination for creative implementation of
                                 ideas</li>
                             <li><i class="ti-arrow-right"></i> Circumvent any dispute by mastering the art of communication and
                                 reasoning</li>
-                            <li><i class="ti-arrow-right"></i> Acquire greater control over learning and creative skills</li>
+                            <li><i class="ti-arrow-right"></i> Acquire greater control over learning and creative skills</li> -->
 
                         </ul>
                     </div>
@@ -130,12 +138,17 @@
             </div>
             <div class="col-lg-5 ptop align-items-center">
                 <div class="card">
-                    <div class="video_content">
-                        <div class="video_info">
-                            <div class="ovarlay_color"></div>
-                            <a class="popup-youtube video_icon" href="{{url('public/assets/video/FINAL-CREATIVE-THINKING.mp4')}}"><i class="arrow_triangle-right"></i></a>
-
-                        </div>
+                    <div class="video_content" style="text-align:center;">
+                            @if($course->course_video != NULL)
+                            <div class="video_info" >
+                                <div class="ovarlay_color"></div>
+                                <a class="popup-youtube video_icon" href="{{url('public/courses-videos')}}/{{$course->course_video}}"><i class="arrow_triangle-right"></i></a>
+                            </div>
+                            @else
+                            <div class="video_info" style="@if($course->course_video == NULL) opacity: 0.5 @endif">
+                                <h6 style="color: white;">There is no video available for this course.</h6>
+                            </div>
+                            @endif
 
                     </div>
                     <div class="card-body">
@@ -160,14 +173,27 @@
 
                             <p class="card-text"></p>
                             <ul class="list-unstyled p_list">
+                                @foreach($deals as $deal)
                                 <li>
-                                    <img src="{{url('public/assets/img/price/2.png')}}"><span class="ptitle"> 2 Courses Bundle: </span>
-                                    <p class="price1"><span class="save" style="  color: #999999;">$56.99</span><br>
-                                        <span class="price f_700 save-price t_color2">$16.99 </span>
-                                        <a href="#" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
+                                    <img src="{{url('public/assets/img/price/2.png')}}"><span class="ptitle"> {{$deal->deal_name}}: </span>
+                                    <p style="margin-left: 50%;margin-top: -8%;"><span class="save" style="  color: #999999;">${{number_format($deal->bundle_price,2)}}</span><br>
+                                        <span class="price f_700 save-price t_color2">${{number_format($deal->deal_price,2)}}</span>
+                                        
+                                        <!-- <a href="#" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a> -->
                                     </p>
+                                    @auth
+                                        <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8" style="float: right;margin-top: -8%;">
+                                            @csrf
+                                        <input type="hidden" id="deal_id" name="dealId" value="{{$deal->id}}">
+                                        <button type="submit" style="background-color: white; border: none;"><a class="price_btn buy_btn btn_hover dealId"><i class="ti-shopping-cart"></i> Buy Now</a></button>
+                                        </form>
+                                        @endauth
+                                        @guest
+                                        <a href="{{url('login')}}" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
+                                        @endguest
                                 </li>
-                                <li>
+                                @endforeach
+                                <!-- <li>
                                     <img src="{{url('public/assets/img/price/4.png')}}"><span class="ptitle"> 4 Courses Bundle: </span>
                                     <p class="price1"><span class="save" style="  color: #999999;">$109.99</span><br>
                                         <span class="price f_700 save-price t_color2">$29.99 </span>
@@ -187,7 +213,7 @@
                                         <span class="price f_700 save-price t_color2">$49.99 </span>
                                         <a href="#" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
                                     </p>
-                                </li>
+                                </li> -->
 
                             </ul>
 

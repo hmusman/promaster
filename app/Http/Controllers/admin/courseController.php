@@ -46,6 +46,18 @@ class courseController extends Controller{
             $courseEbook = 'Ebook-'.rand(111111111,999999999).'.'.$ext;
             $file->move(public_path().'/courses-ebooks/' , $courseEbook);   
          }
+         if($request->hasfile('course_icon')){
+            $file = input::file('course_icon');
+            $ext=$file->getClientOriginalExtension();
+            $courseIcon = 'Icon-'.rand(111111111,999999999).'.'.$ext;
+            $file->move(public_path().'/courses-icons/' , $courseEbook);   
+         }
+         if($request->hasfile('course_video')){
+            $file = input::file('course_video');
+            $ext=$file->getClientOriginalExtension();
+            $courseVideo = 'Video-'.rand(111111111,999999999).'.'.$ext;
+            $file->move(public_path().'/courses-videos/' , $courseVideo);  
+         }
         $data = array(
             "course_title" => input::get('course_title'),
             "course_description" => input::get('course_description'),
@@ -54,7 +66,10 @@ class courseController extends Controller{
             "course_ebook" => @$courseEbook,
             "course_banner" => @$courseBanner,
             "certificate_background" => @$certificateBackground,
+            "course_video" => @$courseVideo,
+            "course_icon" => @$courseIcon,
         );
+        dd($data);
         $result = DB::table('courses')->insert($data);
         if($result){
             $lessonTitle = input::get('lesson_title');
@@ -128,6 +143,29 @@ class courseController extends Controller{
             $file->move(public_path().'/courses-ebooks/' , $courseEbook);
             $data["course_ebook"] = $courseEbook;  
          }
+         if($request->hasfile('course_icon')){
+            if(File::exists($path.'/courses-icons/'.$course->course_icon)) { 
+                File::delete($path.'/courses-icons/'.$course->course_icon);
+            }
+            $file = input::file('course_icon');
+            $ext=$file->getClientOriginalExtension();
+            $courseIcon = 'Icon-'.rand(111111111,999999999).'.'.$ext;
+            $file->move(public_path().'/courses-icons/' , $courseIcon);
+            $data["course_icon"] = $courseIcon;  
+         }
+         if($request->hasfile('course_video')){
+            if(File::exists($path.'/courses-videos/'.$course->course_video)) { 
+                File::delete($path.'/courses-videos/'.$course->course_video);
+            }
+
+            $file = input::file('course_video');
+            $ext=$file->getClientOriginalExtension();
+            $courseVideo = 'Video-'.rand(111111111,999999999).'.'.$ext;
+            $file->move(public_path().'/courses-videos/' , $courseVideo);
+
+            $data["course_video"] = $courseVideo;  
+         }
+
         $data["course_title"] = input::get('course_title');
         $data["course_description"] = input::get('course_description');
         $data["price"] = input::get('price');

@@ -99,10 +99,12 @@
  <script src="{{url('public/assets/vendors/multiscroll/jquery.easings.min.js')}}"></script>
  <!-- <script src="{{url('public/assets/vendors/multiscroll/multiscroll.responsiveExpand.limited.min.js')}}"></script> -->
  <script src="{{url('public/assets/vendors/multiscroll/jquery.multiscroll.extensions.min.js')}}"></script>
+ <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> -->
  <script src="{{url('public/assets/js/main.js')}}"></script>
 
  <!-- Optional JavaScript -->
  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
  @yield('script')
 
  <script type="text/javascript">
@@ -116,6 +118,7 @@ $.ajaxSetup({
 });
 console.log($('meta[name="csrf-token"]').attr('content'));
 </script>
+
 <script type="text/javascript">
    $(document).delegate('.wpe','click',function(){
       $(".alert").remove();
@@ -143,6 +146,7 @@ console.log($('meta[name="csrf-token"]').attr('content'));
                         window.location="{{url('user/courses')}}";
                     }else{
                         Command: toastr["error"](data);
+                        console.log(data);
                         $('.form-submit-btn').attr('disabled',false);
                         $('.form-submit-btn').text('REGISTER');
                     }
@@ -160,6 +164,7 @@ console.log($('meta[name="csrf-token"]').attr('content'));
          }
       });
       // 
+
       $("#login-form").validate({
          submitHandler: function (form) {
             $('.form-submit-btn').attr('disabled',true);
@@ -175,7 +180,9 @@ console.log($('meta[name="csrf-token"]').attr('content'));
                         $('.form-submit-btn').text('LOGIN');
                         window.location="{{url('user/courses')}}";
                     }else{
-                        Command: toastr["error"]("invalid email or password");
+                        // Command: toastr["error"]("invalid email or password");
+                        // $.toaster({ priority : 'info', title : 'Error', message : 'invalid email or password'});
+                        $('.error-message').removeClass('display');
                         $('.form-submit-btn').attr('disabled',false);
                         $('.form-submit-btn').text('LOGIN');
                     }

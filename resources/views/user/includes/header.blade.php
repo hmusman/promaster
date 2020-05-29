@@ -92,7 +92,7 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
 <style type="text/css">
   @if(Request::is('user/courses'))
   .seo_service_item {
-    padding: 12px!important;
+    padding: 8px!important;
 
    }
    @endif

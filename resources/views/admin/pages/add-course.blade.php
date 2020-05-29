@@ -17,6 +17,7 @@
 @section('content')
 <style type="text/css">
     .gradiant{background: linear-gradient(-150deg, #12b4c8, #6669e6) !important;}
+    .no_display{display: none !important;}
 </style>
 
     <div class="row">
@@ -86,6 +87,18 @@
                                                 <div class="col-3 col-sm-3 col-lg-3 p-0 m-0 text-center">
                                                     <div class="row p-0 m-0">
                                                         <div class="col-sm-12 mb-4">
+                                                            <label>Course Icon</label><br>
+                                                            <button type="button" class="gradiant choose mt-2 choose-file font-size mx-auto">Choose File</button>
+                                                            <input type="file" name="course_icon" class="d-none icon_upload_btn @if(!@$edit) required @endif" accept="image/*">
+                                                        </div>
+                                                        <div class="mx-auto text-center banner_preview_outter @if(@$edit) d-block @endif">
+                                                            <img src="@if(@$edit) {{url('public/courses-icons')}}/{{@$course->course_icon}} @else http://via.placeholder.com/250x77 @endif" class="img-thumbnail icon_image_preview">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 col-sm-3 col-lg-3 p-0 m-0 text-center">
+                                                    <div class="row p-0 m-0">
+                                                        <div class="col-sm-12 mb-4">
                                                             <label>Certificate Background</label><br>
                                                             <button type="button" class="gradiant choose mt-2 choose-file font-size mx-auto">Choose File</button>
                                                             <input type="file" name="certificate_background" class="d-none certificate_upload_btn @if(!@$edit) required @endif" accept="image/*">
@@ -95,7 +108,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-3 col-sm-3 col-lg-3 p-0 m-0 text-center">
+                                                <div class="col-3 col-sm-3 col-lg-3 p-0 m-0 text-center mt-5">
                                                     <div class="row p-0 m-0">
                                                         <div class="col-sm-12 mb-4">
                                                             <label>Course Ebook</label><br>
@@ -106,6 +119,22 @@
                                                             <img src="{{url('public\assets\images/pdf.png')}}" class="img-thumbnail pdf_file_image"><br>
                                                             <small class="pdf_file_name">{{@$course->course_ebook}}</small>
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 col-sm-3 col-lg-3 p-0 m-0 text-center mt-5">
+                                                    <div class="row p-0 m-0">
+                                                        <div class="col-sm-12 mb-4">
+                                                            <label>Course Video</label><br>
+                                                            <button type="button" class="gradiant choose mt-2 choose-file font-size mx-auto">Choose File</button>
+                                                            <input type="file" class="d-none video ebook_upload_btn @if(!@$edit) required @endif" name="course_video"  accept="video/*">
+                                                        </div>
+                                                        <div class="text-center video_box @if(@$edit) d-block @endif mx-auto @if(!@$edit) no_display @endif">
+                                                           <video width="400" controls>
+                                                              <source src="@if(@$edit) {{url('public/courses-videos')}}/{{@$course->course_video}} @endif" id="video_here">
+                                                                Your browser does not support HTML5 video.
+                                                            </video>
+                                                        </div>
+                                                        
                                                     </div>
                                                 </div>
                                             </div>
@@ -232,6 +261,11 @@
           readURL(this,obj);
           $('.certificate_preview_outter').show();
         })
+        $(".icon_upload_btn").change(function() {
+          var obj = $(this).parent().next().children('img');
+          readURL(this,obj);
+          $('.certificate_preview_outter').show();
+        })
         $(document).delegate('.lesson_image_upload_btn','change',function() {
             var obj = $(this).parent().next().children('img');
             readURL(this,obj);
@@ -240,6 +274,12 @@
             $(".pdf_file_image_box").show();
             $(".pdf_file_name").text($('.ebook_upload_btn').val().split('\\').pop());
         })
+        $(document).on("change", ".video", function(evt) {
+            $('.video_box').removeClass('no_display');
+          var $source = $('#video_here');
+          $source[0].src = URL.createObjectURL(this.files[0]);
+          $source.parent()[0].load();
+        });
         // 
         $("#add-course").click(function(){
             var flag = false;

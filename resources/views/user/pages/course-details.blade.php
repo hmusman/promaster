@@ -39,7 +39,7 @@
                     <div class="media  v-middle">
                       <div class="media-body text-caption text-blue">
                         <h2>
-                          <img src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="">
+                          <img src="{{url('public/courses-icons')}}/{{@$course->course_icon}}" alt="Course Icon">
                           {{$course->course_title}}</h2>
                       </div>
                       <div class="media-right">
