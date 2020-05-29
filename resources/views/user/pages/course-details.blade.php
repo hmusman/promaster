@@ -55,24 +55,24 @@
                       </div>
 
                       <div class="media-right">
-                        
+
                         @php
-                          $prgrs_bar_prcnt     = round(@$course->getPercentage($course->id) * 100);  
-                          $prgrs_bar_cls_blue = 'p'.$prgrs_bar_prcnt .' blue';
-                          $prgrs_bar_cls_green = 'p'.$prgrs_bar_prcnt .' green';
-                          $prgrs_bar_cls       = ($prgrs_bar_prcnt)=='100' ? ($prgrs_bar_cls_green) : ($prgrs_bar_cls_blue);
+                        $prgrs_bar_prcnt = round(@$course->getPercentage($course->id) * 100);
+                        $prgrs_bar_cls_blue = 'p'.$prgrs_bar_prcnt .' blue';
+                        $prgrs_bar_cls_green = 'p'.$prgrs_bar_prcnt .' green';
+                        $prgrs_bar_cls = ($prgrs_bar_prcnt)=='100' ? ($prgrs_bar_cls_green) : ($prgrs_bar_cls_blue);
                         @endphp
                         <div class="c100 {{ $prgrs_bar_cls }}">
-                                    @if($prgrs_bar_prcnt == 100)
-                                    <span><i class="fa fa-check"></i></span>
-                                    @else
-                                    <span> {{ $prgrs_bar_prcnt."%" }}</span>
-                                    @endif
-                                    <div class="slice">
-                                      <div class="bar"></div>
-                                      <div class="fill"></div>
-                                    </div>
-                                </div>
+                          @if($prgrs_bar_prcnt == 100)
+                          <span><i class="fa fa-check"></i></span>
+                          @else
+                          <span> {{ $prgrs_bar_prcnt."%" }}</span>
+                          @endif
+                          <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                          </div>
+                        </div>
                       </div>
 
                     </div>
@@ -88,7 +88,7 @@
                       </div>
                     </div>
                     @endforeach
-                    
+
                   </div>
                 </div>
 
@@ -123,9 +123,9 @@
                     <div class="text-crt"><i class="fa fa-play-circle @if($content->status($content->id,$key)) active @endif slide-{{$key+1}}"></i> </div>
                   </div>
                   <div class="media-body vasko" count="{{$key+1}}" content-id="{{$content->id}}" onclick="currentSlide('{{$key+1}}')">
-                    
-                      {{@$content->lesson_title}}
-                    
+                    <?php $contentID = $content->id ;?>
+                    {{@$content->lesson_title}}
+
                   </div>
 
 
@@ -155,39 +155,45 @@
 
 @section('script')
 @if(@$course->getPercentage($course->id) < 1) <script type="text/javascript">
-    $(".vasko").last().click(function(){
-      $.ajax({
-      url : "{{url('user/log-course-complete')}}",
-      type : "POST",
-      data : {"id":"{{$course->id}}"},
-        success:function(data){
-        $(".action-btns").html(data);
-        }
-      })
-    })
+
+  $(".vasko").last().click(function(){
+  $.ajax({
+  url : "{{url('user/log-course-complete')}}",
+  type : "POST",
+  data : {"id":"{{$course->id}}"},
+  success:function(data){
+  $(".action-btns").html(data);
+  }
+  })
+  })
   //
   $(document).delegate(".vasko","click",function(){
-    $(".vasko").removeClass("active");
-    $(this).addClass("active");
-    var contentID = $(this).attr("content-id");
-    var count = parseInt($(this).attr("count"));
-    $.ajax({
-        url : "{{url('user/mark-complete')}}",
-        type : "POST",
-        data : {"_token": "{{ csrf_token() }}","contentID":contentID},
-        success:function(data){
-          if(data != "false")
-          console.log(data);
-            circleBarFn(data);
-          
-          $(".slide-"+count).addClass("active");
-        }
-    })
+
+  $(".vasko").removeClass("active");
+  $(this).addClass("active");
+  var contentID = $(this).attr("content-id");
+  var count = parseInt($(this).attr("count"));
+  console.log(count + contentID);
+  ajxProgressBar(contentID,count);
   })
+  
+  function ajxProgressBar(contentID,count){
+    $.ajax({
+  url : "{{url('user/mark-complete')}}",
+  type : "POST",
+  data : {"_token": "{{ csrf_token() }}","contentID":contentID},
+  success:function(data){
+  if(data != "false")
+  console.log(data);
+  circleBarFn(data);
+
+  $(".slide-"+count).addClass("active");
+  }
+  })
+  }
   </script>
   @endif
   <script type="text/javascript">
-    
     var slideIndex = 1;
     showSlides(slideIndex);
 
@@ -196,6 +202,7 @@
     }
 
     function currentSlide(n) {
+      // console.log(n + " current slider fn");
       showSlides(slideIndex = n);
     }
 
@@ -214,25 +221,82 @@
       }
       slides[slideIndex - 1].style.display = "block";
     }
-    function circleBarFn(data){
-      
-        if (data != 'false'){
-          data = (data * 100).toFixed(0);
-          if(data == 100)
-          {
-            $('.c100').attr('class','c100').addClass("p"+data+" green");
-            $('.c100 span').text("");
-            $('.c100 span').append("<i class='fa fa-check'></i>");
-          }
-          else{
-            $('.c100').attr('class','c100').addClass("p"+data+" blue");
-            $('.c100 span').text(data+"%");
-          }
-          
-          
+
+    function circleBarFn(data) {
+
+      if (data != 'false') {
+        data = (data * 100).toFixed(0);
+        if (data == 100) {
+          $('.c100').attr('class', 'c100').addClass("p" + data + " green");
+          $('.c100 span').text("");
+          $('.c100 span').append("<i class='fa fa-check'></i>");
+        } else {
+          $('.c100').attr('class', 'c100').addClass("p" + data + " blue");
+          $('.c100 span').text(data + "%");
         }
-      
+
+
+      }
+
     }
     // 
+    var countId = "";
+    var contIdArr = [];
+    var contentID = [];
+  </script>
+  @foreach($course->getTableOfContent as $key => $content)
+  <script type="text/javascript">
+    countId = "{{$key+1}}";
+    contIdArr.push("{{$key+1}}");
+    contentID.push("{{$content->id}}");
+    // setTimeout($('.vasko').attr('count', countId).trigger("click"), 10000);
+  </script>
+  @endforeach
+  <script type="text/javascript">
+    var lastArrVal = contIdArr[contIdArr.length - 1];
+    var i = 1;
+    var t;
+    $('input[type="checkbox"]').click(function() {
+      if ($(this).prop("checked") == true) {
+        console.log("checked");
+        for (i = 1; i < contIdArr.length+1; i++){
+          
+          // var contentID = contentID;
+          var count = i;
+          doSetTimeout(i,contentID);
+          $('input[type="checkbox"]').prop("disabled", true);
+          // console.log( contentID[i]+" - " + count + " - ") ;
+        }
+        
+
+      }
+    //   else if($(this).prop("checked") == false){
+    //      console.log("unchecked");
+    //     //  clearTimeout(myVar);
+    //     myStopFunction();
+    // }
+    });
+    
+
+    function doSetTimeout(i,contentID) {
+      t =   setTimeout(function() { 
+        showSlides(slideIndex = i);
+        
+        count = i ;
+        if (contentID[i]!=[contIdArr.length - 1]) {
+        
+          ajxProgressBar(contentID[i],count ++);  
+          console.log(contentID[i]+ " - "+ i);  
+        }
+        
+        
+      }, i * 1000);
+      // console.log(t);
+    }
+    // function myStopFunction() {
+    //   // console.log("method stopped" + t);
+    //   clearTimeout(t);
+    // }
+
   </script>
   @endsection
