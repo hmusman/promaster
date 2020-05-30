@@ -48,7 +48,7 @@ class LoginController extends Controller
 	        if (Auth::attempt($credentials)) {
                 // $this->resend($request);
                 User::where("id",Auth::id())->update(["login_at"=>Carbon::now()]);
-	            return "true";
+	            return redirect()->to('user/courses');
 	        }
     	}
     }

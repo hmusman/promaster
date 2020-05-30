@@ -297,6 +297,14 @@
     //   // console.log("method stopped" + t);
     //   clearTimeout(t);
     // }
+    
 
+    // function refresh(){
+    //   window.location.reload();
+    // }
+    $(document).ready(function(){
+        $('.c100').load(document.URL +  ' .c100');
+      })
   </script>
+  
   @endsection
