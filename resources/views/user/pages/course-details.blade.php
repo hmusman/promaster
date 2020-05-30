@@ -290,7 +290,7 @@
         }
         
         
-      }, i * 1000);
+      }, i * 12000);
       // console.log(t);
     }
     // function myStopFunction() {
