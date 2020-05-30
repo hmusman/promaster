@@ -5,12 +5,14 @@ Route::group(["namespace"=>"home"],function(){
 	Route::get('/', "indexController@index")->name('home');
 	//contact
 	Route::get('/contact', "indexController@contactUs")->name('contactUs');
+	Route::post('/sendMessage', "indexController@sendMessage")->name('sendMessage');
 	//assistance
 	Route::get('/assistance', "indexController@assistance")->name('assistance');
 	//course
 	Route::get('/course/{id}', "courseController@index")->name('course');
 	//ebooks
 	Route::get('/ebooks', "ebookController@ebooks")->name('ebooks');
+	Route::get('/ebooks-bundles', "ebookController@ebooksBundles")->name('ebooksBundles');
 	Route::get('/trending-ebooks', "ebookController@trendingEbooks")->name('trendingEbooks');
 	//cart
 	Route::get('/cart', "cartController@cart");
@@ -95,6 +97,7 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
 	// SETTING
 	Route::get('setting', "settingController@setting");
 	Route::post('profile-update', "settingController@updateProfile")->name('profile.update');
+	Route::post('updateEmail', "settingController@updateEmail")->name('profile.updateEmail');
 	Route::post('reset-password', "settingController@resetPassword")->name('password.reset');
     //REPORT PROBLEM
     Route::get('report-problem', "reportController@index");

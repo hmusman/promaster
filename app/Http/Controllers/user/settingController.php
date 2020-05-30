@@ -24,12 +24,17 @@ class settingController extends Controller
     	return view('user.pages.setting');
     }
     public function updateProfile(Request $request){
+        // dd($request);
     	$validator  = $request->validate([
-	        'email' => 'required|email|unique:users,email,'.Auth::id(),
+	        'first_name' => 'required|min:3|max:50',
+            'last_name' => 'required|min:3|max:50',
 	    ]);
+
 	    $profile = array(
-         	"email"=>$request->email,
+            "first_name"=>$request->first_name,
+         	"last_name"=>$request->last_name,
          );
+        // dd($request);
 	    $path = public_path();
 	    if($request->hasfile('profile_image')){
             if(File::exists($path.'/profile-images/'.Auth::user()->profile_image)) {
@@ -45,18 +50,41 @@ class settingController extends Controller
         //  echo "<pre>";
         //  print_r($profile);
         //  return;
+         // dd($profile);
     	User::where("id",Auth::id())->update($profile);
-        if($request->email != Auth::user()->email){
-            $this->createActivity(Auth::id(),'update_email','Updated email address from <strong>"'.Auth::user()->email.'"</strong> to <strong>"'.$request->email.'"</strong>.');
-        }
+        // if($request->email != Auth::user()->email){
+        //     $this->createActivity(Auth::id(),'update_email','Updated email address from <strong>"'.Auth::user()->email.'"</strong> to <strong>"'.$request->email.'"</strong>.');
+        // }
     	return back()->with("message","<div class='alert alert-success'>Profile Updated Successfully!</div>");
     }
+
+    public function updateEmail(Request $request){
+
+        // dd($request);
+        $validator  = $request->validate([
+            'old_email' => 'required|email',
+            'email' => 'required|email|unique:users',
+            'confirm_email' => 'required|email|same:email',
+        ]);
+
+        $profile = array(
+            "email"=>$request->email,
+         );
+
+        // dd($profile);
+        User::where("id",Auth::id())->update($profile);
+        return back()->with("message","<div class='alert alert-success'>Profile Updated Successfully!</div>");
+    }
+
     public function resetPassword(Request $request){
+        // dd($request);
     	$validator  = $request->validate([
 			'old_password' => 'required|min:6',
-    		'password' => 'confirmed|min:6',
+    		'password' => 'required|min:6',
+            'confirm_password' => 'required|min:6|same:password',
 	    ]);
-	    if (Hash::check($request->old_password, Auth::user()->password)) { 
+        
+	    if(Hash::check($request->old_password, Auth::user()->password)) { 
 		   $user = User::find(Auth::id());
             $user->update([
 		    'password' => Hash::make($request->password)

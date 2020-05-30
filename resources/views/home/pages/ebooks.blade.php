@@ -1,6 +1,7 @@
 @extends('home.includes.layout')
 
 @push('style')
+
 <style type="text/css">
     .studies_item .text {
         padding: 35px 15px;
@@ -285,7 +286,7 @@
                 <div class="row">
                     <div class="col-md-12 seo_banner_content">
                         <h4 class="wow fadeInUp my-3" data-wow-delay="0.3s"> Shop eBooks bundles and save up to 50%</h4>
-                        <a class="shop-link" href="ebook-shop.html">Shop Now</a></span>
+                        <a class="shop-link" href="{{route('ebooksBundles')}}">Shop Now</a></span>
 
                     </div>
                 </div>
@@ -1165,6 +1166,7 @@
             });
         });
     </script>
+    
     <script type="text/javascript">
         $(document).ready(function(){
             $('.add-to-cart-btn img').hide();
@@ -1182,8 +1184,15 @@
                     success:function(data){
                         $(".add-to-cart-btn").attr('disabled',false);
                         $('.add-to-cart-btn img').hide();
-                        $('.count').load(location.href + " .count");
-                        Command: toastr["success"]('<span>Course Added Successfully! <a href="{{url("cart")}}" class="btn btn-success view-cart">view cart</a></span> ');
+                        $.toast({
+                            heading: 'Information',
+                            text: 'Now you can add icons to generate different kinds of toasts',
+                            showHideTransition: 'slide',
+                            icon: 'info'
+                        })
+                        $('.carttt').load(location.href + " .carttt");
+                        $('.carttt').addClass('ref_cart');
+                        // Command: toastr["success"]('<span>Course Added Successfully! <a href="{{url("cart")}}" class="btn btn-success view-cart">view cart</a></span> ');
                     },error: function(xhr, status, error){
                         Command: toastr["error"]('Something went wrong.');
                          $(".add-to-cart-btn").attr('disabled',false);

@@ -81,7 +81,7 @@ th{
 					 	  </form>
 				        </span>
 				    </td>
-					<td><a href="#"><img style="height: 150px;margin-top: 10px;" src="{{url('public/course-thumbnails')}}/{{@$course->getCourse->course_thumbnail}}" alt="Product Image"></a><h6>{{@$course->getCourse->course_title}}</h6></td>
+					<td><a href="#"><img style="height: 150px;margin-top: 10px;" src="{{url('public/course-banners')}}/{{$course->getCourse->course_banner}}" alt="Product Image"></a><h6>{{@$course->getCourse->course_title}}</h6></td>
 					<td>${{number_format(@$course->getCourse->price,2)}}</td>
 				</tr>
 				@endforeach

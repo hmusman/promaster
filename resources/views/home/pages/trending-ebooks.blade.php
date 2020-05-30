@@ -1151,8 +1151,15 @@
                     success:function(data){
                         $(".add-to-cart-btn").attr('disabled',false);
                         $('.add-to-cart-btn img').hide();
-                        $('.count').load(location.href + " .count");
-                        Command: toastr["success"]('<span>Course Added Successfully! <a href="{{url("cart")}}" class="btn btn-success view-cart">view cart</a></span> ');
+                        $.toast({
+                            heading: 'Information',
+                            text: 'Now you can add icons to generate different kinds of toasts',
+                            showHideTransition: 'slide',
+                            icon: 'info'
+                        })
+                        $('.carttt').load(location.href + " .carttt");
+                        $('.carttt').addClass('ref_cart');
+                        // Command: toastr["success"]('<span>Course Added Successfully! <a href="{{url("cart")}}" class="btn btn-success view-cart">view cart</a></span> ');
                     },error: function(xhr, status, error){
                         Command: toastr["error"]('Something went wrong.');
                          $(".add-to-cart-btn").attr('disabled',false);

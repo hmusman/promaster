@@ -384,8 +384,14 @@
                         <img src="{{url('public/course-banners')}}/{{$course->course_banner}}" alt="">
                         <div class="text text1">
                             <a href="{{url('course')}}/{{$course->id}}">
-
-                                <h4>{{$course->course_title}} <img class="float-right" src="{{url('public/assets/img/seo/png2.png')}}" width="50px"></h4>
+                                <div class="row">
+                                    <div class="col-sm-8">
+                                        <h4>{{$course->course_title}}</h4>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <img class="float-right" src="{{url('public/courses-icons')}}/{{$course->course_icon}}" width="50px" style="filter: brightness(0) invert(1);margin-top: 15%;">
+                                    </div>
+                                </div>
 
                             </a>
                             <p><i class="fa fa-certificate"></i> Course + Certificate</p>

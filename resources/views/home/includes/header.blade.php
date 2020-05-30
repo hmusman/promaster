@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{url('public/assets/vendors/scroll/jquery.mCustomScrollbar.min.css')}}">
     <link rel="stylesheet" href="{{url('public/assets/css/front-end-style.css')}}">
     <link rel="stylesheet" href="{{url('public/assets/css/responsive.css')}}">
+    <link rel="alternate" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
     <script src="{{url('public/assets/js/jquery-3.2.1.min.js')}}"></script>
     @stack('style')
     <style>

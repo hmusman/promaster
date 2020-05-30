@@ -18,22 +18,28 @@
                     <h2 class="f_p f_700 f_size_40 t_color3 mb_20">Create your account</h2>
                     <p class="f_p f_400 f_size_15">Provide accurate
                         information for the successful delivery of your certificates </p>
-                    <form class="login-form mt_60" id="signup-form">
+                    <form action="{{url('register-user')}}" method="POST" class="login-form mt_60" id="signup-form">
                         @csrf
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">Email</label>
-                            <input type="email" id="email" placeholder="promaster@gmail.com" name="email">
+                            <input type="email" id="email" placeholder="promaster@gmail.com" name="email" value="{{ old('email')}}">
                             @error('email')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">First Name</label>
-                            <input type="text" placeholder="Your First Name" name="first_name">
+                            <input type="text" placeholder="Your First Name" name="first_name" value="{{ old('first_name')}}">
+                             @error('first_name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">Last Name</label>
-                            <input type="text" placeholder="Your Last Name" name="last_name">
+                            <input type="text" placeholder="Your Last Name" name="last_name" value="{{ old('last_name')}}">
+                            @error('last_name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">Gender</label>
@@ -45,6 +51,9 @@
                                   <option value="Other">Other</option>
 
                                 </select>
+                            @error('gender')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">Country</label>
@@ -300,14 +309,23 @@
                            <option value="ZM">Zambia</option>
                            <option value="ZW">Zimbabwe</option>
                         </select>
+                        @error('country')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         </div>
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">Password</label>
                             <input type="password" id="password" placeholder="******" name="password">
+                            @error('password')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         </div>
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">Confirm Password</label>
                             <input type="password" id="password" placeholder="******" name="password_confirmation">
+                            @error('password_confirmation')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                         </div>
                         <div class="extra">
                             <div class="checkbox remember">

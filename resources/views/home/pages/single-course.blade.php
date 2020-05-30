@@ -2,6 +2,19 @@
 
 @push('style')
 <style type="text/css">
+    @media only screen and (max-width: 600px) {
+      .add-to-cart-btn{
+        margin-top: -28% !important;
+        width: 159px;
+        font-size: 11px;
+        margin-right: -5%;
+      }
+      .deals{
+        margin-left: 71% !important;
+        margin-top: -13% !important;
+        margin-bottom: 16%;
+      }
+    }
     .list-unstyled li {
         margin: 15px 0;
     }
@@ -139,7 +152,15 @@
             <div class="col-lg-5 ptop align-items-center">
                 <div class="card">
                     <div class="video_content" style="text-align:center;">
+                            <style>
+                                .video_info {
+                                    background: url({{url('public/course-banners')}}/{{$course->course_banner}}) !important;
+                                    background-size: cover;
+                                    background-repeat: no-repeat;
+                                }
+                            </style>
                             @if($course->course_video != NULL)
+                            
                             <div class="video_info" >
                                 <div class="ovarlay_color"></div>
                                 <a class="popup-youtube video_icon" href="{{url('public/courses-videos')}}/{{$course->course_video}}"><i class="arrow_triangle-right"></i></a>
@@ -176,7 +197,7 @@
                                 @foreach($deals as $deal)
                                 <li>
                                     <img src="{{url('public/assets/img/price/2.png')}}"><span class="ptitle"> {{$deal->deal_name}}: </span>
-                                    <p style="margin-left: 50%;margin-top: -8%;"><span class="save" style="  color: #999999;">${{number_format($deal->bundle_price,2)}}</span><br>
+                                    <p class="deals" style="margin-left: 50%;margin-top: -8%;"><span class="save" style="  color: #999999;">${{number_format($deal->bundle_price,2)}}</span><br>
                                         <span class="price f_700 save-price t_color2">${{number_format($deal->deal_price,2)}}</span>
                                         
                                         <!-- <a href="#" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a> -->

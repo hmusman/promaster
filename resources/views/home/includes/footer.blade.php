@@ -44,7 +44,7 @@
                          <h3 class="f-title f_600 t_color f_size_18">Contact Us</h3>
                          <div class="guide-text" style="padding: 0!important">
 
-                             <a href="contact.html" class="price_btn btn_hover">Send Message</a>
+                             <a href="{{route('contactUs')}}" class="price_btn btn_hover">Send Message</a>
                          </div>
                      </div>
                  </div>
@@ -101,7 +101,7 @@
  <script src="{{url('public/assets/vendors/multiscroll/jquery.multiscroll.extensions.min.js')}}"></script>
  <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> -->
  <script src="{{url('public/assets/js/main.js')}}"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js"></script>
  <!-- Optional JavaScript -->
  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
@@ -131,38 +131,38 @@ console.log($('meta[name="csrf-token"]').attr('content'));
           }
         });
       // 
-      $("#signup-form").validate({
-         submitHandler: function (form) {
-            $('.form-submit-btn').attr('disabled',true);
-            $('.form-submit-btn').text('WAIT...');
-             $.ajax({
-                 type: "POST",
-                 url: "{{url('register-user')}}",
-                 data: $(form).serialize(),
-                 success: function (data) {
-                    if($.trim(data) == 'true'){
-                        $('.form-submit-btn').attr('disabled',false);
-                        $('.form-submit-btn').text('REGISTER');
-                        window.location="{{url('user/courses')}}";
-                    }else{
-                        Command: toastr["error"](data);
-                        console.log(data);
-                        $('.form-submit-btn').attr('disabled',false);
-                        $('.form-submit-btn').text('REGISTER');
-                    }
-                 },
-                 error: function(xhr, status, error){
+      // $("#signup-form").validate({
+      //    submitHandler: function (form) {
+      //       $('.form-submit-btn').attr('disabled',true);
+      //       $('.form-submit-btn').text('WAIT...');
+      //        $.ajax({
+      //            type: "POST",
+      //            url: "{{url('register-user')}}",
+      //            data: $(form).serialize(),
+      //            success: function (data) {
+      //               if($.trim(data) == 'true'){
+      //                   $('.form-submit-btn').attr('disabled',false);
+      //                   $('.form-submit-btn').text('REGISTER');
+      //                   window.location="{{url('user/courses')}}";
+      //               }else{
+      //                   Command: toastr["error"](data);
+      //                   console.log(data);
+      //                   $('.form-submit-btn').attr('disabled',false);
+      //                   $('.form-submit-btn').text('REGISTER');
+      //               }
+      //            },
+      //            error: function(xhr, status, error){
                      
-                     var errors = xhr.responseJSON.errors;
-                     $.each(errors, function( key, value ) {
-                        Command: toastr["error"](value[0]);
-                     });
-                     $('.form-submit-btn').attr('disabled',false);
-                     $('.form-submit-btn').text('REGISTER');
-                 }
-             });
-         }
-      });
+      //                var errors = xhr.responseJSON.errors;
+      //                $.each(errors, function( key, value ) {
+      //                   Command: toastr["error"](value[0]);
+      //                });
+      //                $('.form-submit-btn').attr('disabled',false);
+      //                $('.form-submit-btn').text('REGISTER');
+      //            }
+      //        });
+      //    }
+      // });
       // 
 
       $("#login-form").validate({
@@ -284,7 +284,7 @@ console.log($('meta[name="csrf-token"]').attr('content'));
 @endif
 </script>
 
-
+ 
  </body>
 
  </html>
