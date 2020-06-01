@@ -74,12 +74,12 @@ a.download-link:hover img.download{
            
                 
                 <div class="row seo_service_info">
-                  @if(count($courses) > 0)
-                    @foreach($courses as $key=>$course)
+                  @if($pcourses)
+                     @foreach($pcourses as $key=>$course)
                   <div class="column w3-animate-opacity">
                         <div class="seo_service_item">
                           <div class="img">
-                            <img style="height: 178px;" src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="Ebook-Image...">
+                            <img style="height: 110px;" src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="Ebook-Image...">
                           </div>
                            <div class="panel-heading">
                             <div class="media  v-middle">
@@ -106,10 +106,49 @@ a.download-link:hover img.download{
                        </div>
                     </div>
                     @endforeach
-                     @else
+                    @endif
+                    @if($dcourses)
+                     @foreach($dcourses as $key=>$course)
+                  <div class="column w3-animate-opacity">
+                        <div class="seo_service_item">
+                          <div class="img">
+                            <img style="height: 110px;" src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="Ebook-Image...">
+                          </div>
+                           <div class="panel-heading">
+                            <div class="media  v-middle">
+                              <div class="media-body text-caption text-blue">
+                                <a href="organizational-leadership.html">{{$course->course_title}}</a>
+                                  
+                              </div>
+
+                              <div class="media-right">
+                                <a class="w3-animate-bottom download-link" href="{{url('user/download')}}" onclick="event.preventDefault();document.getElementById('download-ebook-{{$key}}').submit();" title="Download">
+                                <img class="download" src="{{url('public/userDashboard/images/download.png')}}" width="50px">
+                                 <img class="download-hover "src="{{url('public/userDashboard/images/download-hover.png')}}" width="50px">
+                                </a>
+                                <form id="download-ebook-{{$key}}" action="{{url('user/download')}}" method="post">
+                                  @csrf
+                                <input type="hidden" name="id" value="{{Crypt::encrypt($course->id)}}">
+                              </form>
+                              </div>
+                              <div class="con">
+                               
+                            </div>
+                        </div>
+                       </div>
+                       </div>
+                    </div>
+                    @endforeach
+                    @endif
+                     @if(empty($pcourses) && empty($dcourses))
                      <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                           <div class="alert alert-warning"><i class="fa fa-exclamation-triangle  mr-2"></i>No Ebook Found!</div>
+                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10" style="margin-left: 2%;">
+                           <div class="alert alert-info"><i class="fa fa-exclamation-triangle  mr-2"></i>No Ebook Found!</div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10" style="margin-left: 2%;">
+                           <a class="price_btn btn_hover mt_30" href="{{url('ebooks')}}" title="Purchase Courses Or Deals" style="width: 100%;text-align: center;border-radius: 50px;">Purchase Ebooks Or Ebooks Deals</a>
                         </div>
                      </div>
                      @endif

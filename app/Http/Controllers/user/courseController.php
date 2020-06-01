@@ -54,7 +54,8 @@ class courseController extends Controller
                 $DIDS = array_merge($DIDS,$Cids);
             }
 
-            $pdealss = deals::whereIn('id', $DIDS)->get();
+            $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
+            // dd($pdealss);
             foreach ($pdealss as $deals) {
                 $dcids = json_decode($deals->course_id);
 
@@ -73,11 +74,74 @@ class courseController extends Controller
     }
     public function ebooks(){
     	$courses = course::all();
-    	return view('user.pages.ebooks',compact('courses'));
+        $pcourse = usercourse::where('user_id', Auth::id())->get();
+        $pdeals = userdeals::where('user_id', Auth::id())->get();
+        $CIDS = array();
+        $DIDS = array();
+        $DCIDS = array();
+        $pcourses = NULL;
+        $dcourses = NULL;
+        if($pcourse->count() > 0){
+            foreach($pcourse as $pc){
+
+                $Cids = json_decode($pc->course_id);
+                $CIDS = array_merge($CIDS, $Cids);
+            }
+
+            $pcourses = course::whereIn('id', $CIDS)->get();
+        }
+        if($pdeals->count() > 0){
+            foreach($pdeals as $pd){
+
+                $Cids = json_decode($pd->deal_id);
+                $DIDS = array_merge($DIDS,$Cids);
+            }
+
+            $pdealss = deals::where('deal_type', 'ProEbook')->whereIn('id', $DIDS)->get();
+            // dd($pdealss);
+            foreach ($pdealss as $deals) {
+                $dcids = json_decode($deals->course_id);
+
+                $DCIDS = array_merge($DCIDS,$dcids);
+            }
+            $dcourses = course::whereIn('id', $DCIDS)->get();
+        }
+    	return view('user.pages.ebooks',compact('courses', 'pcourses', 'dcourses'));
     }
     public function certificates(){
     	$courses = course::all();
-    	return view('user.pages.certificates',compact('courses'));
+        $pcourse = usercourse::where('user_id', Auth::id())->get();
+        $pdeals = userdeals::where('user_id', Auth::id())->get();
+        $CIDS = array();
+        $DIDS = array();
+        $DCIDS = array();
+        $pcourses = NULL;
+        $dcourses = NULL;
+        if($pcourse->count() > 0){
+            foreach($pcourse as $pc){
+
+                $Cids = json_decode($pc->course_id);
+                $CIDS = array_merge($CIDS, $Cids);
+            }
+
+            $pcourses = course::whereIn('id', $CIDS)->get();
+        }
+        if($pdeals->count() > 0){
+            foreach($pdeals as $pd){
+
+                $Cids = json_decode($pd->deal_id);
+                $DIDS = array_merge($DIDS,$Cids);
+            }
+
+            $pdealss = deals::whereIn('id', $DIDS)->get();
+            foreach ($pdealss as $deals) {
+                $dcids = json_decode($deals->course_id);
+
+                $DCIDS = array_merge($DCIDS,$dcids);
+            }
+            $dcourses = course::whereIn('id', $DCIDS)->get();
+        }
+    	return view('user.pages.certificates',compact('courses', 'pcourses', 'dcourses'));
     }
     
     public function download(Request $request){

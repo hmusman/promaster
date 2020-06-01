@@ -85,9 +85,9 @@ div.con{
 }
 .seo_service_item{
   @if(Request::is('user/review-history'))
-    padding-bottom: 145px!important;
+    padding-bottom: 127px!important;
   @else
-    padding-bottom: 48px!important;
+    padding-bottom: 30px!important;
   @endif
 }
 .seo_service_item.name{
@@ -140,12 +140,12 @@ div.con{
                     <div class="col-md-3">
                       <div class="seo_service_item name">
                                 <div class="img">
-                                  <img style="height: 110px;" src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="Course Thumbnail">
+                                  <img style="height: 110px;" src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="Course Thumbnail">
                                 </div>
                                  <div class="panel-heading">
                                   <div class="media media-clearfix-xs-min v-middle">
                                     <div class="media-body text-caption text-blue">
-                                      <a href="#">Organizational<br> Leadership<br></a>
+                                      <a href="#">{{$course->course_title}}<br></a>
                                     </div>
 
                                     </div>
@@ -181,10 +181,10 @@ div.con{
                                 </div>
                                 <div class='success-box'>
                                 </div>
-                                <br><br><div class="form-group" style="margin-top: 38px;">
-                              
-                              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Share your experience with us! Let us know how can we improve" name="body" required=""></textarea>
-                            </div>
+                                <br><br>
+                                <div class="form-group" style="margin-top: 38px;">
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Share your experience with us! Let us know how can we improve" name="body" required=""></textarea>
+                                </div>
                             <input type="submit" value="Submit Review" class="btn btn-white w3-animate-bottom btn-flat paper-shadow relative rating-submit" data-z="0" data-hover-z="1" data-animated />
                           </form>
                       </div>
@@ -201,7 +201,7 @@ div.con{
               <div class="col-md-3">
                 <div class="seo_service_item" style="text-align: center; padding-bottom: 60px!important;">
                     <div class="img">
-                      <img src="{{url('public/course-thumbnails')}}/{{$review->reviewrateable->course_thumbnail}}" alt="Course thumbnail" style="height: 110px;">
+                      <img src="{{url('public/courses-icons')}}/{{$review->reviewrateable->course_icon}}" alt="Course thumbnail" style="height: 110px;">
                     </div>
                      <div class="panel-heading">
                       <div class="media media-clearfix-xs-min v-middle">

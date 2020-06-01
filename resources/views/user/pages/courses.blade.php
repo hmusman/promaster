@@ -41,12 +41,12 @@
            
                 
                 <div class="row seo_service_info">
-                  @if(count($courses) > 0)
+                 <!--  @if(count($courses) > 0)
                      @foreach($courses as $key=>$course)
                   <div class="column w3-animate-opacity">
                         <div class="seo_service_item">
                           <div class="img">
-                            <img src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="{{$course->course_title}}" style="height: 122px;">
+                            <img src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="{{$course->course_title}}" style="height: 110px;">
                           </div>
                            <div class="panel-heading">
                             <div class="media  v-middle">
@@ -87,20 +87,20 @@
                     </div>
                     
                     @endforeach
-                  @endif
+                  @endif -->
 
-                  @if($pcourses != NULL || $dcourses != NULL)
+                 <!--  @if($pcourses != NULL || $dcourses != NULL)
                     <div class="container" style="margin-left: 15px;">
                       
                       <h2 style="font-size: 40px;font-weight: 600;line-height: 48px;color: #263b5e;margin-bottom: 15px;">Purchased Courses</h2>
                     </div>
-                  @endif
+                  @endif -->
                   @if($pcourses)
                      @foreach($pcourses as $key=>$course)
                   <div class="column w3-animate-opacity">
                         <div class="seo_service_item">
                           <div class="img">
-                            <img src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="{{$course->course_title}}" style="height: 122px;">
+                            <img src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="{{$course->course_title}}" style="height: 122px;">
                           </div>
                            <div class="panel-heading">
                             <div class="media  v-middle">
@@ -147,7 +147,7 @@
                   <div class="column w3-animate-opacity">
                         <div class="seo_service_item">
                           <div class="img">
-                            <img src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="{{$course->course_title}}" style="height: 122px;">
+                            <img src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="{{$course->course_title}}" style="height: 122px;">
                           </div>
                            <div class="panel-heading">
                             <div class="media  v-middle">
@@ -190,10 +190,15 @@
                     @endforeach
                   @endif
 
-                 @if(count($courses) < 0 && count($pcourses) < 0 && count($dcourses) < 0)
+                 @if(empty($pcourses)  && empty($dcourses) )
                  <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                       <div class="alert alert-warning"><i class="fa fa-exclamation-triangle  mr-2"></i>No Course Found!</div>
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10" style="margin-left: 2%;">
+                       <div class="alert alert-info"><i class="fa fa-exclamation-triangle  mr-2"></i>No Course Found!</div>
+                    </div>
+                 </div>
+                 <div class="row">
+                    <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10" style="margin-left: 2%;">
+                       <a class="price_btn btn_hover mt_30" href="{{url('/') . '#courses'}}" title="Purchase Courses Or Deals" style="width: 100%;text-align: center;border-radius: 50px;">Purchase Courses Or Deals</a>
                     </div>
                  </div>
                  @endif

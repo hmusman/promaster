@@ -111,8 +111,8 @@
            
                 
                 <div class="row seo_service_info">
-                    @if(count($courses) > 0)
-                    @foreach($courses as $key=>$course)
+                    @if($pcourses)
+                    @foreach($pcourses as $key=>$course)
                     <div class="column w3-animate-opacity">
                         <div class="seo_service_item">
                           <div class="img">
@@ -166,10 +166,72 @@
                        </div>
                     </div>
                     @endforeach
-                     @else
+                    @endif
+                    @if($dcourses)
+                    @foreach($dcourses as $key=>$course)
+                    <div class="column w3-animate-opacity">
+                        <div class="seo_service_item">
+                          <div class="img">
+                            <img style="height: 119px;" src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="Course Tubmnail">
+                          </div>
+                           <div class="panel-heading">
+                            <div class="media media-clearfix-xs-min v-middle">
+                              <div class="media-body text-caption text-blue">
+                                <a href="#">{{$course->course_title}}</a>
+                              </div>
+                        </div>
+                       </div>
+                       @if(@$course->getPercentage($course->id) == 1)
+                       <div class="con">
+                               <a class="icon w3-animate-bottom tool"data-z="0" data-hover-z="1" data-animated href="{{url('user/download-certificate')}}" onclick="event.preventDefault();document.getElementById('download-certificate-{{$key}}').submit();"><i class="fa fa-download" ></i></i>
+                                 <span class="tooltiptext">Download</span>
+                               </a>
+                               
+
+                               <a class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
+                                 <span class="tooltiptext">Share on Facebook</span>
+                               </a>
+
+                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-twitter-square"  aria-hidden="true"></i>
+                                  <span class="tooltiptext">Share on Twitter</span>
+                                </a>
+
+                                 <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
+                                  <span class="tooltiptext">Share on Instagram</span>
+                                 </a>
+
+                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                  <span class="tooltiptext">Share on LinkedIn</span>
+                                </a>   
+                                
+                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><img src="{{url('public/userDashboard/images/mail.png')}}" width="21.5px">
+                                  <span class="tooltiptext">Share via Email</span>
+                                </a>
+
+                                <form id="download-certificate-{{$key}}" target="_blank" action="{{url('user/download-certificate')}}" method="post">
+                                @csrf
+                                  <input type="hidden" name="id" value="{{Crypt::encrypt($course->id)}}">
+                              </form>
+                            </div>
+                            @else
+                            <div class="con">
+                              <span style="font-size: 10px;background: #7cddf2;">Please Complete this course to download and share certificate.</span><br>
+                              <a style="margin-top: -1px;" class="btn btn-white w3-animate-bottom btn-flat paper-shadow relative" data-z="0" data-hover-z="1" data-animated="" href="{{url('user/course-details')}}/{{$course->id}}">Continue</a>
+                            </div>  
+                            @endif
+                       </div>
+                    </div>
+                    @endforeach
+                    @endif
+                    @if(empty($pcourses) && empty($dcourses))
                      <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                           <div class="alert alert-warning"><i class="fa fa-exclamation-triangle  mr-2"></i>No Certificate Found!</div>
+                           <div class="alert alert-info"><i class="fa fa-exclamation-triangle  mr-2"></i>No Certificate Found!</div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10" style="margin-left: 2%;">
+                           <a class="price_btn btn_hover mt_30" href="{{url('/') . '#courses'}}" title="Purchase Courses Or Deals" style="width: 100%;text-align: center;border-radius: 50px;">Purchase Courses Or Deals</a>
                         </div>
                      </div>
                      @endif
