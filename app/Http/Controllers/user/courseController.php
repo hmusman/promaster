@@ -133,7 +133,7 @@ class courseController extends Controller
                 $DIDS = array_merge($DIDS,$Cids);
             }
 
-            $pdealss = deals::whereIn('id', $DIDS)->get();
+            $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
             foreach ($pdealss as $deals) {
                 $dcids = json_decode($deals->course_id);
 

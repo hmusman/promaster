@@ -102,6 +102,13 @@
                 <div class="media-body">
                    <div class="seo_sec_title wow fadeInUp" data-wow-delay="0.3s">
                     <h2>My Certificates</h2>
+                    @if(session('message'))
+                     <div class="row">
+                        <div class="col-xl-9">
+                           {!! session('message') !!}
+                        </div>
+                     </div>
+                  @endif
                 </div>
                 </div>
                
@@ -116,7 +123,7 @@
                     <div class="column w3-animate-opacity">
                         <div class="seo_service_item">
                           <div class="img">
-                            <img style="height: 119px;" src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="Course Tubmnail">
+                            <img style="height: 119px;" src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="Course Tubmnail">
                           </div>
                            <div class="panel-heading">
                             <div class="media media-clearfix-xs-min v-middle">
@@ -143,11 +150,28 @@
                                  <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
                                   <span class="tooltiptext">Share on Instagram</span>
                                  </a>
-
-                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                @php 
+                                  $state = substr(str_shuffle("0123456789abcHGFRlki"), 0, 10);
+                                  $url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=".env('CLIENT_ID')."&redirect_uri=".env('REDIRECT_URI')."&scope=".env('SCOPES')."&state=".$state."&course_id=".$course->id;
+                                @endphp
+                                <input type="hidden" id="cIds" name="course_id" value="{{$course->id}}">
+                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="<?php echo $url; ?>"><i class="fa fa-linkedin-square" aria-hidden="true" data-course="{{$course->id}}"></i>
                                   <span class="tooltiptext">Share on LinkedIn</span>
-                                </a>   
-                                
+                                </a>
+                                @section('script')   
+                                <script>
+                                  
+                                  $('.fa-linkedin-square').on('click', function(){
+                                    var ids = $(this).attr('data-course');
+                                    console.log(ids);
+                                    $.ajax({
+                                      url: '<?php echo url('save/course') ?>',
+                                      type: 'GET',
+                                      data: {'id':ids},
+                                    })
+                                  })
+                                </script>
+                                @endsection
                                 <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><img src="{{url('public/userDashboard/images/mail.png')}}" width="21.5px">
                                   <span class="tooltiptext">Share via Email</span>
                                 </a>
@@ -172,7 +196,7 @@
                     <div class="column w3-animate-opacity">
                         <div class="seo_service_item">
                           <div class="img">
-                            <img style="height: 119px;" src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" alt="Course Tubmnail">
+                            <img style="height: 119px;" src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="Course Tubmnail">
                           </div>
                            <div class="panel-heading">
                             <div class="media media-clearfix-xs-min v-middle">
@@ -199,11 +223,27 @@
                                  <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
                                   <span class="tooltiptext">Share on Instagram</span>
                                  </a>
-
-                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                @php 
+                                  $state = substr(str_shuffle("0123456789abcHGFRlki"), 0, 10);
+                                  $url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=".env('CLIENT_ID')."&redirect_uri=".env('REDIRECT_URI')."&scope=".env('SCOPES')."&state=".$state."&course_id=".$course->id;
+                                @endphp
+                                <input type="hidden" id="cIds" name="course_id" value="{{$course->id}}">
+                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="<?php echo $url; ?>"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
                                   <span class="tooltiptext">Share on LinkedIn</span>
-                                </a>   
-                                
+                                </a>
+                                @section('script')   
+                                <script>
+                                  var ids = document.getElementById('cIds').value;
+                                  console.log(ids);
+                                  $('.fa-linkedin-square').on('click', function(){
+                                    $.ajax({
+                                      url: '<?php echo url('save/course') ?>',
+                                      type: 'GET',
+                                      data: {'id':ids},
+                                    })
+                                  })
+                                </script>
+                                @endsection
                                 <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><img src="{{url('public/userDashboard/images/mail.png')}}" width="21.5px">
                                   <span class="tooltiptext">Share via Email</span>
                                 </a>

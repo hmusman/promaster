@@ -21,6 +21,9 @@ Route::group(["namespace"=>"home"],function(){
 	
 });
 Route::get('/order-placed', "paymentController@orderPlaced");
+
+Route::get('linkedin/callback', "shareController@linkedinShare");
+Route::get('save/course', "shareController@saveCourse");
 // ADMIN
 Route::group(["namespace"=>"admin","prefix"=>"admin","middleware"=> 'auth:admin'],function(){
 
