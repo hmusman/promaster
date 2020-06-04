@@ -152,7 +152,7 @@
                                  </a>
                                 @php 
                                   $state = substr(str_shuffle("0123456789abcHGFRlki"), 0, 10);
-                                  $url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=".env('CLIENT_ID')."&redirect_uri=".env('REDIRECT_URI')."&scope=".env('SCOPES')."&state=".$state."&course_id=".$course->id;
+                                  $url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77bbhtl3l7n2on&redirect_uri=".env('REDIRECT_URI')."&scope=".env('SCOPES')."&state=".$state."&course_id=".$course->id;
                                 @endphp
                                 <input type="hidden" id="cIds" name="course_id" value="{{$course->id}}">
                                 <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="<?php echo $url; ?>"><i class="fa fa-linkedin-square" aria-hidden="true" data-course="{{$course->id}}"></i>
@@ -225,17 +225,17 @@
                                  </a>
                                 @php 
                                   $state = substr(str_shuffle("0123456789abcHGFRlki"), 0, 10);
-                                  $url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=".env('CLIENT_ID')."&redirect_uri=".env('REDIRECT_URI')."&scope=".env('SCOPES')."&state=".$state."&course_id=".$course->id;
+                                  $url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77bbhtl3l7n2on&redirect_uri=".env('REDIRECT_URI')."&scope=".env('SCOPES')."&state=".$state."&course_id=".$course->id;
                                 @endphp
                                 <input type="hidden" id="cIds" name="course_id" value="{{$course->id}}">
-                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="<?php echo $url; ?>"><i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="<?php echo $url; ?>"><i class="fa fa-linkedin-square" aria-hidden="true" data-course="{{$course->id}}"></i>
                                   <span class="tooltiptext">Share on LinkedIn</span>
                                 </a>
                                 @section('script')   
                                 <script>
-                                  var ids = document.getElementById('cIds').value;
-                                  console.log(ids);
                                   $('.fa-linkedin-square').on('click', function(){
+                                   var ids = $(this).attr('data-course');
+                                    console.log(ids);
                                     $.ajax({
                                       url: '<?php echo url('save/course') ?>',
                                       type: 'GET',
