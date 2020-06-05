@@ -138,8 +138,8 @@
                                  <span class="tooltiptext">Download</span>
                                </a>
                                
-
-                               <a class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
+                              
+                               <a onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="https://www.facebook.com/sharer/sharer.php?u=https://promastersgips.com/&quote=I just completed my certificate in COURSE TITLE from Promasters: Global Institute for Professional Studies"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
                                  <span class="tooltiptext">Share on Facebook</span>
                                </a>
 
@@ -211,18 +211,18 @@
                                  <span class="tooltiptext">Download</span>
                                </a>
                                
-
-                               <a class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
+                               
+                               <a onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="https://www.facebook.com/sharer/sharer.php?u=https://promastersgips.com/&picture={{url('public/course-banners')}}/{{$course->course_banner}}&quote=I just completed my certificate in COURSE TITLE from Promasters: Global Institute for Professional Studies"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
                                  <span class="tooltiptext">Share on Facebook</span>
                                </a>
 
-                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-twitter-square"  aria-hidden="true"></i>
+                                <a onclick="return !window.open(this.href, 'Twitter', 'width=640,height=300')" class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="https://twitter.com/intent/tweet?hashtags=promasters&original_referer=https://promastersgips.com/&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=I just completed my certificate in COURSE TITLE from Promasters: Global Institute for Professional Studies&tw_p=tweetbutton&url=https://promastersgips.com/"><i class="fa fa-twitter-square"  aria-hidden="true"></i>
                                   <span class="tooltiptext">Share on Twitter</span>
                                 </a>
 
-                                 <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
+                                 <!-- <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
                                   <span class="tooltiptext">Share on Instagram</span>
-                                 </a>
+                                 </a> -->
                                 @php 
                                   $state = substr(str_shuffle("0123456789abcHGFRlki"), 0, 10);
                                   $url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77bbhtl3l7n2on&redirect_uri=".env('REDIRECT_URI')."&scope=".env('SCOPES')."&state=".$state."&course_id=".$course->id;
@@ -244,9 +244,9 @@
                                   })
                                 </script>
                                 @endsection
-                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><img src="{{url('public/userDashboard/images/mail.png')}}" width="21.5px">
+                                <!-- <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><img src="{{url('public/userDashboard/images/mail.png')}}" width="21.5px">
                                   <span class="tooltiptext">Share via Email</span>
-                                </a>
+                                </a> -->
 
                                 <form id="download-certificate-{{$key}}" target="_blank" action="{{url('user/download-certificate')}}" method="post">
                                 @csrf
