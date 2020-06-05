@@ -79,7 +79,7 @@ class shareController extends Controller
 			$body->text->text = $summery;
 			$body_json = json_encode($body, true);
 			// dd($body_json);
-			$request->session()->forget('cids');
+			// $request->session()->forget('cids');
 			try {
 			    $client = new Client(['base_uri' => 'https://api.linkedin.com']);
 			    $response = $client->request('POST', '/v2/shares', [
