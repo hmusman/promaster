@@ -333,6 +333,9 @@
                                     <input type="checkbox" name="terms_and_condition"> I Agree to the <a data-toggle="modal" data-target="#Conditions"
                                         href="#">Terms and Conditions</a> of this website
                                 </label>
+                                @error('terms_and_condition')
+                                  <div class="alert alert-danger">{{ $message }}</div>
+                              @enderror
                             </div>
                             <!--//check-box-->
 
