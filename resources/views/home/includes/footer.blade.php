@@ -30,7 +30,7 @@
                      <div class="f_widget about-widget pl_70 wow fadeInLeft" data-wow-delay="0.6s">
                          <h3 class="f-title f_600 t_color f_size_18">Help</h3>
                          <ul class="list-unstyled f_list">
-                             <li><a href="assistance.html">Assistance Directory</a></li>
+                             <li><a href="{{url('assistance-directory')}}">Assistance Directory</a></li>
                              <li><a data-toggle="modal" data-target=".terms">Terms & Conditions</a></li>
                              <li><a data-toggle="modal" data-target=".privacy">Privacy Policy</a></li>
                              <li><a data-toggle="modal" data-target=".support">Support Policy</a></li>
@@ -97,7 +97,7 @@
  <script src="{{url('public/assets/vendors/scroll/jquery.mCustomScrollbar.concat.min.js')}}"></script>
  <script src="{{url('public/assets/js/plugins.js')}}"></script>
  <script src="{{url('public/assets/vendors/multiscroll/jquery.easings.min.js')}}"></script>
- <!-- <script src="{{url('public/assets/vendors/multiscroll/multiscroll.responsiveExpand.limited.min.js')}}"></script> -->
+ <script src="{{url('public/assets/vendors/multiscroll/multiscroll.responsiveExpand.limited.min.js')}}"></script>
  <script src="{{url('public/assets/vendors/multiscroll/jquery.multiscroll.extensions.min.js')}}"></script>
  <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script> -->
  <script src="{{url('public/assets/js/main.js')}}"></script>

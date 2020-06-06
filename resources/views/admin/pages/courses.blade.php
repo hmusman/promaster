@@ -16,7 +16,7 @@
 		                    <div class="media">
 		                        <img class="mr-3 user-avatar-lg rounded" src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}">
 		                        <div class="media-body">
-		                            <h3>{{$course->course_title}}</h3>
+		                            <h3><?php echo strip_tags($course->course_title, '<br>') ?></h3>
 		                            <p>{{$course->course_description}}</p>
 		                        </div>
 		                    </div>

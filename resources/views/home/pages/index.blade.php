@@ -386,7 +386,7 @@
                             <a href="{{url('course')}}/{{$course->id}}">
                                 <div class="row">
                                     <div class="col-sm-8">
-                                        <h4>{{$course->course_title}}</h4>
+                                        <h4><?php echo strip_tags($course->course_title, '<br>') ?></h4>
                                     </div>
                                     <div class="col-sm-4">
                                         <img class="float-right" src="{{url('public/courses-icons')}}/{{$course->course_icon}}" width="50px" style="filter: brightness(0) invert(1);margin-top: 15%;">

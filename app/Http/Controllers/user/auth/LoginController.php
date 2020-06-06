@@ -27,18 +27,12 @@ class LoginController extends Controller
         $request->validate([
             'email' => 'required|unique:users',
             'first_name' => 'required|min:3|max:50',
-            'last_name' => 'required|min:3|max:50',
-            'gender' => 'required',
-            'country' => 'required',
             'terms_and_condition' => 'required',
-            'password' => 'confirmed|min:6',
+            'password' => 'required|min:6',
             
         ]);
     	$user = array(
     		"first_name" => input::get('first_name'),
-    		"last_name" => input::get('last_name'),
-    		"gender" => input::get('gender'),
-    		"country" => input::get('country'),
     		"email" => input::get('email'),
     		"password" => Hash::make(input::get('password')),
     	);

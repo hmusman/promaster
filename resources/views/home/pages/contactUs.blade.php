@@ -35,7 +35,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group text_box">
-                                            <input type="text" id="subject" name="subject" placeholder="Subject(must be 20 chracters)" value="{{old('subject')}}">
+                                            <input type="text" id="subject" name="subject" placeholder="Subject" value="{{old('subject')}}">
                                             @error('subject')
 				                                <p class="alert alert-danger">{{ $message }}</p>
 				                            @enderror
@@ -43,7 +43,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-group text_box">
-                                            <textarea name="message" id="message" cols="30" rows="10" placeholder="Enter Your Message (must be 150 chracters). . ." value="{{old('message')}}"></textarea>
+                                            <textarea name="message" id="message" cols="30" rows="10" placeholder="Enter Your Message . . ." value="{{old('message')}}"></textarea>
                                             @error('message')
 				                                <p class="alert alert-danger">{{ $message }}</p>
 				                            @enderror
