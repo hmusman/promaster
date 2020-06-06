@@ -6,6 +6,15 @@
 @endsection
 
 @section('content')
+<style>
+  .media-body h3 br {
+    content: ' '
+}
+
+.media-body h3 br:after {
+    content: ' '
+}
+</style>
 	<div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">{!! session('message') !!}</div>
 		@if(count($courses) > 0)

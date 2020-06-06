@@ -20,6 +20,9 @@ Route::group(["namespace"=>"home"],function(){
 	Route::post('/delete-cart-item','cartController@deleteCartItem')->name('cart.delete');
 	
 });
+Route::get('assistance-directory', function(){
+	return view('home.pages.assistance');
+});
 Route::get('/order-placed', "paymentController@orderPlaced");
 
 Route::get('linkedin/callback', "shareController@linkedinShare");

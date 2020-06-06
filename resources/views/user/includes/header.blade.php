@@ -165,6 +165,9 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
     span.awaiting-mobile{
       display: none;
     }
+    .form-control-material label {
+      top: -10px;
+    }
     @media only screen and (max-width: 500px) {
       span.awaiting-mobile{
       display: block;

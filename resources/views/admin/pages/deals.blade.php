@@ -12,10 +12,24 @@
 	.tt li:before {
   		content: '✓';
 	}
+
+	.ttt{
+		list-style: none;
+	}
 	.make_feature:hover{
 		background-color: blue;
 		color: white;
 	}
+	#course span br {
+	    content: ' '
+	}
+
+	#course span br:after {
+	    content: ' '
+	}
+	.action-btns.text-right {
+    	bottom: 5px;
+    }
 </style>
 <?php 
  $con = mysqli_connect('localhost','root','','laravel-badges'); ?>
@@ -40,22 +54,22 @@
 		                            <div class="row" style="padding-left: 15px;">
 		                            	<p><strong>About:</strong></p>
 		                            	<div class="col-sm-2">
-		                            		<ul class="tt">
+		                            		<ul class="@if(!empty($deal->about1)) tt @else ttt @endif">
 		                            			<li>{{$deal->about1}}</li>
 		                            		</ul>
 		                            	</div>
 		                            	<div class="col-sm-2">
-		                            		<ul class="tt">
+		                            		<ul class="@if(!empty($deal->about2)) tt @else ttt @endif">
 		                            			<li>{{$deal->about2}}</li>
 		                            		</ul>
 		                            	</div>
 		                            	<div class="col-sm-2">
-		                            		<ul class="tt">
+		                            		<ul class="@if(!empty($deal->about3)) tt @else ttt @endif">
 		                            			<li>{{$deal->about3}}</li>
 		                            		</ul>
 		                            	</div>
 		                            	<div class="col-sm-2">
-		                            		<ul class="tt">
+		                            		<ul class="@if(!empty($deal->about4)) tt @else ttt @endif">
 		                            			<li>{{$deal->about4}}</li>
 		                            		</ul>
 		                            	</div>
@@ -66,7 +80,7 @@
 									 ?>
 		                            <p><strong>Courses: </strong><div class="row">@foreach($cs as $c)
 		                            	
-		                            		<div class="col-sm-3" style="margin: 0px 0px 6px 0px;">
+		                            		<div class="col-sm-3" id="course" style="margin: 0px 0px 6px 0px;">
 					                            <span style="background-color: #5969ff;color: white;padding: 2px 10px 2px 10px;border-radius: 50px;">
 													@php 
 													getCourse($c);
