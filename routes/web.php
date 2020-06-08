@@ -76,7 +76,7 @@ Route::group(["namespace"=>"admin\Auth"],function(){
 
 
 
-
+Route::post('subscribe', 'subscribeController@storeEmail')->name('subscribe');
 
 // USER
 Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],function(){

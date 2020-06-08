@@ -6,11 +6,22 @@
                      <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s">
                          <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
                          <p>Don’t miss any updates of our new offers and course programs!</p>
-                         <form action="#" class="f_subscribe_two mailchimp" method="post" novalidate="true" _lpchecked="1">
-                             <input type="text" name="EMAIL" class="form-control memail" placeholder="Email">
+                         <form action="{{url('subscribe')}}" class="f_subscribe_two" method="post">
+                          @csrf
+                          @if (Session::has('message'))
+                          <div class="row">
+                             <div class="alert alert-info">{{ Session::get('message') }}</div>
+                          </div>
+                          @endif
+                          @if (Session::has('error'))
+                          <div class="row">
+                             <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                          </div>
+                          @endif
+                             <input type="email" name="email" class="form-control" placeholder="Email">
                              <button class="btn btn_get btn_get_two" type="submit">Subscribe</button>
-                             <p class="mchimp-errmessage" style="display: none;"></p>
-                             <p class="mchimp-sucmessage" style="display: none;"></p>
+                             <p class="mchimp-errmessage"></p>
+                             <p class="mchimp-sucmessage"></p>
                          </form>
                      </div>
                  </div>

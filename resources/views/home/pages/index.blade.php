@@ -492,7 +492,7 @@
 
                             @endauth
                             @guest
-                            <a href="{{url('login')}}" class="price_btn btn_hover mt_30">Start Today</a>
+                            <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover mt_30"  data-dealID="{{$featureDeal->id}}">Start Today</a>
                             @endguest
                         </div>
                     </div>
@@ -528,7 +528,7 @@
                             </form>
                             @endauth
                             @guest
-                            <a href="{{url('login')}}" class="price_btn btn_hover mt_30">Start Today </a>
+                            <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover mt_30" data-dealID="{{$deal->id}}">Start Today </a>
                             @endguest
                         </div>
                     </div>
@@ -680,29 +680,34 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" class="login-form">
+                <form action="{{url('register-user')}}" method="POST" class="login-form" id="signup-form" >
+                    @csrf
                     <div class="form-group text_box">
                         <label class="f_p text_c f_400">Email</label>
-                        <input type="text" placeholder="promaster@gmail.com">
+                        <input type="email" id="email" placeholder="promaster@gmail.com" name="email" value="{{ old('email')}}">
+                        <div class="alert-danger" id="emailError"></div>
                     </div>
                     <div class="form-group text_box">
                         <label class="f_p text_c f_400">Full Name</label>
-                        <input type="text" placeholder="Droitlab">
+                        <input type="text" id="first_name" placeholder="Your Full Name" name="first_name" value="{{ old('first_name')}}">
+                         <div class="alert-danger" id="nameError"></div>
                     </div>
                     <div class="form-group text_box">
                         <label class="f_p text_c f_400">Password</label>
-                        <input type="password" placeholder="******">
+                        <input type="password" id="password" placeholder="******" name="password">
+                        <div class="alert-danger" id="passwordError"></div>
                     </div>
                     <div class="extra">
                         <div class="checkbox remember">
                             <label>
-                                <input type="checkbox"> I Agree to the <a data-toggle="modal" data-target=".terms" href="#">Terms and Conditions</a> of this website
+                                <input id="checkbox" type="checkbox" name="terms_and_condition"> I Agree to the <a data-toggle="modal" data-target=".terms" href="#">Terms and Conditions</a> of this website
                             </label>
+                            <div class="alert-danger" id="terms_and_condition"></div>
                         </div>
                         <!--//check-box-->
 
                     </div>
-                    <a href="checkout.html" class="btn_three">Create Account</a>
+                    <a href="#" class="btn_three">Create Account</a>
                     <div class="alter-login text-center mt_30">
                         Already a Member?<a class="login-link" href="{{url('login')}}">Sign In</a>
                     </div>
@@ -1400,7 +1405,42 @@
             $(this).addClass("active");
         });
     });
-
+    var dealId = '';
+    $('.price_btn').on('click',function(){
+        dealId = $(this).attr('data-dealID');
+    });
+    $('.btn_three').on('click', function(){
+        var deal_id = dealId;
+        var url = $('#signup-form').attr('action');
+        var method = $('#signup-form').attr('method');
+        var email = document.getElementById('email').value;
+        var first_name = document.getElementById('first_name').value;
+        var password = document.getElementById('password').value;
+        var checkbox = document.getElementById('checkbox').value;
+        $.ajax({
+            url: url,
+            type: method,
+            data: {"_token": "{{ csrf_token() }}", 'email': email, 'first_name': first_name, 'password': password, 'terms_and_condition': checkbox},
+            success:function(response){
+                console.log('im success function.');
+                $('#signup-form').hide();
+                $.ajax({
+                    url: '<?php echo url('user/checkout') ?>',
+                    type: 'GET',
+                    data: {'dealId': deal_id},
+                    success: function(response){
+                       window.location.href = "http://localhost/promaster/user/checkout?dealId="+deal_id;
+                    }
+                }); 
+            },
+            error: function(response){
+                $('#emailError').text(response.responseJSON.errors.email);
+                $('#nameError').text(response.responseJSON.errors.first_name);
+                $('#passwordError').text(response.responseJSON.errors.password);
+                $('#terms_and_condition').text(response.responseJSON.errors.terms_and_condition);
+            }
+        });
+    });
    
 </script>
 @endsection

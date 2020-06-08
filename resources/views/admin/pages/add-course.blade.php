@@ -18,6 +18,7 @@
 <style type="text/css">
     .gradiant{background: linear-gradient(-150deg, #12b4c8, #6669e6) !important;}
     .no_display{display: none !important;}
+    .course_certificate_preview_outter {display: none;}
 </style>
 
     <div class="row">
@@ -105,6 +106,18 @@
                                                         </div>
                                                         <div class="mx-auto text-center certificate_preview_outter @if(@$edit) d-block @endif">
                                                             <img src="@if(@$edit) {{url('public/certificate-backgrounds')}}/{{@$course->certificate_background}} @else http://via.placeholder.com/250x195 @endif" class="img-thumbnail banner_image_preview">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 col-sm-3 col-lg-3 p-0 m-0 text-center mt-5">
+                                                    <div class="row p-0 m-0">
+                                                        <div class="col-sm-12 mb-4">
+                                                            <label>Course Certificate</label><br>
+                                                            <button type="button" class="gradiant choose mt-2 choose-file font-size mx-auto">Choose File</button>
+                                                            <input type="file" name="course_certificate" class="d-none course_certificate_upload_btn @if(!@$edit) required @endif" accept="image/*">
+                                                        </div>
+                                                        <div class="mx-auto text-center course_certificate_preview_outter @if(@$edit) d-block @endif">
+                                                            <img src="@if(@$edit) {{url('public/courses-certificate')}}/{{@$course->course_certificate}} @else http://via.placeholder.com/250x195 @endif" class="img-thumbnail banner_image_preview">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -260,6 +273,11 @@
           var obj = $(this).parent().next().children('img');
           readURL(this,obj);
           $('.certificate_preview_outter').show();
+        })
+        $(".course_certificate_upload_btn").change(function() {
+          var obj = $(this).parent().next().children('img');
+          readURL(this,obj);
+          $('.course_certificate_preview_outter').show();
         })
         $(".icon_upload_btn").change(function() {
           var obj = $(this).parent().next().children('img');

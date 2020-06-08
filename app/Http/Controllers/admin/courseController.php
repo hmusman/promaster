@@ -33,6 +33,13 @@ class courseController extends Controller{
             $certificateBackground = md5(rand(1111111111,999999999)).'.'.$ext;
             $file->move(public_path().'/certificate-backgrounds/' , $certificateBackground);   
          }
+
+         if($request->hasfile('course_certificate')){
+            $file = input::file('course_certificate');
+            $ext=$file->getClientOriginalExtension();
+            $courseCertificate = md5(rand(1111111111,999999999)).'.'.$ext;
+            $file->move(public_path().'/courses-certificate/' , $courseCertificate);   
+         }
          
          if($request->hasfile('course_banner')){
             $file = input::file('course_banner');
@@ -66,6 +73,7 @@ class courseController extends Controller{
             "course_ebook" => @$courseEbook,
             "course_banner" => @$courseBanner,
             "certificate_background" => @$certificateBackground,
+            "course_certificate" => @$courseCertificate,
             "course_video" => @$courseVideo,
             "course_icon" => @$courseIcon,
         );
@@ -122,6 +130,16 @@ class courseController extends Controller{
             $certificateBackground = md5(rand(1111111111,999999999)).'.'.$ext;
             $file->move(public_path().'/certificate-backgrounds/' , $certificateBackground); 
             $data["certificate_background"] = $certificateBackground;    
+         }
+         if($request->hasfile('course_certificate')){
+            if(File::exists($path.'/courses-certificate/'.$course->course_certificate)) {
+                File::delete($path.'/courses-certificate/'.$course->course_certificate);
+            }
+            $file = input::file('course_certificate');
+            $ext=$file->getClientOriginalExtension();
+            $courseCertificate = md5(rand(1111111111,999999999)).'.'.$ext;
+            $file->move(public_path().'/courses-certificate/' , $courseCertificate); 
+            $data["course_certificate"] = $courseCertificate;    
          }
          if($request->hasfile('course_banner')){
             if(File::exists($path.'/course-banners/'.$course->course_banner)) {

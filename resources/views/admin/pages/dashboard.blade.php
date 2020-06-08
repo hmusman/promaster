@@ -81,9 +81,9 @@
 	                                <th class="border-0 text-center">#</th>
 	                                <th class="border-0">Image</th>
 	                                <th class="border-0">Name</th>
-                                    <th class="border-0">Gender</th>
+                                    <!-- <th class="border-0">Gender</th> -->
 	                                <th class="border-0">Email</th>
-	                                <th class="border-0">Country</th>
+	                                <!-- <th class="border-0">Country</th> -->
 	                                <th class="border-0">Registered</th>
                                     <th class="border-0">Last Login</th>
                                     <th class="border-0">Spent time</th>
@@ -99,9 +99,8 @@
 	                                    <div class="m-r-10 text-center"><img src="@if($user->profile_image == "default.png") {{url('public/')}}/{{$user->profile_image}} @else {{url('public/profile-images')}}/{{$user->profile_image}}  @endif" alt="user" class="rounded" width="30"></div>
 	                                </td>
 	                                <td>{{$user->first_name}} {{$user->last_name}}</td>
-                                    <td>{{$user->gender}}</td>
+                                    <!-- <td>{{$user->gender}}</td> -->
 	                                <td>{{$user->email}}</td>
-	                                <td>{{ @\BrightNucleus\CountryCodes\Country::getNameFromCode($user->country)}}</td>
 	                                <td>{{date('d-M-Y',strtotime($user->created_at))}}</td>
                                     <td>@if(!is_null($user->login_at)){{$user->login_at->diffForHumans()}} @endif </td>
                                     <td>@if(is_null($user->spent_time)) 0 @else{{$user->spent_time}}@endif min</td>

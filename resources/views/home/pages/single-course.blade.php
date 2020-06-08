@@ -106,6 +106,13 @@
         font-size: 15px;
         margin: -25px 5px 0;
     }
+    .login_info h2 br {
+        content: ' '
+    }
+
+    .login_info h2 br:after {
+        content: ' '
+    }
 </style>
 @endpush
 
@@ -115,7 +122,7 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="login_info">
-                    <h2 class="f_p f_700 f_size_40 t_color3 mb_20">{{$course->course_title}}</h2>
+                    <h2 class="f_p f_700 f_size_40 t_color3 mb_20"><?php echo strip_tags($course->course_title, '<br>') ?></h2>
                     <p>
                     {{$course->course_description}}
                     </p>
@@ -266,7 +273,7 @@
             </div>
             <div class="row pos_service_info">
                 <div class="col-lg-8 col-sm-6">
-                    <img class="protype_img wow fadeInRight" data-wow-delay="0.3s" src="{{url('public/assets/img/seo/online-course-with-certificate08.png')}}">
+                    <img class="protype_img wow fadeInRight" data-wow-delay="0.3s" src="{{url('public/courses-certificate')}}/{{$course->course_certificate}}" alt="Course Certificate ...">
                 </div>
                 <div class="col-lg-4 col-sm-6">
                     <div class="hosting_service_item">
