@@ -41,8 +41,8 @@ class indexController extends Controller
       $request->validate([
             'name' => 'required|min:5|max:50',
             'email' => 'required|email',
-            'subject' => 'required|min:20',
-            'message' => 'required|min:150',
+            'subject' => 'required',
+            'message' => 'required',
         ]);
 
       $details = [

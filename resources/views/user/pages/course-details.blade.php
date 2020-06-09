@@ -6,6 +6,13 @@
     pointer-events: none;
     opacity: 0.4;
   }
+  .text-caption h2 br {
+        content: ' '
+    }
+
+    .text-caption h2 br:after {
+        content: ' '
+    }
 </style>
 <!-- content push wrapper -->
 <div class="st-pusher" id="conte">
@@ -40,7 +47,7 @@
                       <div class="media-body text-caption text-blue">
                         <h2 style="font-size: 33px;">
                           <img src="{{url('public/courses-icons')}}/{{@$course->course_icon}}" alt="Course Icon">
-                          {{$course->course_title}}</h2>
+                         <?php echo strip_tags($course->course_title, '<br>') ?></h2>
                       </div>
                       <div class="media-right">
                         <h5 class="autoplay">

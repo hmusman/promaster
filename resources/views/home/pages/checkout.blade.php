@@ -254,7 +254,7 @@
                                       });
                                     },
                                 onCancel: function (data) {
-                                    window.location.href = 'https://promastergips.com/user/checkout';
+                                    window.location.href = 'https://promastersgips.com/user/checkout';
                                 },
                                 onApprove: function(data, actions) {
                                    // This function captures the funds from the transaction
@@ -264,7 +264,7 @@
                                     data: {'course_ids': course_ids, 'deal_ids': deal_ids},
                                     success: function(response){
                                         console.log('i am working good....');
-                                        window.location.href = 'https://promastergips.com/user/courses';
+                                        window.location.href = 'https://promastersgips.com/user/courses';
                                     }
                                    });
                                 }
