@@ -17,7 +17,7 @@ class courseController extends Controller
     public function index($id){
     	$course = course::where("id",$id)->first();
  		
- 		$deals = deals::where('deal_type', 'Course')->get();
+ 		$deals = deals::where('deal_type', 'Course')->orderBy('deal_price', 'ASC')->get();
     	
     	return view('home.pages.single-course',compact('course','deals'));
     }
