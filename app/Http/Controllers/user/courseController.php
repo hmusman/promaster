@@ -33,6 +33,7 @@ class courseController extends Controller
     	$courses = course::all();
         $pcourse = usercourse::where('user_id', Auth::id())->get();
         $pdeals = userdeals::where('user_id', Auth::id())->get();
+        // dd($pdeals);
         $CIDS = array();
         $DIDS = array();
         $DCIDS = array();
@@ -42,6 +43,7 @@ class courseController extends Controller
             foreach($pcourse as $pc){
 
                 $Cids = json_decode($pc->course_id);
+                // dd($Cids);
                 $CIDS = array_merge($CIDS, $Cids);
             }
 
@@ -51,18 +53,14 @@ class courseController extends Controller
             foreach($pdeals as $pd){
 
                 $Cids = json_decode($pd->deal_id);
-                if(!empty($Cids)){
-                    $DIDS = array_merge($DIDS,$Cids);
-                }
+                $DIDS = array_merge($DIDS, $Cids);
             }
 
             $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
             // dd($pdealss);
             foreach ($pdealss as $deals) {
                 $dcids = json_decode($deals->course_id);
-                if(!empty($dcids)){
-                    $DCIDS = array_merge($DCIDS,$dcids);
-                }
+                $DCIDS = array_merge($DCIDS,$dcids);
             }
             $dcourses = course::whereIn('id', $DCIDS)->get();
         }

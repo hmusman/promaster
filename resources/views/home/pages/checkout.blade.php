@@ -12,7 +12,15 @@
 </section>
 @endsection
 @section('section-2')
+<style>
+.title br {
+    content: ' '
+}
 
+.title br:after {
+    content: ' '
+}
+</style>
 
     <!--============= Shopping Cart ===============-->
     <section class="checkout_area bg_color sec_pad">
@@ -129,7 +137,7 @@
                                         <!-- <input type="hidden" name="cids" value="@php var_export($coursesID); @endphp" id="CIDS"> -->
                                         @foreach($courses as $key => $course)
                                         <tr class="order_item">
-                                            <td>{{@$course->getCourse->course_title}} </td>
+                                            <td class="title"><?php echo strip_tags(@$course->getCourse->course_title, '<br>') ?></td>
                                             <td class="price"><span class="save" style="  color: #999999;">${{number_format(@$course->getCourse->price,2)}}</span> ${{number_format(@$course->getCourse->price,2)}}</td>
                                         </tr>
                                         @endforeach
@@ -246,7 +254,7 @@
                                       });
                                     },
                                 onCancel: function (data) {
-                                    window.location.href = 'https://promastersgips.com/user/checkout';
+                                    window.location.href = 'https://promastergips.com/user/checkout';
                                 },
                                 onApprove: function(data, actions) {
                                    // This function captures the funds from the transaction
@@ -255,8 +263,8 @@
                                     type: 'get',
                                     data: {'course_ids': course_ids, 'deal_ids': deal_ids},
                                     success: function(response){
-                                        console.log('i am working good....')
-                                        window.location.href = 'https://promastersgips.com/user/courses';
+                                        console.log('i am working good....');
+                                        window.location.href = 'https://promastergips.com/user/courses';
                                     }
                                    });
                                 }

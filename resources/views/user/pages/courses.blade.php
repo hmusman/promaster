@@ -152,7 +152,7 @@
                            <div class="panel-heading">
                             <div class="media  v-middle">
                               <div class="media-body text-caption text-blue">
-                                <a class="course-title" href="#" style="font-size: 15px;font-weight: 500;">{{$course->course_title}}</a>
+                                <a class="course-title" href="#" style="font-size: 15px;font-weight: 500;"><?php echo strip_tags($course->course_title, '<br>') ?></a>
                               </div>
                               
                               <div class="media-right">

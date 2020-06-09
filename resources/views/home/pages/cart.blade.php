@@ -32,6 +32,13 @@ th{
 	font-size: 19px;
     font-weight: 600;
 }
+.title br {
+    content: ' '
+}
+
+.title br:after {
+    content: ' '
+}
 </style>
 
 <div id="neuron-cart" class="neuron-cart pt-95 pb-100 md-pt-76 md-pb-80">
@@ -81,7 +88,7 @@ th{
 					 	  </form>
 				        </span>
 				    </td>
-					<td><a href="#"><img style="height: 150px;margin-top: 10px;" src="{{url('public/course-banners')}}/{{$course->getCourse->course_banner}}" alt="Product Image"></a><h6>{{@$course->getCourse->course_title}}</h6></td>
+					<td><a href="#"><img style="height: 150px;margin-top: 10px;" src="{{url('public/course-banners')}}/{{$course->getCourse->course_banner}}" alt="Product Image"></a><h6 class="title"><?php echo strip_tags(@$course->getCourse->course_title, '<br>') ?></h6></td>
 					<td>${{number_format(@$course->getCourse->price,2)}}</td>
 				</tr>
 				@endforeach
