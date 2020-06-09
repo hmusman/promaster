@@ -53,7 +53,7 @@ class indexController extends Controller
       ];
       // dd($details);
 
-      \Mail::to('fat32aa@gmail.com')->send(new ContactMail($details));
+      \Mail::to('info@promastersgips.com')->send(new ContactMail($details));
 
       Session::flash('message', "Special thanks for contacting us.");
       return Redirect::back();

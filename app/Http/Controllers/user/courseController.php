@@ -51,15 +51,18 @@ class courseController extends Controller
             foreach($pdeals as $pd){
 
                 $Cids = json_decode($pd->deal_id);
-                $DIDS = array_merge($DIDS,$Cids);
+                if(!empty($Cids)){
+                    $DIDS = array_merge($DIDS,$Cids);
+                }
             }
 
             $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
             // dd($pdealss);
             foreach ($pdealss as $deals) {
                 $dcids = json_decode($deals->course_id);
-
-                $DCIDS = array_merge($DCIDS,$dcids);
+                if(!empty($dcids)){
+                    $DCIDS = array_merge($DCIDS,$dcids);
+                }
             }
             $dcourses = course::whereIn('id', $DCIDS)->get();
         }

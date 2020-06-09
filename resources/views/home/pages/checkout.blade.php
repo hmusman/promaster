@@ -146,7 +146,7 @@
                                         
                                         <tr class="subtotal">
                                             <td class="price">Original Price</td>
-                                            <td class="price">
+                                            <td class="price" id="total_price">
                                             @if($deals)
                                                 ${{number_format($total + $deals->deal_price, 2)}}
                                             @else
@@ -196,7 +196,72 @@
                             <div id="paypal-button-container"></div>
                         </div>
                         <script>
-                            paypal.Buttons().render('#paypal-button-container');
+                            
+                            $(document).ready(function(){
+                                var grand_total = 0;
+                                var course_ids;
+                                var deal_ids;
+                                @php $grand_total = 0; @endphp
+                                 @if(count($courses) > 0 || $deals)
+                                        @php $total = 0; $products = array(); $coursesID = array(); $dealID = array(); 
+                                        
+                                        foreach($courses as $key => $course){
+                                                $total = @$course->getCourse->price + $total;
+                                                    $coursesID[] = $course->getCourse->id;
+                                                $course_title = @$course->getCourse->course_title;
+                                                $course_price = number_format(@$course->getCourse->price,2);
+                                        }
+                                        if($deals){
+                                            $dealID[] = $deals->id;
+                                            $deal_name = $deals->deal_name;
+                                            $deal_price = number_format($deals->deal_price,2);
+                                        }
+
+                                        if($deals){
+                                                $grand_total = number_format($total + $deals->deal_price, 2);
+                                        }else{
+                                                $grand_total = number_format($total, 2);
+                                        }
+
+                                        @endphp
+                                @endif
+                                grand_total = @php echo $grand_total; @endphp;
+                                alert(grand_total);
+                                course_ids = @php echo json_encode($coursesID); @endphp;
+                                deal_ids = @php echo json_encode($dealID); @endphp;
+
+                                console.log(course_ids);
+                                console.log(deal_ids);
+
+                                paypal.Buttons({
+
+                                    createOrder: function(data, actions) {
+                                      // This function sets up the details of the transaction, including the amount and line item details.
+                                      return actions.order.create({
+                                        purchase_units: [{
+                                          amount: {
+                                            value: grand_total
+                                          },
+                                        }]
+                                      });
+                                    },
+                                onCancel: function (data) {
+                                    window.location.href = 'https://promastersgips.com/user/checkout';
+                                },
+                                onApprove: function(data, actions) {
+                                   // This function captures the funds from the transaction
+                                   $.ajax({
+                                    url: '<?php echo url('user/payment') ?>',
+                                    type: 'get',
+                                    data: {'course_ids': course_ids, 'deal_ids': deal_ids},
+                                    success: function(response){
+                                        console.log('i am working good....')
+                                        window.location.href = 'https://promastersgips.com/user/courses';
+                                    }
+                                   });
+                                }
+                              }).render('#paypal-button-container');
+                            });
                         </script> 
 
                     </div>
