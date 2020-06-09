@@ -226,7 +226,7 @@
                                         @endphp
                                 @endif
                                 grand_total = @php echo $grand_total; @endphp;
-                                alert(grand_total);
+                                // alert(grand_total);
                                 course_ids = @php echo json_encode($coursesID); @endphp;
                                 deal_ids = @php echo json_encode($dealID); @endphp;
 
