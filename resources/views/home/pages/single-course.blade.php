@@ -180,7 +180,7 @@
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            <p class="price"><span class="save" style="  color: #999999;">${{number_format($course->price, 2)}}</span><br>
+                            <p class="price"><span class="save" style="  color: #999999;">${{number_format($course->regular_price, 2)}}</span><br>
                                 <span class="price f_700 f_size_40 t_color2">${{number_format($course->price, 2)}}</span>
                                 @auth
                                 <form action="{{route('cart.add')}}" method="post" class="cart-forms add-to-cart-form">
@@ -266,7 +266,7 @@
                 </div>
             </div>
             <div class="col-lg-8 col-sm-6">
-                <img class="protype_img wow fadeInRight" data-wow-delay="0.3s" src="{{url('public/assets/img/seo/lesson-course1.png')}}">
+                <img class="protype_img wow fadeInRight" data-wow-delay="0.3s" src="{{url('public/courses-view')}}/{{$course->course_view}}">
 
 
             </div>

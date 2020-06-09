@@ -19,6 +19,7 @@
     .gradiant{background: linear-gradient(-150deg, #12b4c8, #6669e6) !important;}
     .no_display{display: none !important;}
     .course_certificate_preview_outter {display: none;}
+    .course_view_preview_outter {display: none;}
 </style>
 
     <div class="row">
@@ -49,8 +50,12 @@
                                                     <label>Course Title</label>
                                                     <input type="text" value="{{@$course->course_title}}" name="course_title" class="form-control required">
                                                 </div>
-                                                <div class="col-6 col-sm-6 col-lg-6">
-                                                    <label>Course Price</label>
+                                                <div class="col-3 col-sm-3 col-lg-3">
+                                                    <label>Regular Price</label>
+                                                    <input type="number" value="{{@$course->regular_price}}" name="regular_price" class="form-control required">
+                                                </div>
+                                                <div class="col-3 col-sm-3 col-lg-3">
+                                                    <label>Sale Price</label>
                                                     <input type="number" value="{{@$course->price}}" name="price" class="form-control required">
                                                 </div>
                                             </div>
@@ -124,6 +129,18 @@
                                                 <div class="col-3 col-sm-3 col-lg-3 p-0 m-0 text-center mt-5">
                                                     <div class="row p-0 m-0">
                                                         <div class="col-sm-12 mb-4">
+                                                            <label>Course View</label><br>
+                                                            <button type="button" class="gradiant choose mt-2 choose-file font-size mx-auto">Choose File</button>
+                                                            <input type="file" name="course_view" class="d-none course_view_upload_btn @if(!@$edit) required @endif" accept="image/*">
+                                                        </div>
+                                                        <div class="mx-auto text-center course_view_preview_outter @if(@$edit) d-block @endif">
+                                                            <img src="@if(@$edit) {{url('public/courses-view')}}/{{@$course->course_view}} @else http://via.placeholder.com/250x195 @endif" class="img-thumbnail banner_image_preview">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-3 col-sm-3 col-lg-3 p-0 m-0 text-center mt-5">
+                                                    <div class="row p-0 m-0">
+                                                        <div class="col-sm-12 mb-4">
                                                             <label>Course Ebook</label><br>
                                                             <button type="button" class="gradiant choose mt-2 choose-file font-size mx-auto">Choose File</button>
                                                             <input type="file" class="d-none ebook_upload_btn @if(!@$edit) required @endif" name="course_ebook"  accept=".pdf">
@@ -142,7 +159,7 @@
                                                             <input type="file" class="d-none video ebook_upload_btn @if(!@$edit) required @endif" name="course_video"  accept="video/*">
                                                         </div>
                                                         <div class="text-center video_box @if(@$edit) d-block @endif mx-auto @if(!@$edit) no_display @endif">
-                                                           <video width="400" controls>
+                                                           <video width="300" controls>
                                                               <source src="@if(@$edit) {{url('public/courses-videos')}}/{{@$course->course_video}} @endif" id="video_here">
                                                                 Your browser does not support HTML5 video.
                                                             </video>
@@ -278,6 +295,11 @@
           var obj = $(this).parent().next().children('img');
           readURL(this,obj);
           $('.course_certificate_preview_outter').show();
+        })
+        $(".course_view_upload_btn").change(function() {
+          var obj = $(this).parent().next().children('img');
+          readURL(this,obj);
+          $('.course_view_preview_outter').show();
         })
         $(".icon_upload_btn").change(function() {
           var obj = $(this).parent().next().children('img');

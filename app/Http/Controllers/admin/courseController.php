@@ -40,6 +40,13 @@ class courseController extends Controller{
             $courseCertificate = md5(rand(1111111111,999999999)).'.'.$ext;
             $file->move(public_path().'/courses-certificate/' , $courseCertificate);   
          }
+
+         if($request->hasfile('course_view')){
+            $file = input::file('course_view');
+            $ext=$file->getClientOriginalExtension();
+            $courseView = md5(rand(1111111111,999999999)).'.'.$ext;
+            $file->move(public_path().'/courses-view/' , $courseView);   
+         }
          
          if($request->hasfile('course_banner')){
             $file = input::file('course_banner');
@@ -69,11 +76,13 @@ class courseController extends Controller{
             "course_title" => input::get('course_title'),
             "course_description" => input::get('course_description'),
             "price" => input::get('price'),
+            "regular_price" => input::get('regular_price'),
             "course_thumbnail" => @$courseThumbnail,
             "course_ebook" => @$courseEbook,
             "course_banner" => @$courseBanner,
             "certificate_background" => @$certificateBackground,
             "course_certificate" => @$courseCertificate,
+            "course_view" => @$courseView,
             "course_video" => @$courseVideo,
             "course_icon" => @$courseIcon,
         );
@@ -141,6 +150,16 @@ class courseController extends Controller{
             $file->move(public_path().'/courses-certificate/' , $courseCertificate); 
             $data["course_certificate"] = $courseCertificate;    
          }
+         if($request->hasfile('course_view')){
+            if(File::exists($path.'/courses-view/'.$course->course_view)) {
+                File::delete($path.'/courses-view/'.$course->course_view);
+            }
+            $file = input::file('course_view');
+            $ext=$file->getClientOriginalExtension();
+            $courseView = md5(rand(1111111111,999999999)).'.'.$ext;
+            $file->move(public_path().'/courses-view/' , $courseView); 
+            $data["course_view"] = $courseView;    
+         }
          if($request->hasfile('course_banner')){
             if(File::exists($path.'/course-banners/'.$course->course_banner)) {
                 File::delete($path.'/course-banners/'.$course->course_banner);
@@ -187,6 +206,7 @@ class courseController extends Controller{
         $data["course_title"] = input::get('course_title');
         $data["course_description"] = input::get('course_description');
         $data["price"] = input::get('price');
+        $data["regular_price"] = input::get('regular_price');
         DB::table('courses')->where("id",$id)->update($data);
         $contentIDs = input::get('content_ids');
         // 
