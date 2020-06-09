@@ -95,11 +95,11 @@
         font-size: 18px;
     }
 
-    .video_info {
-        background: url({{url('public/assets/img/seo/ilus9.jpg')}});
+    /* .video_info {
+        background: url({{url('public/assets/img/seo/ilus9.jpg')}}); 
         background-size: cover;
         background-repeat: no-repeat;
-    }
+    } */
 
     .buy_btn {
         padding: 0px 17px;
@@ -161,10 +161,9 @@
                     <div class="video_content" style="text-align:center;">
                             <style>
                                 .video_info {
-                                    background: url({{url('public/course-banners')}}/{{$course->course_banner}}) !important;
+                                    background: url({{url('public/course-banners')}}/{{$course->course_banner}});
                                     background-size: cover;
-                                    background-repeat: no-repeat;
-                                }
+                                    background-repeat: no-repeat;                            }
                             </style>
                             @if($course->course_video != NULL)
                             

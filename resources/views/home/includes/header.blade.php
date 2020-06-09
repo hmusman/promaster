@@ -35,6 +35,9 @@
             font-weight: 600;
             margin-top: -1%;
         }
+        .header_area.navbar_fixed{
+            z-index: 1000;
+        }
     </style>
 
 </head>

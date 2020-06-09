@@ -32,7 +32,8 @@
     }
 </style>
 <?php 
- $con = mysqli_connect('localhost','root','','laravel-badges'); ?>
+//  $con = mysqli_connect('localhost','root','','laravel-badges'); 
+ ?>
 	<div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 success_message error-message">{!! session('message') !!}</div>
 		@if(count($deals) > 0)

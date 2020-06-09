@@ -19,7 +19,7 @@
         <div class="container">
             <form action="{{url('user/payment')}}" method="get">
                 <div class="row">
-                    <div class="col-md-6">
+                    <!-- <div class="col-md-6">
                         <div class="checkout_content">
                             
                             <div class="collapse tab_content" id="coupon">
@@ -108,7 +108,7 @@
                            
                           
                         </div>
-                    </div>
+                    </div> -->
                     <div class="col-md-6">
                         <div class="cart_total_box">
                             <h3 class="checkout_title f_p f_600 f_size_20 mb_20">
@@ -171,15 +171,34 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <div class="condition">
+                                <!-- <div class="condition">
                                     <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
                                     <input type="checkbox" value="None" id="squarednine" name="check">
                                     <label class="l_text" for="squarednine">I have read and agree to the website <a href="" data-toggle="modal" data-target=".terms">terms and conditions </a><span>*</span></label>
-                                </div><br><br>
-                                <button type="submit" class="button" id="OrderButton">Place Order</button>
+                                </div><br><br> -->
+                                <!-- <button type="submit" class="button" id="OrderButton">Place Order</button> -->
                                 <!-- <a href="{{ route('payment') }}" class="button" title="Place Order" style="padding: 16px 162px 18px 162px;">Place Order</a> -->
                             </div>
                         </div>
+                    </div>
+                    <div class="col-md-6">
+                        
+                        
+                        <script src="https://www.paypal.com/sdk/js?client-id=Adsb5yKhtCT-Bt97cc3A0h6eM0iZTfYAp3r2lAv_PFdVpN3HVzuVaYOImyfBufDtfpa1hNt_SIxsRxAp"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+                        </script>
+                        
+                        <div class="cart_total_box">
+                            <div class="condition">
+                                <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+                                <input type="checkbox" value="None" id="squarednine" name="check">
+                                <label class="l_text" for="squarednine">I have read and agree to the website <a href="" data-toggle="modal" data-target=".terms">terms and conditions </a><span>*</span></label>
+                            </div>
+                            <div id="paypal-button-container"></div>
+                        </div>
+                        <script>
+                            paypal.Buttons().render('#paypal-button-container');
+                        </script> 
+
                     </div>
                 </div>
             </form>
