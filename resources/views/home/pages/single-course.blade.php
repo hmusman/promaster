@@ -104,7 +104,7 @@
     .buy_btn {
         padding: 0px 17px;
         font-size: 15px;
-        margin: -25px 5px 0;
+        margin: -60px 5px 0;
     }
     .login_info h2 br {
         content: ' '

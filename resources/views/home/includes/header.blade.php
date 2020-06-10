@@ -38,6 +38,9 @@
         .header_area.navbar_fixed{
             z-index: 1000;
         }
+        .job_deatails_content ul li i{
+            top:-2px;
+        }
     </style>
 
 </head>
