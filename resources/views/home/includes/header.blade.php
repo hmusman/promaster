@@ -133,38 +133,38 @@
                             </li>
                             @if(Request::is('ebooks') || Request::is('cart') || Request::is('trending-ebooks'))
                             <li class="nav-item  mega_menu">
-                                <a class="nav-link" href="{{url('/'). '#how'}}" aria-expanded="false">
+                                <a class="nav-link" href="{{url('/')}}#how" aria-expanded="false">
                                     How It Works
                                 </a>
 
                             </li>
                             @else
                             <li class="nav-item  mega_menu">
-                                <a class="nav-link" href="#how" aria-expanded="false">
+                                <a class="nav-link" href="{{url('/')}}#how" aria-expanded="false">
                                     How It Works
                                 </a>
 
                             </li>
                             @endif
                             @if(Request::is('ebooks') || Request::is('cart') || Request::is('trending-ebooks'))
-                            <li class=" nav-item"><a class="nav-link scroll" href="{{url('/') . '#courses'}}">Courses</a>
+                            <li class=" nav-item"><a class="nav-link scroll" href="{{url('/')}}#courses">Courses</a>
 
                             </li>
                             @else
-                            <li class=" nav-item"><a class="nav-link scroll" href="#courses">Courses</a>
+                            <li class=" nav-item"><a class="nav-link scroll" href="{{url('/')}}#courses">Courses</a>
 
                             </li>
                             @endif
                             @if(Request::is('ebooks') || Request::is('cart') || Request::is('trending-ebooks'))
                             <li class="nav-item">
-                                <a class="nav-link " href="{{url('/') . '#pricing'}}">
+                                <a class="nav-link " href="{{url('/')}}#pricing">
                                     Pricing
                                 </a>
 
                             </li>
                             @else
                             <li class="nav-item">
-                                <a class="nav-link " href="#pricing">
+                                <a class="nav-link " href="{{url('/')}}#pricing">
                                     Pricing
                                 </a>
 
