@@ -44,7 +44,7 @@
                         <div class="extra">
                             <div class="checkbox remember">
                                 <label>
-                                    <input type="checkbox" name="terms_and_condition"> I Agree to the <a data-toggle="modal" data-target="#Conditions"
+                                    <input type="checkbox" name="terms_and_condition"> I Agree to the <a data-toggle="modal" data-target=".terms"
                                         href="#">Terms and Conditions</a> of this website
                                 </label>
                                 @error('terms_and_condition')

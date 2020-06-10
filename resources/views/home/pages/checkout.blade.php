@@ -161,10 +161,10 @@
                                                 ${{number_format($total, 2)}}
                                             @endif</td>
                                         </tr>
-                                        <!-- <tr class="subtotal">
+                                        <tr class="subtotal">
                                             <td class="price">Covid-19 Discount</td>
                                             <td class="price">-$200</td>
-                                        </tr> -->
+                                        </tr>
                                         <tr class="subtotal order">
                                             <td class="price">Total</td>
                                             <td class="total">

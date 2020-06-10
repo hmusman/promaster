@@ -149,10 +149,18 @@
                                         <h5 class="f_p f_size_25 f_600 t_color2 ">{{$featureDeal->deal_name}}</h5>
                                        
                                         <ul class="list-unstyled p_list" >
+                                          @if(!empty($featureDeal->about1))
                                             <li><i class="ti-check"></i>{{@$featureDeal->about1}}</li>
+                                          @endif
+                                          @if(!empty($featureDeal->about2))
                                             <li><i class="ti-check"></i>{{@$featureDeal->about2}}</li>
+                                          @endif
+                                          @if(!empty($featureDeal->about3))
                                             <li><i class="ti-check"></i>{{@$featureDeal->about3}}</li>
+                                          @endif
+                                          @if(!empty($featureDeal->about4))
                                             <li><i class="ti-check"></i>{{@$featureDeal->about4}}</li>
+                                          @endif
                                         </ul>
                                     </div>
                                 
@@ -216,10 +224,18 @@
                                     @endif
                                     <div class="price f_700 f_size_30 t_color2" style="font-size: 25px;"><span class="before">${{number_format($deal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($deal->deal_price,2)}} </div>
                                     <ul class="list-unstyled p_list">
-                                       <li><i class="ti-check"></i>{{$deal->about1}}</li>
+                                      @if(!empty($deal->about1))
+                                        <li><i class="ti-check"></i>{{$deal->about1}}</li>
+                                      @endif
+                                      @if(!empty($deal->about2))
                                         <li><i class="ti-check"></i>{{$deal->about2}}</li>
+                                      @endif
+                                      @if(!empty($deal->about3))
                                         <li><i class="ti-check"></i>{{$deal->about3}}</li>
+                                      @endif
+                                      @if(!empty($deal->about4))
                                         <li><i class="ti-check"></i>{{$deal->about4}}</li>
+                                      @endif
                                     </ul>
                                      @auth
                                       <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8">

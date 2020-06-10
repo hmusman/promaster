@@ -27,12 +27,12 @@ class settingController extends Controller
         // dd($request);
     	$validator  = $request->validate([
 	        'first_name' => 'required|min:3|max:50',
-            'last_name' => 'required|min:3|max:50',
+            // 'last_name' => 'required|min:3|max:50',
 	    ]);
 
 	    $profile = array(
             "first_name"=>$request->first_name,
-         	"last_name"=>$request->last_name,
+         	// "last_name"=>$request->last_name,
          );
         // dd($request);
 	    $path = public_path();

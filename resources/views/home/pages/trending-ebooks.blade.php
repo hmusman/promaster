@@ -261,9 +261,9 @@
             <div class="row ebook">
                 @foreach($courses as $course)
                 <div class="col-2-5">
-                    <img src="{{url('public/assets/img/seo/ilus2.png')}}" width="200px">
+                    <img src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" width="200px">
                     <div class="book-about">
-                        <h5>{{$course->course_title}}</h5>
+                        <h5><?php echo strip_tags($course->course_title, '<br>') ?></h5>
                         <p>Professional eBook</p>
                         <img src="https://getphotostick.io/wp-content/uploads/five-stars-1.jpg"><br>
                         <span class="book-price">USD {{number_format($course->price,2)}}</span>

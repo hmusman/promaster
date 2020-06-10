@@ -132,22 +132,78 @@
                         <h3 class="f_p f_size_22 f_500 t_color3 mb_20">In this course you will learn to:</h3>
 
                         <ul class="list-unstyled mb-0">
-                            @php $i = 1; @endphp
-                            @foreach($course->getTableOfContent as $key => $content)
-                            <li><i class="ti-arrow-right"></i> {{@$content->lesson_title}}</li>
-                            <!-- <h1>{{$i}}</h1> -->
-                            @php $i++ @endphp
-                            @if($i >=8)
-                                @break
+                            @if(strip_tags($course->course_title, '<br>') == 'Organizational<br>Leadership')
+                                 <li><i class="ti-arrow-right"></i>  Target your organizational leadership capabilities and polish them</li>
+                                  <li><i class="ti-arrow-right"></i>Develop the most in-demand leadership qualities</li>
+                                  <li><i class="ti-arrow-right"></i> Learn how to embrace criticism and cherish appreciation</li>
+                                  <li><i class="ti-arrow-right"></i>  Learn how to lead your organization into a successful future</li>
+                                  <li><i class="ti-arrow-right"></i> Focus and work on self-growth for becoming an inspiring leader</li>
                             @endif
-                            @endforeach
-                           <!--  <li><i class="ti-arrow-right"></i>Ideate creative strategies and improvisation</li>
-                            <li><i class="ti-arrow-right"></i> Get rid of laziness and procrastination for creative implementation of
-                                ideas</li>
-                            <li><i class="ti-arrow-right"></i> Circumvent any dispute by mastering the art of communication and
-                                reasoning</li>
-                            <li><i class="ti-arrow-right"></i> Acquire greater control over learning and creative skills</li> -->
+                            @if(strip_tags($course->course_title, '<br>') == 'Effective<br>Communication')
+                                 <li><i class="ti-arrow-right"></i>Apply modern communication techniques to your daily conversations</li>
+                                  <li><i class="ti-arrow-right"></i>Master advanced communication systems and strategies</li>
+                                  <li><i class="ti-arrow-right"></i> Identify and understand communication elements</li>
+                                  <li><i class="ti-arrow-right"></i> Use different ways to add meaning to your conversations</li>
+                                  <li><i class="ti-arrow-right"></i> How to make your communication goal-oriented</li>
+                                   <li><i class="ti-arrow-right"></i>Understand when and how to use questions and statements for your benefit</li>
+                            @endif
+                            @if(strip_tags($course->course_title, '<br>') == 'Emotional<br>Intelligence')
+                                 <li><i class="ti-arrow-right"></i> Use the different principles of personal and professional Emotional development</li>
+                                  <li><i class="ti-arrow-right"></i>Adhere to these principles for bringing positive growth in your organization</li>
+                                  <li><i class="ti-arrow-right"></i> Become an icon of emotional intelligence in your professional circle</li>
+                                  <li><i class="ti-arrow-right"></i>  Discover and evaluate your capabilities to put them on better use upon need and demand</li>
+                            @endif
+                            @if(strip_tags($course->course_title, '<br>') == 'Customer Service<br>Management')
+                                <li><i class="ti-arrow-right"></i>  Discover all the ways to acquire and satisfy customers</li>
+                                  <li><i class="ti-arrow-right"></i>Identify the shortcomings in your skills to improve your customer service abilities</li>
+                                  <li><i class="ti-arrow-right"></i> Execute strategies to ensure returning customers</li>
+                                  <li><i class="ti-arrow-right"></i> Plan and develop different ways to impress customers by exceeding their expectations</li>
+                            @endif
+                            @if(strip_tags($course->course_title, '<br>') == 'Work<br>Ethics')
+                                <li><i class="ti-arrow-right"></i>  Improve your knowledge and understanding of work ethics</li>
+                                  <li><i class="ti-arrow-right"></i>Become more presentable and reliable for your company and team members</li>
+                                  <li><i class="ti-arrow-right"></i> Practice patience and tolerance for developing ethics in the workplace</li>
+                                  <li><i class="ti-arrow-right"></i>  Identify bad behaviors and habits to get rid of them for the success of your career </li>
+                            @endif
+                            @if(strip_tags($course->course_title, '<br>') == 'Initiative and<br>Problem Solving')
+                                <li><i class="ti-arrow-right"></i>  Identify and solve impending problems</li>
+                                  <li><i class="ti-arrow-right"></i>Develop and take initiative at work</li>
+                                  <li><i class="ti-arrow-right"></i> Improve your initiative skills to be more efficient in your career</li>
+                                  <li><i class="ti-arrow-right"></i>  Be more inclined to help coworkers</li>
+                                  <li><i class="ti-arrow-right"></i>Initiate decision making process</li>
+                                  <li><i class="ti-arrow-right"></i>Promote and achieve initiative and success in your team</li>
+                            @endif
+                            @if(strip_tags($course->course_title, '<br>') == 'Teamwork and<br>Collaboration')
+                                <li><i class="ti-arrow-right"></i>  Identify and solve impending problems</li>
+                                  <li><i class="ti-arrow-right"></i>Develop and take initiative at work</li>
+                                  <li><i class="ti-arrow-right"></i> Improve your initiative skills to be more efficient in your career</li>
+                                  <li><i class="ti-arrow-right"></i>  Be more inclined to help coworkers</li>
+                                  <li><i class="ti-arrow-right"></i>Initiate decision making process</li>
+                                  <li><i class="ti-arrow-right"></i>Promote and achieve initiative and success in your team</li>
+                            @endif
+                            @if(strip_tags($course->course_title, '<br>') == 'Time<br>Management')
+                                 <li><i class="ti-arrow-right"></i>  Control energy levels efficiently to boost your creativity for managing time appropriately </li>
+                                  <li><i class="ti-arrow-right"></i>Identify and evaluate the shortcomings in your productivity</li>
+                                  <li><i class="ti-arrow-right"></i>Devise useful time management strategies targeted at sustainable productivity boosts</li>
+                                  <li><i class="ti-arrow-right"></i> Apply different approaches to create customized personal plans to fit your time management goals </li>
+                            @endif
+                            @if(strip_tags($course->course_title, '<br>') == 'Conflict<br>Resolution')
+                                <li><i class="ti-arrow-right"></i>  Understand and accept the inevitability of contradictions and conflicts on professional and personal life</li>
+                                  <li><i class="ti-arrow-right"></i>Identify and evaluate the causes of conflicts for the sake of self-betterment</li>
+                                  <li><i class="ti-arrow-right"></i>Determine the best ways to face contradictions in the workplace</li>
+                                  <li><i class="ti-arrow-right"></i>Circumvent any dispute by mastering the art of communication and understanding</li>
+                                  <li><i class="ti-arrow-right"></i>Implement different ways to efficiently resolve conflicts</li>
 
+                            @endif
+                            @if(strip_tags($course->course_title, '<br>') == 'Creative<br>Thinking')
+                                 <li><i class="ti-arrow-right"></i> Naturally inspire a creative thought-process</li>
+                                  <li><i class="ti-arrow-right"></i>Ideate creative strategies and improvisation</li>
+                                  <li><i class="ti-arrow-right"></i> Get rid of laziness and procrastination for creative implementation of ideas</li>
+                                  <li><i class="ti-arrow-right"></i>  Circumvent any dispute by mastering the art of communication and reasoning</li>
+                                  <li><i class="ti-arrow-right"></i> Acquire greater control over learning and creative skills</li>
+
+
+                            @endif
                         </ul>
                     </div>
 
