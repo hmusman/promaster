@@ -84,7 +84,7 @@ a.download-link:hover img.download{
                            <div class="panel-heading">
                             <div class="media  v-middle">
                               <div class="media-body text-caption text-blue">
-                                <a href="organizational-leadership.html">{{$course->course_title}}</a>
+                                <a href="organizational-leadership.html"><?php echo strip_tags($course->course_title, '<br>') ?></a>
                                   
                               </div>
 
@@ -117,7 +117,7 @@ a.download-link:hover img.download{
                            <div class="panel-heading">
                             <div class="media  v-middle">
                               <div class="media-body text-caption text-blue">
-                                <a href="organizational-leadership.html">{{$course->course_title}}</a>
+                                <a href="organizational-leadership.html"><?php echo strip_tags($course->course_title, '<br>') ?></a>
                                   
                               </div>
 

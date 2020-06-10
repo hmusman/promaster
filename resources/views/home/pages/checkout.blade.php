@@ -126,9 +126,10 @@
                                 <table class="shop_table woocommerce-checkout-review-order-table">
                                     <tbody>
                                         @if(count($courses) > 0 || $deals)
-                                        @php $total = 0;$products = array(); $coursesID = array(); @endphp
+                                        @php $regtotal = 0; $total = 0;$products = array(); $coursesID = array(); @endphp
                                         @foreach($courses as $key => $course)
                                                 @php $total = @$course->getCourse->price + $total;
+                                                     $regtotal = @$course->getCourse->regular_price + $regtotal;
                                                     $coursesID[] = $course->id;
                                                 @endphp
                                             <input type="hidden" name="ids" value="{{$course->course_id}}">
@@ -138,7 +139,7 @@
                                         @foreach($courses as $key => $course)
                                         <tr class="order_item">
                                             <td class="title"><?php echo strip_tags(@$course->getCourse->course_title, '<br>') ?></td>
-                                            <td class="price"><span class="save" style="  color: #999999;">${{number_format(@$course->getCourse->price,2)}}</span> ${{number_format(@$course->getCourse->price,2)}}</td>
+                                            <td class="price"><span class="save" style="  color: #999999;">${{number_format($course->getCourse->regular_price, 2)}}</span> ${{number_format(@$course->getCourse->price,2)}}</td>
                                         </tr>
                                         @endforeach
                                         @endif
@@ -156,14 +157,19 @@
                                             <td class="price">Original Price</td>
                                             <td class="price" id="total_price">
                                             @if($deals)
-                                                ${{number_format($total + $deals->deal_price, 2)}}
+                                                ${{number_format($regtotal + $deals->bundle_price, 2)}}
                                             @else
-                                                ${{number_format($total, 2)}}
+                                                ${{number_format($regtotal, 2)}}
                                             @endif</td>
                                         </tr>
                                         <tr class="subtotal">
                                             <td class="price">Covid-19 Discount</td>
-                                            <td class="price">-$200</td>
+                                            <td class="price">
+                                            @if($deals)        
+                                                    -${{number_format(($regtotal - $total) + ($deals->bundle_price - $deals->deal_price), 2)}}
+                                            @else
+                                                     -${{number_format($regtotal - $total, 2)}}
+                                            @endif</td>
                                         </tr>
                                         <tr class="subtotal order">
                                             <td class="price">Total</td>

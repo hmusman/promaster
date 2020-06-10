@@ -312,7 +312,7 @@
                         <h5><?php echo strip_tags(@$course->course_title, '<br>') ?></h5>
                         <p>Professional eBook</p>
                         <img src="https://getphotostick.io/wp-content/uploads/five-stars-1.jpg">
-                        <span class="book-price">USD {{number_format($course->price,2)}}</span>
+                        <span class="book-price">USD {{number_format($course->price - 5,2)}}</span>
                     </div>
                     @auth
                     <form action="{{route('cart.add')}}" method="post" class="cart-forms add-to-cart-form">

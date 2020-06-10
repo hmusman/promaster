@@ -257,8 +257,11 @@
                             <p class="card-text"></p>
                             <ul class="list-unstyled p_list">
                                 @foreach($deals as $deal)
+                                @if($deal->deal_name == 'Single Course')
+                                <li></li>
+                                @else
                                 <li>
-                                    <img src="{{url('public/assets/img/price/2.png')}}"><span class="ptitle"> {{$deal->deal_name}}: </span>
+                                    <img src="@if($deal->deal_name == '2 Courses Bundle') {{url('public/assets/img/price/2.png')}} @elseif($deal->deal_name == '4 Courses Bundle') {{url('public/assets/img/price/4.png')}} @elseif($deal->deal_name == '6 Courses Bundle') {{url('public/assets/img/price/6.png')}} @elseif($deal->deal_name == 'DELUXE PACKAGE') {{url('public/assets/img/price/10.png')}} @endif"><span class="ptitle"> {{$deal->deal_name}}: </span>
                                     <p class="deals" style="margin-left: 50%;margin-top: -8%;"><span class="save" style="  color: #999999;">${{number_format($deal->bundle_price,2)}}</span><br>
                                         <span class="price f_700 save-price t_color2">${{number_format($deal->deal_price,2)}}</span>
                                         
@@ -275,6 +278,7 @@
                                         <a href="{{url('login')}}" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
                                         @endguest
                                 </li>
+                                @endif
                                 @endforeach
                                 <!-- <li>
                                     <img src="{{url('public/assets/img/price/4.png')}}"><span class="ptitle"> 4 Courses Bundle: </span>

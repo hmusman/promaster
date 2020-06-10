@@ -128,7 +128,7 @@
                            <div class="panel-heading">
                             <div class="media media-clearfix-xs-min v-middle">
                               <div class="media-body text-caption text-blue">
-                                <a href="#">{{$course->course_title}}</a>
+                                <a href="#"><?php echo strip_tags($course->course_title, '<br>') ?></a>
                               </div>
                         </div>
                        </div>
@@ -201,7 +201,7 @@
                            <div class="panel-heading">
                             <div class="media media-clearfix-xs-min v-middle">
                               <div class="media-body text-caption text-blue">
-                                <a href="#">{{$course->course_title}}</a>
+                                <a href="#"><?php echo strip_tags($course->course_title, '<br>') ?></a>
                               </div>
                         </div>
                        </div>

@@ -129,7 +129,7 @@
 	}).change(function(event){
 
 	     if(event.target == this){
-	        alert($(this).val());
+	        // alert($(this).val());
 	        var chosen = $(this).val();
 	        ar = 0;
 	        ar = chosen;
@@ -145,6 +145,7 @@
 		var about2 = document.getElementById("about2").value;
 		var about3 = document.getElementById("about3").value;
 		var about4 = document.getElementById("about4").value;
+        
         var typee = type;
 		var courses_id = ar ;
 		var flag = false;
