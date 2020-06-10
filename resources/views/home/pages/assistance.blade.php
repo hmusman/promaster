@@ -261,7 +261,7 @@
                                         After
                                         you complete a course you will be able to download it, send a copy to
                                         your registered email and
-                                        share your certificate achievement on Facebook, Twitter, and
+                                        share your certificate achievement on Facebook, Twitter, Instagram, and
                                         LinkedIn.
                                     </div>
                                 </div>
