@@ -127,15 +127,15 @@ box-shadow: 0px 0px 7px 4px rgb(245, 245, 245);
                             <div class="col-md-6">
                               <div class="form-control-material">
                                 <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Your first name" required="" name="first_name" value="{{ Auth::user()->first_name }}">
-                                <label for="exampleInputFirstName">First Name</label>
+                                <label for="exampleInputFirstName">Full Name</label>
                               </div>
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                               <div class="form-control-material">
                                 <input type="text" class="form-control" id="exampleInputLastName" placeholder="Your last name" required="" name="last_name" value="{{ Auth::user()->last_name }}">
                                 <label for="exampleInputLastName">Last Name</label>
                               </div>
-                            </div>
+                            </div> -->
                           </div>
                         </div>
                       </div>
