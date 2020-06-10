@@ -139,7 +139,7 @@
                                   <li><i class="ti-arrow-right"></i>  Learn how to lead your organization into a successful future</li>
                                   <li><i class="ti-arrow-right"></i> Focus and work on self-growth for becoming an inspiring leader</li>
                             @endif
-                            @if(strip_tags($course->course_title, '<br>') == 'Effective<br>Communication')
+                            @if(strip_tags($course->course_title, '<br>') == 'Effective Communication')
                                  <li><i class="ti-arrow-right"></i>Apply modern communication techniques to your daily conversations</li>
                                   <li><i class="ti-arrow-right"></i>Master advanced communication systems and strategies</li>
                                   <li><i class="ti-arrow-right"></i> Identify and understand communication elements</li>
