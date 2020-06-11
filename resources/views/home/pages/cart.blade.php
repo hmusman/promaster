@@ -48,10 +48,14 @@ th{
 				{!! session('alert') !!}
 			</div>
 		@endif 
-		@if(count($courses) > 0)
+		
+		@if(count($courses) > 0 || count($ebooks) > 0)
 		@php $total = 0;$products = array(); @endphp
 		@foreach($courses as $key => $course)
 				@php $total = @$course->getCourse->price + $total; @endphp
+		@endforeach
+		@foreach($ebooks as $key => $ebook)
+				@php $total = @$ebook->getEbook->ebook_price + $total; @endphp
 		@endforeach
 		<table id="table1">
 			<caption><h4 class="total-cart-title">Cart Totals</h4><br>
@@ -75,6 +79,7 @@ th{
 				</tr>
 			</thead>
 			<tbody>
+				@if(count($courses) > 0)
 				@foreach($courses as $key => $course)
 				@php $total = @$course->getCourse->price + $total; @endphp
 				<tr>
@@ -92,9 +97,30 @@ th{
 					<td>${{number_format(@$course->getCourse->price,2)}}</td>
 				</tr>
 				@endforeach
+				@endif
+				@if(count($ebooks) > 0)
+				@foreach($ebooks as $key => $ebook)
+				@php $total = @$ebook->getEbook->ebook_price + $total; @endphp
+				<tr>
+					
+					<td>
+						<span class="product-remove pr-30">
+                          <form action="{{route('cart.delete')}}" method="post">
+					 		@csrf
+					 		<input type="hidden" name="id" value="{{Crypt::encrypt(@$ebook->id)}}">
+					 		<button style="border: none;background: none;" type="submit" class=""> <i class="fas fa-close"></i></button> 
+					 	  </form>
+				        </span>
+				    </td>
+					<td><a href="#"><img style="height: 150px;margin-top: 10px;" src="{{url('public/ebook-thumbnails')}}/{{$ebook->getEbook->ebook_thumbnail}}" alt="Product Image"></a><h6 class="title"><?php echo strip_tags(@$ebook->getEbook->ebook_title, '<br>') ?></h6></td>
+					<td>${{number_format(@$ebook->getEbook->ebook_price,2)}}</td>
+				</tr>
+				@endforeach
+				@endif
 			</tbody>
 		</table>
-		 @else
+		@endif
+		@if(count($courses) == 0 && count($ebooks) == 0)
 			<div class="col-sm-12 col-sm" style="margin-bottom: 9%;">
 				<div class="alert alert-danger"><i class="fas fa-exclamation-triangle"></i>Cart is empty!</div>
 			</div>

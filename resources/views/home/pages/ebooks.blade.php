@@ -305,19 +305,19 @@
         </div>
         <div class="app_screen_info">
             <div class="app_screenshot_slider owl-carousel">
-                @foreach($courses as $course)
+                @foreach($ebooks as $ebook)
                 <div class="item">
-                    <img src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" width="200px">
+                    <img src="{{url('public/ebook-thumbnails')}}/{{$ebook->ebook_thumbnail}}" width="200px">
                     <div class="book-about">
-                        <h5><?php echo strip_tags(@$course->course_title, '<br>') ?></h5>
+                        <h5><?php echo strip_tags(@$ebook->ebook_title, '<br>') ?></h5>
                         <p>Professional eBook</p>
                         <img src="https://getphotostick.io/wp-content/uploads/five-stars-1.jpg">
-                        <span class="book-price">USD {{number_format($course->price - 5,2)}}</span>
+                        <span class="book-price">USD {{number_format($ebook->ebook_price,2)}}</span>
                     </div>
                     @auth
-                    <form action="{{route('cart.add')}}" method="post" class="cart-forms add-to-cart-form">
+                    <form action="{{route('cart.add.ebooks')}}" method="post" class="cart-forms add-to-cart-form">
                         @csrf
-                        <input type="hidden" name="id" value="{{Crypt::encrypt($course->id)}}">
+                        <input type="hidden" name="id" value="{{Crypt::encrypt($ebook->id)}}">
                         <a class="cart-link add-to-cart-btn" href="#"><img src="https://thumbs.gfycat.com/BogusEmptyBrontosaurus-max-1mb.gif" height="19" width="19"><i class="ti-shopping-cart"></i>Add To Cart</a>
                         <!-- <button type="submit" class="cart-link  "><img src="https://thumbs.gfycat.com/BogusEmptyBrontosaurus-max-1mb.gif" height="19" width="19"><i class="ti-shopping-cart"></i> Add to Cart</button> -->
                     </form>
@@ -1138,6 +1138,8 @@
 @endsection
 
 @section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.js"></script>
+
 <script>
 
         $('.owl-carousel').owlCarousel({
@@ -1184,12 +1186,14 @@
                     success:function(data){
                         $(".add-to-cart-btn").attr('disabled',false);
                         $('.add-to-cart-btn img').hide();
-                        $.toast({
-                            heading: 'Information',
-                            text: 'Now you can add icons to generate different kinds of toasts',
-                            showHideTransition: 'slide',
-                            icon: 'info'
-                        })
+                        $.toast({  
+                            heading: 'Success',
+                            text: 'Item successfully added to cart',
+                            position: 'top-right',
+                            icon: 'success',
+                            bgColor: '#009432',
+                            stack: false
+                        });
                         $('.carttt').load(location.href + " .carttt");
                         $('.carttt').addClass('ref_cart');
                         // Command: toastr["success"]('<span>Course Added Successfully! <a href="{{url("cart")}}" class="btn btn-success view-cart">view cart</a></span> ');

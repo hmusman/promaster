@@ -125,8 +125,8 @@
                             <div id="order_review" class="woocommerce-checkout-review-order">
                                 <table class="shop_table woocommerce-checkout-review-order-table">
                                     <tbody>
-                                        @if(count($courses) > 0 || $deals)
-                                        @php $regtotal = 0; $total = 0;$products = array(); $coursesID = array(); @endphp
+                                         @php $regtotal = 0; $total = 0;$products = array(); $coursesID = array(); $ebookID = array(); @endphp
+                                        @if(count($courses) > 0)
                                         @foreach($courses as $key => $course)
                                                 @php $total = @$course->getCourse->price + $total;
                                                      $regtotal = @$course->getCourse->regular_price + $regtotal;
@@ -142,6 +142,25 @@
                                             <td class="price"><span class="save" style="  color: #999999;">${{number_format($course->getCourse->regular_price, 2)}}</span> ${{number_format(@$course->getCourse->price,2)}}</td>
                                         </tr>
                                         @endforeach
+                                        
+                                        @endif
+                                        @if(count($ebooks) > 0)
+                                        @foreach($ebooks as $key => $ebook)
+                                                @php $total = @$ebook->getEbook->ebook_price + $total;
+                                                     $regtotal = @$ebook->getEbook->ebook_price + $regtotal;
+                                                    $ebooksID[] = $ebook->id;
+                                                @endphp
+                                            <input type="hidden" name="ids" value="{{$ebook->ebook_id}}">
+                                        @endforeach
+                                        
+                                        <!-- <input type="hidden" name="cids" value="@php var_export($ebooksID); @endphp" id="CIDS"> -->
+                                        @foreach($ebooks as $key => $ebook)
+                                        <tr class="order_item">
+                                            <td class="title"><?php echo strip_tags(@$ebook->getEbook->ebook_title, '<br>') ?></td>
+                                            <td class="price">${{number_format(@$ebook->getEbook->ebook_price,2)}}</td>
+                                        </tr>
+                                        @endforeach
+                                        
                                         @endif
                                         @if($deals)
                                         <input type="hidden" name="dealIDs" value="{{$deals->id}}">
@@ -165,10 +184,16 @@
                                         <tr class="subtotal">
                                             <td class="price">Covid-19 Discount</td>
                                             <td class="price">
-                                            @if($deals)        
-                                                    -${{number_format(($regtotal - $total) + ($deals->bundle_price - $deals->deal_price), 2)}}
+                                            @if($deals && count($courses) == 0 && count($ebooks) == 0)        
+                                                -${{number_format(($regtotal - $total) + ($deals->bundle_price - $deals->deal_price), 2)}}
+                                            @elseif(count($ebooks) > 0 && count($courses) == 0 && $deals)
+                                                -${{number_format(($regtotal - $total) + ($deals->bundle_price - $deals->deal_price), 2)}}
+                                            @elseif(count($ebooks) > 0 && count($courses) > 0 && $deals)
+                                                -${{number_format(($regtotal - $total) + ($deals->bundle_price - $deals->deal_price), 2)}}
+                                            @elseif(count($ebooks) == 0 && count($courses) > 0 && $deals)
+                                                -${{number_format(($regtotal - $total) + ($deals->bundle_price - $deals->deal_price), 2)}}
                                             @else
-                                                     -${{number_format($regtotal - $total, 2)}}
+                                                -${{number_format($regtotal - $total, 2)}}
                                             @endif</td>
                                         </tr>
                                         <tr class="subtotal order">
@@ -215,9 +240,11 @@
                                 var grand_total = 0;
                                 var course_ids;
                                 var deal_ids;
-                                @php $grand_total = 0; @endphp
-                                 @if(count($courses) > 0 || $deals)
-                                        @php $total = 0; $products = array(); $coursesID = array(); $dealID = array(); 
+                                var ebook_ids;
+                                @if(count($courses) > 0 || count($ebooks) > 0 || $deals)
+                                @php $grand_total = 0;  $coursesID = array(); $ebooksID = array(); $dealID = array(); $total = 0;  @endphp
+                                 @if(count($courses) > 0)
+                                        @php    
                                         
                                         foreach($courses as $key => $course){
                                                 $total = @$course->getCourse->price + $total;
@@ -225,27 +252,43 @@
                                                 $course_title = @$course->getCourse->course_title;
                                                 $course_price = number_format(@$course->getCourse->price,2);
                                         }
-                                        if($deals){
-                                            $dealID[] = $deals->id;
-                                            $deal_name = $deals->deal_name;
-                                            $deal_price = number_format($deals->deal_price,2);
-                                        }
-
-                                        if($deals){
-                                                $grand_total = number_format($total + $deals->deal_price, 2);
-                                        }else{
-                                                $grand_total = number_format($total, 2);
-                                        }
 
                                         @endphp
                                 @endif
+                                @if(count($ebooks) > 0)
+                                    @php  
+                                    
+                                    foreach($ebooks as $key => $ebook){
+                                            $total = @$ebook->getEbook->ebook_price + $total;
+                                                $ebooksID[] = $ebook->getebook->id;
+                                            $ebook_title = @$ebook->getEbook->ebook_title;
+                                            $ebook_price = number_format(@$ebook->getEbook->ebook_price,2);
+                                    }
+
+                                    @endphp
+                                @endif
+                                @if($deals)
+                                    @php
+                                    $dealID[] = $deals->id;
+                                    $deal_name = $deals->deal_name;
+                                    $deal_price = number_format($deals->deal_price,2);
+                                    $grand_total = number_format($total + $deals->deal_price, 2);
+                                    @endphp
+                                @else
+                                    @php
+                                        $grand_total = number_format($total, 2);
+                                    @endphp
+                                @endif
+                                @endif
                                 grand_total = @php echo $grand_total; @endphp;
+                                console.log(grand_total);
                                 // alert(grand_total);
                                 course_ids = @php echo json_encode($coursesID); @endphp;
                                 deal_ids = @php echo json_encode($dealID); @endphp;
-
+                                ebook_ids = @php echo json_encode($ebooksID); @endphp;
                                 console.log(course_ids);
                                 console.log(deal_ids);
+                                console.log(ebook_ids);
 
                                 paypal.Buttons({
 
@@ -260,17 +303,18 @@
                                       });
                                     },
                                 onCancel: function (data) {
-                                    window.location.href = 'https://promastersgips.com/user/checkout';
+                                    // window.location.href = 'https://localhost/promaster/user/checkout';
+                                    window.history.back();
                                 },
                                 onApprove: function(data, actions) {
                                    // This function captures the funds from the transaction
                                    $.ajax({
                                     url: '<?php echo url('user/payment') ?>',
                                     type: 'get',
-                                    data: {'course_ids': course_ids, 'deal_ids': deal_ids},
+                                    data: {'course_ids': course_ids, 'deal_ids': deal_ids, 'ebook_ids': ebook_ids},
                                     success: function(response){
                                         console.log('i am working good....');
-                                        window.location.href = 'https://promastersgips.com/user/courses';
+                                        window.location.href = 'https://localhost/promaster/user/courses';
                                     }
                                    });
                                 }

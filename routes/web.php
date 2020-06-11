@@ -17,6 +17,7 @@ Route::group(["namespace"=>"home"],function(){
 	//cart
 	Route::get('/cart', "cartController@cart");
 	Route::post('/add-cart-item','cartController@addCartItem')->name('cart.add');
+	Route::post('/add-cart-items','cartController@addCartEbooks')->name('cart.add.ebooks');
 	Route::post('/delete-cart-item','cartController@deleteCartItem')->name('cart.delete');
 	
 });
@@ -45,6 +46,7 @@ Route::group(["namespace"=>"admin","prefix"=>"admin","middleware"=> 'auth:admin'
     Route::post('dealDelete/{id}', "dealsController@dealDelete");
 	// COURSE
 	Route::resource('courses', 'courseController');
+	Route::resource('ebooks', 'ebookController');
     //REPORT
     Route::get('report-problem', "reportController@index");
     Route::get('report-problem/{id}', "reportController@singleReport");

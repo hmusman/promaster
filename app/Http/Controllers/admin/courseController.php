@@ -86,7 +86,6 @@ class courseController extends Controller{
             "course_video" => @$courseVideo,
             "course_icon" => @$courseIcon,
         );
-        dd($data);
         $result = DB::table('courses')->insert($data);
         if($result){
             $lessonTitle = input::get('lesson_title');

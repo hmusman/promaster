@@ -259,19 +259,19 @@
         </div>
         <div class="app_screen_info">
             <div class="row ebook">
-                @foreach($courses as $course)
+                @foreach($ebooks as $ebook)
                 <div class="col-2-5">
-                    <img src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}" width="200px">
+                    <img src="{{url('public/ebook-thumbnails')}}/{{$ebook->ebook_thumbnail}}" width="200px">
                     <div class="book-about">
-                        <h5><?php echo strip_tags($course->course_title, '<br>') ?></h5>
+                        <h5><?php echo strip_tags($ebook->ebook_title, '<br>') ?></h5>
                         <p>Professional eBook</p>
                         <img src="https://getphotostick.io/wp-content/uploads/five-stars-1.jpg"><br>
-                        <span class="book-price">USD {{number_format($course->price - 5,2)}}</span>
+                        <span class="book-price">USD {{number_format($ebook->ebook_price,2)}}</span>
                     </div>
                     @auth
-                    <form action="{{route('cart.add')}}" method="post" class="cart-forms add-to-cart-form">
+                    <form action="{{route('cart.add.ebooks')}}" method="post" class="cart-forms add-to-cart-form">
                         @csrf
-                        <input type="hidden" name="id" value="{{Crypt::encrypt($course->id)}}">
+                        <input type="hidden" name="id" value="{{Crypt::encrypt($ebook->id)}}">
                         <a class="cart-link add-to-cart-btn" href="#"><img src="https://thumbs.gfycat.com/BogusEmptyBrontosaurus-max-1mb.gif" height="19" width="19"><i class="ti-shopping-cart"></i>Add To Cart</a>
                         <!-- <button type="submit" class="cart-link  "><img src="https://thumbs.gfycat.com/BogusEmptyBrontosaurus-max-1mb.gif" height="19" width="19"><i class="ti-shopping-cart"></i> Add to Cart</button> -->
                     </form>

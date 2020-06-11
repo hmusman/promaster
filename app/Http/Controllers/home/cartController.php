@@ -20,8 +20,12 @@ class cartController extends Controller
         $this->middleware('auth')->except('cart');
     }
     public function cart(){
-    	$courses = cart::where("user_id",Auth::id())->get();
-        return view('home.pages.cart',compact('courses'));
+
+    	$courses = cart::where("user_id",Auth::id())->whereNotNull('course_id')->get();
+        // dd($courses);
+        $ebooks = cart::where("user_id",Auth::id())->whereNotNull('ebook_id')->get();
+        // dd($ebooks);
+        return view('home.pages.cart',compact('courses', 'ebooks'));
     }
 
     public function cartCount(){
@@ -31,6 +35,13 @@ class cartController extends Controller
     	if(cart::where(["user_id"=>Auth::id(),"course_id"=>Crypt::decrypt($request->id)])->count() == 0)
     	cart::create(["user_id"=>Auth::id(),"course_id"=>Crypt::decrypt($request->id)]);
     	return $this->cartCount();
+    }
+    public function addCartEbooks(Request $request){
+        // dd(Crypt::decrypt($request->id));
+        if(cart::where(["user_id"=>Auth::id(),"ebook_id"=>Crypt::decrypt($request->id)])->count() == 0)
+            // dd(Crypt::decrypt($request->id));
+        cart::create(["user_id"=>Auth::id(),"ebook_id"=>Crypt::decrypt($request->id)]);
+        return $this->cartCount();
     }
     public function deleteCartItem(Request $request){
     	if(cart::where(["user_id"=>Auth::id(),"id"=>Crypt::decrypt($request->id)])->delete()){

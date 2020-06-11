@@ -118,7 +118,7 @@
            
                 
                 <div class="row seo_service_info">
-                    @if($pcourses)
+                    @if(count($pcourses) > 0)
                     @foreach($pcourses as $key=>$course)
                     <div class="column w3-animate-opacity">
                         <div class="seo_service_item">
@@ -190,83 +190,10 @@
                        </div>
                     </div>
                     @endforeach
-                    @endif
-                    @if($dcourses)
-                    @foreach($dcourses as $key=>$course)
-                    <div class="column w3-animate-opacity">
-                        <div class="seo_service_item">
-                          <div class="img">
-                            <img style="height: 119px;" src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="Course Tubmnail">
-                          </div>
-                           <div class="panel-heading">
-                            <div class="media media-clearfix-xs-min v-middle">
-                              <div class="media-body text-caption text-blue">
-                                <a href="#"><?php echo strip_tags($course->course_title, '<br>') ?></a>
-                              </div>
-                        </div>
-                       </div>
-                       @if(@$course->getPercentage($course->id) == 1)
-                       <div class="con">
-                               <a class="icon w3-animate-bottom tool"data-z="0" data-hover-z="1" data-animated href="{{url('user/download-certificate')}}" onclick="event.preventDefault();document.getElementById('download-certificate-{{$key}}').submit();"><i class="fa fa-download" ></i></i>
-                                 <span class="tooltiptext">Download</span>
-                               </a>
-                               
-                               
-                               <a onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="https://www.facebook.com/sharer/sharer.php?u=https://promastersgips.com/&picture={{url('public/course-banners')}}/{{$course->course_banner}}&quote=I just completed my certificate in COURSE TITLE from Promasters: Global Institute for Professional Studies"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
-                                 <span class="tooltiptext">Share on Facebook</span>
-                               </a>
-
-                                <a onclick="return !window.open(this.href, 'Twitter', 'width=640,height=300')" class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="https://twitter.com/intent/tweet?hashtags=promasters&original_referer=https://promastersgips.com/&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=I just completed my certificate in COURSE TITLE from Promasters: Global Institute for Professional Studies&tw_p=tweetbutton&url=https://promastersgips.com/"><i class="fa fa-twitter-square"  aria-hidden="true"></i>
-                                  <span class="tooltiptext">Share on Twitter</span>
-                                </a>
-
-                                 <!-- <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
-                                  <span class="tooltiptext">Share on Instagram</span>
-                                 </a> -->
-                                @php 
-                                  $state = substr(str_shuffle("0123456789abcHGFRlki"), 0, 10);
-                                  $url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77bbhtl3l7n2on&redirect_uri=".env('REDIRECT_URI')."&scope=".env('SCOPES')."&state=".$state;
-                                @endphp
-                                <input type="hidden" id="cIds" name="course_id" value="{{$course->id}}">
-                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="<?php echo $url; ?>"><i class="fa fa-linkedin-square" aria-hidden="true" data-course="{{$course->id}}"></i>
-                                  <span class="tooltiptext">Share on LinkedIn</span>
-                                </a>
-                                @section('script')   
-                                <script>
-                                  $('.fa-linkedin-square').on('click', function(){
-                                   var ids = $(this).attr('data-course');
-                                    console.log(ids);
-                                    $.ajax({
-                                      url: '<?php echo url('save/course') ?>',
-                                      type: 'GET',
-                                      data: {'id':ids},
-                                    })
-                                  })
-                                </script>
-                                @endsection
-                                <!-- <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><img src="{{url('public/userDashboard/images/mail.png')}}" width="21.5px">
-                                  <span class="tooltiptext">Share via Email</span>
-                                </a> -->
-
-                                <form id="download-certificate-{{$key}}" target="_blank" action="{{url('user/download-certificate')}}" method="post">
-                                @csrf
-                                  <input type="hidden" name="id" value="{{Crypt::encrypt($course->id)}}">
-                              </form>
-                            </div>
-                            @else
-                            <div class="con">
-                              <span style="font-size: 10px;background: #7cddf2;">Please Complete this course to download and share certificate.</span><br>
-                              <a style="margin-top: -1px;" class="btn btn-white w3-animate-bottom btn-flat paper-shadow relative" data-z="0" data-hover-z="1" data-animated="" href="{{url('user/course-details')}}/{{$course->id}}">Continue</a>
-                            </div>  
-                            @endif
-                       </div>
-                    </div>
-                    @endforeach
-                    @endif
-                    @if(empty($pcourses) && empty($dcourses))
+                    @else
                      <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                           <div class="alert alert-info"><i class="fa fa-exclamation-triangle  mr-2"></i>No Certificate Found!</div>
+                           <div class="alert alert-info" style="margin-left: 3%;"><i class="fa fa-exclamation-triangle  mr-2"></i>No Certificate Found!</div>
                         </div>
                      </div>
                      <div class="row">

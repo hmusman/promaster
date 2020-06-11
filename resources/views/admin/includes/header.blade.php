@@ -139,12 +139,12 @@
                             @foreach(auth()->user()->unreadnotifications as $notification)
                                 <a style="background-color: lightgray;" class="dropdown-item" href="{{url('/')}}{{@$notification->data['url']}}">{{$notification->data['data']}}<br>
                                 <small style="color: blue;">{{$notification->created_at->diffForHumans()}}</small></a>
-                                
+                                <hr style="margin-top: -1px; margin-bottom: 0px;">
                             @endforeach
                             @foreach(auth()->user()->readnotifications as $notification)
                                 <a class="dropdown-item" href="{{url('/')}}{{@$notification->data['url']}}">{{$notification->data['data']}}<br>
                                     <small style="color: blue;">{{$notification->created_at->diffForHumans()}}</small></a>
-                                
+                                <hr style="margin-top: -1px; margin-bottom: 0px;">
                             @endforeach
                             
                         </div>
@@ -197,6 +197,16 @@
            <a class="nav-link all-courses" href="{{ route('courses.index') }}">All Courses</a>
              <div class="dropdown-divider"></div>
            <a class="nav-link add-courses" href="{{ route('courses.create') }}">Add Course</a>
+        </div>
+       </li>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Ebooks
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">   
+           <a class="nav-link all-ebooks" href="{{ route('ebooks.index') }}">All Ebooks</a>
+             <div class="dropdown-divider"></div>
+           <a class="nav-link add-ebooks" href="{{ route('ebooks.create') }}">Add Ebook</a>
         </div>
        </li>
        <li class="nav-item dropdown">

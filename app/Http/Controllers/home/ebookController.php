@@ -9,21 +9,21 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Crypt;
 use DB;
 use App\Models\User;
-use App\Models\course;
+use App\Models\ebook;
 use App\Models\deals;
 class ebookController extends Controller
 {
     public function ebooks(){
-    	$courses = course::all()->take(10);
-    	$totalCourses = course::count();
+    	$ebooks = ebook::all()->take(10);
+    	$totalEbooks = ebook::count();
  
-    	return view('home.pages.ebooks',compact('courses','totalCourses'));
+    	return view('home.pages.ebooks',compact('ebooks','totalEbooks'));
     }
     public function trendingEbooks(){
-    	$courses = course::all();
-    	$totalCourses = course::count();
+    	$ebooks = ebook::all();
+    	$totalebooks = ebook::count();
 
-    	return view('home.pages.trending-ebooks', compact('courses'));
+    	return view('home.pages.trending-ebooks', compact('ebooks'));
     }
     
     public function ebooksBundles(){

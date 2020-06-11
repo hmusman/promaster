@@ -9,11 +9,15 @@ class cart extends Model
     protected $table = "cart";
     public $timestamps = false;
     protected $fillable = [
-        'user_id','course_id'
+        'user_id','course_id', 'ebook_id',
     ];
 
 
     public function getCourse(){
     	return $this->hasOne('App\Models\course','id','course_id');
+    }
+
+    public function getEbook(){
+    	return $this->hasOne('App\Models\ebook','id','ebook_id');
     }
 }
