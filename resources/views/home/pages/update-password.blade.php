@@ -5,15 +5,6 @@
     .display{
         display: none;
     }
-    .alert {
-        font-size: 16px;
-        line-height: 50px;
-        position: relative;
-        border-width: 0px;
-        border-style: solid;
-        border-radius: 0px;
-        margin-bottom: 30px;
-    }
 </style>
 <section class="login_area">
     <div class="container">
@@ -31,18 +22,33 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <form method="post" action="{{ route('user.password.email') }}" class="login-form mt_60" id="reset-form">
+                    <form method="post" action="{{ route('user.password.request') }}" class="login-form mt_60" id="reset-form">
                         @csrf
+                        <input type="hidden" name="token" value="{{ $token }}">
+
                         <div class="form-group text_box">
                             <label class="f_p text_c f_400">Email</label>
-                            <input type="email" placeholder="Email" name="email" value="{{ $email ?? old('email') }}" required="">
+                            <input class="@error('email') is-invalid @enderror" type="email" placeholder="Email" name="email" value="{{ $email ?? old('email') }}" required="">
                             @error('email')
-                                    <span class="alert alert-danger" role="alert">
+                                    <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                         </div>
-                        <button type="submit" class="btn_three form-submit-btn">Send Reset Password Link</button>
+                        <div class="form-group text_box">
+                            <label class="f_p text_c f_400">Password</label>
+                            <input class="@error('password') is-invalid @enderror" id="password" type="password" placeholder="Password" name="password"  required autocomplete="new-password">
+                            @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+                        <div class="form-group text_box">
+                            <label class="f_p text_c f_400">Conform Password</label>
+                            <input id="password-confirm" type="password" placeholder="Conform Password" name="password_confirmation" required autocomplete="new-password">
+                        </div>
+                        <button type="submit" class="btn_three form-submit-btn">Update Password</button>
                     </form>
                 </div>
             </div>

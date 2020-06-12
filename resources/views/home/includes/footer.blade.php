@@ -141,40 +141,6 @@ console.log($('meta[name="csrf-token"]').attr('content'));
             return $.trim(value);
           }
         });
-      // 
-      // $("#signup-form").validate({
-      //    submitHandler: function (form) {
-      //       $('.form-submit-btn').attr('disabled',true);
-      //       $('.form-submit-btn').text('WAIT...');
-      //        $.ajax({
-      //            type: "POST",
-      //            url: "{{url('register-user')}}",
-      //            data: $(form).serialize(),
-      //            success: function (data) {
-      //               if($.trim(data) == 'true'){
-      //                   $('.form-submit-btn').attr('disabled',false);
-      //                   $('.form-submit-btn').text('REGISTER');
-      //                   window.location="{{url('user/courses')}}";
-      //               }else{
-      //                   Command: toastr["error"](data);
-      //                   console.log(data);
-      //                   $('.form-submit-btn').attr('disabled',false);
-      //                   $('.form-submit-btn').text('REGISTER');
-      //               }
-      //            },
-      //            error: function(xhr, status, error){
-                     
-      //                var errors = xhr.responseJSON.errors;
-      //                $.each(errors, function( key, value ) {
-      //                   Command: toastr["error"](value[0]);
-      //                });
-      //                $('.form-submit-btn').attr('disabled',false);
-      //                $('.form-submit-btn').text('REGISTER');
-      //            }
-      //        });
-      //    }
-      // });
-      // 
 
       $("#login-form").validate({
          submitHandler: function (form) {
@@ -206,41 +172,7 @@ console.log($('meta[name="csrf-token"]').attr('content'));
              });
          }
       });
-      // 
-      $("#reset-form").validate({
-         submitHandler: function (form) {
-            $('.form-submit-btn').attr('disabled',true);
-            $('.form-submit-btn').text('WAIT...');
-             $.ajax({
-                 type: "POST",
-                 url: "{{url('reset-password-link')}}",
-                 data: $(form).serialize(),
-                 success: function (data) {
-                     $("input").val('');
-                     if($.trim(data) == 'true'){
-                        $('.form-submit-btn').attr('disabled',false);
-                        $('.form-submit-btn').text('Send');
-                        Command: toastr["success"]("Password link has been sent to your email address")
-                        $("#forgot").modal("toggle");
-                     }else if($.trim(data) == "false"){
-                        Command: toastr["error"]("We can't find a user with that email address");
-                        $('.form-submit-btn').attr('disabled',false);
-                        $('.form-submit-btn').text('Send');
-                     }else{
-                        Command: toastr["error"]("something went wrong!");
-                        $('.form-submit-btn').attr('disabled',false);
-                        $('.form-submit-btn').text('Send');
-                     }
-                 },
-                 error: function(xhr, status, error){
-                     Command: toastr["error"]("something went wrong!");
-                     $('.form-submit-btn').attr('disabled',false);
-                     $('.form-submit-btn').text('Send');
-                 }
-             });
-         }
-      });
-   })
+   });
 </script>
 <script type="text/javascript">
    var acc = document.getElementsByClassName("accordion");

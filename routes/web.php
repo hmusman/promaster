@@ -84,8 +84,12 @@ Route::post('subscribe', 'subscribeController@storeEmail')->name('subscribe');
 Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],function(){
 	//PAYPALL
 	Route::get('payment', 'PayPalController@payment')->name('payment');
-	Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
-	Route::get('payment/success', 'PayPalController@success')->name('payment.success');
+	// Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
+	// Route::get('payment/success', 'PayPalController@success')->name('payment.success');
+	//CHANGE NAME WITH PAYPAL
+	Route::get('payment', 'changeNameWithPayment@payment')->name('change-name-payment');
+	Route::get('cancel', 'changeNameWithPayment@cancel')->name('payment.cancel');
+	Route::get('payment/success', 'changeNameWithPayment@success')->name('payment.success');
 	// COURSES
 	Route::get('courses', "courseController@courses");
 	Route::get('course-details/{id}', "courseController@courseDetails");
@@ -103,7 +107,7 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
 	Route::get('certificates', "courseController@certificates");
 	Route::post('download-certificate', "courseController@downloadCertificate");
 	// SETTING
-	Route::get('setting', "settingController@setting");
+	Route::get('setting', "settingController@setting")->name('user.setting');
 	Route::post('profile-update', "settingController@updateProfile")->name('profile.update');
 	Route::post('updateEmail', "settingController@updateEmail")->name('profile.updateEmail');
 	Route::post('reset-password', "settingController@resetPassword")->name('password.reset');
@@ -125,11 +129,11 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
 });
 // Auth::routes(['verify' => true]);
 Route::group(["namespace"=>"user\auth"],function(){
-	Route::get('/reset-verification-link', "VerificationController@resend")->name('resend');
-	Route::get('/verify-verification-link', "VerificationController@verify")->name('verification');
-	Route::post('/reset-password-link', "ForgotPasswordController@sendResetLinkEmail")->name('reset-link');
-	Route::get('/reset-password', "ResetPasswordController@showResetForm")->name('show-reset-form');
-	Route::post('/reset-password', "ResetPasswordController@reset")->name('password-update');
+
+	Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('user.password.email');
+	  Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('user.password.request');
+	  Route::post('/password/reset', 'ResetPasswordController@reset')->name('user.password.update');
+	  Route::get('/password/reset/{token}', 'ResetPasswordController@showResetForm')->name('user.password.reset');
 
 	Route::get('/signup', "LoginController@signupView");
 	Route::post('/register-user', "LoginController@registerUser");

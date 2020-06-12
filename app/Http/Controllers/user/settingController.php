@@ -13,6 +13,8 @@ use App\Models\tableOfContent;
 use File;
 use Response;
 use PDF;
+use Carbon\Carbon;
+use App\Models\tempData;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\user\traits\activityLog;
@@ -21,7 +23,28 @@ class settingController extends Controller
 {
     use activityLog;
     public function setting(){
-    	return view('user.pages.setting');
+        $RequestChangeName = tempData::where('user_id', Auth::id())->first();
+        if(!empty($RequestChangeName)){
+            $CreateTime = $RequestChangeName->created_at->toDateString();
+            $CurrentTime = Carbon::now()->toDateString();
+
+            function differenceInHours($startdate,$enddate){
+                $starttimestamp = strtotime($startdate);
+                $endtimestamp = strtotime($enddate);
+                $difference = abs($endtimestamp - $starttimestamp)/3600;
+                return $difference;
+            }
+            $hours = differenceInHours($CreateTime, $CurrentTime);
+            // dd($hours);
+            if($hours >= 24){
+                tempData::where('user_id', Auth::id())->delete();
+            }
+        }
+        $changeName = tempData::where('user_id', Auth::id())->first();
+        $user = User::where('id', Auth::id())->first();
+        // $changeName = tempData::where('user_id', Auth::id())->first();
+        // dd($user, $changeName);
+    	return view('user.pages.setting', compact('user', 'changeName'));
     }
     public function updateProfile(Request $request){
         // dd($request);
@@ -52,6 +75,7 @@ class settingController extends Controller
         //  return;
          // dd($profile);
     	User::where("id",Auth::id())->update($profile);
+        tempData::where('user_id', Auth::id())->delete();
         // if($request->email != Auth::user()->email){
         //     $this->createActivity(Auth::id(),'update_email','Updated email address from <strong>"'.Auth::user()->email.'"</strong> to <strong>"'.$request->email.'"</strong>.');
         // }

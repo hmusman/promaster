@@ -40,6 +40,15 @@ box-shadow: 0px 0px 7px 4px rgb(245, 245, 245);
     background-color: #6754e2;
     color: white;
   }
+  .alert{
+    font-size: 13px;line-height: 1px;position: relative;border-width: 1px;border-style: solid;border-radius: 0px;
+  }
+  .alert i{
+    float: left;
+    font-size: 17px;
+    line-height: 1px;
+    margin-right: 20px;
+  }
 
 </style>
 
@@ -102,8 +111,12 @@ box-shadow: 0px 0px 7px 4px rgb(245, 245, 245);
                 <div class="tab-content">
 
                   <div id="account" class="tab-pane active">
-                    <form action="{{route('profile.update')}}" method="post" id="profile-update" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="@if(!empty($changeName)) @if($changeName->edit_name == '1') {{route('profile.update')}} @else {{route('change-name-payment')}} @endif @else {{route('change-name-payment')}} @endif" @if(!empty($changeName)) @if($changeName->edit_name == '1') method="post" @else method="get" @endif @else method="get" @endif  id="profile-update" enctype="multipart/form-data" class="form-horizontal">
                       @csrf
+                      @if(!empty($changeName)) @if($changeName->edit_name == '1')
+                      <p class="alert alert-info"><i class="fa fa-info-circle"></i>You have 24 hours to change your name and image. Once you changed your name it will not undo.</p>
+                      @endif
+                      @endif
                       <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label">Profile Picture</label>
                         <div class="col-md-6">
@@ -121,12 +134,20 @@ box-shadow: 0px 0px 7px 4px rgb(245, 245, 245);
                         </div>
                       </div>
                       <div class="form-group">
+
                         <label for="inputEmail3" class="col-md-2 control-label">Full Name</label>
                         <div class="col-md-8">
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-control-material">
+                                @if(!empty($changeName)) @if($changeName->edit_name == '1')
                                 <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Your first name" required="" name="first_name" value="{{ Auth::user()->first_name }}">
+                                @else
+                                <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Your first name" required="" name="first_name" value="{{ Auth::user()->first_name }}" disabled="">
+                                @endif
+                                @else
+                                <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Your first name" required="" name="first_name" value="{{ Auth::user()->first_name }}" disabled="">
+                                @endif
                                 <label for="exampleInputFirstName">Full Name</label>
                               </div>
                             </div>
@@ -143,7 +164,14 @@ box-shadow: 0px 0px 7px 4px rgb(245, 245, 245);
                      
                       <div class="form-group margin-none">
                         <div class="col-md-offset-2 col-md-10">
+                          @if(!empty($changeName)) @if($changeName->edit_name == '1')
                           <button type="submit" class="btn btn-white btn-flat paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated>Change name</button>
+                          @else
+                          <button type="submit" class="btn btn-white btn-flat paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated>Change Your name $30</button>
+                          @endif
+                          @else
+                          <button type="submit" class="btn btn-white btn-flat paper-shadow relative" data-z="0.5" data-hover-z="1" data-animated>Change Your name $30</button>
+                          @endif
                         </div>
                       </div>
                     </form>

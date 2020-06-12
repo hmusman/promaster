@@ -35,7 +35,7 @@
                             </div>
                             <!--//check-box-->
                             <div class="forgotten-password">
-                                <a href="#">Forgot Password?</a>
+                                <a href="{{ route('user.password.request') }}">Forgot Password?</a>
                             </div>
                         </div>
                         <button type="submit" class="btn_three form-submit-btn">Sign In</button>

@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\user\auth;
+namespace App\Http\Controllers\user\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Http\Request;
-use App\Http\Controllers\user\traits\activityLog;
+use Password;
+
 class ForgotPasswordController extends Controller
 {
     /*
@@ -19,37 +18,19 @@ class ForgotPasswordController extends Controller
     | your application to your users. Feel free to explore this trait.
     |
     */
-    use activityLog;
+
     use SendsPasswordResetEmails;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
+
+    public function __construct(){
         $this->middleware('guest');
     }
-    /**
-     * Send a reset link to the given user.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
-     */
-    public function sendResetLinkEmail(Request $request)
-    {
-        $this->validateEmail($request);
 
-        // We will send the password reset link to this user. Once we have attempted
-        // to send the link, we will examine the response then see the message we
-        // need to show to the user. Finally, we'll send out a proper response.
-        $response = $this->broker()->sendResetLink(
-            $this->credentials($request)
-        );
-        $this->createActivity(Auth::id(),'forgot_password','Forgot password');
-        return $response == Password::PASSWORD_RESET
-                    ? "true"
-                    : "false";
+    protected function broker(){
+        return Password::broker('users');
+    }
+
+    public function showLinkRequestForm(){
+        return view('home.pages.reset-password');
     }
 }

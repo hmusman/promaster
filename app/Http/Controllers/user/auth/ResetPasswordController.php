@@ -5,6 +5,8 @@ namespace App\Http\Controllers\user\auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Password;
+use Auth;
 class ResetPasswordController extends Controller
 {
     /*
@@ -36,6 +38,10 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    protected function broker(){
+        return Password::broker('users');
+    }
     
     /**
      * Display the password reset view for the given token.
@@ -48,7 +54,7 @@ class ResetPasswordController extends Controller
      */
     public function showResetForm(Request $request, $token = null)
     {
-        return view('home.pages.reset-password')->with(
+        return view('home.pages.update-password')->with(
             ['token' => $request->token, 'email' => $request->email]
         );
     }
