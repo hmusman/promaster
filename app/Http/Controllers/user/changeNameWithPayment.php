@@ -50,7 +50,7 @@ class changeNameWithPayment extends Controller
      */
     public function cancel()
     {
-        return Redirect::back()->with('message', 'You cancel your payment for change name. It would not allow you changr your name.');
+        return Redirect::route('user.setting')->with('message', 'You cancel your payment for change name. It would not allow you changr your name.');
     }
   
     /**
