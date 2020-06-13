@@ -3,7 +3,7 @@
          <div class="container">
              <div class="row">
                  <div class="col-lg-3 col-md-6">
-                     <div class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s">
+                     <div id="subscribed" class="f_widget company_widget wow fadeInLeft" data-wow-delay="0.2s">
                          <h3 class="f-title f_600 t_color f_size_18">Get in Touch</h3>
                          <p>Don’t miss any updates of our new offers and course programs!</p>
                          <form action="{{url('subscribe')}}" class="f_subscribe_two" method="post">

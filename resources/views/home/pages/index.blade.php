@@ -523,7 +523,15 @@
                             <img src="{{url('public/assets/img/price/new6.png')}}" alt="">
                             @endif
                             <h5 class="f_p f_size_20 f_600 t_color2 mt_30">{{$deal->deal_name}}</h5>
-                            <p>Good to get started<br><br></p>
+                            @if($deal->deal_name == 'Single Course')
+                            <p>Good to get started<br><br><br></p>
+                            @elseif($deal->deal_name == '2 Courses Bundle')
+                            <p>Great way to save<br><br><br></p>
+                            @elseif($deal->deal_name == '4 Courses Bundle')
+                            <p>Excellent offer for savings<br><br></p>
+                            @elseif($deal->deal_name == '6 Courses Bundle')
+                            <p>Remarkable savings for students<br><br></p>
+                            @endif
                             <div class="price f_700 f_size_30 t_color2" style="font-size: 21px;"><span class="before">${{number_format($deal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($deal->deal_price,2)}} </div>
                             <ul class="list-unstyled p_list">
                                 @if(!empty($deal->about1))
@@ -552,48 +560,6 @@
                         </div>
                     </div>
                 @endforeach
-                    <!-- <div class="col-lg-3 col-sm-6">
-                        <div class="price_item">
-                            <img src="{{url('public/assets/img/price/new2.png')}}" alt="">
-                            <h5 class="f_p f_size_20 f_600 t_color2 mt_30">2 Courses Bundle</h5>
-                            <p>Great way to save<br><br></p>
-                            <div class="price f_700 f_size_30 t_color2"><span class="before">$56.99</span><span class="usd">USD</span> 16.99 </div>
-                            <ul class="list-unstyled p_list">
-                                <li><i class="ti-check"></i>2 Professional Courses</li>
-                                <li><i class="ti-check"></i>2 Accredited Certificates</li>
-                                <li><i class="ti-check"></i>Lifetime Access</li>
-                            </ul>
-                            <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover">Start Today</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="price_item">
-                            <img src="{{url('public/assets/img/price/new4.png')}}" alt="">
-                            <h5 class="f_p f_size_20 f_600 t_color2 mt_30">4 Courses Bundle</h5>
-                            <p>Excellent offer for savings</p>
-                            <div class="price f_700 f_size_30 t_color2"><span class="before">$109.99</span><span class="usd">USD</span> 29.99 </div>
-                            <ul class="list-unstyled p_list">
-                                <li><i class="ti-check"></i>4 Professional Courses</li>
-                                <li><i class="ti-check"></i>4 Accredited Certificates</li>
-                                <li><i class="ti-check"></i>Lifetime Access</li>
-                            </ul>
-                            <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover">Start Today</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="price_item">
-                            <img src="{{url('public/assets/img/price/new6.png')}}" alt="">
-                            <h5 class="f_p f_size_20 f_600 t_color2 mt_30">6 Courses Bundle</h5>
-                            <p>Remarkable savings for students</p>
-                            <div class="price f_700 f_size_30 t_color2"><span class="before">$159.99</span><span class="usd">USD</span> 39.99 </div>
-                            <ul class="list-unstyled p_list">
-                                <li><i class="ti-check"></i>6 Professional Courses</li>
-                                <li><i class="ti-check"></i>6 Accredited Certificates</li>
-                                <li><i class="ti-check"></i>Lifetime Access</li>
-                            </ul>
-                            <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover">Start Today</a>
-                        </div>
-                    </div> -->
                 </div>
             </div>
 
@@ -1435,14 +1401,19 @@
         var email = document.getElementById('email').value;
         var first_name = document.getElementById('first_name').value;
         var password = document.getElementById('password').value;
-        var checkbox = document.getElementById('checkbox').value;
+        if ($('#checkbox').is(":checked"))
+        {
+            var checkbox = document.getElementById('checkbox').value;
+        }else{
+            var checkbox = null;
+        }
         $.ajax({
             url: url,
             type: method,
             data: {"_token": "{{ csrf_token() }}", 'email': email, 'first_name': first_name, 'password': password, 'terms_and_condition': checkbox},
             success:function(response){
                 console.log('im success function.');
-                $('#signup-form').hide();
+                // $('#signup-form').hide();
                 $.ajax({
                     url: '<?php echo url('user/checkout') ?>',
                     type: 'GET',

@@ -24,11 +24,12 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
     public function registerUser(Request $request){
+    
         $request->validate([
             'email' => 'required|unique:users',
             'first_name' => 'required|min:3|max:50',
-            'terms_and_condition' => 'required',
             'password' => 'required|min:6',
+            'terms_and_condition' => 'required',
             
         ]);
     	$user = array(

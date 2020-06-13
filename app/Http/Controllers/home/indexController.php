@@ -55,7 +55,7 @@ class indexController extends Controller
 
       \Mail::to('info@promastersgips.com')->send(new ContactMail($details));
 
-      Session::flash('message', "Special thanks for contacting us.");
+      Session::flash('message', "Your message was sent, we will get back to you soon, have a nice day!");
       return Redirect::back();
     }
     

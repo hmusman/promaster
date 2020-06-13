@@ -13,11 +13,11 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
-        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
@@ -117,11 +117,13 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         ),
         'L' => 
         array (
+            'Lightit\\LinkedinShare\\' => 22,
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
         ),
         'J' => 
         array (
+            'Jorenvh\\Share\\' => 14,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
@@ -374,6 +376,10 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Lightit\\LinkedinShare\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lightit/linkedin-share/src',
+        ),
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
@@ -381,6 +387,10 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
+        ),
+        'Jorenvh\\Share\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src',
         ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
@@ -561,14 +571,17 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\ContactMail' => __DIR__ . '/../..' . '/app/Mail/ContactMail.php',
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\cart' => __DIR__ . '/../..' . '/app/Models/cart.php',
         'App\\Models\\certificate' => __DIR__ . '/../..' . '/app/Models/certificate.php',
         'App\\Models\\course' => __DIR__ . '/../..' . '/app/Models/course.php',
         'App\\Models\\deals' => __DIR__ . '/../..' . '/app/Models/deals.php',
+        'App\\Models\\discounts' => __DIR__ . '/../..' . '/app/Models/discounts.php',
         'App\\Models\\report' => __DIR__ . '/../..' . '/app/Models/report.php',
         'App\\Models\\tableOfContent' => __DIR__ . '/../..' . '/app/Models/tableOfContent.php',
+        'App\\Models\\tempData' => __DIR__ . '/../..' . '/app/Models/tempData.php',
         'App\\Models\\userProgress' => __DIR__ . '/../..' . '/app/Models/userProgress.php',
         'App\\Models\\usercourse' => __DIR__ . '/../..' . '/app/Models/usercourse.php',
         'App\\Models\\userdeals' => __DIR__ . '/../..' . '/app/Models/userdeals.php',
@@ -2341,6 +2354,9 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
+        'Jorenvh\\Share\\Providers\\ShareServiceProvider' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Providers/ShareServiceProvider.php',
+        'Jorenvh\\Share\\Share' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Share.php',
+        'Jorenvh\\Share\\ShareFacade' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/ShareFacade.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
@@ -2392,6 +2408,10 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
+        'Lightit\\LinkedinShare\\Facades\\LinkedinShare' => __DIR__ . '/..' . '/lightit/linkedin-share/src/Facades/LinkedinShare.php',
+        'Lightit\\LinkedinShare\\LinkedinShare' => __DIR__ . '/..' . '/lightit/linkedin-share/src/LinkedinShare.php',
+        'Lightit\\LinkedinShare\\LinkedinShareException' => __DIR__ . '/..' . '/lightit/linkedin-share/src/LinkedinShare.php',
+        'Lightit\\LinkedinShare\\LinkedinShareServiceProvider' => __DIR__ . '/..' . '/lightit/linkedin-share/src/LinkedinShareServiceProvider.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',

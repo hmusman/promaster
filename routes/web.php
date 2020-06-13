@@ -83,7 +83,7 @@ Route::post('subscribe', 'subscribeController@storeEmail')->name('subscribe');
 // USER
 Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],function(){
 	//PAYPALL
-	Route::get('payment', 'PayPalController@payment')->name('payment');
+	Route::get('checkout/payment', 'PayPalController@payment')->name('checkout.payment');
 	// Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
 	// Route::get('payment/success', 'PayPalController@success')->name('payment.success');
 	//CHANGE NAME WITH PAYPAL

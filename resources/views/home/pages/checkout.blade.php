@@ -25,98 +25,9 @@
     <!--============= Shopping Cart ===============-->
     <section class="checkout_area bg_color sec_pad">
         <div class="container">
-            <form action="{{url('user/payment')}}" method="get">
+            <form action="{{url('user/checkout/payment')}}" method="get">
                 <div class="row">
-                    <!-- <div class="col-md-6">
-                        <div class="checkout_content">
-                            
-                            <div class="collapse tab_content" id="coupon">
-                                <p class="f_p f_400">If you have shopped with us before, please enter your details below. If you are a new customer, please proceed to the Billing & Shipping section.</p>
-                                <div class="login_form">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                            <input type="text" name="text" class="form-control" placeholder="Username or Email">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input type="email" name="EMAIL" class="form-control" placeholder="Password">
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="login_button">
-                                                <input type="checkbox" value="None" id="squared1" name="check">
-                                                <label class="l_text" for="squared1">Remember Me</label>
-                                                <button class="btn login_btn" type="submit">Login</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                           
-                            
-                             <div class="col-md-12">
-                                    <label>Billing Address<abbr class="required" title="required">*</abbr></label>
-                                    <select class="selectpickers">
-                                        <option value="menu_order">United Kingdom (UK)</option>
-                                        <option value="popularity">United Kingdom (UK)</option>
-                                        <option value="rating">Usa</option>
-                                        <option value="date">Rsa</option>
-                                        <option value="date">Canada</option>
-                                    </select>
-                                </div>
-                                <div class="row">
-                                     <div id="new-payment" class="woocommerce-checkout-review-order">
-                                
-                                        <ul class="list-unstyled payment_list">
-                                           
-                                            <li class="payment">
-                                                <div class="radio-btn">
-                                                    <input type="checkbox" value="None" id="squaredseven" name="check">
-                                                    <label for="squaredseven"></label>
-                                                </div>
-                                                <h6>New Payment Card</h6>
-                                            </li>
-                                            <li class="payment">
-                                                <div class="radio-btn">
-                                                    <input type="checkbox" value="None" id="squaredeight" name="check">
-                                                    <label for="squaredeight"></label>
-                                                </div>
-                                                <h6>Paypal <img src="{{url('public/assets/img/seo/paypal.png')}}" width="90px"></h6>
-                                            </li>
-                                        </ul>
-                                        
-                                    </div>
-                                </div>
-
-
-                               
-                            <div class="row form-payment">
-                                
-
-                                <div class="col-md-12">
-                                    <input type="text" placeholder="Name on Card">
-                                </div>
-                                <div class="col-md-12">
-                                    <input type="number" placeholder="Card Number">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="number" placeholder="MM/YY">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="number" placeholder="Security Code">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="number" placeholder="Zip Code">
-                                </div>
-                                  <div class="col-md-12 mt-20 mb-20">
-                                    <input type="checkbox" value="None" id="squared2" name="check">
-                                    <label class="l_text" for="squared2">Remember this card</label>
-                                </div>
-                               
-                            </div>
-                            
-                           
-                          
-                        </div>
-                    </div> -->
+                   
                     <div class="col-md-6">
                         <div class="cart_total_box">
                             <h3 class="checkout_title f_p f_600 f_size_20 mb_20">
@@ -134,8 +45,6 @@
                                                 @endphp
                                             <input type="hidden" name="ids" value="{{$course->course_id}}">
                                         @endforeach
-                                        
-                                        <!-- <input type="hidden" name="cids" value="@php var_export($coursesID); @endphp" id="CIDS"> -->
                                         @foreach($courses as $key => $course)
                                         <tr class="order_item">
                                             <td class="title"><?php echo strip_tags(@$course->getCourse->course_title, '<br>') ?></td>
@@ -152,8 +61,6 @@
                                                 @endphp
                                             <input type="hidden" name="ids" value="{{$ebook->ebook_id}}">
                                         @endforeach
-                                        
-                                        <!-- <input type="hidden" name="cids" value="@php var_export($ebooksID); @endphp" id="CIDS"> -->
                                         @foreach($ebooks as $key => $ebook)
                                         <tr class="order_item">
                                             <td class="title"><?php echo strip_tags(@$ebook->getEbook->ebook_title, '<br>') ?></td>
@@ -210,13 +117,6 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <!-- <div class="condition">
-                                    <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
-                                    <input type="checkbox" value="None" id="squarednine" name="check">
-                                    <label class="l_text" for="squarednine">I have read and agree to the website <a href="" data-toggle="modal" data-target=".terms">terms and conditions </a><span>*</span></label>
-                                </div><br><br> -->
-                                <!-- <button type="submit" class="button" id="OrderButton">Place Order</button> -->
-                                <!-- <a href="{{ route('payment') }}" class="button" title="Place Order" style="padding: 16px 162px 18px 162px;">Place Order</a> -->
                             </div>
                         </div>
                     </div>
@@ -309,7 +209,7 @@
                                 onApprove: function(data, actions) {
                                    // This function captures the funds from the transaction
                                    $.ajax({
-                                    url: '<?php echo url('user/payment') ?>',
+                                    url: '<?php echo url('user/checkout/payment') ?>',
                                     type: 'get',
                                     data: {'course_ids': course_ids, 'deal_ids': deal_ids, 'ebook_ids': ebook_ids},
                                     success: function(response){

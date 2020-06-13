@@ -23,17 +23,17 @@ class subscribeController extends Controller
 	    	$result = DB::table('subscribers')->insert($email);
     	}else{
     		Session::flash('error', "Email has been already added to subscription list.");
-      		return Redirect::back();
+      		return redirect(url()->previous().'#subscribed');
     	}
 
 
     	if($result){
     		Session::flash('message', "Email has been added successfully to subscription list.");
-      		return Redirect::back();
+      		return redirect(url()->previous().'#subscribed');
     	}
     	else{
     		Session::flash('error', "Something wents wrong, Please try again later.");
-      		return Redirect::back();
+      		return redirect(url()->previous().'#subscribed');
     	}
     }
 }
