@@ -111,7 +111,7 @@ box-shadow: 0px 0px 7px 4px rgb(245, 245, 245);
                 <div class="tab-content">
 
                   <div id="account" class="tab-pane active">
-                    <form action="@if(!empty($changeName)) @if($changeName->edit_name == '1') {{route('profile.update')}} @else {{route('change-name-payment')}} @endif @else {{route('change-name-payment')}} @endif" @if(!empty($changeName)) @if($changeName->edit_name == '1') method="post" @else method="get" @endif @else method="get" @endif  id="profile-update" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="@if(!empty($changeName)) @if($changeName->edit_name == '1') {{route('profile.update')}} @else {{url('user/checkout')}} @endif @else {{url('user/checkout')}} @endif" @if(!empty($changeName)) @if($changeName->edit_name == '1') method="post" @else method="get" @endif @else method="get" @endif  id="profile-update" enctype="multipart/form-data" class="form-horizontal">
                       @csrf
                       @if(!empty($changeName)) @if($changeName->edit_name == '1')
                       <p class="alert alert-info"><i class="fa fa-info-circle"></i>You have 24 hours to change your name and image. Once you changed your name it will not undo.</p>
@@ -134,7 +134,7 @@ box-shadow: 0px 0px 7px 4px rgb(245, 245, 245);
                         </div>
                       </div>
                       <div class="form-group">
-
+                        <input type="hidden" name="edit_name" value="ChangeName">
                         <label for="inputEmail3" class="col-md-2 control-label">Full Name</label>
                         <div class="col-md-8">
                           <div class="row">

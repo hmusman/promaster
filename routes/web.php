@@ -97,6 +97,8 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
 	Route::post('log-course-complete', "courseController@logCourseComplete");
 	//CHECKOUT
 	Route::get('checkout', "checkoutController@index");
+
+	// Route::get('change-name-checkout', "checkoutController@changeName");
 	// DEALS and GUIDE
 	Route::get('deals', "dealsController@index");
 	Route::get('pro-deals', "dealsController@proDeals");

@@ -27,7 +27,8 @@ class PayPalController extends Controller
         $ids = $request->course_ids;
         $deal_ids = $request->deal_ids;
         $ebook_ids = $request->ebook_ids;
-        // dd($ids, $deal_ids, $ebook_ids);
+        $edit = $request->edit_name;
+        // dd($ids, $deal_ids, $ebook_ids, $edit);
         $dealID = [];
         if(!empty($deal_ids)){
     	   
@@ -42,6 +43,10 @@ class PayPalController extends Controller
         }
         if($ebook_ids != null || !empty($ebook_ids)){
             userebooks::create(["user_id"=>Auth::id(), "ebook_id"=>json_encode($ebook_ids,true)]);
+        }
+        if($edit != null || !empty($edit)){
+            tempData::where('user_id', Auth::id())->delete();
+            tempData::create(['user_id'=>Auth::id(), 'edit_name'=>1]);
         }
 
         cart::where('user_id', Auth::id())->delete();
