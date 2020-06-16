@@ -236,7 +236,13 @@
                                     data: {'course_ids': course_ids, 'deal_ids': deal_ids, 'ebook_ids': ebook_ids, 'edit_name': edit},
                                     success: function(response){
                                         console.log('i am working good....');
-                                        window.location.href = 'https://promastersgips.com/user/courses';
+                                        if(edit == 'ChangeName'){
+
+                                            window.location.href = 'https://promastersgips.com/user/setting';
+                                        }else{
+                                            window.location.href = 'https://promastersgips.com/user/courses';
+
+                                        }
                                     }
                                    });
                                 }
