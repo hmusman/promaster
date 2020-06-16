@@ -58,8 +58,34 @@ class settingController extends Controller
          	// "last_name"=>$request->last_name,
          );
         // dd($request);
-	    $path = public_path();
-	    if($request->hasfile('profile_image')){
+	    // $path = public_path();
+	    // if($request->hasfile('profile_image')){
+     //        if(File::exists($path.'/profile-images/'.Auth::user()->profile_image)) {
+     //            File::delete($path.'/profile-images/'.Auth::user()->profile_image);
+     //        }
+     //        $file = input::file('profile_image');
+     //        $ext=$file->getClientOriginalExtension();
+     //        $profileImg = md5(rand(1111,9999)).'.'.$ext;
+     //        $file->move(public_path().'/profile-images/' , $profileImg); 
+     //        $profile["profile_image"] = $profileImg;
+     //        $this->createActivity(Auth::id(),'update_profile_img','Profile image changed');    
+     //     }
+        //  echo "<pre>";
+        //  print_r($profile);
+        //  return;
+         // dd($profile);
+    	User::where("id",Auth::id())->update($profile);
+        tempData::where('user_id', Auth::id())->delete();
+        // if($request->email != Auth::user()->email){
+        //     $this->createActivity(Auth::id(),'update_email','Updated email address from <strong>"'.Auth::user()->email.'"</strong> to <strong>"'.$request->email.'"</strong>.');
+        // }
+    	return back()->with("message","<div class='alert alert-success'>Profile Name Updated Successfully!</div>");
+    }
+
+    public function updateProfileImage(Request $request){
+        // dd($request);
+        $path = public_path();
+        if($request->hasfile('profile_image')){
             if(File::exists($path.'/profile-images/'.Auth::user()->profile_image)) {
                 File::delete($path.'/profile-images/'.Auth::user()->profile_image);
             }
@@ -70,16 +96,10 @@ class settingController extends Controller
             $profile["profile_image"] = $profileImg;
             $this->createActivity(Auth::id(),'update_profile_img','Profile image changed');    
          }
-        //  echo "<pre>";
-        //  print_r($profile);
-        //  return;
-         // dd($profile);
-    	User::where("id",Auth::id())->update($profile);
-        tempData::where('user_id', Auth::id())->delete();
-        // if($request->email != Auth::user()->email){
-        //     $this->createActivity(Auth::id(),'update_email','Updated email address from <strong>"'.Auth::user()->email.'"</strong> to <strong>"'.$request->email.'"</strong>.');
-        // }
-    	return back()->with("message","<div class='alert alert-success'>Profile Updated Successfully!</div>");
+
+            User::where("id",Auth::id())->update($profile);
+
+        return back()->with("message","<div class='alert alert-success'>Profile Image Updated Successfully!</div>");
     }
 
     public function updateEmail(Request $request){

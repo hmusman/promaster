@@ -111,6 +111,8 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
 	// SETTING
 	Route::get('setting', "settingController@setting")->name('user.setting');
 	Route::post('profile-update', "settingController@updateProfile")->name('profile.update');
+	Route::post('profile-update-image', "settingController@updateProfileImage")->name('profile.update.image');
+
 	Route::post('updateEmail', "settingController@updateEmail")->name('profile.updateEmail');
 	Route::post('reset-password', "settingController@resetPassword")->name('password.reset');
     //REPORT PROBLEM

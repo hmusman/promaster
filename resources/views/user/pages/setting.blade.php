@@ -8,6 +8,11 @@ input[type="file"] {
   width: 0;
   
 }
+#update_image{
+    margin-left: 19%;
+    margin-top: -8%;
+    border: none !important;
+}
 
 #file{
   display: none !important;
@@ -111,10 +116,10 @@ box-shadow: 0px 0px 7px 4px rgb(245, 245, 245);
                 <div class="tab-content">
 
                   <div id="account" class="tab-pane active">
-                    <form action="@if(!empty($changeName)) @if($changeName->edit_name == '1') {{route('profile.update')}} @else {{url('user/checkout')}} @endif @else {{url('user/checkout')}} @endif" @if(!empty($changeName)) @if($changeName->edit_name == '1') method="post" @else method="get" @endif @else method="get" @endif  id="profile-update" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{route('profile.update.image')}}" method="post"  id="profile-update" enctype="multipart/form-data" class="form-horizontal">
                       @csrf
                       @if(!empty($changeName)) @if($changeName->edit_name == '1')
-                      <p class="alert alert-info"><i class="fa fa-info-circle"></i>You have 24 hours to change your name and image. Once you changed your name it will not undo.</p>
+                      <p class="alert alert-info"><i class="fa fa-info-circle"></i>You have 24 hours to change your name. Once you changed your name it will not undo.</p>
                       @endif
                       @endif
                       <div class="form-group">
@@ -130,9 +135,13 @@ box-shadow: 0px 0px 7px 4px rgb(245, 245, 245);
                               <input type="file" id="file" accept="image/*" class="btn btn-white btn-sm paper-shadow relative" name="profile_image" />
                               <label for="file" />ADD IMAGE</label>
                             </div>
+                            <button id="update_image" type="submit" class="btn btn-white btn-flat paper-shadow relative disabled" data-z="0.5" data-hover-z="1" data-animated>Update Image</button>
                           </div>
                         </div>
                       </div>
+                    </form>
+                       <form action="@if(!empty($changeName)) @if($changeName->edit_name == '1') {{route('profile.update')}} @else {{url('user/checkout')}} @endif @else {{url('user/checkout')}} @endif" @if(!empty($changeName)) @if($changeName->edit_name == '1') method="post" @else method="get" @endif @else method="get" @endif  id="profile-update" enctype="multipart/form-data" class="form-horizontal">
+                      @csrf
                       <div class="form-group">
                         <input type="hidden" name="edit_name" value="ChangeName">
                         <label for="inputEmail3" class="col-md-2 control-label">Full Name</label>
@@ -354,6 +363,7 @@ PROFESSIONAL STUDIES</strong> &copy; Copyright 2020
           // $('.img-preview').remove();
           $('#profile-image').remove();
           $('.img-preview').append('<img id="profile-image" src="'+e.target.result+'" width="100" height="103"/>');
+          $('#update_image').removeClass('disabled');
        }
        reader.readAsDataURL(input.files[0]);
      }
