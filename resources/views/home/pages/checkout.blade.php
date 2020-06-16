@@ -37,6 +37,7 @@
                                 <table class="shop_table woocommerce-checkout-review-order-table">
                                     <tbody>
                                          @php $regtotal = 0; $total = 0;$products = array(); $coursesID = array(); $ebookID = array(); @endphp
+                                        @if($courses)
                                         @if(count($courses) > 0)
                                         @foreach($courses as $key => $course)
                                                 @php $total = @$course->getCourse->price + $total;
@@ -53,6 +54,8 @@
                                         @endforeach
                                         
                                         @endif
+                                        @endif
+                                        @if($ebooks)
                                         @if(count($ebooks) > 0)
                                         @foreach($ebooks as $key => $ebook)
                                                 @php $total = @$ebook->getEbook->ebook_price + $total;
@@ -69,12 +72,20 @@
                                         @endforeach
                                         
                                         @endif
+                                        @endif
                                         @if($deals)
                                         <input type="hidden" name="dealIDs" value="{{$deals->id}}">
                                         <input type="hidden" name="ids" value="">
                                         <tr class="order_item">
                                             <td>{{$deals->deal_name}} Deal</td>
                                             <td class="price"><span class="save" style="  color: #999999;">${{number_format($deals->bundle_price,2)}}</span> ${{number_format($deals->deal_price,2)}}</td>
+                                        </tr>
+                                        @endif
+                                        @if($edit)
+                                        @php $regtotal += 30; $total += 30 @endphp
+                                        <tr class="order_item">
+                                            <td>Change Name Request</td>
+                                            <td class="price">$30</td>
                                         </tr>
                                         @endif
                                         <input type="hidden" name="dealIDs" value="">
@@ -141,7 +152,7 @@
                                 var course_ids;
                                 var deal_ids;
                                 var ebook_ids;
-                                @if(count($courses) > 0 || count($ebooks) > 0 || $deals)
+                                @if(count($courses) > 0 || count($ebooks) > 0 || $deals || $edit)
                                 @php $grand_total = 0;  $coursesID = array(); $ebooksID = array(); $dealID = array(); $total = 0;  @endphp
                                  @if(count($courses) > 0)
                                         @php    
@@ -179,6 +190,15 @@
                                         $grand_total = number_format($total, 2);
                                     @endphp
                                 @endif
+                                @if($edit)
+                                    @php
+                                    $grand_total = number_format($total + 30, 2);
+                                    @endphp
+                                @else
+                                    @php
+                                        $grand_total = number_format($total, 2);
+                                    @endphp
+                                @endif
                                 @endif
                                 grand_total = @php echo $grand_total; @endphp;
                                 console.log(grand_total);
@@ -186,9 +206,11 @@
                                 course_ids = @php echo json_encode($coursesID); @endphp;
                                 deal_ids = @php echo json_encode($dealID); @endphp;
                                 ebook_ids = @php echo json_encode($ebooksID); @endphp;
+                                var edit = @php echo json_encode($edit); @endphp;
                                 console.log(course_ids);
                                 console.log(deal_ids);
                                 console.log(ebook_ids);
+                                console.log(edit);
 
                                 paypal.Buttons({
 
@@ -211,10 +233,10 @@
                                    $.ajax({
                                     url: '<?php echo url('user/checkout/payment') ?>',
                                     type: 'get',
-                                    data: {'course_ids': course_ids, 'deal_ids': deal_ids, 'ebook_ids': ebook_ids},
+                                    data: {'course_ids': course_ids, 'deal_ids': deal_ids, 'ebook_ids': ebook_ids, 'edit_name': edit},
                                     success: function(response){
                                         console.log('i am working good....');
-                                        window.location.href = 'https://promastersgips.com/user/courses';
+                                        // window.location.href = 'https://promastersgips.com/user/courses';
                                     }
                                    });
                                 }
