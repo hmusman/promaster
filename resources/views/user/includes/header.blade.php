@@ -185,6 +185,11 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
      .table > tbody > tr > td{
       padding: 6px!important;
      }
+     #update_image {
+    margin-left: 43% !important;
+    margin-top: -20% !important;
+    border: none !important;
+}
     }
 </style>
 

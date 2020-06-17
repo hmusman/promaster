@@ -150,6 +150,11 @@
             font-size: 21px !important
         }
     }
+    @media only screen and (max-width: 600px) {
+        .quiz{
+            width: 330px !important;
+        }
+    }
 </style>
 @endpush
 
@@ -256,7 +261,7 @@
                         <div class="round">
 
                             <img class="top_img p_absoulte" src="{{url('public/assets/img/home-chat/pluse.png')}}" alt="">
-                            <img src="{{url('public/assets/img/seo/quiz.png')}}" width="350px" alt="">
+                            <img class="quiz" src="{{url('public/assets/img/seo/quiz.png')}}" width="350px" alt="quiz.png">
                         </div>
 
                     </div>
@@ -279,7 +284,7 @@
                         <div class="round">
 
                             <img class="top_img p_absoulte" src="{{url('public/assets/img/home-chat/box.png')}}" alt="">
-                            <img src="{{url('public/assets/img/seo/certificate3.png')}}" alt="">
+                            <img class="quiz" src="{{url('public/assets/img/seo/certificate3.png')}}" alt="certificate3.png">
                         </div>
 
                     </div>

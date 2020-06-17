@@ -109,7 +109,7 @@ a.download-link:hover img.download{
                     @else
                      <div class="row">
                         <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-10" style="margin-left: 2%;">
-                           <div class="alert alert-info"><i class="fa fa-exclamation-triangle  mr-2"></i>No Ebook Found!</div>
+                           <div class="alert alert-info"><i class="fa fa-exclamation-triangle  mr-2"></i>No Ebooks Found!</div>
                         </div>
                      </div>
                      <div class="row">

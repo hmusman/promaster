@@ -20,6 +20,13 @@
 .title br:after {
     content: ' '
 }
+@media only screen and (max-width: 600px) {
+
+    .price_btn{
+        width: none !important;
+        float: right;
+    }
+}
 </style>
 
     <!--============= Shopping Cart ===============-->

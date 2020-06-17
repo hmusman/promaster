@@ -14,6 +14,16 @@
         margin-top: -13% !important;
         margin-bottom: 16%;
       }
+      .login_info h2 br {
+        content: none !important;
+      }
+
+      .login_info h2 br:after {
+          content: none !important;
+      }
+      .t_color3 br {
+          display: block;
+      }
     }
     .list-unstyled li {
         margin: 15px 0;
@@ -104,7 +114,9 @@
     .buy_btn {
         padding: 0px 17px;
         font-size: 15px;
-        margin: -60px 5px 0;
+        margin: -60px 1px 10px;
+        float: none;
+        margin-left: 36%;
     }
     .login_info h2 br {
         content: ' '

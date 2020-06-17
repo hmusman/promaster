@@ -193,7 +193,7 @@
                     @else
                      <div class="row">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                           <div class="alert alert-info" style="margin-left: 3%;"><i class="fa fa-exclamation-triangle  mr-2"></i>No Certificate Found!</div>
+                           <div class="alert alert-info" style="margin-left: 3%;"><i class="fa fa-exclamation-triangle  mr-2"></i>No Certificates Found!</div>
                         </div>
                      </div>
                      <div class="row">
