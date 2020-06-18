@@ -17,6 +17,14 @@
 @endsection
 @section('section-2')
 <style>
+@media only screen and (max-width: 600px) {
+
+    .price_btn{
+        width: none !important;
+        float: right;
+        padding: 0px 30px !important;
+    }
+}
 	table, th, td {
   border-bottom: 1px solid lightgrey;
 }

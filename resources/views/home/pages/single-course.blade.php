@@ -5,7 +5,7 @@
     @media only screen and (max-width: 600px) {
       .price_btn {
           float: right;
-          margin: -52px -16px 0px 0px !important;
+          margin: -18px -13px 0px 0px !important;
           padding: 0 40px;
       }
       .buy_btn {
