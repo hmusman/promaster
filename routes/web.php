@@ -16,7 +16,7 @@ Route::group(["namespace"=>"home"],function(){
 	Route::get('/trending-ebooks', "ebookController@trendingEbooks")->name('trendingEbooks');
 	//cart
 	Route::get('/cart', "cartController@cart");
-	Route::post('/add-cart-item','cartController@addCartItem')->name('cart.add');
+	Route::get('/add-cart-item','cartController@addCartItem')->name('cart.add');
 	Route::post('/add-cart-items','cartController@addCartEbooks')->name('cart.add.ebooks');
 	Route::post('/delete-cart-item','cartController@deleteCartItem')->name('cart.delete');
 	

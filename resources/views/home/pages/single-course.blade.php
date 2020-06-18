@@ -3,6 +3,16 @@
 @push('style')
 <style type="text/css">
     @media only screen and (max-width: 600px) {
+      .price_btn {
+          float: right;
+          margin: -52px -16px 0px 0px !important;
+          padding: 0 40px;
+      }
+      .buy_btn {
+          padding: 0px 17px;
+          font-size: 15px !important;
+          margin: -25px 5px 0 !important;
+      }
       .add-to-cart-btn{
         margin-top: -28% !important;
         width: 159px;
@@ -10,9 +20,9 @@
         margin-right: -5%;
       }
       .deals{
-        margin-left: 71% !important;
-        margin-top: -13% !important;
-        margin-bottom: 16%;
+        margin-left: 0% !important;
+        margin-top: 0% !important;
+        /*margin-bottom: 16%;*/
       }
       .login_info h2 br {
         content: none !important;
@@ -37,7 +47,11 @@
         float: right;
         margin-top: -10px;
         padding: 0 40px;
-
+    }
+    .buy_btn {
+        padding: 0px 17px;
+        font-size: 15px;
+        margin: -49px 0px 0;
     }
 
     .login_area .login_info {
@@ -89,7 +103,7 @@
     }
 
     span.save-price {
-        font-size: 16px;
+        font-size: 21px;
     }
 
     p.price1 {
@@ -111,13 +125,7 @@
         background-repeat: no-repeat;
     } */
 
-    .buy_btn {
-        padding: 0px 17px;
-        font-size: 15px;
-        margin: -60px 1px 10px;
-        float: none;
-        margin-left: 36%;
-    }
+    
     .login_info h2 br {
         content: ' '
     }
@@ -131,6 +139,11 @@
 @section('section-1')
 <section class="login_area">
     <div class="container">
+                @if (\Session::has('message'))
+                    <div class="col-md-6" style="margin-top: 6%;position: absolute;">
+                      {!! \Session::get('message') !!}
+                    </div>
+                @endif
         <div class="row">
             <div class="col-lg-7">
                 <div class="login_info">
@@ -151,7 +164,7 @@
                                   <li><i class="ti-arrow-right"></i>  Learn how to lead your organization into a successful future</li>
                                   <li><i class="ti-arrow-right"></i> Focus and work on self-growth for becoming an inspiring leader</li>
                             @endif
-                            @if(strip_tags($course->course_title, '<br>') == 'Effective Communication')
+                            @if(strip_tags($course->course_title, '<br>') == 'Effective<br>Communication')
                                  <li><i class="ti-arrow-right"></i>Apply modern communication techniques to your daily conversations</li>
                                   <li><i class="ti-arrow-right"></i>Master advanced communication systems and strategies</li>
                                   <li><i class="ti-arrow-right"></i> Identify and understand communication elements</li>
@@ -251,11 +264,7 @@
                             <p class="price"><span class="save" style="  color: #999999;">${{number_format($course->regular_price, 2)}}</span><br>
                                 <span class="price f_700 f_size_40 t_color2">${{number_format($course->price, 2)}}</span>
                                 @auth
-                                <form action="{{route('cart.add')}}" method="post" class="cart-forms add-to-cart-form">
-                                    @csrf
-                                    <input type="hidden" name="id" value="{{Crypt::encrypt($course->id)}}">
-                                    <button type="submit" class=" price_btn btn_hover  add-to-cart-btn" style="margin-top: -20%; "><img src="https://thumbs.gfycat.com/BogusEmptyBrontosaurus-max-1mb.gif" height="19" width="19"><i class="ti-shopping-cart"></i> Add to Cart</button>
-                                </form>
+                                <a href="{{route('cart.add')}}?_token={{csrf_token()}}&id={{Crypt::encrypt($course->id)}}" class="price_btn btn_hover"><i class="ti-shopping-cart"></i> Add To Cart</a>
                                 @endauth
                                 @guest
                                     <a href="{{url('login')}}" class="price_btn btn_hover"><i class="ti-shopping-cart"></i> Add To Cart</a>
@@ -278,17 +287,13 @@
                                         <span class="price f_700 save-price t_color2">${{number_format($deal->deal_price,2)}}</span>
                                         
                                         <!-- <a href="#" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a> -->
+                                      @auth
+                                      <a href="{{url('user/checkout')}}?_token={{ csrf_token() }}&dealId={{$deal->id}}" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
+                                      @endauth
+                                      @guest
+                                      <a href="{{url('login')}}" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
+                                      @endguest
                                     </p>
-                                    @auth
-                                        <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8" style="float: right;margin-top: -8%;">
-                                            @csrf
-                                        <input type="hidden" id="deal_id" name="dealId" value="{{$deal->id}}">
-                                        <button type="submit" style="background-color: white; border: none;"><a class="price_btn buy_btn btn_hover dealId"><i class="ti-shopping-cart"></i> Buy Now</a></button>
-                                        </form>
-                                        @endauth
-                                        @guest
-                                        <a href="{{url('login')}}" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
-                                        @endguest
                                 </li>
                                 @endif
                                 @endforeach

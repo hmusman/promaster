@@ -32,15 +32,18 @@ class cartController extends Controller
     	return cart::where("user_id",Auth::id())->count();
     }
     public function addCartItem(Request $request){
-    	if(cart::where(["user_id"=>Auth::id(),"course_id"=>Crypt::decrypt($request->id)])->count() == 0)
-    	cart::create(["user_id"=>Auth::id(),"course_id"=>Crypt::decrypt($request->id)]);
-    	return $this->cartCount();
+    	if(cart::where(["user_id"=>Auth::id(),"course_id"=>Crypt::decrypt($request->id)])->count() == 0){
+    	   cart::create(["user_id"=>Auth::id(),"course_id"=>Crypt::decrypt($request->id)]);
+        }else{
+            return redirect()->back()->with('message', '<div class="alert alert-info">Course already added to cart.</div>');
+        }
+    	return redirect()->back()->with('message', '<div class="alert alert-success">Course add to cart successfully.</div>');
     }
     public function addCartEbooks(Request $request){
         // dd(Crypt::decrypt($request->id));
         if(cart::where(["user_id"=>Auth::id(),"ebook_id"=>Crypt::decrypt($request->id)])->count() == 0)
             // dd(Crypt::decrypt($request->id));
-        cart::create(["user_id"=>Auth::id(),"ebook_id"=>Crypt::decrypt($request->id)]);
+            cart::create(["user_id"=>Auth::id(),"ebook_id"=>Crypt::decrypt($request->id)]);
         return $this->cartCount();
     }
     public function deleteCartItem(Request $request){
