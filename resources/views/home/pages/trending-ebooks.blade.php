@@ -1149,7 +1149,7 @@
                     type: 'POST',
                     data: {"_token": "{{ csrf_token() }}", 'id': ebook_id},
                     success: function(response){
-                       window.location.href = "http://localhost/promaster/trending-ebooks";
+                       window.location.href = "https://promastersgips.com/trending-ebooks";
                        $.toast({
                         heading: 'Ebook add to cart Successfully.',
                         text: 'you can buye here more.',
