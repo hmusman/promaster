@@ -145,7 +145,7 @@ div.con{
                                  <div class="panel-heading">
                                   <div class="media media-clearfix-xs-min v-middle">
                                     <div class="media-body text-caption text-blue">
-                                      <a href="#">{{$course->course_title}}<br></a>
+                                      <a href="#">{{str_replace('<br>', ' ', $course->course_title)}}<br></a>
                                     </div>
 
                                     </div>
