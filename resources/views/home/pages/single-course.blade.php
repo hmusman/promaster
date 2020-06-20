@@ -291,7 +291,7 @@
                                       <a href="{{url('user/checkout')}}?_token={{ csrf_token() }}&dealId={{$deal->id}}" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
                                       @endauth
                                       @guest
-                                      <a href="{{url('login')}}" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
+                                      <a href="#" data-toggle="modal" data-target=".buy" data-dealId="{{$deal->id}}" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
                                       @endguest
                                     </p>
                                 </li>
@@ -1029,6 +1029,55 @@
     </div>
 </div>
 @endsection
+@section('section-6')
+<div class="modal fade buy" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{url('register-user')}}" method="POST" class="login-form" id="signup-form" >
+                    @csrf
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Email</label>
+                        <input type="email" id="email" placeholder="promaster@gmail.com" name="email" value="{{ old('email')}}">
+                        <div class="alert-danger" id="emailError"></div>
+                    </div>
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Full Name</label>
+                        <input type="text" id="first_name" placeholder="Your Full Name" name="first_name" value="{{ old('first_name')}}">
+                         <div class="alert-danger" id="nameError"></div>
+                    </div>
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Password</label>
+                        <input type="password" id="password" placeholder="******" name="password">
+                        <div class="alert-danger" id="passwordError"></div>
+                    </div>
+                    <div class="extra">
+                        <div class="checkbox remember">
+                            <label>
+                                <input id="checkbox" type="checkbox" name="terms_and_condition"> I Agree to the <a data-toggle="modal" data-target=".terms" href="#">Terms and Conditions</a> of this website
+                            </label>
+                            <div class="alert-danger" id="terms_and_condition"></div>
+                        </div>
+                        <!--//check-box-->
+
+                    </div>
+                    <a href="#" class="btn_three">Create Account</a>
+                    <div class="alter-login text-center mt_30">
+                        Already a Member?<a class="login-link" href="{{url('login')}}">Sign In</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
 @section('script')
     <script type="text/javascript">
         $(document).ready(function(){
@@ -1059,4 +1108,47 @@
             })
         })
     </script>   
+    <script>
+      var dealId = '';
+    $('.price_btn').on('click',function(){
+        dealId = $(this).attr('data-dealID');
+    });
+    $('.btn_three').on('click', function(){
+        var deal_id = dealId;
+        var url = $('#signup-form').attr('action');
+        var method = $('#signup-form').attr('method');
+        var email = document.getElementById('email').value;
+        var first_name = document.getElementById('first_name').value;
+        var password = document.getElementById('password').value;
+        if ($('#checkbox').is(":checked"))
+        {
+            var checkbox = document.getElementById('checkbox').value;
+        }else{
+            var checkbox = null;
+        }
+        $.ajax({
+            url: url,
+            type: method,
+            data: {"_token": "{{ csrf_token() }}", 'email': email, 'first_name': first_name, 'password': password, 'terms_and_condition': checkbox},
+            success:function(response){
+                console.log('im success function.');
+                // $('#signup-form').hide();
+                $.ajax({
+                    url: '<?php echo url('user/checkout') ?>',
+                    type: 'GET',
+                    data: {'dealId': deal_id},
+                    success: function(response){
+                       window.location.href = "http://promastersgips.com/user/checkout?_token={{ csrf_token() }}&dealId="+deal_id;
+                    }
+                }); 
+            },
+            error: function(response){
+                $('#emailError').text(response.responseJSON.errors.email);
+                $('#nameError').text(response.responseJSON.errors.first_name);
+                $('#passwordError').text(response.responseJSON.errors.password);
+                $('#terms_and_condition').text(response.responseJSON.errors.terms_and_condition);
+            }
+        });
+    });
+    </script>
 @endsection
