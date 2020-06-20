@@ -56,7 +56,7 @@
 		                            	<p><strong>About:</strong></p>
 		                            	<div class="col-sm-2">
 		                            		<ul class="@if(!empty($deal->about1)) tt @else ttt @endif">
-		                            			<li>{{$deal->about1}}</li>
+		                            			<li>{{str_replace('<br>', ' ', $deal->about1)}}</li>
 		                            		</ul>
 		                            	</div>
 		                            	<div class="col-sm-2">
