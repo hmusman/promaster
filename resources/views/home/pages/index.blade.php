@@ -537,10 +537,10 @@
                             @elseif($deal->deal_name == '6 Courses Bundle')
                             <p>Remarkable savings for students<br><br></p>
                             @endif
-                            <div class="price f_700 f_size_30 t_color2" style="font-size: 21px;"><span class="before">${{number_format($deal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($deal->deal_price,2)}} </div>
+                            <div class="price f_700 f_size_30 t_color2"><span class="before">${{number_format($deal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($deal->deal_price,2)}} </div>
                             <ul class="list-unstyled p_list">
                                 @if(!empty($deal->about1))
-                                    <li><i class="ti-check"></i>{{$deal->about1}}</li>
+                                    <li><i class="ti-check"></i><?php echo strip_tags($deal->about1, '<br>') ?></li>
                                 @endif
                                 @if(!empty($deal->about2))
                                 <li><i class="ti-check"></i>{{$deal->about2}}</li>
@@ -1424,7 +1424,7 @@
                     type: 'GET',
                     data: {'dealId': deal_id},
                     success: function(response){
-                       window.location.href = "http://localhost/promaster/user/checkout?dealId="+deal_id;
+                       window.location.href = "http://promastersgips.com/user/checkout?_token={{ csrf_token() }}&dealId="+deal_id;
                     }
                 }); 
             },
@@ -1439,3 +1439,11 @@
    
 </script>
 @endsection
+
+
+
+
+
+
+
+

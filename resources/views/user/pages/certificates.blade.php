@@ -3,6 +3,9 @@
 @section('content')
 
 <style type="text/css">
+  .modal-header .close {
+      margin-top: -24px;
+  }
   .seo_service_item {
     padding: 20px!important;
     height: 344px;
@@ -101,14 +104,14 @@
               <div class="media v-middle">
                 <div class="media-body">
                    <div class="seo_sec_title wow fadeInUp" data-wow-delay="0.3s">
+                      @if (Session::has('message'))
+                       <div class="row">
+                          <div class="col-xl-9 alert alert-success" style="margin-top: 1%;padding-left: 3%;">
+                             {{ Session::get('message') }}
+                          </div>
+                       </div>
+                    @endif
                     <h2>My Certificates</h2>
-                    @if(session('message'))
-                     <div class="row">
-                        <div class="col-xl-9">
-                           {!! session('message') !!}
-                        </div>
-                     </div>
-                  @endif
                 </div>
                 </div>
                
@@ -139,7 +142,7 @@
                                </a>
                                
                               
-                               <a onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="https://www.facebook.com/sharer/sharer.php?u=https://promastersgips.com/&quote=I just completed my certificate in COURSE TITLE from Promasters: Global Institute for Professional Studies"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
+                               <a onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="https://www.facebook.com/sharer/sharer.php?u=https://promastersgips.com/&quote=I just completed my certificate in {{str_replace('<br>', ' ',$course->course_title)}} from Promasters: Global Institute for Professional Studies"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
                                  <span class="tooltiptext">Share on Facebook</span>
                                </a>
 
@@ -147,9 +150,9 @@
                                   <span class="tooltiptext">Share on Twitter</span>
                                 </a>
 
-                                 <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
+                                 <!-- <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-instagram" aria-hidden="true"></i>
                                   <span class="tooltiptext">Share on Instagram</span>
-                                 </a>
+                                 </a> -->
                                 @php 
                                   $state = substr(str_shuffle("0123456789abcHGFRlki"), 0, 10);
                                   $url = "https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=77bbhtl3l7n2on&redirect_uri=".env('REDIRECT_URI')."&scope=".env('SCOPES')."&state=".$state;
@@ -158,21 +161,8 @@
                                 <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="<?php echo $url; ?>"><i class="fa fa-linkedin-square" aria-hidden="true" data-course="{{$course->id}}"></i>
                                   <span class="tooltiptext">Share on LinkedIn</span>
                                 </a>
-                                @section('script')   
-                                <script>
-                                  
-                                  $('.fa-linkedin-square').on('click', function(){
-                                    var ids = $(this).attr('data-course');
-                                    console.log(ids);
-                                    $.ajax({
-                                      url: '<?php echo url('save/course') ?>',
-                                      type: 'GET',
-                                      data: {'id':ids},
-                                    })
-                                  })
-                                </script>
-                                @endsection
-                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><img src="{{url('public/userDashboard/images/mail.png')}}" width="21.5px">
+                                
+                                <a class="icon w3-animate-bottom tool email-share" data-z="0" data-hover-z="1" data-animated href="#" data-toggle="modal" data-target=".buy" data-course="{{$course->id}}" data-course-title="{{str_replace('<br>', ' ', $course->course_title)}}" data-course-description="{{$course->course_description}}"><img src="{{url('public/userDashboard/images/mail.png')}}" width="21.5px" style="margin-top: -4px;">
                                   <span class="tooltiptext">Share via Email</span>
                                 </a>
 
@@ -227,10 +217,56 @@
 
     </div>
     <!-- /st-pusher -->
+<div class="modal fade buy" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Share Certificate via Email</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{url('user/share-certificate-email')}}" method="POST" class="login-form" id="email-form" >
+                    @csrf
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Email</label>
+                        <input type="email" id="email" placeholder="promaster@gmail.com" name="email" value="{{ old('email')}}" required="">
+                        <div class="alert-danger" id="emailError"></div>
+                    </div>
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Subject</label>
+                        <input type="text" id="subject" placeholder="Your Email Subject" name="subject" value="{{ old('subject')}}">
+                         <div class="alert-danger" id="subjectError"></div>
+                    </div>
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Body</label>
+                        <textarea name="body" id="body" placeholder="Your Email Body">{{ old('body')}}</textarea>
+                        <div class="alert-danger" id="bodyError"></div>
+                    </div>
+                    <button type="submit" class="btn_three send-email" style="text-align: center;">Send Email</a>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
-@section('script')
-<script type="text/javascript">
+@section('script') 
+<script>
+  
+  $('.fa-linkedin-square').on('click', function(){
+    var ids = $(this).attr('data-course');
+    console.log(ids);
+    $.ajax({
+      url: '<?php echo url('save/course') ?>',
+      type: 'GET',
+      data: {'id':ids},
+    })
+  })
+</script>
+<!-- <script type="text/javascript">
    $(".side-menu-fixed .side-menu li a").removeClass("active");
    $(".certificates").addClass('active');
    //
@@ -240,5 +276,56 @@
       percentage = "{{@$course->getPercentage($course->id)}}";
       progressBar(canvas,span,percentage);
    @endforeach
+</script> -->
+<script>
+
+  $('.email-share').on('click', function(){
+       var course_id = $(this).attr('data-course');
+       var course_title = $(this).attr('data-course-title');
+       var course_description = $(this).attr('data-course-description');
+
+       console.log(course_id);
+       console.log(course_title);
+       console.log(course_description);
+
+       $('#subject').val($('#subject').val() + "I just completed my certificate in "+course_title+" from Promasters: Global Institute for Professional Studies.");
+
+       $('#body').val($('#body').val() + course_description);
+
+       $('#email-form').append('<input type="hidden" id="course_id" name="course_id" value="'+course_id+'">')
+
+
+
+  });
+
+  // $('.send-email').on('click', function(){
+
+  //   var course_id = document.getElementById('course_id').value;
+  //   var email = document.getElementById('email').value;
+  //   var suject = document.getElementById('subject').value;
+  //   var body = document.getElementById('body').value;
+  //   console.log(email);
+  //   console.log(course_id);
+  //   console.log(subject);
+  //   console.log(body);
+
+  //   var url = $('#email-form').attr('action');
+  //   var method = $('#email-form').attr('method');
+
+  //   $.ajax({
+  //      url: url,
+  //      type: method,
+  //      data: {"_token": "{{ csrf_token() }}", 'email': email, 'subject': subject, 'body': body},
+  //      success: function(response){
+  //         console.log('im success function.');
+  //      },
+  //     error: function(response){
+  //             $('#emailError').text(response.responseJSON.errors.email);
+  //             $('#subjectError').text(response.responseJSON.errors.subject);
+  //             $('#bodyError').text(response.responseJSON.errors.body);
+  //         }
+  //   })
+
+  // });
 </script>
 @endsection

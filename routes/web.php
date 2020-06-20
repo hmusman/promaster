@@ -76,7 +76,9 @@ Route::group(["namespace"=>"admin\Auth"],function(){
 	Route::post('/admin-reset-password', "ResetPasswordController@reset")->name('admin.password.update');
 });
 
-
+// Route::get('certificateEmail', function(){
+// 	return view('user.pages.certificateEmail-template');
+// });
 
 Route::post('subscribe', 'subscribeController@storeEmail')->name('subscribe');
 
@@ -86,6 +88,8 @@ Route::group(["namespace"=>"user","prefix"=>"user","middleware"=> 'auth'],functi
 	Route::get('checkout/payment', 'PayPalController@payment')->name('checkout.payment');
 	// Route::get('cancel', 'PayPalController@cancel')->name('payment.cancel');
 	// Route::get('payment/success', 'PayPalController@success')->name('payment.success');
+	//SHARE CERTIFICATE VIA EMAIL
+	Route::post('share-certificate-email', "shareCertificateController@shareCertificate")->name('share.certificate.email');
 	//CHANGE NAME WITH PAYPAL
 	Route::get('payment', 'changeNameWithPayment@payment')->name('change-name-payment');
 	Route::get('cancel', 'changeNameWithPayment@cancel')->name('payment.cancel');

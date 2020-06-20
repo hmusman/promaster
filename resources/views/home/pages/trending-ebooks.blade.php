@@ -278,111 +278,11 @@
                     <!-- <a class="cart-link" href="#">Add To Cart</a> -->
                     @endauth
                     @guest
-                    <a class="cart-link" href="{{url('login')}}">Add To Cart</a>
+                    <a href="#" data-toggle="modal" data-target=".buy" class="cart-link" data-ebookID="{{Crypt::encrypt($ebook->id)}}">Add To Cart</a>
                     @endguest
 
                 </div>
                 @endforeach
-                <!-- <div class="col-2-5">
-                    <img src="{{url('public/assets/img/seo/ilus1.png')}}" width="200px">
-                    <div class="book-about">
-                        <h5>Effective Communication</h5>
-                        <p>Professional eBook</p>
-                        <img src="https://getphotostick.io/wp-content/uploads/fourhalf-stars-1.jpg"><br>
-                        <span class="book-price">USD 4.99</span>
-                    </div>
-                    <a class="cart-link" href="#">Add To Cart</a>
-
-                </div>
-                <div class="col-2-5">
-                    <img src="{{url('public/assets/img/seo/ilus3.png')}}" width="200px">
-                    <div class="book-about">
-                        <h5>Emotional Intelligence </h5>
-                        <p>Professional eBook</p>
-                        <img src="https://getphotostick.io/wp-content/uploads/fourhalf-stars-1.jpg"><br>
-                        <span class="book-price">USD 4.99</span>
-                    </div>
-                    <a class="cart-link" href="#">Add To Cart</a>
-
-                </div>
-                <div class="col-2-5">
-                    <img src="{{url('public/assets/img/seo/ilus4.png')}}" width="200px">
-                    <div class="book-about">
-                        <h5>Customer Service Management</h5>
-                        <p>Professional eBook</p>
-                        <img src="https://getphotostick.io/wp-content/uploads/five-stars-1.jpg"><br>
-                        <span class="book-price">USD 4.99</span>
-                    </div>
-                    <a class="cart-link" href="#">Add To Cart</a>
-
-                </div>
-                <div class="col-2-5">
-                    <img src="{{url('public/assets/img/seo/ilus5.png')}}" width="200px">
-                    <div class="book-about">
-                        <h5>Work<br>Ethics </h5>
-                        <p>Professional eBook</p>
-                        <img src="https://getphotostick.io/wp-content/uploads/five-stars-1.jpg"><br>
-                        <span class="book-price">USD 4.99</span>
-                    </div>
-                    <a class="cart-link" href="#">Add To Cart</a>
-
-                </div>
-
-                <div class="col-2-5">
-                    <img src="{{url('public/assets/img/seo/ilus9.png')}}" width="200px">
-                    <div class="book-about">
-                        <h5>Creative<br>Thinking </h5>
-                        <p>Professional eBook</p>
-                        <img src="https://getphotostick.io/wp-content/uploads/five-stars-1.jpg"><br>
-                        <span class="book-price">USD 4.99</span>
-                    </div>
-                    <a class="cart-link" href="#">Add To Cart</a>
-
-                </div>
-                <div class="col-2-5">
-                    <img src="{{url('public/assets/img/seo/ilus7.png')}}" width="200px">
-                    <div class="book-about">
-                        <h5>Time<br>Management </h5>
-                        <p>Professional eBook</p>
-                        <img src="https://getphotostick.io/wp-content/uploads/fourhalf-stars-1.jpg"><br>
-                        <span class="book-price">USD 4.99</span>
-                    </div>
-                    <a class="cart-link" href="#">Add To Cart</a>
-
-                </div>
-                <div class="col-2-5">
-                    <img src="{{url('public/assets/img/seo/ilus8.png')}}" width="200px">
-                    <div class="book-about">
-                        <h5>Conflict <br>Resolution </h5>
-                        <p>Professional eBook</p>
-                        <img src="https://getphotostick.io/wp-content/uploads/five-stars-1.jpg"><br>
-                        <span class="book-price">USD 4.99</span>
-                    </div>
-                    <a class="cart-link" href="#">Add To Cart</a>
-
-                </div>
-                <div class="col-2-5">
-                    <img src="{{url('public/assets/img/seo/ilus6.png')}}" width="200px">
-                    <div class="book-about">
-                        <h5>Teamwork and Collaboration</h5>
-                        <p>Professional eBook</p>
-                        <img src="https://getphotostick.io/wp-content/uploads/five-stars-1.jpg"><br>
-                        <span class="book-price">USD 4.99</span>
-                    </div>
-                    <a class="cart-link" href="#">Add To Cart</a>
-
-                </div>
-                <div class="col-2-5">
-                    <img src="{{url('public/assets/img/seo/ilus10.png')}}" width="200px">
-                    <div class="book-about">
-                        <h5>Initiative and<br> Problem Solving </h5>
-                        <p>Professional eBook</p>
-                        <img src="https://getphotostick.io/wp-content/uploads/fourhalf-stars-1.jpg"><br>
-                        <span class="book-price">USD 4.99</span>
-                    </div>
-                    <a class="cart-link" href="#">Add To Cart</a>
-
-                </div> -->
 
             </div>
         </div>
@@ -391,7 +291,7 @@
 @endsection
 
 @section('section-2')
-<div class="modal fade buy" tabindex="-1" role="dialog" aria-hidden="true">
+<!-- <div class="modal fade buy" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -420,10 +320,10 @@
                                 <input type="checkbox"> I Agree to the <a data-toggle="modal" data-target=".terms" href="#">Terms
                                     and Conditions</a> of this website
                             </label>
-                        </div>
+                        </div> -->
                         <!--//check-box-->
 
-                    </div>
+                    <!-- </div>
                     <a href="checkout.html" class="btn_three">Create Account</a>
                     <div class="alter-login text-center mt_30">
                         Already a Member?<a class="login-link" href="login.html">Sign In</a>
@@ -433,7 +333,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 @endsection
 
 
@@ -1104,7 +1004,55 @@
     </div>
 </div>
 @endsection
+@section('section-7')
+<div class="modal fade buy" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{url('register-user')}}" method="POST" class="login-form" id="signup-form" >
+                    @csrf
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Email</label>
+                        <input type="email" id="email" placeholder="promaster@gmail.com" name="email" value="{{ old('email')}}">
+                        <div class="alert-danger" id="emailError"></div>
+                    </div>
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Full Name</label>
+                        <input type="text" id="first_name" placeholder="Your Full Name" name="first_name" value="{{ old('first_name')}}">
+                         <div class="alert-danger" id="nameError"></div>
+                    </div>
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Password</label>
+                        <input type="password" id="password" placeholder="******" name="password">
+                        <div class="alert-danger" id="passwordError"></div>
+                    </div>
+                    <div class="extra">
+                        <div class="checkbox remember">
+                            <label>
+                                <input id="checkbox" type="checkbox" name="terms_and_condition"> I Agree to the <a data-toggle="modal" data-target=".terms" href="#">Terms and Conditions</a> of this website
+                            </label>
+                            <div class="alert-danger" id="terms_and_condition"></div>
+                        </div>
+                        <!--//check-box-->
 
+                    </div>
+                    <a href="#" class="btn_three">Create Account</a>
+                    <div class="alter-login text-center mt_30">
+                        Already a Member?<a class="login-link" href="{{url('login')}}">Sign In</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
 
 @section('script')
 <script>
@@ -1168,5 +1116,57 @@
                 })
             })
         })
+    </script> 
+        <script>
+        var ebookId = '';
+        $('.cart-link').on('click',function(){
+            ebookId = $(this).attr('data-ebookID');
+            console.log(ebookId);
+        });
+
+        $('.btn_three').on('click', function(){
+        var ebook_id = ebookId;
+        var url = $('#signup-form').attr('action');
+        var method = $('#signup-form').attr('method');
+        var email = document.getElementById('email').value;
+        var first_name = document.getElementById('first_name').value;
+        var password = document.getElementById('password').value;
+        if ($('#checkbox').is(":checked"))
+        {
+            var checkbox = document.getElementById('checkbox').value;
+        }else{
+            var checkbox = null;
+        }
+        $.ajax({
+            url: url,
+            type: method,
+            data: {"_token": "{{ csrf_token() }}", 'email': email, 'first_name': first_name, 'password': password, 'terms_and_condition': checkbox},
+            success:function(response){
+                console.log('im success function.');
+                // $('#signup-form').hide();
+                $.ajax({
+                    url: '<?php echo url('add-cart-items') ?>',
+                    type: 'POST',
+                    data: {"_token": "{{ csrf_token() }}", 'id': ebook_id},
+                    success: function(response){
+                       window.location.href = "http://localhost/promaster/trending-ebooks";
+                       $.toast({
+                        heading: 'Ebook add to cart Successfully.',
+                        text: 'you can buye here more.',
+                        icon: 'info',
+                        loader: false,        // Change it to false to disable loader
+                        loaderBg: '#9EC600'  // To change the background
+                    })
+                    }
+                }); 
+            },
+            error: function(response){
+                $('#emailError').text(response.responseJSON.errors.email);
+                $('#nameError').text(response.responseJSON.errors.first_name);
+                $('#passwordError').text(response.responseJSON.errors.password);
+                $('#terms_and_condition').text(response.responseJSON.errors.terms_and_condition);
+            }
+        });
+    });
     </script> 
 @endsection

@@ -39,7 +39,7 @@
                    <br><br>
                    <span style="font-size:23px;color: #656262;">for completing the course in </span>
                    <br>
-                   <span style="font-size:21px;font-weight:bold;color:#2e90fd;"> {{@$course->course_title}} </span>
+                   <span style="font-size:21px;font-weight:bold;color:#2e90fd;"> {{str_replace('<br>', ' ', @$course->course_title)}} </span>
                    <br><br>
                    <span style="font-size:20px;color: #656262;"> Demonstrating A High Level Of <br>  Compromise And Effort In The Process </span>
                    <p style="font-size:21px;color:#2e90fd;"> {{date('d-M-Y')}} <br>   </p>
