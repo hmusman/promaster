@@ -101,7 +101,7 @@
                                         @endif
                                         <input type="hidden" name="dealIDs" value="">
                                         
-                                        <tr class="subtotal"  style="@if(count($ebooks) > 0 && count($courses) == 0 && empty($deals))  display: none; @elseif(count($courses) == 1) display: none; @elseif($edit && count($ebooks) == 0 && count($courses) == 0 && empty($deals)) display: none; @endif">
+                                        <tr class="subtotal"  style="@if(count($ebooks) > 0 && count($courses) == 0 && empty($deals))  display: none; @elseif(count($courses) == 1 && count($ebooks) == 0 && empty($deals)) display: none; @elseif($edit && count($ebooks) == 0 && count($courses) == 0 && empty($deals)) display: none; @endif">
                                             <td class="price">Original Price</td>
                                             <td class="price" id="total_price">
                                             @if($deals)
@@ -110,7 +110,7 @@
                                                 ${{number_format($regtotal, 2)}}
                                             @endif</td>
                                         </tr>
-                                        <tr class="subtotal" style="@if(count($ebooks) > 0 && count($courses) == 0 && empty($deals))  display: none; @elseif(count($courses) == 1) display: none; @elseif($edit && count($ebooks) == 0 && count($courses) == 0 && empty($deals)) display: none; @endif">
+                                        <tr class="subtotal" style="@if(count($ebooks) > 0 && count($courses) == 0 && empty($deals))  display: none; @elseif(count($courses) == 1 && count($ebooks) == 0 && empty($deals)) display: none; @elseif($edit && count($ebooks) == 0 && count($courses) == 0 && empty($deals)) display: none; @endif">
                                             <td class="price">Covid-19 Discount</td>
                                             <td class="price">
                                             @if($deals && count($courses) == 0 && count($ebooks) == 0)        
