@@ -5,6 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta property="og:image" content="https://promastersgips.com/public/assets/img/seo/image.jpg"/>
     <link rel="shortcut icon" href="img/icon-pro.png" type="image/x-icon">
     <title>Promaster</title>
     <!-- Bootstrap CSS -->
