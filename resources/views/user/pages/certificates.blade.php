@@ -142,7 +142,7 @@
                                </a>
                                
                               
-                               <a onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="https://www.facebook.com/sharer/sharer.php?u=https://promastersgips.com/&quote=I just completed my certificate in {{str_replace('<br>', ' ',$course->course_title)}} from Promasters: Global Institute for Professional Studies"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
+                               <a onclick="return !window.open(this.href, 'Facebook', 'width=640,height=300')" class="icon w3-animate-bottom tool"  data-z="0" data-hover-z="1" data-animated href="https://www.facebook.com/sharer/sharer.php?u=https://promastersgips.com/&quote=I just received my certificate in {{str_replace('<br>', ' ',$course->course_title)}} from Promasters: Global Institute for Professional Studies"><i class="fa fa-facebook-square"  aria-hidden="true"></i>
                                  <span class="tooltiptext">Share on Facebook</span>
                                </a>
 

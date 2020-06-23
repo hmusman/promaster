@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta property="og:image" content="https://promastersgips.com/public/assets/img/seo/image.jpg"/>
     <link rel="shortcut icon" href="img/icon-pro.png" type="image/x-icon">
-    <title>Promaster</title>
+    <title>Promasters</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{url('public/assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('public/assets/vendors/bootstrap-selector/css/bootstrap-select.min.css')}}">
