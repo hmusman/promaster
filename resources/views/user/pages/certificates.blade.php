@@ -146,7 +146,7 @@
                                  <span class="tooltiptext">Share on Facebook</span>
                                </a>
 
-                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="#"><i class="fa fa-twitter-square"  aria-hidden="true"></i>
+                                <a class="icon w3-animate-bottom tool" data-z="0" data-hover-z="1" data-animated href="https://twitter.com/intent/tweet?hashtags=promasters&original_referer=https://promastersgips.com&ref_src=twsrc%5Etfw&related=twitterapi%2Ctwitter&text=I just received my certificate in {{str_replace('<br>', ' ',$course->course_title)}} from Promasters: Global Institute for Professional Studies&tw_p=tweetbutton&url=https://promastersgips.com/"><i class="fa fa-twitter-square"  aria-hidden="true"></i>
                                   <span class="tooltiptext">Share on Twitter</span>
                                 </a>
 
