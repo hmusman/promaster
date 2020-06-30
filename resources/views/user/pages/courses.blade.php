@@ -1,4 +1,5 @@
 @extends('user.includes.layout')
+@section('title') Promaster | My Courses @endsection
 @section('content-heading')
 <!-- <h4 class="mb-0">My Courses</h4> -->
 @stop

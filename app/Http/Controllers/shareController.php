@@ -61,7 +61,7 @@ class shareController extends Controller
     	$shared = shared::where('user_id', Auth::id())->where('course_id', $ids)->first();
     	$course = course::where('id', $ids)->first();
     	if(empty($shared)){
-	    	$title = $course->course_title;
+	    	$title = str_replace('<br>', ' ', $course->course_title);
 	    	$summery = $course->course_description;
 	    	// dd($course->course_title, $course->course_description);
 			$link = url('/');

@@ -25,21 +25,23 @@ class PayPalController extends Controller
     	// dd('i am here...........');
         // dd($request->course_ids, $request->deal_ids);
         $ids = $request->course_ids;
-        $deal_ids = $request->deal_ids;
+        $deal_ids = (int)$request->deal_ids[0];
         $ebook_ids = $request->ebook_ids;
         $edit = $request->edit_name;
+        $courseIds = $request->session()->get('courseIds');
         // dd($ids, $deal_ids, $ebook_ids, $edit);
-        $dealID = [];
-        if(!empty($deal_ids)){
+         // dd($request->session()->get('courseIds'));
+        // $dealID = [];
+        // if(!empty($deal_ids)){
     	   
-           $deals = deals::where('id', $deal_ids)->first();
-           $dealID[] = (string)$deals->id;
-        }
+        //    $deals = deals::where('id', $deal_ids)->first();
+        //    $dealID[] = (string)$deals->id;
+        // }
 
         if($ids != null || !empty($ids))
             usercourse::create(["user_id"=>Auth::id(), "course_id"=>json_encode($ids,true)]);
-        if($dealID != null || !empty($dealID)){
-            userdeals::create(["user_id"=>Auth::id(), "deal_id"=>json_encode($dealID,true)]);
+        if($deal_ids != null || !empty($deal_ids) || !empty($courseIds)){
+            userdeals::create(["user_id"=>Auth::id(), "deal_id"=>$deal_ids, "course_ids"=>json_encode($courseIds,true)]);
         }
         if($ebook_ids != null || !empty($ebook_ids)){
             userebooks::create(["user_id"=>Auth::id(), "ebook_id"=>json_encode($ebook_ids,true)]);

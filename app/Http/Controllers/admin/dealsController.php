@@ -38,11 +38,12 @@ class dealsController extends Controller
     	$about3 = $request->about3;
     	$about4 = $request->about4;
     	$type = $request->typee;
-    	$courses_id = $request->courses_id;
+        $num_of_courses = $request->num_of_courses;
+    	// $courses_id = $request->courses_id;
     	// $serializedArr = serialize($courses_id);
     	$course_id = json_encode($request->courses_id);
 
-    	$deals = deals::updateOrCreate(["deal_name"=> $title, "bundle_price" => $price1, "deal_price" => $price2, "about1" => $about1, "about2" => $about2, "about3" => $about3, "about4" => $about4, "course_id" => $course_id, "deal_type" => $type]);
+    	$deals = deals::updateOrCreate(["deal_name"=> $title, "bundle_price" => $price1, "deal_price" => $price2, "about1" => $about1, "about2" => $about2, "about3" => $about3, "about4" => $about4, 'number_of_course' => $num_of_courses, "deal_type" => $type]);
 
     	return redirect()->back()->with('message', 'Deal save successfully');
     }
@@ -63,11 +64,13 @@ class dealsController extends Controller
     	$about2 = $request->about2;
     	$about3 = $request->about3;
     	$about4 = $request->about4;
-    	$courses_id = $request->courses_id;
+        $type = $request->typee;
+        $num_of_courses = $request->num_of_courses;
+    	// $courses_id = $request->courses_id;
     	// $serializedArr = serialize($courses_id);
     	$course_id = json_encode($request->courses_id, true);
 
-    	$deals = deals::where('id',$id)->update(["deal_name"=> $title, "bundle_price" => $price1, "deal_price" => $price2, "about1" => $about1, "about2" => $about2, "about3" => $about3, "about4" => $about4, "course_id" => $course_id]);
+    	$deals = deals::where('id',$id)->update(["deal_name"=> $title, "bundle_price" => $price1, "deal_price" => $price2, "about1" => $about1, "about2" => $about2, "about3" => $about3, "about4" => $about4, 'number_of_course' => $num_of_courses, "deal_type" => $type]);
 
     	return Redirect::to('admin/deals')->with('message', 'Deal update successfully');
     }

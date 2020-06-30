@@ -1,5 +1,5 @@
 @extends('user.includes.layout')
-
+@section('title') Promaster | Send A Ticket @endsection
 @section('content')
 
     <!-- content push wrapper -->

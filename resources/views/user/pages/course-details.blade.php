@@ -1,5 +1,5 @@
 @extends('user.includes.layout')
-
+@section('title') Promaster | <?php echo str_replace('<br>', ' ', $course->course_title) ?> @endsection
 @section('content')
 <style>
   .disabled {

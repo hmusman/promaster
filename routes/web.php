@@ -21,6 +21,9 @@ Route::group(["namespace"=>"home"],function(){
 	Route::post('/delete-cart-item','cartController@deleteCartItem')->name('cart.delete');
 	
 });
+
+Route::post('setSession','user\checkoutController@setSession');
+Route::post('checkDeal','user\checkoutController@checkDeal');
 Route::get('assistance-directory', function(){
 	return view('home.pages.assistance');
 });

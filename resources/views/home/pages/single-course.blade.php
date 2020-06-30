@@ -1,5 +1,5 @@
 @extends('home.includes.layout')
-
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
 @push('style')
 <style type="text/css">
     @media only screen and (max-width: 600px) {
@@ -34,6 +34,30 @@
       .t_color3 br {
           display: block;
       }
+    }
+    .overlay {
+       background-color: lightgray;
+       text-align: center;
+       z-index: 10000;
+       opacity: 0.5;
+       text-align: center;
+     }
+    .disabled{    
+        filter: blur(1px);
+        pointer-events: none;
+      }
+    .course_table{
+        width: 100%;
+        text-align: center;
+        border: 1px solid lightgray;
+    }
+    #title{
+        border: 1px solid lightgray;
+        padding: 3% 6% 3% 6%;
+    }
+    #id{
+        border: 1px solid lightgray;
+        padding: 4px 13px 0px 13px !important;
     }
     .list-unstyled li {
         margin: 15px 0;
@@ -288,7 +312,8 @@
                                         
                                         <!-- <a href="#" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a> -->
                                       @auth
-                                      <a href="{{url('user/checkout')}}?_token={{ csrf_token() }}&dealId={{$deal->id}}" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
+                                      <!-- href="{{url('user/checkout')}}?_token={{ csrf_token() }}&dealId={{$deal->id}}" -->
+                                      <a href="#" data-toggle="modal" data-target=".buyDeal"  class="price_btn buy_btn btn_hover" data-dealID="{{$deal->id}}" data-dealName="{{$deal->deal_name}}"><i class="ti-shopping-cart"></i> Buy Now</a>
                                       @endauth
                                       @guest
                                       <a href="#" data-toggle="modal" data-target=".buy" data-dealId="{{$deal->id}}" class="price_btn buy_btn btn_hover"><i class="ti-shopping-cart"></i> Buy Now</a>
@@ -1067,7 +1092,7 @@
                         <!--//check-box-->
 
                     </div>
-                    <a href="#" class="btn_three">Create Account</a>
+                    <button data-toggle="modal" data-target=".buyDeal" type="button" class="btn_three deals_sc">Create Account</button>
                     <div class="alter-login text-center mt_30">
                         Already a Member?<a class="login-link" href="{{url('login')}}">Sign In</a>
                     </div>
@@ -1077,8 +1102,39 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade buyDeal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Select Courses</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="course_table">
+                  <div class="msg">
+                        
+                    </div>
+                    <tbody class="table_body">
+                        @foreach($courses as $course)
+                        <tr class="course-{{$course->id}} @if(in_array($course->id, $ids)) disabled @endif" id="{{$course->id}}">
+                            <td id="id"><input type="checkbox" class="filled-in {{$course->id}}" value="{{$course->id}}" name="courseID" /></td>
+                            <td id="title">{{str_replace('<br>', ' ', $course->course_title)}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                    <button class="btn_three courses" style="margin-top: 23px;width: 100%;text-align: center;">Submit</button>    
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" type="text/javascript" charset="utf-8" async defer></script>
+
     <script type="text/javascript">
         $(document).ready(function(){
             $('.add-to-cart-btn img').hide();
@@ -1109,11 +1165,280 @@
         })
     </script>   
     <script>
-      var dealId = '';
+
+    var dealId = '';
+    var dealName = '';
     $('.price_btn').on('click',function(){
         dealId = $(this).attr('data-dealID');
+        dealName = $(this).attr('data-dealName');
+        console.log(dealId);
+        console.log(dealName);
+        var ids = <?php echo count($ids); ?>;
+
+        if(dealName == 'DELUXE PACKAGE' && ids >= 1){
+            $('.modal-title').empty();
+            $('.modal-title').append('Alert!');
+            $('.msg').append('<p class="alert alert-danger">You can not buy DELUXE PACKAGE Deal, becasue DELUXE PACKAGE Deal contain 10 courses. you already purchased '+ids+' courses. Please chose other deals.</p>');
+            $('.table_body').hide();
+            $('.courses').hide();
+        }
+        if(dealName == 'Single Course' && ids >= 10){
+            $('.modal-title').empty();
+            $('.modal-title').append('Alert!');
+            $('.msg').append('<p class="alert alert-danger">You can not buy Single Course Deal, becasue Single Course Deal contain 1 course. you already purchased '+ids+' courses. Please chose other deals.</p>');
+            $('.table_body').hide();
+            $('.courses').hide();
+        }
+        if(dealName == '2 Courses Bundle' && ids >= 9){
+            $('.modal-title').empty();
+            $('.modal-title').append('Alert!');
+            $('.msg').append('<p class="alert alert-danger">You can not buy 2 Courses Bundle Deal, becasue 2 Courses Bundle Deal contain 2 courses. you already purchased '+ids+' courses. Please chose other deals.</p>');
+            $('.table_body').hide();
+            $('.courses').hide();
+        }
+        if(dealName == '4 Courses Bundle' && ids >= 7){
+            $('.modal-title').empty();
+            $('.modal-title').append('Alert!');
+            $('.msg').append('<p class="alert alert-danger">You can not buy 4 Courses Bundle Deal, becasue 4 Courses Bundle Deal contain 4 courses. you already purchased '+ids+' courses. Please chose other deals.</p>');
+            $('.table_body').hide();
+            $('.courses').hide();
+        }
+        if(dealName == '6 Courses Bundle' && ids >= 5){
+            $('.modal-title').empty();
+            $('.modal-title').append('Alert!');
+            $('.msg').append('<p class="alert alert-danger">You can not buy 6 Courses Bundle Deal, becasue 6 Courses Bundle Deal contain 6 courses. you already purchased '+ids+' courses. Please chose other deals.</p>');
+            $('.table_body').hide();
+            $('.courses').hide();
+        }
     });
-    $('.btn_three').on('click', function(){
+
+     // GET UNIQUE ARRAY
+    function onlyUnique(value, index, self) { 
+        return self.indexOf(value) === index;
+    }
+    // GET SELECTED COURSES
+    var courseIds = new Array();
+    var unique;
+    $('.courses').on('click', function(){
+        var flag = 0;
+        var courseIds = new Array();
+        $('input[name="courseID"]:checked').each(function() {
+           courseIds.push(this.value);
+
+           unique = courseIds.filter( onlyUnique );
+
+        });
+        
+        // console.log(dealName);
+        // console.log(unique.length);
+        if(dealName == 'DELUXE PACKAGE'){
+            if(typeof unique === 'undefined' || unique == null){
+                $.toast({
+                    heading: 'Error',
+                    text: 'DELUXE PACKAGE deal contains 10 courses. Please select at least 10 courses to continue.',
+                    showHideTransition: 'fade',
+                    position: 'top-right',
+                    icon: 'error',
+                    loader: true, 
+                    loaderBg: '#a94442',
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000,
+                    Size: 28
+                })
+            }else if(unique.length < 10 || unique.length > 10){
+                // console.log(unique.length);
+                $.toast({
+                    heading: 'Error',
+                    text: 'DELUXE PACKAGE deal contains 10 courses. Please select at least 10 courses to continue.',
+                    showHideTransition: 'fade',
+                    position: 'top-right',
+                    icon: 'error',
+                    loader: true, 
+                    loaderBg: '#a94442',
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
+            }else{
+                flag = 1;
+            }
+            
+        }else if(dealName == 'Single Course'){
+            if(typeof unique === 'undefined' || unique == null){
+                $.toast({
+                    heading: 'Error',
+                    text: 'Single Course deal contains 1 course. Please select at least 1 courses to continue.',
+                    showHideTransition: 'fade',
+                    position: 'top-right',
+                    icon: 'error',
+                    loader: true, 
+                    loaderBg: '#a94442',
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
+            }
+            else if(unique.length < 1 || unique.length > 1){
+                $.toast({
+                    heading: 'Error',
+                    text: 'Single Course deal contains 1 course. Please select at least 1 courses to continue.',
+                    showHideTransition: 'fade',
+                    position: 'top-right',
+                    icon: 'error',
+                    loader: true, 
+                    loaderBg: '#a94442',
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
+            }else{
+                flag = 1;
+            }
+        }else if(dealName == '2 Courses Bundle'){
+            if(typeof unique === 'undefined' || unique == null){
+                $.toast({
+                    heading: 'Error',
+                    text: '2 Courses Bundle deal contains 2 course. Please select at least 2 courses to continue.',
+                    showHideTransition: 'fade',
+                    position: 'top-right',
+                    icon: 'error',
+                    loader: true, 
+                    loaderBg: '#a94442',
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
+            }
+            else if(unique.length < 2 || unique.length > 2){
+                $.toast({
+                    heading: 'Error',
+                    text: '2 Courses Bundle deal contains 2 course. Please select at least 2 courses to continue.',
+                    showHideTransition: 'fade',
+                    position: 'top-right',
+                    icon: 'error',
+                    loader: true, 
+                    loaderBg: '#a94442',
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
+            }else{
+                flag = 1;
+            }
+        }else if(dealName == '4 Courses Bundle'){
+            if(typeof unique === 'undefined' || unique == null){
+                $.toast({
+                    heading: 'Error',
+                    text: '4 Courses Bundle deal contains 2 course. Please select at least 4 courses to continue.',
+                    showHideTransition: 'fade',
+                    position: 'top-right',
+                    icon: 'error',
+                    loader: true, 
+                    loaderBg: '#a94442',
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
+            }
+            else if(unique.length < 4 || unique.length > 4){
+                $.toast({
+                    heading: 'Error',
+                    text: '4 Courses Bundle deal contains 2 course. Please select at least 4 courses to continue.',
+                    showHideTransition: 'fade',
+                    position: 'top-right',
+                    icon: 'error',
+                    loader: true, 
+                    loaderBg: '#a94442',
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
+            }else{
+                flag = 1;
+            }
+        }
+        else if(dealName == '6 Courses Bundle'){
+            if(typeof unique === 'undefined' || unique == null){
+                $.toast({
+                    heading: 'Error',
+                    text: '6 Courses Bundle deal contains 2 course. Please select at least 6 courses to continue.',
+                    showHideTransition: 'fade',
+                    position: 'top-right',
+                    icon: 'error',
+                    loader: true, 
+                    loaderBg: '#a94442',
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
+            }else if(unique.length < 6 || unique.length > 6){
+                $.toast({
+                    heading: 'Error',
+                    text: '6 Courses Bundle deal contains 2 course. Please select at least 6 courses to continue.',
+                    showHideTransition: 'fade',
+                    position: 'top-right',
+                    icon: 'error',
+                    loader: true, 
+                    loaderBg: '#a94442', 
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
+            }else{
+                flag = 1;
+            }
+        }
+
+        if(flag == 1){
+
+            $.ajax({
+                url: '<?php echo url('checkDeal'); ?>',
+                type: "post",
+                data: {"_token": "{{ csrf_token() }}",'dealId':dealId, 'courseIds': unique},
+                success:function(data){
+                  console.log('deals is checked.');
+                  // console.log(data);
+                  if($.trim(data) != 'true'){
+                      data.forEach(function(data) {
+                        console.log('#'+data);
+                        $('.'+data).attr("checked", false);
+                        $('#'+data).addClass('disabled');
+                      });
+
+                      $.toast({
+                                heading: 'Information',
+                                text: 'You have already purchased some of your selected courses, Please select another one. Thanks!',
+                                icon: 'info',
+                                position: 'top-right',
+                                loader: true,        // Change it to false to disable loader
+                                loaderBg: '#31708f', // To change the background
+                                allowToastClose: true,
+                                stack: 6,
+                                hideAfter: 7000
+                            })
+                  }
+                  if($.trim(data) == 'true'){
+                        // console.log('you are working good...');
+                        // console.log(unique);
+                        // console.log(dealId);
+                        $.ajax({
+                            url: '<?php echo url('setSession'); ?>',
+                            type: "post",
+                            data: {"_token": "{{ csrf_token() }}",'courseIds':unique, 'dealId':dealId},
+                            success:function(response){
+                                window.location.href = "https://promastersgips.com/user/checkout?_token={{ csrf_token() }}";
+                            }
+                        })
+                    }
+                }
+            })
+        }
+        
+    });
+
+
+    $('.deals_sc').on('click', function(){
         var deal_id = dealId;
         var url = $('#signup-form').attr('action');
         var method = $('#signup-form').attr('method');
@@ -1132,15 +1457,19 @@
             data: {"_token": "{{ csrf_token() }}", 'email': email, 'first_name': first_name, 'password': password, 'terms_and_condition': checkbox},
             success:function(response){
                 console.log('im success function.');
-                // $('#signup-form').hide();
-                $.ajax({
-                    url: '<?php echo url('user/checkout') ?>',
-                    type: 'GET',
-                    data: {'dealId': deal_id},
-                    success: function(response){
-                       window.location.href = "http://promastersgips.com/user/checkout?_token={{ csrf_token() }}&dealId="+deal_id;
-                    }
-                }); 
+                 $('.buy').css('display', 'none');
+                // window.location.href = "http://localhost/promaster/#pricing";
+                $.toast({
+                    heading: 'Information',
+                    text: 'Thanks! Your account successfully created, now you can make purchase.',
+                    icon: 'info',
+                    position: 'top-right',
+                    loader: true,        // Change it to false to disable loader
+                    loaderBg: '#31708f', // To change the background
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
             },
             error: function(response){
                 $('#emailError').text(response.responseJSON.errors.email);
@@ -1150,5 +1479,11 @@
             }
         });
     });
+
+
+     $('.close').on('click', function(){
+        window.location.reload();
+    })
+   
     </script>
 @endsection

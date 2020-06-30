@@ -95,7 +95,7 @@
                                         @if($edit)
                                         @php $regtotal += 30; $total += 30 @endphp
                                         <tr class="order_item">
-                                            <td>Change Name Request</td>
+                                            <td>Name change request</td>
                                             <td class="price">$30</td>
                                         </tr>
                                         @endif
@@ -151,8 +151,8 @@
                         <div class="cart_total_box">
                             <div class="condition">
                                 <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
-                                <input type="checkbox" value="None" id="squarednine" name="check">
-                                <label class="l_text" for="squarednine">I have read and agree to the website <a href="" data-toggle="modal" data-target=".terms">terms and conditions </a><span>*</span></label>
+                                <!-- <input type="checkbox" value="None" id="squarednine" name="check"> -->
+                                <label class="l_text" for="squarednine">By continuing with your payment, you agree with our Terms and Conditions <a href="" data-toggle="modal" data-target=".terms">terms and conditions </a><span>*</span></label>
                             </div>
                             <div id="paypal-button-container"></div>
                         </div>

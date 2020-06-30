@@ -25,18 +25,21 @@ class settingController extends Controller
     public function setting(){
         $RequestChangeName = tempData::where('user_id', Auth::id())->first();
         if(!empty($RequestChangeName)){
-            $CreateTime = $RequestChangeName->created_at->toDateString();
-            $CurrentTime = Carbon::now()->toDateString();
-
-            function differenceInHours($startdate,$enddate){
-                $starttimestamp = strtotime($startdate);
-                $endtimestamp = strtotime($enddate);
-                $difference = abs($endtimestamp - $starttimestamp)/3600;
-                return $difference;
-            }
-            $hours = differenceInHours($CreateTime, $CurrentTime);
-            // dd($hours);
-            if($hours >= 24){
+            $CreateTime = $RequestChangeName->created_at;
+            $CurrentTime = Carbon::now();
+            // dd(abs(strtotime($CurrentTime) - strtotime($CreateTime)/3600));
+            // function differenceInHours($startdate,$enddate){
+            //     $starttimestamp = strtotime($startdate);
+            //     $endtimestamp = strtotime($enddate);
+            //     $difference = abs($endtimestamp - $starttimestamp)/3600;
+            //     return $difference;
+            // }
+            $time1 = strtotime($CreateTime);
+            $time2 = strtotime($CurrentTime);
+            $difference = round(abs($time2 - $time1) / 3600,2);
+            // $hours = differenceInHours($CreateTime, $CurrentTime);
+            // dd($difference);
+            if($difference >= 24){
                 tempData::where('user_id', Auth::id())->delete();
             }
         }

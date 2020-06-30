@@ -1,5 +1,5 @@
 @extends('user.includes.layout')
-
+@section('title') Promaster | User Setting @endsection
 @section('content')
 <style>
 input[type="file"] {

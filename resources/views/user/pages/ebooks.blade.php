@@ -1,4 +1,5 @@
 @extends('user.includes.layout')
+@section('title') Promaster | My Ebooks @endsection
 
 @section('content')
 <style type="text/css">

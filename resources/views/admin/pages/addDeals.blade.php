@@ -45,15 +45,15 @@
                                         <div class="tab-pane fade show active" id="home-simple" role="tabpanel" aria-labelledby="home-tab-simple">
                                             <div class="form-group row">
                                                 <div class="col-6 col-sm-6 col-lg-6">
-                                                    <label>Deal Title</label>
+                                                    <label>Deal Title</label><span>*</span>
                                                     <input id="title" type="text" value="{{@$deal->deal_name}}" name="course_title" class="form-control required">
                                                 </div>
                                                 <div class="col-3 col-sm-3 col-lg-3">
-                                                    <label>Bundle Total Price</label>
+                                                    <label>Bundle Total Price</label><span>*</span>
                                                     <input id="price1" type="number" value="{{@$deal->bundle_price}}" name="price" class="form-control required">
                                                 </div>
                                                 <div class="col-3 col-sm-3 col-lg-3">
-                                                    <label>Disscount Price</label>
+                                                    <label>Disscount Price</label><span>*</span>
                                                     <input id="price2" type="number" value="{{@$deal->deal_price}}" name="price" class="form-control required">
                                                 </div>
                                             </div>
@@ -79,15 +79,19 @@
                                             </div>
                                             <div class="form-group row">
                                                 <div class="col-6 col-sm-6 col-lg-6">
-                                                    <label>Deal type</label><br>
-                                                    <select id='dropdownid' style="width: 60%; height: 30px;">
+                                                    <label>Deal type</label><span>*</span><br>
+                                                    <select id='dropdownid' style="width: 100%; height: 30px;">
                                                         <option  value=''>- Please choose -</option>
-                                                        <option class="Course" value='Course'>Course</option>
-                                                        <option class="ProEbook" value='ProEbook'>Professional Ebook</option>
+                                                        <option class="Course @if(@$deal->deal_type == 'Course') selected @endif" value='Course' <?php echo (@$deal->deal_type == 'Course') ? 'selected' : '' ?> >Course</option>
+                                                        <option class="ProEbook" value='ProEbook' <?php echo (@$deal->deal_type == 'ProEbook') ? 'selected' : '' ?> >Professional Ebook</option>
                                                     </select>
                                                 </div>
+                                                <div class="col-6 col-sm-6 col-lg-6">
+                                                    <label>Number of courses/ebooks in deal</label><span>*</span>
+                                                    <input id="num_of_courses" type="number" value="{{@$deal->number_of_course}}" name="num_of_courses" class="form-control required" >
+                                                </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <!-- <div class="form-group row">
                                                 <div class=" demo col-12 col-sm-12 col-lg-12">
                                                     <label>Select Courses</label>
                                                     <select class="required" id="mselect" name="Courses" multiple required style="width: 100%; height: 34px">
@@ -96,7 +100,7 @@
                                                     	@endforeach
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         </div>
                                     </div>
@@ -115,28 +119,31 @@
     var type;
     $('#dropdownid').on('change', function(){
         // alert(this.value);
-        var val = this.value;
+        $(this).find(':selected').addClass('selected')
+            .siblings('option').removeClass('selected');
+
+        var val = $(this).find(':selected').attr('value');
         type = val;
-        $('#dropdownid option').removeClass('selected');
-        $('.'+val).addClass('selected');
+        // alert(type);
     })
-	var ar ;
+    // alert(type);
+	// var ar ;
 	$(document).ready(function(){
-	$("#mselect").chosen({
+	// $("#mselect").chosen({
 
-     disable_search_threshold: 10
+ //     disable_search_threshold: 10
 
-	}).change(function(event){
+	// }).change(function(event){
 
-	     if(event.target == this){
-	        // alert($(this).val());
-	        var chosen = $(this).val();
-	        ar = 0;
-	        ar = chosen;
-	       console.log(ar.toString());
-	    }
+	//      if(event.target == this){
+	//         // alert($(this).val());
+	//         var chosen = $(this).val();
+	//         ar = 0;
+	//         ar = chosen;
+	//        console.log(ar.toString());
+	//     }
 
-	});
+	// });
 	$("#add-deal").on('click', function(){
 		var title = document.getElementById("title").value;
 		var price1 = document.getElementById("price1").value;
@@ -145,9 +152,10 @@
 		var about2 = document.getElementById("about2").value;
 		var about3 = document.getElementById("about3").value;
 		var about4 = document.getElementById("about4").value;
+        var num_of_courses = document.getElementById("num_of_courses").value;
         
         var typee = type;
-		var courses_id = ar ;
+		// var courses_id = ar ;
 		var flag = false;
             $('.required').each(function(){
                 var temp = $.trim($(this).val());
@@ -161,7 +169,7 @@
                 $.ajax({
                 url: '<?php echo url('admin/storeDeal')?>',
                 type:'POST',
-                data: {"_token": "{{ csrf_token() }}",'title' : title, 'price1' : price1, 'price2' : price2, 'about1' : about1, 'about2' : about2, 'about3' : about3, 'about4' : about4, 'courses_id' : courses_id, "typee" : type},
+                data: {"_token": "{{ csrf_token() }}",'title' : title, 'price1' : price1, 'price2' : price2, 'about1' : about1, 'about2' : about2, 'about3' : about3, 'about4' : about4, 'num_of_courses' : num_of_courses, "typee" : type},
                 // dataType: "json",
                 success:function(data){
                    if($.trim(data)){
@@ -186,7 +194,10 @@
         var about2 = document.getElementById("about2").value;
         var about3 = document.getElementById("about3").value;
         var about4 = document.getElementById("about4").value;
-        var courses_id = ar ;
+        var num_of_courses = document.getElementById("num_of_courses").value;
+        // var courses_id = ar ;
+        var type = $('#dropdownid').children("option:selected").val();
+        // alert(type);
         var flag = false;
             $('.required').each(function(){
                 var temp = $.trim($(this).val());
@@ -200,7 +211,7 @@
                 $.ajax({
                 url: '<?php echo url('admin/dealUpdate/')?>/'+id,
                 type:'POST',
-                data: {"_token": "{{ csrf_token() }}",'id': id,'title' : title, 'price1' : price1, 'price2' : price2, 'about1' : about1, 'about2' : about2, 'about3' : about3, 'about4' : about4, 'courses_id' : courses_id},
+                data: {"_token": "{{ csrf_token() }}",'id': id,'title' : title, 'price1' : price1, 'price2' : price2, 'about1' : about1, 'about2' : about2, 'about3' : about3, 'about4' : about4, 'num_of_courses' : num_of_courses,"typee" : type},
                 // dataType: "json",
                 success:function(data){
                    if($.trim(data)){

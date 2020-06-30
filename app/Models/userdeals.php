@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class userdeals extends Model
 {
 	protected $table = 'userdeals';
-   	protected $fillable = ['user_id', 'deal_id'];
+   	protected $fillable = ['user_id', 'deal_id', 'course_ids'];
 }

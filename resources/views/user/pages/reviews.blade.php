@@ -1,5 +1,5 @@
 @extends('user.includes.layout')
-
+@section('title') Promaster | Courses Reviews @endsection
 @section('content')
 <style type="text/css">
   .tabbable > .nav-tabs > li {
@@ -84,6 +84,7 @@ div.con{
   margin:25px 5px;
 }
 .seo_service_item{
+
   @if(Request::is('user/review-history'))
     padding-bottom: 127px!important;
   @else
@@ -140,7 +141,7 @@ div.con{
                     <div class="col-md-3">
                       <div class="seo_service_item name">
                                 <div class="img">
-                                  <img style="height: 110px;" src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="Course Thumbnail">
+                                  <img src="{{url('public/courses-icons')}}/{{$course->course_icon}}" alt="Course Thumbnail">
                                 </div>
                                  <div class="panel-heading">
                                   <div class="media media-clearfix-xs-min v-middle">
@@ -155,7 +156,7 @@ div.con{
                       
                     </div>
                     <div class="col-md-9">
-                      <div class="seo_service_item">
+                      <div class="seo_service_item" style="@if(str_replace('<br>', ' ', $course->course_title) == 'Customer Service Management') padding-bottom: 48px!important; @endif">
                           <form class="rating-form" action="{{url('user/create-review')}}" method="post">
                             @csrf
                             <input type="hidden" name="id" value="{{$course->id}}">
@@ -199,9 +200,9 @@ div.con{
             @foreach($reviews as $key => $review)
             <div class="row" style="margin: 30px 0 30px;">
               <div class="col-md-3">
-                <div class="seo_service_item" style="text-align: center; padding-bottom: 60px!important;">
+                <div class="seo_service_item name" style="text-align: center; @if(str_replace('<br>', ' ', $review->reviewrateable->course_title) == 'Customer Service Management') padding-bottom: 71px!important; @else  padding-bottom: 60px!important;   @endif">
                     <div class="img">
-                      <img src="{{url('public/courses-icons')}}/{{$review->reviewrateable->course_icon}}" alt="Course thumbnail" style="height: 110px;">
+                      <img src="{{url('public/courses-icons')}}/{{$review->reviewrateable->course_icon}}" alt="Course thumbnail">
                     </div>
                      <div class="panel-heading">
                       <div class="media media-clearfix-xs-min v-middle">

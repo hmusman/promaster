@@ -1,5 +1,5 @@
 @extends('user.includes.layout')
-
+@section('title') Promaster | My Certificates @endsection
 @section('content')
 
 <style type="text/css">

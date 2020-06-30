@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link rel="shortcut icon" href="{{url('public/userDashboard/images/icon-pro.png')}}" type="image/x-icon">
-  <title>ProMaster | My Courses</title>
+  <title>@if(View::hasSection('title')) @yield('title') @else ProMaster @endif</title>
 
   <!-- Vendor CSS BUNDLE
     Includes styling for all of the 3rd party libraries used with this module, such as Bootstrap, Font Awesome and others.
@@ -125,10 +125,10 @@ WARNING: Respond.js doesn't work if you view the page via file:// -->
     line-height: 57px;
     margin-right: 4px;
 }
- .panel-heading {
+ /*.panel-heading {
     margin-top: 20px;
     background: white;
-  }
+  }*/
   .panel{
     margin:20px 0 60px!important;
   }

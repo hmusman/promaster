@@ -14,23 +14,89 @@ use Auth;
 use Illuminate\Support\Facades\Crypt;
 use Response;
 use App\Models\userProgress;
+use App\Models\usercourse;
+use App\Models\deals;
 use App\Models\user;
+use App\Models\userdeals;
 use PDF;
 use App\Http\Controllers\user\traits\activityLog;
 use Trexology\ReviewRateable\Models\Rating;
 class reviewController extends Controller
 {
     public function index(){
-    	$allCourses = course::select("id")->get();
+    	$pcourse = usercourse::where('user_id', Auth::id())->get();
+        $pdeals = userdeals::where('user_id', Auth::id())->get();
+        // dd($pdeals);
+        $CIDS = array();
+        $DIDS = array();
+        $DCIDS = array();
+        $pcourses = NULL;
+        $dcourses = NULL;
+        if($pcourse->count() > 0){
+            foreach($pcourse as $pc){
+
+                $Cids = json_decode($pc->course_id);
+                // dd($Cids);
+                $CIDS = array_merge($CIDS, $Cids);
+            }
+
+            // $pcourses = course::whereIn('id', $CIDS)->get();
+        }
+        // if($pdeals->count() > 0){
+        //     foreach($pdeals as $pd){
+
+        //         $Cids = json_decode($pd->deal_id);
+        //         $DIDS = array_merge($DIDS, $Cids);
+        //     }
+
+        //     $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
+        //     dd($pdealss);
+        //     foreach ($pdealss as $deals) {
+        //         $dcids = json_decode($deals->course_id);
+        //         $DCIDS = array_merge($DCIDS,$dcids);
+        //     }
+        //     // $dcourses = course::whereIn('id', $DCIDS)->get();
+        // }
+        if($pdeals->count() > 0){
+            foreach($pdeals as $pd){
+
+                $Cids = json_decode($pd->deal_id);
+                // dd($Cids);
+                // $DIDS = array_merge($DIDS, $Cids);
+                $pdealss = DB::table('userdeals')
+                            ->join('deals', 'userdeals.deal_id', '=', 'deals.id')
+                            ->select('userdeals.course_ids as courseIDS', 'deals.deal_type as deal_type', 'deals.number_of_course as num_courses')->where('userdeals.deal_id', $Cids)->where('deals.deal_type', 'Course')->get();
+
+                // deals::select('deals.deal_type', 'deals.number_of_course', 'userdeals.course_ids')->join('deals', 'deals.id', '=', 'userdeals.deal_id')->where('deals.deal_type','Course')->where('userdeals.id', $Cids)->first();
+
+                    // dd($pdealss);
+                foreach ($pdealss as $deals) {
+                    $dcids = json_decode($deals->courseIDS);
+                    $DCIDS = array_merge($DCIDS,$dcids);
+                }
+            }
+            // $dcourses = course::whereIn('id', $DCIDS)->get();
+        }
+        // dd($DCIDS);
+        $unique_ids = array_unique(array_merge($DCIDS, $CIDS));
+        // dd($unique_ids);
+        $pcourses = course::whereIn('id', $unique_ids)->get();
+
+        // dd($pcourses);
+
+        // dd($userCourses,$userDeals);
     	$toBeReviewedCourses = array();
-    	foreach($allCourses as $course){
+    	foreach($pcourses as $course){
     		$progress = $course->getPercentage($course->id);
     		if($progress == 1){
     			$toBeReviewedCourses[] = $course->id;
     		} 
     	}
-    	$toBeReviewedCoursesIDS = Rating::whereIn("reviewrateable_id",$toBeReviewedCourses)->pluck("reviewrateable_id")->toArray(); 
+        // dd($toBeReviewedCourses);
+    	$toBeReviewedCoursesIDS = Rating::whereIn("reviewrateable_id",$toBeReviewedCourses)->where('author_id', Auth::id())->where('is_reviewed', 0)->pluck("reviewrateable_id")->toArray(); 
+        // dd($toBeReviewedCoursesIDS);
     	$toBeReviewedCourses = array_diff($toBeReviewedCourses,$toBeReviewedCoursesIDS);
+        // dd($toBeReviewedCourses);
 		$courses = course::whereIn("id",$toBeReviewedCourses)->get();
     	return view('user.pages.reviews',compact('courses'));
     }

@@ -75,21 +75,7 @@
 		                            		</ul>
 		                            	</div>
 		                            </div>
-									<?php 
-									    $course = $deal->course_id;
-								    	$cs = json_decode($course); 
-									 ?>
-		                            <p><strong>Courses: </strong><div class="row">@foreach($cs as $c)
-		                            	
-		                            		<div class="col-sm-3" id="course" style="margin: 0px 0px 6px 0px;">
-					                            <span style="background-color: #5969ff;color: white;padding: 2px 10px 2px 10px;border-radius: 50px;">
-													@php 
-													getCourse($c);
-													@endphp
-					                            </span> &nbsp;
-		                            		</div>
-		                            	
-		                            @endforeach</div></p>
+		                            <p><strong>Number of courses:</strong> &nbsp;{{$deal->number_of_course}}</p>
 		                    <div class="action-btns text-right">
 	                        	<form action="{{url('admin/dealDelete')}}/{{$deal->id}}" method="POST" id="form">
 	                        		<input type="hidden" name="del_id" id="" value="{{$deal->id}}">

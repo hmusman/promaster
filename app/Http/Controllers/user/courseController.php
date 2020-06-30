@@ -34,7 +34,7 @@ class courseController extends Controller
     public function courses(){
     	// $courses = course::all();
         $pcourse = usercourse::where('user_id', Auth::id())->get();
-        $pdeals = userdeals::where('user_id', Auth::id())->get();
+        $pdeals = userdeals::where('user_id', Auth::id())->whereNotNull('deal_id')->whereNotNull('course_ids')->get();
         // dd($pdeals);
         $CIDS = array();
         $DIDS = array();
@@ -55,19 +55,25 @@ class courseController extends Controller
             foreach($pdeals as $pd){
 
                 $Cids = json_decode($pd->deal_id);
-                $DIDS = array_merge($DIDS, $Cids);
-            }
+                // dd($Cids);
+                // $DIDS = array_merge($DIDS, $Cids);
+                $pdealss = DB::table('userdeals')
+                            ->join('deals', 'userdeals.deal_id', '=', 'deals.id')
+                            ->select('userdeals.course_ids as courseIDS', 'deals.deal_type as deal_type', 'deals.number_of_course as num_courses')->where('userdeals.deal_id', $Cids)->where('userdeals.user_id', Auth::id())->where('deals.deal_type', 'Course')->get();
 
-            $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
-            // dd($pdealss);
-            foreach ($pdealss as $deals) {
-                $dcids = json_decode($deals->course_id);
-                $DCIDS = array_merge($DCIDS,$dcids);
+                // deals::select('deals.deal_type', 'deals.number_of_course', 'userdeals.course_ids')->join('deals', 'deals.id', '=', 'userdeals.deal_id')->where('deals.deal_type','Course')->where('userdeals.id', $Cids)->first();
+
+                    // dd($pdealss);
+                foreach ($pdealss as $deals) {
+                    $dcids = json_decode($deals->courseIDS);
+                    $DCIDS = array_merge($DCIDS,$dcids);
+                }
             }
             // $dcourses = course::whereIn('id', $DCIDS)->get();
         }
-        // dd($dcourses);
+        // dd($DCIDS);
         $unique_ids = array_unique(array_merge($DCIDS, $CIDS));
+        // dd($unique_ids);
         $pcourses = course::whereIn('id', $unique_ids)->get();
 
         // dd($pcourses);
@@ -121,18 +127,38 @@ class courseController extends Controller
             }
         }
         // dd($ECIDS);
+        // if($pdeals->count() > 0){
+        //     foreach($pdeals as $pd){
+
+        //         $Cids = json_decode($pd->deal_id);
+        //         $DIDS = array_merge($DIDS, $Cids);
+        //     }
+
+        //     $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
+        //     // dd($pdealss);
+        //     foreach ($pdealss as $deals) {
+        //         $dcids = json_decode($deals->course_id);
+        //         $DCIDS = array_merge($DCIDS,$dcids);
+        //     }
+        //     // $dcourses = course::whereIn('id', $DCIDS)->get();
+        // }
         if($pdeals->count() > 0){
             foreach($pdeals as $pd){
 
                 $Cids = json_decode($pd->deal_id);
-                $DIDS = array_merge($DIDS, $Cids);
-            }
+                // dd($Cids);
+                // $DIDS = array_merge($DIDS, $Cids);
+                $pdealss = DB::table('userdeals')
+                            ->join('deals', 'userdeals.deal_id', '=', 'deals.id')
+                            ->select('userdeals.course_ids as courseIDS', 'deals.deal_type as deal_type', 'deals.number_of_course as num_courses')->where('userdeals.user_id', Auth::id())->where('deals.id', $Cids)->get();
 
-            $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
-            // dd($pdealss);
-            foreach ($pdealss as $deals) {
-                $dcids = json_decode($deals->course_id);
-                $DCIDS = array_merge($DCIDS,$dcids);
+                // deals::select('deals.deal_type', 'deals.number_of_course', 'userdeals.course_ids')->join('deals', 'deals.id', '=', 'userdeals.deal_id')->where('deals.deal_type','Course')->where('userdeals.id', $Cids)->first();
+
+                    // dd($pdealss);
+                foreach ($pdealss as $deals) {
+                    $dcids = json_decode($deals->courseIDS);
+                    $DCIDS = array_merge($DCIDS,$dcids);
+                }
             }
             // $dcourses = course::whereIn('id', $DCIDS)->get();
         }
@@ -165,18 +191,38 @@ class courseController extends Controller
 
             // $pcourses = course::whereIn('id', $CIDS)->get();
         }
+        // if($pdeals->count() > 0){
+        //     foreach($pdeals as $pd){
+
+        //         $Cids = json_decode($pd->deal_id);
+        //         $DIDS = array_merge($DIDS, $Cids);
+        //     }
+
+        //     $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
+        //     // dd($pdealss);
+        //     foreach ($pdealss as $deals) {
+        //         $dcids = json_decode($deals->course_id);
+        //         $DCIDS = array_merge($DCIDS,$dcids);
+        //     }
+        //     // $dcourses = course::whereIn('id', $DCIDS)->get();
+        // }
         if($pdeals->count() > 0){
             foreach($pdeals as $pd){
 
                 $Cids = json_decode($pd->deal_id);
-                $DIDS = array_merge($DIDS, $Cids);
-            }
+                // dd($Cids);
+                // $DIDS = array_merge($DIDS, $Cids);
+                $pdealss = DB::table('userdeals')
+                            ->join('deals', 'userdeals.deal_id', '=', 'deals.id')
+                            ->select('userdeals.course_ids as courseIDS', 'deals.deal_type as deal_type', 'deals.number_of_course as num_courses')->where('userdeals.deal_id', $Cids)->where('userdeals.user_id', Auth::id())->where('deals.deal_type', 'Course')->get();
 
-            $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
-            // dd($pdealss);
-            foreach ($pdealss as $deals) {
-                $dcids = json_decode($deals->course_id);
-                $DCIDS = array_merge($DCIDS,$dcids);
+                // deals::select('deals.deal_type', 'deals.number_of_course', 'userdeals.course_ids')->join('deals', 'deals.id', '=', 'userdeals.deal_id')->where('deals.deal_type','Course')->where('userdeals.id', $Cids)->first();
+
+                    // dd($pdealss);
+                foreach ($pdealss as $deals) {
+                    $dcids = json_decode($deals->courseIDS);
+                    $DCIDS = array_merge($DCIDS,$dcids);
+                }
             }
             // $dcourses = course::whereIn('id', $DCIDS)->get();
         }
@@ -189,13 +235,13 @@ class courseController extends Controller
     }
     
     public function download(Request $request){
-        $course = course::select(["course_ebook"])->where("id",Crypt::decrypt($request->id))->first();
+        $course = course::select(["course_ebook", "course_title"])->where("id",Crypt::decrypt($request->id))->first();
         $fileype = explode(".",$course->course_ebook);
         $file= public_path().'/courses-ebooks/'.$course->course_ebook;
         $headers = array(
-                  'Content-Type: application/'.$fileype[1].'',
+                  'Content-Type: application/Professional eBook',
                 );
-        return Response::download($file,mt_rand(11111,99999).'-'.$course->course_ebook,$headers);
+        return Response::download($file,str_replace('<br>', ' ', $course->course_title).' Professional Ebook.pdf',$headers);
     }
     public function downloadCertificate(Request $request){
     	$course = course::select(["course_title","certificate_background"])->where("id",Crypt::decrypt($request->id))->first();

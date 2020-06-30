@@ -101,7 +101,7 @@ th{
 					 	  </form>
 				        </span>
 				    </td>
-					<td><a href="#"><img style="height: 150px;margin-top: 10px;" src="{{url('public/course-banners')}}/{{$course->getCourse->course_banner}}" alt="Product Image"></a><h6 class="title"><?php echo strip_tags(@$course->getCourse->course_title, '<br>') ?></h6></td>
+					<td><a href="#"><img style="height: 150px;margin-top: 10px;" src="{{url('public/course-banners')}}/{{$course->getCourse->course_banner}}" alt="Product Image"></a><h6 class="title"><?php echo strip_tags(@$course->getCourse->course_title, '<br>') ?> Course</h6></td>
 					<td>${{number_format(@$course->getCourse->price,2)}}</td>
 				</tr>
 				@endforeach
@@ -120,7 +120,7 @@ th{
 					 	  </form>
 				        </span>
 				    </td>
-					<td><a href="#"><img style="height: 150px;margin-top: 10px;" src="{{url('public/ebook-thumbnails')}}/{{$ebook->getEbook->ebook_thumbnail}}" alt="Product Image"></a><h6 class="title"><?php echo strip_tags(@$ebook->getEbook->ebook_title, '<br>') ?></h6></td>
+					<td><a href="#"><img style="height: 150px;margin-top: 10px;" src="{{url('public/ebook-thumbnails')}}/{{$ebook->getEbook->ebook_thumbnail}}" alt="Product Image"></a><h6 class="title"><?php echo strip_tags(@$ebook->getEbook->ebook_title, '<br>') ?> Professional eBook</h6></td>
 					<td>${{number_format(@$ebook->getEbook->ebook_price,2)}}</td>
 				</tr>
 				@endforeach
