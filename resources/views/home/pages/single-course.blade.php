@@ -2,6 +2,12 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
 @push('style')
 <style type="text/css">
+    .terms{
+      z-index: 9999;
+    }
+    .buydeals{
+      display: none !important;
+    }
     @media only screen and (max-width: 600px) {
       .price_btn {
           float: right;
@@ -1055,7 +1061,7 @@
 </div>
 @endsection
 @section('section-6')
-<div class="modal fade buy" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade buy" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -1092,7 +1098,7 @@
                         <!--//check-box-->
 
                     </div>
-                    <button data-toggle="modal" data-target=".buyDeal" type="button" class="btn_three deals_sc">Create Account</button>
+                    <button type="button" class="btn_three deals_sc">Create Account</button>
                     <div class="alter-login text-center mt_30">
                         Already a Member?<a class="login-link" href="{{url('login')}}">Sign In</a>
                     </div>
@@ -1456,8 +1462,10 @@
             type: method,
             data: {"_token": "{{ csrf_token() }}", 'email': email, 'first_name': first_name, 'password': password, 'terms_and_condition': checkbox},
             success:function(response){
-                console.log('im success function.');
-                 $('.buy').css('display', 'none');
+                // console.log('im success function.');
+                // $('.buyDeal').removeClass('buydeals');
+                //  $('.buy').css('display', 'none');
+                 window.location.reload();
                 // window.location.href = "http://localhost/promaster/#pricing";
                 $.toast({
                     heading: 'Information',

@@ -95,13 +95,13 @@ class shareController extends Controller
 			        echo 'Error: '. $response->getLastBody()->errors[0]->message;
 			    }
 			 	shared::create(['user_id'=>Auth::id(), 'course_id'=>$ids, 'is_shared'=>1]);
-			    return back()->with("message", "<div class='alert alert-success'>Post shared to linkedin Successfully!</div>");
+			    return back()->with("message", "Post shared to linkedin Successfully!");
 			} catch(Exception $e) {
 			    echo $e->getMessage(). ' for link '. $link;
 			}
 
     	}else{
-    		return back()->with("message", "<div class='alert alert-info'>You already shaerd this to linkedin.</div>");
+    		return back()->with("message", "You already shaerd this to linkedin.");
     	}
     }
 }

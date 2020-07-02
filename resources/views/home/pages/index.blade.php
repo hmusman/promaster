@@ -734,7 +734,7 @@
                         <!--//check-box-->
 
                     </div>
-                    <button data-toggle="modal" data-target=".buyDeal" type="button" class="btn_three deals">Create Account</button>
+                    <button type="button" class="btn_three deals">Create Account</button>
                     <div class="alter-login text-center mt_30">
                         Already a Member?<a class="login-link" href="{{url('login')}}">Sign In</a>
                     </div>
@@ -1754,11 +1754,12 @@
             data: {"_token": "{{ csrf_token() }}", 'email': email, 'first_name': first_name, 'password': password, 'terms_and_condition': checkbox},
             success:function(response){
                 console.log('im success function.');
-                $('.buy').css('display', 'none');
+                // $('.buy').css('display', 'none');
                 // window.location.href = "http://localhost/promaster/#pricing";
+                window.location.reload();
                 $.toast({
                     heading: 'Information',
-                    text: 'Thanks! Your account successfully created, now you can make purchase.',
+                    text: 'Your account successfully created.',
                     icon: 'info',
                     position: 'top-right',
                     loader: true,        // Change it to false to disable loader

@@ -25,7 +25,7 @@ class reviewController extends Controller
 {
     public function index(){
     	$pcourse = usercourse::where('user_id', Auth::id())->get();
-        $pdeals = userdeals::where('user_id', Auth::id())->get();
+        $pdeals = userdeals::where('user_id', Auth::id())->whereNotNull('deal_id')->whereNotNull('course_ids')->get();
         // dd($pdeals);
         $CIDS = array();
         $DIDS = array();
@@ -39,24 +39,8 @@ class reviewController extends Controller
                 // dd($Cids);
                 $CIDS = array_merge($CIDS, $Cids);
             }
-
-            // $pcourses = course::whereIn('id', $CIDS)->get();
         }
-        // if($pdeals->count() > 0){
-        //     foreach($pdeals as $pd){
 
-        //         $Cids = json_decode($pd->deal_id);
-        //         $DIDS = array_merge($DIDS, $Cids);
-        //     }
-
-        //     $pdealss = deals::where('deal_type','Course')->whereIn('id', $DIDS)->get();
-        //     dd($pdealss);
-        //     foreach ($pdealss as $deals) {
-        //         $dcids = json_decode($deals->course_id);
-        //         $DCIDS = array_merge($DCIDS,$dcids);
-        //     }
-        //     // $dcourses = course::whereIn('id', $DCIDS)->get();
-        // }
         if($pdeals->count() > 0){
             foreach($pdeals as $pd){
 
@@ -65,7 +49,7 @@ class reviewController extends Controller
                 // $DIDS = array_merge($DIDS, $Cids);
                 $pdealss = DB::table('userdeals')
                             ->join('deals', 'userdeals.deal_id', '=', 'deals.id')
-                            ->select('userdeals.course_ids as courseIDS', 'deals.deal_type as deal_type', 'deals.number_of_course as num_courses')->where('userdeals.deal_id', $Cids)->where('deals.deal_type', 'Course')->get();
+                            ->select('userdeals.course_ids as courseIDS', 'deals.deal_type as deal_type', 'deals.number_of_course as num_courses')->where('userdeals.deal_id', $Cids)->where('userdeals.user_id', Auth::id())->where('deals.deal_type', 'Course')->get();
 
                 // deals::select('deals.deal_type', 'deals.number_of_course', 'userdeals.course_ids')->join('deals', 'deals.id', '=', 'userdeals.deal_id')->where('deals.deal_type','Course')->where('userdeals.id', $Cids)->first();
 
@@ -89,11 +73,11 @@ class reviewController extends Controller
     	foreach($pcourses as $course){
     		$progress = $course->getPercentage($course->id);
     		if($progress == 1){
-    			$toBeReviewedCourses[] = $course->id;
+    			$toBeReviewedCourses[] = (string)$course->id;
     		} 
     	}
         // dd($toBeReviewedCourses);
-    	$toBeReviewedCoursesIDS = Rating::whereIn("reviewrateable_id",$toBeReviewedCourses)->where('author_id', Auth::id())->where('is_reviewed', 0)->pluck("reviewrateable_id")->toArray(); 
+    	$toBeReviewedCoursesIDS = Rating::whereIn("reviewrateable_id",$toBeReviewedCourses)->where('author_id', Auth::id())->pluck("reviewrateable_id")->toArray(); 
         // dd($toBeReviewedCoursesIDS);
     	$toBeReviewedCourses = array_diff($toBeReviewedCourses,$toBeReviewedCoursesIDS);
         // dd($toBeReviewedCourses);

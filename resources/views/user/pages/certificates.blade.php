@@ -173,7 +173,7 @@
                             </div>
                             @else
                             <div class="con">
-                              <span style="font-size: 10px;background: #7cddf2;">Please Complete this course to download and share certificate.</span><br>
+                              <!-- <span style="font-size: 10px;background: #7cddf2;">Please Complete this course to download and share certificate.</span><br> -->
                               <a style="margin-top: -1px;" class="btn btn-white w3-animate-bottom btn-flat paper-shadow relative" data-z="0" data-hover-z="1" data-animated="" href="{{url('user/course-details')}}/{{$course->id}}">Continue</a>
                             </div>  
                             @endif
