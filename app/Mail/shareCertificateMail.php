@@ -12,16 +12,20 @@ class shareCertificateMail extends Mailable
     use Queueable, SerializesModels;
 
     public $details;
+    public $title;
     public $usersubject;
+    protected $data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details, $usersubject)
+    public function __construct($details, $usersubject, $data=[], $title)
     {
         $this->details = $details;
         $this->usersubject = $usersubject;
+        $this->data = $data;
+        $this->title = $title;
     }
 
     /**
@@ -31,6 +35,11 @@ class shareCertificateMail extends Mailable
      */
     public function build()
     {
-        return $this->subject($this->usersubject)->view('user.pages.certificateEmail-template');
+        return $this->subject($this->usersubject)->view('user.pages.certificateEmail-template')
+                    ->attach($this->data['document'],
+                            [
+                                'as' => $this->title . '.png',
+                                // 'mime' => $this->data['document'],
+                            ]);
     }
 }
