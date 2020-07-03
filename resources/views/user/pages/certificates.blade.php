@@ -3,9 +3,6 @@
 @section('content')
 
 <style type="text/css">
-  input[type=file]{
-    margin-left: 20px;
-  }
   .modal-header .close {
       margin-top: -24px;
   }
@@ -230,7 +227,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{url('user/create-certificate-email')}}" method="POST" class="login-form" id="email-form" enctype="multipart/form-data">
+                <form action="{{url('user/share-certificate-email')}}" method="POST" class="login-form" id="email-form" >
                     @csrf
                     <div class="form-group text_box">
                         <label class="f_p text_c f_400">Email</label>
@@ -247,11 +244,6 @@
                         <textarea name="body" id="body" placeholder="Your Email Body">{{ old('body')}}</textarea>
                         <div class="alert-danger" id="bodyError"></div>
                     </div>
-                    <!-- <div class="form-group text_box">
-                        <label class="f_p text_c f_400">Certificate</label>
-                        <input  type="file" id="certificate" name="certificate" placeholder="Attach Certificate" required="">
-                        <div class="alert-danger" id="certificateError"></div>
-                    </div> -->
                     <button type="submit" class="btn_three send-email" style="text-align: center;">Send Email</a>
 
                 </form>
@@ -292,9 +284,9 @@
        var course_title = $(this).attr('data-course-title');
        var course_description = $(this).attr('data-course-description');
 
-       // console.log(course_id);
-       // console.log(course_title);
-       // console.log(course_description);
+       console.log(course_id);
+       console.log(course_title);
+       console.log(course_description);
 
        $('#subject').val($('#subject').val() + "I just completed my certificate in "+course_title+" from Promasters: Global Institute for Professional Studies.");
 
@@ -306,36 +298,34 @@
 
   });
 
-  $('.send-email').on('click', function(){
+  // $('.send-email').on('click', function(){
 
-    var course_id = document.getElementById('course_id').value;
-    var email = document.getElementById('email').value;
-    var suject = document.getElementById('subject').value;
-    var body = document.getElementById('body').value;
-    // var certificate = document.getElementById('certificate').value;
-    console.log(email);
-    console.log(course_id);
-    console.log(subject);
-    console.log(body);
-    // console.log(certificate);
+  //   var course_id = document.getElementById('course_id').value;
+  //   var email = document.getElementById('email').value;
+  //   var suject = document.getElementById('subject').value;
+  //   var body = document.getElementById('body').value;
+  //   console.log(email);
+  //   console.log(course_id);
+  //   console.log(subject);
+  //   console.log(body);
 
-    // var url = $('#email-form').attr('action');
-    // var method = $('#email-form').attr('method');
+  //   var url = $('#email-form').attr('action');
+  //   var method = $('#email-form').attr('method');
 
-    // $.ajax({
-    //    url: url,
-    //    type: method,
-    //    data: {"_token": "{{ csrf_token() }}", 'email': email, 'subject': subject, 'body': body},
-    //    success: function(response){
-    //       console.log('im success function.');
-    //    },
-    //   error: function(response){
-    //           $('#emailError').text(response.responseJSON.errors.email);
-    //           $('#subjectError').text(response.responseJSON.errors.subject);
-    //           $('#bodyError').text(response.responseJSON.errors.body);
-    //       }
-    // })
+  //   $.ajax({
+  //      url: url,
+  //      type: method,
+  //      data: {"_token": "{{ csrf_token() }}", 'email': email, 'subject': subject, 'body': body},
+  //      success: function(response){
+  //         console.log('im success function.');
+  //      },
+  //     error: function(response){
+  //             $('#emailError').text(response.responseJSON.errors.email);
+  //             $('#subjectError').text(response.responseJSON.errors.subject);
+  //             $('#bodyError').text(response.responseJSON.errors.body);
+  //         }
+  //   })
 
-  });
+  // });
 </script>
 @endsection

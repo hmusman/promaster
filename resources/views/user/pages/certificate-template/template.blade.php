@@ -62,7 +62,7 @@
                      var newData = imgageData.replace(/^data:image\/png/, "data:application/octet-stream");
                      var a = $("<a>")
                         .attr("href", newData)
-                        .attr("download", "{{str_replace('<br>','-',@$course->course_title)}}.png")
+                        .attr("download", "{{str_replace(' ','-',@$course->course_title)}}.png")
                         .appendTo("body");
                         a[0].click();
                         a.remove();

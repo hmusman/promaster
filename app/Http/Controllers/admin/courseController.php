@@ -64,7 +64,7 @@ class courseController extends Controller{
             $file = input::file('course_icon');
             $ext=$file->getClientOriginalExtension();
             $courseIcon = 'Icon-'.rand(111111111,999999999).'.'.$ext;
-            $file->move(public_path().'/courses-icons/' , $courseIcon);   
+            $file->move(public_path().'/courses-icons/' , $courseEbook);   
          }
          if($request->hasfile('course_video')){
             $file = input::file('course_video');
