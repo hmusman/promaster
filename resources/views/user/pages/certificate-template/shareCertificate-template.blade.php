@@ -21,7 +21,7 @@
             position: absolute;
             top: 20%;
             left: 7%;
-            padding-top: 4%;
+            padding-top: 2%;
          }
          jq-toast-single jq-has-icon jq-icon-info{
         font-size: 18px !important;
