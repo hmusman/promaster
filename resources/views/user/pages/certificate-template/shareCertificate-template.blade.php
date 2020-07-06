@@ -19,9 +19,9 @@
          .inner-text{
             width: 65%;
             position: absolute;
-            top: 20%;
+            top: 21%;
             left: 7%;
-            padding-top: 2%;
+            /*padding-top: 1%;*/
          }
          jq-toast-single jq-has-icon jq-icon-info{
         font-size: 18px !important;
