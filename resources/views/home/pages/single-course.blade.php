@@ -297,7 +297,7 @@
                                 <a href="{{route('cart.add')}}?_token={{csrf_token()}}&id={{Crypt::encrypt($course->id)}}" class="price_btn btn_hover"><i class="ti-shopping-cart"></i> Add To Cart</a>
                                 @endauth
                                 @guest
-                                    <a href="{{url('login')}}" class="price_btn btn_hover"><i class="ti-shopping-cart"></i> Add To Cart</a>
+                                    <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover"><i class="ti-shopping-cart"></i> Add To Cart</a>
                                 @endguest
                             </p>
 
