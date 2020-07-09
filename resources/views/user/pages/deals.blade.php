@@ -653,7 +653,7 @@
             if(typeof unique === 'undefined' || unique == null){
                 $.toast({
                     heading: 'Error',
-                    text: dealName +' deal contains 2 course. Please select at least 4 courses to continue.',
+                    text: dealName +' deal contains 4 course. Please select at least 4 courses to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -667,7 +667,7 @@
             else if(unique.length < 4 || unique.length > 4){
                 $.toast({
                     heading: 'Error',
-                    text: dealName +' deal contains 2 course. Please select at least 4 courses to continue.',
+                    text: dealName +' deal contains 4 course. Please select at least 4 courses to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -685,7 +685,7 @@
             if(typeof unique === 'undefined' || unique == null){
                 $.toast({
                     heading: 'Error',
-                    text: dealName +' deal contains 2 course. Please select at least 6 courses to continue.',
+                    text: dealName +' deal contains 6 course. Please select at least 6 courses to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -698,7 +698,7 @@
             }else if(unique.length < 6 || unique.length > 6){
                 $.toast({
                     heading: 'Error',
-                    text: dealName +' deal contains 2 course. Please select at least 6 courses to continue.',
+                    text: dealName +' deal contains 6 course. Please select at least 6 courses to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -812,7 +812,7 @@
             if(typeof unique === 'undefined' || unique == null){
                 $.toast({
                     heading: 'Error',
-                    text: dealName +' deal contains 2 Ebooks. Please select at least 4 Ebooks to continue.',
+                    text: dealName +' deal contains 4 Ebooks. Please select at least 4 Ebooks to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -826,7 +826,7 @@
             else if(unique.length < 4 || unique.length > 4){
                 $.toast({
                     heading: 'Error',
-                    text: dealName +' deal contains 2 Ebooks. Please select at least 4 Ebooks to continue.',
+                    text: dealName +' deal contains 4 Ebooks. Please select at least 4 Ebooks to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -844,7 +844,7 @@
             if(typeof unique === 'undefined' || unique == null){
                 $.toast({
                     heading: 'Error',
-                    text: dealName +' deal contains 2 Ebooks. Please select at least 6 Ebooks to continue.',
+                    text: dealName +' deal contains 6 Ebooks. Please select at least 6 Ebooks to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -857,7 +857,7 @@
             }else if(unique.length < 6 || unique.length > 6){
                 $.toast({
                     heading: 'Error',
-                    text: dealName +' deal contains 2 Ebooks. Please select at least 6 Ebooks to continue.',
+                    text: dealName +' deal contains 6 Ebooks. Please select at least 6 Ebooks to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',

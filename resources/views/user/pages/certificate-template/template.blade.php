@@ -19,7 +19,7 @@
          .inner-text{
             width: 65%;
             position: absolute;
-            top: 21%;
+            top: 19%;
             left: 7%;
          }
       </style>

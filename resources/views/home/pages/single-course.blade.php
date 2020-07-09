@@ -297,7 +297,7 @@
                                 <a href="{{route('cart.add')}}?_token={{csrf_token()}}&id={{Crypt::encrypt($course->id)}}" class="price_btn btn_hover"><i class="ti-shopping-cart"></i> Add To Cart</a>
                                 @endauth
                                 @guest
-                                    <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover"><i class="ti-shopping-cart"></i> Add To Cart</a>
+                                    <a href="#" data-toggle="modal" data-target=".buyONE" data-courseID="{{Crypt::encrypt($course->id)}}" class="price_btn btn_hover buyCourse"><i class="ti-shopping-cart"></i> Add To Cart</a>
                                 @endguest
                             </p>
 
@@ -1109,6 +1109,54 @@
     </div>
 </div>
 
+<div class="modal fade buyONE" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Sign Up</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="{{url('register-user')}}" method="POST" class="login-form" id="course-signup-form" >
+                    @csrf
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Email</label>
+                        <input type="email" id="cemail" placeholder="promaster@gmail.com" name="email" value="{{ old('email')}}">
+                        <div class="alert-danger" id="courseemailError"></div>
+                    </div>
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Full Name</label>
+                        <input type="text" id="cfirst_name" placeholder="Your Full Name" name="first_name" value="{{ old('first_name')}}">
+                         <div class="alert-danger" id="coursenameError"></div>
+                    </div>
+                    <div class="form-group text_box">
+                        <label class="f_p text_c f_400">Password</label>
+                        <input type="password" id="cpassword" placeholder="******" name="password">
+                        <div class="alert-danger" id="coursepasswordError"></div>
+                    </div>
+                    <div class="extra">
+                        <div class="checkbox remember">
+                            <label>
+                                <input id="ccheckbox" type="checkbox" name="terms_and_condition"> I Agree to the <a data-toggle="modal" data-target=".terms" href="#">Terms and Conditions</a> of this website
+                            </label>
+                            <div class="alert-danger" id="courseterms_and_condition"></div>
+                        </div>
+                        <!--//check-box-->
+
+                    </div>
+                    <button type="button" class="btn_three course_sc">Create Account</button>
+                    <div class="alter-login text-center mt_30">
+                        Already a Member?<a class="login-link" href="{{url('login')}}">Sign In</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade buyDeal" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -1137,6 +1185,8 @@
         </div>
     </div>
 </div>
+
+
 @endsection
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.js" type="text/javascript" charset="utf-8" async defer></script>
@@ -1174,6 +1224,13 @@
 
     var dealId = '';
     var dealName = '';
+    var courseID = '';
+
+    $('.buyCourse').on('click',function(){
+      courseID = $(this).attr('data-courseID');
+      // alert(courseID);
+      // console.log(courseID);
+    })
     $('.price_btn').on('click',function(){
         dealId = $(this).attr('data-dealID');
         dealName = $(this).attr('data-dealName');
@@ -1336,7 +1393,7 @@
             if(typeof unique === 'undefined' || unique == null){
                 $.toast({
                     heading: 'Error',
-                    text: '4 Courses Bundle deal contains 2 course. Please select at least 4 courses to continue.',
+                    text: '4 Courses Bundle deal contains 4 course. Please select at least 4 courses to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -1350,7 +1407,7 @@
             else if(unique.length < 4 || unique.length > 4){
                 $.toast({
                     heading: 'Error',
-                    text: '4 Courses Bundle deal contains 2 course. Please select at least 4 courses to continue.',
+                    text: '4 Courses Bundle deal contains 4 course. Please select at least 4 courses to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -1368,7 +1425,7 @@
             if(typeof unique === 'undefined' || unique == null){
                 $.toast({
                     heading: 'Error',
-                    text: '6 Courses Bundle deal contains 2 course. Please select at least 6 courses to continue.',
+                    text: '6 Courses Bundle deal contains 6 course. Please select at least 6 courses to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -1381,7 +1438,7 @@
             }else if(unique.length < 6 || unique.length > 6){
                 $.toast({
                     heading: 'Error',
-                    text: '6 Courses Bundle deal contains 2 course. Please select at least 6 courses to continue.',
+                    text: '6 Courses Bundle deal contains 6 course. Please select at least 6 courses to continue.',
                     showHideTransition: 'fade',
                     position: 'top-right',
                     icon: 'error',
@@ -1488,8 +1545,85 @@
         });
     });
 
+    $('.course_sc').on('click', function(){
+        var deal_id = dealId;
+        var url = $('#course-signup-form').attr('action');
+        var method = $('#course-signup-form').attr('method');
+        var email = document.getElementById('cemail').value;
+        var first_name = document.getElementById('cfirst_name').value;
+        var password = document.getElementById('cpassword').value;
+        if ($('#ccheckbox').is(":checked"))
+        {
+            var checkbox = document.getElementById('ccheckbox').value;
+        }else{
+            var checkbox = null;
+        }
+        $.ajax({
+            url: url,
+            type: method,
+            data: {"_token": "{{ csrf_token() }}", 'email': email, 'first_name': first_name, 'password': password, 'terms_and_condition': checkbox},
+            success:function(response){
+                $.toast({
+                    heading: 'Information',
+                    text: 'Thanks! Your account successfully created, now you can make purchase.',
+                    icon: 'info',
+                    position: 'top-right',
+                    loader: true,        // Change it to false to disable loader
+                    loaderBg: '#31708f', // To change the background
+                    allowToastClose: true,
+                    stack: 6,
+                    hideAfter: 7000
+                })
+                $.ajax({
+                  url: "{{route('cart.add')}}",
+                  type: "GET",
+                  data: {"_token": "{{ csrf_token() }}", 'id': courseID},
+                  success:function(response){
+                      $.toast({
+                          heading: 'Success',
+                          text: 'Course added to cart successfully.',
+                          icon: 'success',
+                          position: 'top-right',
+                          loader: true,        // Change it to false to disable loader
+                          loaderBg: '#31708f', // To change the background
+                          allowToastClose: true,
+                          stack: 6,
+                          hideAfter: 7000
+                      })
 
-     $('.close').on('click', function(){
+                      window.location.reload();
+
+                  },
+                  error: function(response){
+                    $.toast({
+                          heading: 'Information',
+                          text: 'some thing wents wrong please try again later.',
+                          icon: 'info',
+                          position: 'top-right',
+                          loader: true,        // Change it to false to disable loader
+                          loaderBg: '#31708f', // To change the background
+                          allowToastClose: true,
+                          stack: 6,
+                          hideAfter: 7000
+                      })
+
+                      window.location.reload();
+
+                  }
+                 });
+            },
+            error: function(response){
+                $('#courseemailError').text(response.responseJSON.errors.email);
+                $('#coursenameError').text(response.responseJSON.errors.first_name);
+                $('#coursepasswordError').text(response.responseJSON.errors.password);
+                $('#courseterms_and_condition').text(response.responseJSON.errors.terms_and_condition);
+            }
+        });
+    });
+
+
+
+    $('.close').on('click', function(){
         window.location.reload();
     })
    
