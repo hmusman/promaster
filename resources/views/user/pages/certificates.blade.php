@@ -244,7 +244,7 @@
                     </div>
                     <div class="form-group text_box">
                         <label class="f_p text_c f_400">Body</label>
-                        <textarea name="body" id="body" placeholder="Your Email Body">{{ old('body')}}</textarea>
+                        <textarea name="body" id="body" placeholder="Your Email Body"></textarea>
                         <div class="alert-danger" id="bodyError"></div>
                     </div>
                     <!-- <div class="form-group text_box">
@@ -288,6 +288,9 @@
 <script>
 
   $('.email-share').on('click', function(){
+       $('#subject').empty();
+       $('#body').empty();
+
        var course_id = $(this).attr('data-course');
        var course_title = $(this).attr('data-course-title');
        var course_description = $(this).attr('data-course-description');
@@ -296,9 +299,9 @@
        // console.log(course_title);
        // console.log(course_description);
 
-       $('#subject').val($('#subject').val() + "I just completed my certificate in "+course_title+" from Promasters: Global Institute for Professional Studies.");
+       $('#subject').val("I just completed my certificate in "+course_title+" from Promasters: Global Institute for Professional Studies.");
 
-       $('#body').val($('#body').val() + course_description);
+       $('#body').val(course_description);
 
        $('#email-form').append('<input type="hidden" id="course_id" name="course_id" value="'+course_id+'">')
 
@@ -313,10 +316,10 @@
     var suject = document.getElementById('subject').value;
     var body = document.getElementById('body').value;
     // var certificate = document.getElementById('certificate').value;
-    console.log(email);
-    console.log(course_id);
-    console.log(subject);
-    console.log(body);
+    // console.log(email);
+    // console.log(course_id);
+    // console.log(subject);
+    // console.log(body);
     // console.log(certificate);
 
     // var url = $('#email-form').attr('action');
