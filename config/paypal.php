@@ -5,20 +5,20 @@
  */
 
 return [
-    'mode'    => env('PAYPAL_MODE', 'sandbox'), // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
+    'mode'    => env('PAYPAL_MODE', 'live'), // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
     'sandbox' => [
-        'username'    => env('PAYPAL_SANDBOX_API_USERNAME', 'sb-px1cw1796909_api1.business.example.com'),
-        'password'    => env('PAYPAL_SANDBOX_API_PASSWORD', 'YKYPE2V9TKM6NPBX'),
-        'secret'      => env('PAYPAL_SANDBOX_API_SECRET', 'Ava6Lcj3GoPjtx61.pKUoAFWlSshAelfbNXzzmj.MEN1wwcdOl1F5fpG'),
+        'username'    => env('PAYPAL_SANDBOX_API_USERNAME', ''),
+        'password'    => env('PAYPAL_SANDBOX_API_PASSWORD', ''),
+        'secret'      => env('PAYPAL_SANDBOX_API_SECRET', ''),
         'certificate' => env('PAYPAL_SANDBOX_API_CERTIFICATE', ''),
         'app_id'      => 'APP-80W284485P519543T', // Used for testing Adaptive Payments API in sandbox mode
     ],
     'live' => [
-        'username'    => env('PAYPAL_LIVE_API_USERNAME', ''),
-        'password'    => env('PAYPAL_LIVE_API_PASSWORD', ''),
-        'secret'      => env('PAYPAL_LIVE_API_SECRET', ''),
+        'username'    => env('PAYPAL_LIVE_API_USERNAME', 'general@promastersgips.com'),
+        'password'    => env('PAYPAL_LIVE_API_PASSWORD', 'Proma$ter$20'),
+        'secret'      => env('PAYPAL_LIVE_API_SECRET', 'EFTOy5S3EYzHqtCZV4t5qE9AsHWTjGw2KuOP70kqpbJ_1qg6gDjWrNaTXpjyGfWJxFsNJX7ascmgeO1q'),
         'certificate' => env('PAYPAL_LIVE_API_CERTIFICATE', ''),
-        'app_id'      => '', // Used for Adaptive Payments API
+        'app_id'      => 'APP-80W284485P519543T', // Used for Adaptive Payments API
     ],
 
     'payment_action' => 'Sale', // Can only be 'Sale', 'Authorization' or 'Order'

@@ -145,7 +145,7 @@
                     <div class="col-md-6">
                         
                         
-                        <script src="https://www.paypal.com/sdk/js?client-id=Adsb5yKhtCT-Bt97cc3A0h6eM0iZTfYAp3r2lAv_PFdVpN3HVzuVaYOImyfBufDtfpa1hNt_SIxsRxAp"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+                        <script src="https://www.paypal.com/sdk/js?client-id=AUceSCQO12VBim_5U8wAaY3Fvksn5s1DsTmGA2lKcnFGzh83uYMCd1Z9be65eofztWIgw0Htah8Ri-A7"> // Required. Replace SB_CLIENT_ID with your sandbox client ID.
                         </script>
                         
                         <div class="cart_total_box">
@@ -208,16 +208,16 @@
                                 @endif
                                 @endif
                                 grand_total = @php echo $grand_total; @endphp;
-                                console.log(grand_total);
+                                // console.log(grand_total);
                                 // alert(grand_total);
                                 course_ids = @php echo json_encode($coursesID); @endphp;
                                 deal_ids = @php echo json_encode($dealID); @endphp;
                                 ebook_ids = @php echo json_encode($ebooksID); @endphp;
                                 var edit = @php echo json_encode($edit); @endphp;
-                                console.log(course_ids);
-                                console.log(deal_ids);
-                                console.log(ebook_ids);
-                                console.log(edit);
+                                // console.log(course_ids);
+                                // console.log(deal_ids);
+                                // console.log(ebook_ids);
+                                // console.log(edit);
 
                                 paypal.Buttons({
 
@@ -245,7 +245,7 @@
                                     type: 'get',
                                     data: {'course_ids': course_ids, 'deal_ids': deal_ids, 'ebook_ids': ebook_ids, 'edit_name': edit},
                                     success: function(response){
-                                        console.log('i am working good....');
+                                        // console.log('i am working good....');
                                         if(edit == 'ChangeName'){
 
                                             window.location.href = 'https://promastersgips.com/user/setting';
