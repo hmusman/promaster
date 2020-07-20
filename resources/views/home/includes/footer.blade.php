@@ -18,7 +18,7 @@
                              <div class="alert alert-danger">{{ Session::get('error') }}</div>
                           </div>
                           @endif
-                             <input type="email" name="email" class="form-control" placeholder="Email">
+                             <input type="email" name="email" class="form-control" placeholder="Email" required>
                              <button class="btn btn_get btn_get_two" type="submit">Subscribe</button>
                              <p class="mchimp-errmessage"></p>
                              <p class="mchimp-sucmessage"></p>
