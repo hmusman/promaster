@@ -2,6 +2,15 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-toast-plugin/1.3.2/jquery.toast.min.css">
 @push('style')
 <style type="text/css">
+    @media (max-width: 600px){
+        .feature{
+            height: auto !important;
+        }
+        .size-card{
+            height: auto !important;
+        }
+
+    }
      .overlay {
        background-color: lightgray;
        text-align: center;
@@ -499,7 +508,7 @@
         <div class="tab-content price_content price_content_two">
             <div class="tab-pane fade show active" id="home1" role="tabpanel" aria-labelledby="home-tab">
                 @if($featureDeal != NULL)
-                <div class="row premium price_item">
+                <div class="row premium price_item feature">
                     <div class="col-lg-5 col-sm-6">
                         <div class="price_item1">
                             <div class="tag1"><span>Amazing Offer!</span></div>
@@ -534,14 +543,7 @@
 
                             <div class="price f_700 f_size_40 t_color2" style="font-size: 39px;"><span class="before">${{number_format($featureDeal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($featureDeal->deal_price,2)}} </div>
                             @auth
-                            <!-- <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8">
-                                @csrf
-                            <input type="hidden" id="deal_id" name="dealId" value="{{$featureDeal->id}}">
-                            <button type="submit" style="background-color: white; border: none;"><a class="price_btn btn_hover mt_30 dealId">Start Today</a></button>
-                            </form> -->
-
                             <a href="#" data-toggle="modal" data-target=".buyDeal" class="price_btn btn_hover mt_30" data-dealID="{{$featureDeal->id}}" data-dealName="{{$featureDeal->deal_name}}">Start Today </a>
-
                             @endauth
                             @guest
                             <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover mt_30" data-dealID="{{$featureDeal->id}}" data-dealName="{{$featureDeal->deal_name}}">Start Today</a>
@@ -552,8 +554,8 @@
                 @endif
                 <div class="row basic">
                 @foreach($deals as $deal)
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="price_item">
+                    <div class="col-lg-3 col-sm-6 other-deals">
+                        <div class="price_item size-card">
                             @if($deal->deal_name == 'Single Course')
                             <img src="{{url('public/assets/img/price/new1.png')}}" alt="">
                             @elseif($deal->deal_name == '2 Courses Bundle')
@@ -576,7 +578,7 @@
                             <div class="price f_700 f_size_30 t_color2"><span class="before">${{number_format($deal->bundle_price,2)}}</span><span class="usd">USD</span> {{number_format($deal->deal_price,2)}} </div>
                             <ul class="list-unstyled p_list">
                                 @if(!empty($deal->about1))
-                                    <li><i class="ti-check"></i><?php echo strip_tags($deal->about1, '<br>') ?></li>
+                                <li><i class="ti-check"></i><?php echo strip_tags($deal->about1, '<br>') ?></li>
                                 @endif
                                 @if(!empty($deal->about2))
                                 <li><i class="ti-check"></i>{{$deal->about2}}</li>
@@ -589,18 +591,13 @@
                                 @endif
                             </ul>
                            @auth
-                            <!-- <form action="{{url('user/checkout')}}" method="get" accept-charset="utf-8">
-                                @csrf -->
-                            <!-- <input type="hidden" id="deal_id" name="dealId" value="{{$deal->id}}">
-                            <button type="submit" style="background-color: white; border: none;"><a class="price_btn btn_hover mt_30 dealId">Start Today</a></button>
-                            </form> -->
                             <a href="#" data-toggle="modal" data-target=".buyDeal" class="price_btn btn_hover mt_30" data-dealID="{{$deal->id}}" data-dealName="{{$deal->deal_name}}">Start Today </a>
                             @endauth
                             @guest
                             <a href="#" data-toggle="modal" data-target=".buy" class="price_btn btn_hover mt_30" data-dealID="{{$deal->id}}" data-dealName="{{$deal->deal_name}}">Start Today </a>
                             @endguest
                         </div>
-                    </div>
+                    </div><br><br>
                 @endforeach
                 </div>
             </div>
