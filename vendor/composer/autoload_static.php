@@ -13,8 +13,12 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
@@ -23,6 +27,7 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'e91d0dc994644828154ae2387ede1ca8' => __DIR__ . '/..' . '/spatie/string/src/string_functions.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
         '72b1e3f4a2af9b30b3f137b3ec2057fc' => __DIR__ . '/..' . '/spatie/laravel-activitylog/src/helpers.php',
+        '381c1f7485be5ec909ca0fe1ede4b928' => __DIR__ . '/../..' . '/app/Helpers/Helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -79,6 +84,7 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Svg\\' => 4,
+            'Srmklive\\PayPal\\' => 16,
             'Spatie\\String\\' => 14,
             'Spatie\\Activitylog\\' => 19,
         ),
@@ -91,6 +97,7 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
             'Psy\\' => 4,
             'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
             'Prophecy\\' => 9,
             'PhpParser\\' => 10,
@@ -110,11 +117,13 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         ),
         'L' => 
         array (
+            'Lightit\\LinkedinShare\\' => 22,
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
         ),
         'J' => 
         array (
+            'Jorenvh\\Share\\' => 14,
             'JakubOnderka\\PhpConsoleHighlighter\\' => 35,
             'JakubOnderka\\PhpConsoleColor\\' => 29,
         ),
@@ -128,6 +137,9 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         ),
         'G' => 
         array (
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
             'GrahamCampbell\\Manager\\' => 23,
         ),
         'F' => 
@@ -304,6 +316,10 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         array (
             0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
         ),
+        'Srmklive\\PayPal\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/srmklive/paypal/src',
+        ),
         'Spatie\\String\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/string/src',
@@ -327,6 +343,10 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Container\\' => 
         array (
@@ -356,6 +376,10 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Lightit\\LinkedinShare\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lightit/linkedin-share/src',
+        ),
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
@@ -363,6 +387,10 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
+        ),
+        'Jorenvh\\Share\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src',
         ),
         'JakubOnderka\\PhpConsoleHighlighter\\' => 
         array (
@@ -379,6 +407,18 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'Hashids\\' => 
         array (
             0 => __DIR__ . '/..' . '/hashids/hashids/src',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
         'GrahamCampbell\\Manager\\' => 
         array (
@@ -501,16 +541,23 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'App\\Http\\Controllers\\admin\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/Auth/LoginController.php',
         'App\\Http\\Controllers\\admin\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\admin\\courseController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/courseController.php',
+        'App\\Http\\Controllers\\admin\\dealsController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/dealsController.php',
         'App\\Http\\Controllers\\admin\\indexController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/indexController.php',
         'App\\Http\\Controllers\\admin\\reportController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/reportController.php',
         'App\\Http\\Controllers\\admin\\reviewController' => __DIR__ . '/../..' . '/app/Http/Controllers/admin/reviewController.php',
         'App\\Http\\Controllers\\home\\cartController' => __DIR__ . '/../..' . '/app/Http/Controllers/home/cartController.php',
+        'App\\Http\\Controllers\\home\\courseController' => __DIR__ . '/../..' . '/app/Http/Controllers/home/courseController.php',
+        'App\\Http\\Controllers\\home\\ebookController' => __DIR__ . '/../..' . '/app/Http/Controllers/home/ebookController.php',
         'App\\Http\\Controllers\\home\\indexController' => __DIR__ . '/../..' . '/app/Http/Controllers/home/indexController.php',
+        'App\\Http\\Controllers\\paymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/paymentController.php',
+        'App\\Http\\Controllers\\user\\PayPalController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/PayPalController.php',
         'App\\Http\\Controllers\\user\\auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\user\\auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/auth/LoginController.php',
         'App\\Http\\Controllers\\user\\auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\user\\auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/auth/VerificationController.php',
+        'App\\Http\\Controllers\\user\\checkoutController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/checkoutController.php',
         'App\\Http\\Controllers\\user\\courseController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/courseController.php',
+        'App\\Http\\Controllers\\user\\dealsController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/dealsController.php',
         'App\\Http\\Controllers\\user\\reportController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/reportController.php',
         'App\\Http\\Controllers\\user\\reviewController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/reviewController.php',
         'App\\Http\\Controllers\\user\\settingController' => __DIR__ . '/../..' . '/app/Http/Controllers/user/settingController.php',
@@ -524,14 +571,20 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Mail\\ContactMail' => __DIR__ . '/../..' . '/app/Mail/ContactMail.php',
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\cart' => __DIR__ . '/../..' . '/app/Models/cart.php',
         'App\\Models\\certificate' => __DIR__ . '/../..' . '/app/Models/certificate.php',
         'App\\Models\\course' => __DIR__ . '/../..' . '/app/Models/course.php',
+        'App\\Models\\deals' => __DIR__ . '/../..' . '/app/Models/deals.php',
+        'App\\Models\\discounts' => __DIR__ . '/../..' . '/app/Models/discounts.php',
         'App\\Models\\report' => __DIR__ . '/../..' . '/app/Models/report.php',
         'App\\Models\\tableOfContent' => __DIR__ . '/../..' . '/app/Models/tableOfContent.php',
+        'App\\Models\\tempData' => __DIR__ . '/../..' . '/app/Models/tempData.php',
         'App\\Models\\userProgress' => __DIR__ . '/../..' . '/app/Models/userProgress.php',
+        'App\\Models\\usercourse' => __DIR__ . '/../..' . '/app/Models/usercourse.php',
+        'App\\Models\\userdeals' => __DIR__ . '/../..' . '/app/Models/userdeals.php',
         'App\\Notifications\\adminReportNotification' => __DIR__ . '/../..' . '/app/Notifications/adminReportNotification.php',
         'App\\Notifications\\adminResetPasswordNotification' => __DIR__ . '/../..' . '/app/Notifications/adminResetPasswordNotification.php',
         'App\\Notifications\\reportNotification' => __DIR__ . '/../..' . '/app/Notifications/reportNotification.php',
@@ -1319,6 +1372,77 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'GrahamCampbell\\Manager\\AbstractManager' => __DIR__ . '/..' . '/graham-campbell/manager/src/AbstractManager.php',
         'GrahamCampbell\\Manager\\ConnectorInterface' => __DIR__ . '/..' . '/graham-campbell/manager/src/ConnectorInterface.php',
         'GrahamCampbell\\Manager\\ManagerInterface' => __DIR__ . '/..' . '/graham-campbell/manager/src/ManagerInterface.php',
+        'GuzzleHttp\\Client' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Client.php',
+        'GuzzleHttp\\ClientInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/ClientInterface.php',
+        'GuzzleHttp\\Cookie\\CookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJar.php',
+        'GuzzleHttp\\Cookie\\CookieJarInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/CookieJarInterface.php',
+        'GuzzleHttp\\Cookie\\FileCookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/FileCookieJar.php',
+        'GuzzleHttp\\Cookie\\SessionCookieJar' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/SessionCookieJar.php',
+        'GuzzleHttp\\Cookie\\SetCookie' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Cookie/SetCookie.php',
+        'GuzzleHttp\\Exception\\BadResponseException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/BadResponseException.php',
+        'GuzzleHttp\\Exception\\ClientException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/ClientException.php',
+        'GuzzleHttp\\Exception\\ConnectException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/ConnectException.php',
+        'GuzzleHttp\\Exception\\GuzzleException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/GuzzleException.php',
+        'GuzzleHttp\\Exception\\InvalidArgumentException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/InvalidArgumentException.php',
+        'GuzzleHttp\\Exception\\RequestException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/RequestException.php',
+        'GuzzleHttp\\Exception\\SeekException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/SeekException.php',
+        'GuzzleHttp\\Exception\\ServerException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/ServerException.php',
+        'GuzzleHttp\\Exception\\TooManyRedirectsException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/TooManyRedirectsException.php',
+        'GuzzleHttp\\Exception\\TransferException' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Exception/TransferException.php',
+        'GuzzleHttp\\HandlerStack' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/HandlerStack.php',
+        'GuzzleHttp\\Handler\\CurlFactory' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlFactory.php',
+        'GuzzleHttp\\Handler\\CurlFactoryInterface' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlFactoryInterface.php',
+        'GuzzleHttp\\Handler\\CurlHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlHandler.php',
+        'GuzzleHttp\\Handler\\CurlMultiHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php',
+        'GuzzleHttp\\Handler\\EasyHandle' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/EasyHandle.php',
+        'GuzzleHttp\\Handler\\MockHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/MockHandler.php',
+        'GuzzleHttp\\Handler\\Proxy' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/Proxy.php',
+        'GuzzleHttp\\Handler\\StreamHandler' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Handler/StreamHandler.php',
+        'GuzzleHttp\\MessageFormatter' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/MessageFormatter.php',
+        'GuzzleHttp\\Middleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Middleware.php',
+        'GuzzleHttp\\Pool' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Pool.php',
+        'GuzzleHttp\\PrepareBodyMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php',
+        'GuzzleHttp\\Promise\\AggregateException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/AggregateException.php',
+        'GuzzleHttp\\Promise\\CancellationException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/CancellationException.php',
+        'GuzzleHttp\\Promise\\Coroutine' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Coroutine.php',
+        'GuzzleHttp\\Promise\\EachPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/EachPromise.php',
+        'GuzzleHttp\\Promise\\FulfilledPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/FulfilledPromise.php',
+        'GuzzleHttp\\Promise\\Promise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/Promise.php',
+        'GuzzleHttp\\Promise\\PromiseInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/PromiseInterface.php',
+        'GuzzleHttp\\Promise\\PromisorInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/PromisorInterface.php',
+        'GuzzleHttp\\Promise\\RejectedPromise' => __DIR__ . '/..' . '/guzzlehttp/promises/src/RejectedPromise.php',
+        'GuzzleHttp\\Promise\\RejectionException' => __DIR__ . '/..' . '/guzzlehttp/promises/src/RejectionException.php',
+        'GuzzleHttp\\Promise\\TaskQueue' => __DIR__ . '/..' . '/guzzlehttp/promises/src/TaskQueue.php',
+        'GuzzleHttp\\Promise\\TaskQueueInterface' => __DIR__ . '/..' . '/guzzlehttp/promises/src/TaskQueueInterface.php',
+        'GuzzleHttp\\Psr7\\AppendStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/AppendStream.php',
+        'GuzzleHttp\\Psr7\\BufferStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/BufferStream.php',
+        'GuzzleHttp\\Psr7\\CachingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/CachingStream.php',
+        'GuzzleHttp\\Psr7\\DroppingStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/DroppingStream.php',
+        'GuzzleHttp\\Psr7\\FnStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/FnStream.php',
+        'GuzzleHttp\\Psr7\\InflateStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/InflateStream.php',
+        'GuzzleHttp\\Psr7\\LazyOpenStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/LazyOpenStream.php',
+        'GuzzleHttp\\Psr7\\LimitStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/LimitStream.php',
+        'GuzzleHttp\\Psr7\\MessageTrait' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/MessageTrait.php',
+        'GuzzleHttp\\Psr7\\MultipartStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/MultipartStream.php',
+        'GuzzleHttp\\Psr7\\NoSeekStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/NoSeekStream.php',
+        'GuzzleHttp\\Psr7\\PumpStream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/PumpStream.php',
+        'GuzzleHttp\\Psr7\\Request' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Request.php',
+        'GuzzleHttp\\Psr7\\Response' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Response.php',
+        'GuzzleHttp\\Psr7\\Rfc7230' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Rfc7230.php',
+        'GuzzleHttp\\Psr7\\ServerRequest' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/ServerRequest.php',
+        'GuzzleHttp\\Psr7\\Stream' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Stream.php',
+        'GuzzleHttp\\Psr7\\StreamDecoratorTrait' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/StreamDecoratorTrait.php',
+        'GuzzleHttp\\Psr7\\StreamWrapper' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/StreamWrapper.php',
+        'GuzzleHttp\\Psr7\\UploadedFile' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UploadedFile.php',
+        'GuzzleHttp\\Psr7\\Uri' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/Uri.php',
+        'GuzzleHttp\\Psr7\\UriNormalizer' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriNormalizer.php',
+        'GuzzleHttp\\Psr7\\UriResolver' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/UriResolver.php',
+        'GuzzleHttp\\RedirectMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RedirectMiddleware.php',
+        'GuzzleHttp\\RequestOptions' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RequestOptions.php',
+        'GuzzleHttp\\RetryMiddleware' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/RetryMiddleware.php',
+        'GuzzleHttp\\TransferStats' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/TransferStats.php',
+        'GuzzleHttp\\UriTemplate' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/UriTemplate.php',
+        'GuzzleHttp\\Utils' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/Utils.php',
         'HTML5_Data' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Data.php',
         'HTML5_InputStream' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/InputStream.php',
         'HTML5_Parser' => __DIR__ . '/..' . '/dompdf/dompdf/lib/html5lib/Parser.php',
@@ -2230,6 +2354,9 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/Highlighter.php',
+        'Jorenvh\\Share\\Providers\\ShareServiceProvider' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Providers/ShareServiceProvider.php',
+        'Jorenvh\\Share\\Share' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/Share.php',
+        'Jorenvh\\Share\\ShareFacade' => __DIR__ . '/..' . '/jorenvanhocht/laravel-share/src/ShareFacade.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Laravel\\Tinker\\ClassAliasAutoloader' => __DIR__ . '/..' . '/laravel/tinker/src/ClassAliasAutoloader.php',
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
@@ -2281,6 +2408,10 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'League\\Flysystem\\Util\\ContentListingFormatter' => __DIR__ . '/..' . '/league/flysystem/src/Util/ContentListingFormatter.php',
         'League\\Flysystem\\Util\\MimeType' => __DIR__ . '/..' . '/league/flysystem/src/Util/MimeType.php',
         'League\\Flysystem\\Util\\StreamHasher' => __DIR__ . '/..' . '/league/flysystem/src/Util/StreamHasher.php',
+        'Lightit\\LinkedinShare\\Facades\\LinkedinShare' => __DIR__ . '/..' . '/lightit/linkedin-share/src/Facades/LinkedinShare.php',
+        'Lightit\\LinkedinShare\\LinkedinShare' => __DIR__ . '/..' . '/lightit/linkedin-share/src/LinkedinShare.php',
+        'Lightit\\LinkedinShare\\LinkedinShareException' => __DIR__ . '/..' . '/lightit/linkedin-share/src/LinkedinShare.php',
+        'Lightit\\LinkedinShare\\LinkedinShareServiceProvider' => __DIR__ . '/..' . '/lightit/linkedin-share/src/LinkedinShareServiceProvider.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV5.php',
         'Mockery\\Adapter\\Phpunit\\Legacy\\TestListenerForV6' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/Legacy/TestListenerForV6.php',
@@ -3264,6 +3395,13 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'Psr\\Container\\ContainerExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerExceptionInterface.php',
         'Psr\\Container\\ContainerInterface' => __DIR__ . '/..' . '/psr/container/src/ContainerInterface.php',
         'Psr\\Container\\NotFoundExceptionInterface' => __DIR__ . '/..' . '/psr/container/src/NotFoundExceptionInterface.php',
+        'Psr\\Http\\Message\\MessageInterface' => __DIR__ . '/..' . '/psr/http-message/src/MessageInterface.php',
+        'Psr\\Http\\Message\\RequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/RequestInterface.php',
+        'Psr\\Http\\Message\\ResponseInterface' => __DIR__ . '/..' . '/psr/http-message/src/ResponseInterface.php',
+        'Psr\\Http\\Message\\ServerRequestInterface' => __DIR__ . '/..' . '/psr/http-message/src/ServerRequestInterface.php',
+        'Psr\\Http\\Message\\StreamInterface' => __DIR__ . '/..' . '/psr/http-message/src/StreamInterface.php',
+        'Psr\\Http\\Message\\UploadedFileInterface' => __DIR__ . '/..' . '/psr/http-message/src/UploadedFileInterface.php',
+        'Psr\\Http\\Message\\UriInterface' => __DIR__ . '/..' . '/psr/http-message/src/UriInterface.php',
         'Psr\\Log\\AbstractLogger' => __DIR__ . '/..' . '/psr/log/Psr/Log/AbstractLogger.php',
         'Psr\\Log\\InvalidArgumentException' => __DIR__ . '/..' . '/psr/log/Psr/Log/InvalidArgumentException.php',
         'Psr\\Log\\LogLevel' => __DIR__ . '/..' . '/psr/log/Psr/Log/LogLevel.php',
@@ -3615,6 +3753,15 @@ class ComposerStaticInit92dfe67fc286e592dc62b17397de5fc1
         'Spatie\\String\\Exceptions\\UnsetOffsetException' => __DIR__ . '/..' . '/spatie/string/src/Exceptions/UnsetOffsetException.php',
         'Spatie\\String\\Integrations\\Underscore' => __DIR__ . '/..' . '/spatie/string/src/Integrations/Underscore.php',
         'Spatie\\String\\Str' => __DIR__ . '/..' . '/spatie/string/src/Str.php',
+        'Srmklive\\PayPal\\Facades\\PayPal' => __DIR__ . '/..' . '/srmklive/paypal/src/Facades/PayPal.php',
+        'Srmklive\\PayPal\\PayPalFacadeAccessor' => __DIR__ . '/..' . '/srmklive/paypal/src/PayPalFacadeAccessor.php',
+        'Srmklive\\PayPal\\Providers\\PayPalServiceProvider' => __DIR__ . '/..' . '/srmklive/paypal/src/Providers/PayPalServiceProvider.php',
+        'Srmklive\\PayPal\\Services\\AdaptivePayments' => __DIR__ . '/..' . '/srmklive/paypal/src/Services/AdaptivePayments.php',
+        'Srmklive\\PayPal\\Services\\ExpressCheckout' => __DIR__ . '/..' . '/srmklive/paypal/src/Services/ExpressCheckout.php',
+        'Srmklive\\PayPal\\Traits\\PayPalHttpClient' => __DIR__ . '/..' . '/srmklive/paypal/src/Traits/PayPalHttpClient.php',
+        'Srmklive\\PayPal\\Traits\\PayPalRequest' => __DIR__ . '/..' . '/srmklive/paypal/src/Traits/PayPalRequest.php',
+        'Srmklive\\PayPal\\Traits\\PayPalTransactions' => __DIR__ . '/..' . '/srmklive/paypal/src/Traits/PayPalTransactions.php',
+        'Srmklive\\PayPal\\Traits\\RecurringProfiles' => __DIR__ . '/..' . '/srmklive/paypal/src/Traits/RecurringProfiles.php',
         'Svg\\DefaultStyle' => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg/DefaultStyle.php',
         'Svg\\Document' => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg/Document.php',
         'Svg\\Gradient\\Stop' => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg/Gradient/Stop.php',

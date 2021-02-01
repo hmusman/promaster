@@ -8,6 +8,13 @@
     table.dataTable td, table.dataTable th{
         font-size: 11px !important;
     }
+    .title h6 br {
+        content: ' '
+    }
+
+    .title h6 br:after {
+        content: ' '
+    }
 </style>
 @endif
 @endsection
@@ -33,7 +40,7 @@
                         @foreach($courses as $key => $course)
                                 <tr>
                                     <td class="text-center">{{++$key}}</td>
-                                    <td><h6>{{$course->course_title}}</h6></td>
+                                    <td class="title"><h6><?php echo strip_tags($course->course_title, '<br>') ?></h6></td>
                                     <td class="text-center d-flex">
                                         <span class="rating-wrapper-{{$key}}">
                                         </span>

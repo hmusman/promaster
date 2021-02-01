@@ -17,28 +17,23 @@ use App\Models\User;
 use App\Http\Controllers\user\traits\activityLog;
 class LoginController extends Controller
 {
-    use VerifiesEmails;
+    // use VerifiesEmails;
     use activityLog;
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
     public function registerUser(Request $request){
+    
         $request->validate([
             'email' => 'required|unique:users',
             'first_name' => 'required|min:3|max:50',
-            'last_name' => 'required|min:3|max:50',
-            'gender' => 'required',
-            'country' => 'required',
+            'password' => 'required|min:6',
             'terms_and_condition' => 'required',
-            'password' => 'confirmed|min:6',
             
         ]);
     	$user = array(
     		"first_name" => input::get('first_name'),
-    		"last_name" => input::get('last_name'),
-    		"gender" => input::get('gender'),
-    		"country" => input::get('country'),
     		"email" => input::get('email'),
     		"password" => Hash::make(input::get('password')),
     	);
@@ -46,9 +41,9 @@ class LoginController extends Controller
     	if($result){
     		$credentials = $request->only('email', 'password');
 	        if (Auth::attempt($credentials)) {
-                $this->resend($request);
+                // $this->resend($request);
                 User::where("id",Auth::id())->update(["login_at"=>Carbon::now()]);
-	            return "true";
+	            return redirect()->to('user/courses');
 	        }
     	}
     }

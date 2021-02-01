@@ -18,6 +18,7 @@
     <script src="{{url('public/assets/libs/js/main-js.js')}}"></script>
    <script src="{{url('public/assets/vendor/bootstrap-select/js/bootstrap-select.js')}}"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+   <script src="{{url('public/assets/mselect/chosen.jquery.min.js')}}" type="text/javascript" charset="utf-8" async defer></script>
     @stack('scripts');
     @yield('script')
     <script>

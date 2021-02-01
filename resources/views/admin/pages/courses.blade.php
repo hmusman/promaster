@@ -6,6 +6,15 @@
 @endsection
 
 @section('content')
+<style>
+  .media-body h3 br {
+    content: ' '
+}
+
+.media-body h3 br:after {
+    content: ' '
+}
+</style>
 	<div class="row">
     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">{!! session('message') !!}</div>
 		@if(count($courses) > 0)
@@ -16,7 +25,7 @@
 		                    <div class="media">
 		                        <img class="mr-3 user-avatar-lg rounded" src="{{url('public/course-thumbnails')}}/{{$course->course_thumbnail}}">
 		                        <div class="media-body">
-		                            <h3>{{$course->course_title}}</h3>
+		                            <h3><?php echo strip_tags($course->course_title, '<br>') ?></h3>
 		                            <p>{{$course->course_description}}</p>
 		                        </div>
 		                    </div>

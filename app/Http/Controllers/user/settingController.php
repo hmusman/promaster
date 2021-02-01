@@ -13,6 +13,8 @@ use App\Models\tableOfContent;
 use File;
 use Response;
 use PDF;
+use Carbon\Carbon;
+use App\Models\tempData;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\user\traits\activityLog;
@@ -21,17 +23,72 @@ class settingController extends Controller
 {
     use activityLog;
     public function setting(){
-    	return view('user.pages.setting');
+        $RequestChangeName = tempData::where('user_id', Auth::id())->first();
+        if(!empty($RequestChangeName)){
+            $CreateTime = $RequestChangeName->created_at;
+            $CurrentTime = Carbon::now();
+            // dd(abs(strtotime($CurrentTime) - strtotime($CreateTime)/3600));
+            // function differenceInHours($startdate,$enddate){
+            //     $starttimestamp = strtotime($startdate);
+            //     $endtimestamp = strtotime($enddate);
+            //     $difference = abs($endtimestamp - $starttimestamp)/3600;
+            //     return $difference;
+            // }
+            $time1 = strtotime($CreateTime);
+            $time2 = strtotime($CurrentTime);
+            $difference = round(abs($time2 - $time1) / 3600,2);
+            // $hours = differenceInHours($CreateTime, $CurrentTime);
+            // dd($difference);
+            if($difference >= 24){
+                tempData::where('user_id', Auth::id())->delete();
+            }
+        }
+        $changeName = tempData::where('user_id', Auth::id())->first();
+        $user = User::where('id', Auth::id())->first();
+        // $changeName = tempData::where('user_id', Auth::id())->first();
+        // dd($user, $changeName);
+    	return view('user.pages.setting', compact('user', 'changeName'));
     }
     public function updateProfile(Request $request){
+        // dd($request);
     	$validator  = $request->validate([
-	        'email' => 'required|email|unique:users,email,'.Auth::id(),
+	        'first_name' => 'required|min:3|max:50',
+            // 'last_name' => 'required|min:3|max:50',
 	    ]);
+
 	    $profile = array(
-         	"email"=>$request->email,
+            "first_name"=>$request->first_name,
+         	// "last_name"=>$request->last_name,
          );
-	    $path = public_path();
-	    if($request->hasfile('profile_image')){
+        // dd($request);
+	    // $path = public_path();
+	    // if($request->hasfile('profile_image')){
+     //        if(File::exists($path.'/profile-images/'.Auth::user()->profile_image)) {
+     //            File::delete($path.'/profile-images/'.Auth::user()->profile_image);
+     //        }
+     //        $file = input::file('profile_image');
+     //        $ext=$file->getClientOriginalExtension();
+     //        $profileImg = md5(rand(1111,9999)).'.'.$ext;
+     //        $file->move(public_path().'/profile-images/' , $profileImg); 
+     //        $profile["profile_image"] = $profileImg;
+     //        $this->createActivity(Auth::id(),'update_profile_img','Profile image changed');    
+     //     }
+        //  echo "<pre>";
+        //  print_r($profile);
+        //  return;
+         // dd($profile);
+    	User::where("id",Auth::id())->update($profile);
+        tempData::where('user_id', Auth::id())->delete();
+        // if($request->email != Auth::user()->email){
+        //     $this->createActivity(Auth::id(),'update_email','Updated email address from <strong>"'.Auth::user()->email.'"</strong> to <strong>"'.$request->email.'"</strong>.');
+        // }
+    	return back()->with("message","<div class='alert alert-success'>Profile Name Updated Successfully!</div>");
+    }
+
+    public function updateProfileImage(Request $request){
+        // dd($request);
+        $path = public_path();
+        if($request->hasfile('profile_image')){
             if(File::exists($path.'/profile-images/'.Auth::user()->profile_image)) {
                 File::delete($path.'/profile-images/'.Auth::user()->profile_image);
             }
@@ -42,21 +99,39 @@ class settingController extends Controller
             $profile["profile_image"] = $profileImg;
             $this->createActivity(Auth::id(),'update_profile_img','Profile image changed');    
          }
-        //  echo "<pre>";
-        //  print_r($profile);
-        //  return;
-    	User::where("id",Auth::id())->update($profile);
-        if($request->email != Auth::user()->email){
-            $this->createActivity(Auth::id(),'update_email','Updated email address from <strong>"'.Auth::user()->email.'"</strong> to <strong>"'.$request->email.'"</strong>.');
-        }
-    	return back()->with("message","<div class='alert alert-success'>Profile Updated Successfully!</div>");
+
+            User::where("id",Auth::id())->update($profile);
+
+        return back()->with("message","<div class='alert alert-success'>Profile Image Updated Successfully!</div>");
     }
+
+    public function updateEmail(Request $request){
+
+        // dd($request);
+        $validator  = $request->validate([
+            'old_email' => 'required|email',
+            'email' => 'required|email|unique:users',
+            'confirm_email' => 'required|email|same:email',
+        ]);
+
+        $profile = array(
+            "email"=>$request->email,
+         );
+
+        // dd($profile);
+        User::where("id",Auth::id())->update($profile);
+        return back()->with("message","<div class='alert alert-success'>Profile Updated Successfully!</div>");
+    }
+
     public function resetPassword(Request $request){
+        // dd($request);
     	$validator  = $request->validate([
 			'old_password' => 'required|min:6',
-    		'password' => 'confirmed|min:6',
+    		'password' => 'required|min:6',
+            'confirm_password' => 'required|min:6|same:password',
 	    ]);
-	    if (Hash::check($request->old_password, Auth::user()->password)) { 
+        
+	    if(Hash::check($request->old_password, Auth::user()->password)) { 
 		   $user = User::find(Auth::id());
             $user->update([
 		    'password' => Hash::make($request->password)

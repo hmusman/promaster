@@ -16,6 +16,7 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "spatie/laravel-activitylog": "^3.8",
+        "srmklive/paypal": "^1.7",
         "trexology/reviewrateable": "^2.0",
         "vinkla/hashids": "^6.0"
     },
@@ -44,7 +45,11 @@
         "classmap": [
             "database/seeds",
             "database/factories"
-        ]
+        ],
+        "files": [
+        "app/Helpers/Helpers.php"
+    ]
+
     },
     "autoload-dev": {
         "psr-4": {

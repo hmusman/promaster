@@ -10,5 +10,9 @@
 @yield('section-8')
 @yield('section-9')
 @yield('section-10')
+@yield('section-11')
+@yield('section-12')
+@yield('section-13')
+@yield('section-14')
 
 @include('home.includes.footer')

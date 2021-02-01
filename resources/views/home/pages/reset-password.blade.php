@@ -1,89 +1,57 @@
-<!DOCTYPE html>
-<html lang="en ">
-<head>
-  <title>ProMaster</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="{{url('public/assets/style.css')}}">
-  <style>
-      .right-box-inner {
-            padding: 8% 20px 21% !important; 
-        }
-  </style>
-</head>
-<body>
-	<div class="login-box shadow">
-		<div class="row login-box-inner">
-			<div class="col-sm-6 left-box"></div>
-			<div class="col-sm-6 right-box">
-				<div class="right-box-inner">
-					<form method="POST" action="{{ route('password-update') }}">
+@extends('home.includes.layout')
+
+@section('section-1')
+<style>
+    .display{
+        display: none;
+    }
+    .alert {
+        font-size: 16px;
+        line-height: 50px;
+        position: relative;
+        border-width: 0px;
+        border-style: solid;
+        border-radius: 0px;
+        margin-bottom: 30px;
+    }
+</style>
+<section class="login_area">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-lg-7">
+                <div class="login_info">
+                    <h2 class="f_p f_700 f_size_40 t_color3 mb_20">Forget Password</h2>
+                    <p class="f_p f_400 f_size_15">Welcome! Please enter your email</p>
+                    <div class="error-message display" style="background-color: #e79376;padding: 16px 0px 16px 38px;">
+                        <h5><i class="fas fa-warning"></i>&nbsp;invalid email or password.</h5>
+                    </div>
+                     @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+                    <form method="post" action="{{ route('user.password.email') }}" class="login-form mt_60" id="reset-form">
                         @csrf
-                        <input type="hidden" name="token" value="{{ $token }}">
-                    	<h3 class="mb-5">Reset Password</h3>
-                    	<div class="form-group mb-4">
-                    		<label>Email Address</label>
-                    		<div class="row input-form shadow-lg">
-                    			<div class="col-sm-2 col-2 p-0 m-0 input-icon">
-                    				<i class="fa fa-envelope"></i>
-                    			</div>
-                    			<div class="col-sm-10 col-10 p-0 m-0 ">
-                    				<input type="email" name="email" value="{{ $email ?? old('email') }}" class="form-control-lg " required="">
-                    			</div>
-                    		</div>
-                    	</div>
-                    	<div class="form-group mb-4">
-                    		<label>Password</label>
-                    		<div class="row input-form shadow-lg">
-                    			<div class="col-sm-2 col-2 p-0 m-0 input-icon">
-                    				<i class="fa fa-lock"></i>
-                    			</div>
-                    			<div class="col-sm-10 col-10 p-0 m-0">
-                    				<input type="password" name="password" value="{{ old('password') }}" class="form-control-lg" required="">
-                    			</div>
-                    		</div>
-                    	</div>
-                    	<div class="form-group mb-5">
-                    		<label>Confirm Password</label>
-                    		<div class="row input-form shadow-lg">
-                    			<div class="col-sm-2 col-2 p-0 m-0 input-icon">
-                    				<i class="fa fa-lock"></i>
-                    			</div>
-                    			<div class="col-sm-10 col-10 p-0 m-0">
-                    				<input type="password" name="password_confirmation" value="{{ old('password_confirmation') }}" class="form-control-lg" required="">
-                    			</div>
-                    		</div>
-                    	</div>
-                    	<div class="form-group">
-                    		<input type="submit" value="Reset Password" name="submit" class="btn btn-primary">
-                    	</div>
+                        <div class="form-group text_box">
+                            <label class="f_p text_c f_400">Email</label>
+                            <input type="email" placeholder="Email" name="email" value="{{ $email ?? old('email') }}" required="">
+                            @error('email')
+                                    <span class="alert alert-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                        </div>
+                        <button type="submit" class="btn_three form-submit-btn">Send Reset Password Link</button>
                     </form>
-				</div>
-			</div>
-		</div>
-	</div>
-@error('email')
-<script>
-    Command: toastr["error"]("{{$message}}")
-</script>
-@enderror
-@error('password')
-<script>
-    Command: toastr["error"]("{{$message}}")
-</script>
-@enderror
-@if(session('status'))
-<script>
-    Command: toastr["success"]("{{ session('status') }}")
-</script>
-@endif
-</body>
-</html>
+                </div>
+            </div>
+            <div class="col-lg-4 d-flex align-items-center">
+                <div class="login_img">
+                    <img src="{{url('public/assets/img/seo/login.png')}}" alt="login.png...">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection
